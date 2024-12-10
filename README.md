@@ -4,7 +4,7 @@
 
 [在线页面](http://ggbstudy.top/sa/)
 
-![](img/snap.jpg)
+![snapshot](img/snap.jpg)
 
 ## 文件说明
 
