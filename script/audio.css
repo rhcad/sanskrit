@@ -1,0 +1,57 @@
+.audio-button:not(.voc) {
+    display: inline-block;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    background-color: #ffca1c;
+    border-radius: 50%;
+    vertical-align: middle;
+    padding: 0;
+    margin-right: 3px;
+    margin-left: 3px;
+    border-color: transparent;
+}
+
+.audio-button:not(.voc)::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%) scale(0.9);
+    vertical-align: middle;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 8px solid #000;
+}
+
+.audio-button.voc {
+    background-image: url("../img/listen.gif");
+    background-size: 12px 12px;
+    width: 12px;
+    height: 12px;
+    border: none;
+    opacity: .8;
+}
+
+@media screen and (pointer: fine) {
+    .audio-button:not(.voc):hover { background-color: #0a7aff; }
+    .audio-button.voc:hover { opacity: 1; }
+    .audio-word:has(.audio-button):hover {
+        text-decoration: underline;
+        text-decoration-color: #ccc;
+        text-underline-position: under;
+    }
+}
+
+.audio-button:not(.voc).playing {
+    background-color: #f00 !important;
+}
+.audio-word:has(.audio-button.playing) {
+    text-decoration: underline;
+    text-decoration-color: #777;
+    text-underline-position: under;
+}
+
+.multi-audio .word:has(.sub-word) { display: inline-block; }
+.multi-audio .sub-word { display: inline; }

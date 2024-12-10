@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>心经梵文教念</title>
+  <meta name="description" content="Sanskrit The Heart Sutra,心经梵文教念">
+  <meta name="keywords" content="sanskrit,Heart,心经梵文教念">
+  <meta property="og:image" content="img/favicon.png">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="stylesheet" href="script/sanskrit.css?v=1205">
+  <link rel="stylesheet" href="script/audio.css?v=1205">
+  <style>
+    .word span.sp { display: inline !important; margin: 0; }
+    .title { text-align: center; margin-bottom: .5em; }
+    .tip { font-size: 11px; margin-bottom: .5em; }
+  </style>
+</head>
+<body class="show-odd show-iast show-audio auto-audio">
+<div id="top-bar">
+  <span class="home" onclick="location.href='./'" title="Home"><img src="img/favicon.png" alt="Home"></span>
+  <span onclick="biggerFont()">+</span>
+  <span onclick="smallerFont()">-</span>
+  <span data-toggle="show-odd">音节</span>
+  <span data-toggle="show-deva">天城体</span>
+  <span data-toggle="show-iast">转写</span>
+  <span data-toggle="show-audio">读音</span>
+  <span data-toggle="auto-audio">连读</span>
+</div>
+<div class="title no-print">心经 <small>印度梵语教授穆克纪诵</small></div>
+<div class="tip no-print">注：如在“微信”中连读播放会3秒内停止，可点击继续播放，或点击右上角…按钮“在浏览器中打开”本页面。开始播放后再次点击会停止。</div>
+<div id="body"></div>
+<script src="script/sanscript.es6.js?v=1206"></script>
+<script src="script/sanskrit.js?v=1206"></script>
+<script>
+  const iastContent = `
+namaḥ▷01 sarva-jñāya▷02 | ▷500
+āryā-valokite-śvaro▷03 bodhisattvo▷04 ▷501
+  gaṃbhīrāyāṃ▷05 prajñā▷06a-pāramitāyāṃ▷06b caryāṃ▷07 ▷502
+  caramāṇo▷08 vyava-lokaya-ti-sma▷09 | ▷503
+pañca-skandhās▷10 tāṃś-ca▷11 svabhāva▷12a-śūnyān▷12b paśyati-sma▷13 | ▷504
+iha-śāriputra▷14 rūpaṃ-śūnyatā▷15 śūnyataiva-rūpaṃ▷16 ▷505
+  rūpān-na-pṛthak-śūnyatā▷17 śūnyātāyā-na-pṛthag-rūpaṃ▷18 ▷506
+  yad-rūpaṃ▷19 sā▷20a śūnyatā▷20b yā▷21a śūnyatā▷21b tad-rūpam▷22 | ▷507
+evam-eva▷23 vedanā▷24-saṃjñā▷25-saṃskāra▷26-vijñānāni▷27 | ▷508
+iha-śāriputra▷28 sarva-dharmāḥ▷29 śūnyatā▷30a-lakṣaṇā▷30b ▷509
+  anutpannā▷31 aniruddhā▷32 amalā-vimalā▷33 nonā▷34a na-paripūrṇāḥ▷34b | ▷510
+tasmāc▷35a-chāriputra▷35b śūnyatāyāṃ▷36 na-rūpaṃ▷37 ▷511
+  na-vedanā▷38 na-saṃjñā▷39 na-saṃskārā▷40 na-vijñānam▷41 | ▷512
+  na cakṣuḥ▷42-śrotra▷43-ghrāṇa▷44-jihvā▷45-kāya▷46-manāṃsi▷47 ▷513
+  na▷48a rūpa▷48b-śabda▷49-gandha▷50-rasa▷51-spraṣṭavya▷52-dharmāḥ▷53 ▷514
+  na-cakṣur▷54-dhātur▷55-Yāvan-na-mano-vijñāna-dhātuḥ▷56 ▷515
+  na vidyā nāvidyā▷57 nāvidyā-kṣayo▷58 ▷516
+  yāvan-na-jarā-maraṇaṃ▷59 na-jarā-maraṇa-kṣayo▷60 ▷517
+  na▷61 duḥkha-samudaya-nirodha-mārgā▷62 ▷518
+  na-jñānaṃ▷63 na prāptir-nāprāptiḥ▷64 | ▷519
+tasmād▷65 aprāptitvād▷66-bodhisattvanaṃ▷67 ▷520
+  prajñā▷68a-pāramitām▷68b āśritya▷69 viharaty▷70 acittā▷71a-varaṇaḥ▷71b | ▷521
+cittā-varaṇa-nāstitvād▷72 atrasto▷73 ▷522
+  viparyāsā-tikrānto▷74 niṣṭha-nirvāṇaḥ▷75 | ▷523
+tryadhava-vyavasthitāḥ▷76 sarva-buddhāḥ▷77 prajñā▷78a-pāramitām▷78b āśritya▷78c ▷524
+  anuttarāṃ▷79 samyak-saṃbodhiṃ▷80 abhi-sambuddhāḥ▷81 | ▷525
+tasmāj▷82a-jñātavyaṃ▷82b prajñā▷83a-pāramitā▷83b mahā▷84a-mantro▷84b mahā▷85a-vidyā▷85b-mantro▷85c ▷526
+  ’nuttara▷86a-mantro▷86b ’sama-sama-mantraḥ▷87 sarva-duḥkha-praśamanaḥ▷88 ▷527
+  satyam▷89-amithyatvāt▷90 prajñā▷91a-pāramitāyām▷91b ukto-mantraḥ▷92 ▷528
+tadyathā▷93: gate▷94 gate▷94 pāra-gate▷95 parasaṃ-gate▷96 bodhi▷97 svāhā▷98 | ▷529
+iti▷99 prajñā▷100-pāramitā▷101-hṛdaya▷102-sūtraṃ▷103 samāptam▷104 || ▷530`
+
+  window.renderBody = function () {
+    iastContent.split('\n').forEach((text, i) => renderRow(text, i, {
+      audioPrefix: 'mp3/heart_m1/h', hoverWord: false, sentenceAudio: true}))
+  }
+  renderBody()
+</script>
+</body>
+</html>

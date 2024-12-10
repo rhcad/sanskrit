@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-Ua-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>大悲咒梵文教念</title>
+  <meta name="description" content="sanskrit maha karuna dharani,大悲咒梵文">
+  <meta name="keywords" content="sanskrit,maha karuna dharani,大悲咒梵文">
+  <meta property="og:image" content="img/favicon.png">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="stylesheet" href="script/sanskrit.css?v=1205">
+  <link rel="stylesheet" href="script/audio.css?v=1205">
+  <style>
+    .word span.sp { display: inline !important; margin: 0; }
+    .title { text-align: center; margin-bottom: .3em; }
+    .tip { font-size: 11px; margin-bottom: .3em; }
+  </style>
+</head>
+<body class="show-odd show-iast show-audio auto-audio">
+<div id="top-bar">
+  <span class="home" onclick="location.href='./'" title="Home"><img src="img/favicon.png" alt="Home"></span>
+  <span onclick="biggerFont()">+</span>
+  <span onclick="smallerFont()">-</span>
+  <span data-toggle="show-odd">音节</span>
+  <span data-toggle="show-deva">天城体</span>
+  <span data-toggle="show-iast">转写</span>
+  <span data-toggle="show-audio">读音</span>
+  <span data-toggle="auto-audio">连读</span>
+</div>
+<div class="tip no-print">注：如在“微信”中连读播放会3秒内停止，可点击继续播放，或点击右上角…按钮“在浏览器中打开”本页面。开始播放后再次点击会停止。</div>
+<div class="title no-print">大悲咒 简丰祺教念</div>
+<div id="body"></div>
+<script src="script/sanscript.es6.js?v=1206"></script>
+<script src="script/sanskrit.js?v=1206"></script>
+<script>
+  const iastContent = `mahā-kāruṇikā hṛdaya dhāraṇī
+#1
+namo▷01 ratna▷02-trayāya▷03 ▷500
+  namaḥ▷04 āryā▷05-valokite-śvaraya▷06 ▷501
+  bodhi-sattvāya▷07 mahā-sattvāya▷08 mahā-kāruṇikāya▷09 | ▷502
+sarva▷10 bhaye-ṣuca▷11 trāṇā-karāya▷12 | ▷503
+tasya▷13 namaskṛtvā▷14 ▷504
+  imāṃ▷15 āryā▷16-valokite-śvara▷17 tavas▷18 nīlakaṇṭha▷19 nāma-hṛdaya▷20 mārarttaa▷21 iṣyāmi▷22 ▷505
+  sarvārtha▷23 sādhanāṃ▷24 śubhaṃ▷25 ājeyaṃ▷26 ▷506
+  sarva-bhūtānāṃ▷27 bhava-mārga▷28 viśudhakaṃ▷29 ||1|| ▷507
+#2
+tadyathā▷30: oṃ▷31 āloke▷32 loka▷33 atikrānte▷34 e-hrīḥ▷35 mahā-bodhisattva▷36 ▷508
+  smara-smara▷37 hṛdayaṃ▷38 ▷509
+  kuru-kuru▷39 karmaṃ▷40 ▷510
+  dhuru-dhuru viyanti▷41 ▷511
+  mahā-viyanti▷42 ▷512
+  dhara-dhara▷43 dharīndre-śvara▷44 ▷513
+  cala-cala▷45 amalā-vimalā▷46 amalā-amūrte▷47 | ▷514
+ehi-ehi▷48 loke śvara▷49 ▷515
+  rāga-viṣa vināśaya▷50 | ▷516
+dveśa-viṣaṃ-vināśaya▷51 ▷517
+  moha viṣaṃ vināśaya▷52 ▷518
+  huru-huru▷53 mālā▷54 huru hrīḥ▷55 ▷519
+  sara-sara siri-siri suru-suru▷56 ▷520
+  bodhiya▷57 bodhiya▷58 bodhaya▷59 bodhaya▷60 bodhayāmite▷61 ▷521
+  nīlakaṇṭha▷62 kāmaśya▷63 darśanāṃ▷64 ▷522
+  prahlādaya▷65 manaḥ svāhā▷66 ||2|| ▷523
+#3
+siddhāya-svāhā▷67 ▷524
+  mahā-siddhāya▷68 svāhā▷69 ▷525
+  siddha-yoge▷70-śvarāya▷71 svāhā▷72 ▷526
+  nīlakaṇṭhaya▷73 svāhā▷74 ▷527
+  varāha-mukha▷75-siṃha-mukhāya▷76 svāhā▷77 ▷528
+  padma-hastāya▷78 svāhā▷79 ▷529
+  cakra-yuddhāya▷80 svāhā▷81 ▷530
+  śaṅkha-śabda▷82 nibodhanāya-svāhā▷83 ▷531
+  mahā-lakuṭa▷84 dharāya svāhā▷85 ▷532
+  vāma-skandha▷86 deśa-sthita▷87 kṛṣṇa-jīnāya▷88 svāhā▷89 ▷533
+  vyāghra-carma▷90 nivasanāya▷91 svāhā▷92 ||3|| ▷534
+#4
+namo▷93 ratna▷94-trayāya▷95 ▷535
+  nama▷96 āryā▷97-valokite▷98-śvaraya▷99 svāhā▷100 ||4|| ▷536`
+
+  window.renderBody = function () {
+    iastContent.split('\n').forEach((text, i) => renderRow(text, i, {
+      audioPrefix: 'mp3/karuna_jfq/k', hoverWord: false, sentenceAudio: true}))
+  }
+  renderBody()
+</script>
+</body>
+</html>

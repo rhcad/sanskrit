@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>心经梵唱印度版</title>
+  <meta name="description" content="Sanskrit The Heart Sutra, 心经梵唱印度版">
+  <meta name="keywords" content="sanskrit,Heart,心经梵唱">
+  <meta property="og:image" content="img/favicon.png">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="stylesheet" href="script/sanskrit.css?v=1205">
+  <link rel="stylesheet" href="script/audio.css?v=1205">
+  <style>
+    .title { text-align: center; margin-bottom: .5em; }
+    .tip { font-size: 11px; margin-bottom: .7em; }
+  </style>
+</head>
+<body class="show-odd show-iast show-audio auto-audio">
+<div id="top-bar">
+  <span class="home" onclick="location.href='./'" title="Home"><img src="img/favicon.png" alt="Home"></span>
+  <span onclick="biggerFont()">+</span>
+  <span onclick="smallerFont()">-</span>
+  <span data-toggle="show-odd">音节</span>
+  <span data-toggle="show-deva">天城体</span>
+  <span data-toggle="show-iast">转写</span>
+  <span data-toggle="show-audio">读音</span>
+  <span data-toggle="auto-audio">连读</span>
+</div>
+<div class="title no-print">心经(梵唱印度版) - 新韵传音</div>
+<div class="tip no-print">注：如在“微信”中连读播放会3秒内停止，可点击继续播放，或点击右上角…按钮“在浏览器中打开”本页面。开始播放后再次点击会停止。</div>
+<div id="body"></div>
+<script src="script/sanscript.es6.js?v=1206"></script>
+<script src="script/sanskrit.js?v=1206"></script>
+<script>
+  window.audioGap = 0
+  const iastContent = `
+Āryā valokiteśvara bodhisattva▷01
+Gaṃbhīrām prajñā-pāramitā-caryāṃ caramāṇo▷02
+Vya-valokayati sma pañca skandhās a-sattāś ca svabhāva-śūnyān paśyati sma▷03
+Iha-śāriputra rūpaṃ śūnyaṃ śūnyata iva rūpaṃ▷04
+Rūpān na pṛthak śūnyatā.śūnya tāyā na pṛthag sā rūpaṃ▷05
+Yad rūpaṃ sā śūnyatā yā śūnyatā sa rūpam▷06
+Evam eva vedānā-saṃjñā-saṃskāra-vijñānāni▷07
+Iha-Sāriputra sarva-dharmā śūnyatā-lakṣaṇā▷08
+Anutpannā aniruddhā amalā avimalā anonā aparipūrṇāḥ▷09
+Tasmāc cāriputra śūnyatāyāṃ na rūpaṃ▷10
+Na vedanā na saṃjñā na saṃskārā na vijñānāṃ▷11
+Na cakṣuḥ-śrotra-ghrāṇa-jihvā-kāya-manāṃsī▷12
+Na rūpa śabda gandha rasa spraṣṭavya dharmāḥ▷13
+Na cakṣur-dhātur yāvan na mano vijñāna-dhātuḥ▷14
+Na vidyā nāvidyā na vidyākṣayo▷15
+Yāvan na jarāmaraṇaṃ na jarāmaraṇa kṣayo▷16
+Na duḥkha-samudaya-nirodha-mārgā▷17
+Na jñānaṃ na prāptiḥ na abhi-samaya▷18
+Tasmān na aprāptitvā bodhisattvāṇāṃ▷19
+Prajñā-pāramitām āśritya Viharaty a-cittāvaraṇaḥ▷20
+Cittāvaraṇa nā stitvād atrasto▷21
+Vi-paryāsā ati-krānta niṣṭha nirvāṇaṃ▷22
+Tryadhva-vyavasthitā sarva-buddhā▷23
+Prajñā-pāramitām āśritya ānuttarāṃ▷24
+Samyak-sam bodhim abhi-saṃbuddhāḥ▷25
+Tasmāj jñātavyaṃ prajñā-pāramitā▷26
+Mahā-mantra maha-vidyā-mantra▷27
+Anuttara-mantra asama-samati-mantra▷28
+Sarva duḥkha pra-śamanaḥ▷29
+Satyam amithyatvāt▷30
+Prajña-pāramitām ukto mantraḥ▷31
+Tadyathā▷32 Gate gate pāra-gate pārasaṃ-gate bodhi svāhā▷33`
+  window.renderBody = function () {
+    iastContent.split('\n').forEach((text, i) => renderRow(text, i, {
+      audioPrefix: 'mp3/heart_song/h', hoverWord: false}))
+  }
+  renderBody()
+</script>
+</body>
+</html>
