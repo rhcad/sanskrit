@@ -118,8 +118,8 @@ function renderRow(text, rowIndex, options={}) {
     if (audio ? audio[1] === 0 : firstSp || /-/.test(s) || (hasSub && !wordSpan)) {
       if (options['hoverWord'] !== false) {
         wordSpan = createElement(iastSpan, 'sub-word', 'span',
-          {data_id: `${newWordId}-${subIndexes.length}`})
-        subIndexes.push(i)
+          {data_id: `${newWordId}-${subIndexes.length}`});
+        subIndexes.push(i);
         (wordSpan.closest('.word') || wordSpan).classList.add('has-sub-word')
       }
     }
