@@ -5,19 +5,20 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-Ua-Compatible" content="IE=Edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>往生咒教念</title>
-  <meta name="description" content="sanskrit,往生咒梵文">
-  <meta name="keywords" content="sanskrit,拔一切业障根本得生净土陀罗尼,往生咒梵文">
+  <title>辅音</title>
+  <meta name="description" content="sanskrit,梵文,辅音">
+  <meta name="keywords" content="sanskrit,梵文,辅音,Consonants,Vyañjana">
   <meta property="og:image" content="img/favicon.png">
   <link rel="icon" type="image/png" href="img/favicon.png">
   <link rel="stylesheet" href="script/sanskrit.css?v=1214">
   <link rel="stylesheet" href="script/audio.css?v=1214">
   <style>
-    .word span.sp { display: inline !important; margin: 0; }
-    .title { text-align: center; margin-bottom: .3em; }
+    .word.has-sp { min-width: 6px; }
+    .word:not(.has-sp) { min-width: 45px; text-align: center; }
+    .punc { display: none; }
   </style>
 </head>
-<body class="show-odd show-deva show-iast show-audio auto-audio">
+<body class="show-odd show-deva show-iast show-audio">
 <div id="top-bar">
   <span class="home" onclick="location.href='./'" title="Home"><img src="img/favicon.png" alt="Home"></span>
   <span onclick="biggerFont()">+</span>
@@ -26,28 +27,28 @@
   <span data-toggle="show-deva">天城体</span>
   <span data-toggle="show-iast">转写</span>
   <span data-toggle="show-audio">读音</span>
-  <span data-toggle="auto-audio">连读</span>
 </div>
-<div class="title no-print">拔一切业障根本得生净土陀罗尼</div>
 <div id="body"></div>
 <script src="script/sanscript.es6.js?v=1214"></script>
 <script src="script/sanskrit.js?v=1214"></script>
 <script>
-  const iastContent = `sukhāvatī-vyūha-dhāraṇī
-#1 印度梵语教授穆克纪诵
-namo▷01 ’mitābhāya▷02 tathāgatāya▷03 | ▷500
-tad-yathā▷04: amṛtod-bhave▷05 amṛta-siddhaṃ bhave▷06 ▷501
-  amṛta-vikrānte▷07 amṛta-vikrānta-gāmine▷08 ▷502
-  gagana▷09 kīrta▷10-kāre▷11 svāha▷12 || ▷503
-#2 果滨居士教念
-namo▷41 ’mitābhāya▷42 tathāgatāya▷43 | ▷520
-tad-yathā▷44: amṛtod-bhave▷45 amṛta-siddhaṃ bhave▷46 ▷521
-  amṛta-vikrānte▷47 amṛta-vikrānta▷48-gāmini▷49 ▷522
-  gagana▷50-kīrta-kāre▷51 svāhā▷52 || ▷523`
+  const iastContent = `Vyañjani
+#25+4+3+1=33
+ka▷01  kha▷02  ga▷03  gha▷04  ṅa▷05 , ha▷31
+ca▷06  cha▷07  ja▷08  jha▷09  ña▷10  ya▷27  śa▷32
+ṭa▷11  ṭha▷12  ḍa▷13  ḍha▷14  ṇa▷15  ra▷28  ṣa▷33
+ta▷16  tha▷17  da▷18  dha▷19  na▷20  la▷29  sa▷34
+pa▷21  pha▷22  ba▷23  bha▷24  ma▷25  va▷30
+#2 十个遍口音(ya~va śa~ha)
+kṣa▷35  llaṃ▷37
+#3 附加练习
+jña▷36 hrīḥ▷40 aṃ▷38 aḥ▷39
+kṣaṃ▷41 ṅaṃ▷50 ñaṃ▷51 ṇaṃ▷52 naṃ▷53 maṃ▷54
+ṛṃ▷43 ṝṃ▷44 raṃ▷42 aiṃ▷45 oṃ▷46 auṃ▷47`
 
   window.renderBody = function () {
     iastContent.split('\n').forEach((text, i) => renderRow(text, i, {
-      audioPrefix: 'mp3/wsz_m/w', hoverWord: false, sentenceAudio: true}))
+      audioPrefix: 'mp3/con/', audioAsVoc: true}))
   }
   renderBody()
 </script>

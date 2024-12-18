@@ -104,11 +104,12 @@ function renderRow(text, rowIndex, options={}) {
       return
     }
     if (puncRe.test(s)) {
-      return iastSpan.append(s)
+      return createElement(iastSpan, 'punc', 'span', {text: s})
     }
     const firstSp = /^[:-]|^$/.test(s) && (!audio || audio[1] === 0)
     if (firstSp) {
-      createElement(iastSpan, 'sp', 'span', {text: s === '' ? ' ' : '-'})
+      const sp = createElement(iastSpan, 'sp', 'span', {text: s === '' ? ' ' : '-'});
+      (sp.closest('.word') || sp).classList.add('has-sp');
       s = s.substring(1)
       if (!s) {
         return
@@ -119,15 +120,18 @@ function renderRow(text, rowIndex, options={}) {
         wordSpan = createElement(iastSpan, 'sub-word', 'span',
           {data_id: `${newWordId}-${subIndexes.length}`})
         subIndexes.push(i)
+        (wordSpan.closest('.word') || wordSpan).classList.add('has-sub-word')
       }
     }
     i1 += 1
     const clickSection = /^\|{2}\d+\|{2}$/.test(s) && !iastSpan.closest('.word[onclick]')
-    createElement(wordSpan || iastSpan, 'a ' + (i1 % 2 ? 'odd' : 'even'), 'span', {
+    let sp = createElement(wordSpan || iastSpan, 'a ' + (i1 % 2 ? 'odd' : 'even'), 'span', {
       data_id: `a${newWordId}-${i}`, data_i: i1,
       html: s.replace(/-/g, '<span class="sp">-</span>'),
       onclick: clickSection ? 'toggleSection(this)' : undefined
-    })
+    });
+    sp = sp && sp.querySelector('.sp')
+    if (sp) sp.closest('.word').classList.add('has-sp')
     if (audio && audio[1] === audio[2] - 1) {
       _createVocSpan(wordSpan, './voc/', audio[0])
       wordSpan = null
@@ -137,7 +141,7 @@ function renderRow(text, rowIndex, options={}) {
   let words = Sanscript.iastToDevanagari(text, {
     split_aksara: true, removeDevaAudio: hasBodyCls('show-audio') && hasBodyCls('show-iast') && hasBodyCls('show-deva')})
   const orgRow = orgHtml && createElement(row, 'iast-row iast-org', 'div', {html: orgHtml})
-  const sentenceAudio = options['sentenceAudio'] && text.indexOf('▷') > 0
+  const sentenceAudio = (options['sentenceAudio'] || options['audioAsVoc']) && text.indexOf('▷') > 0
   let i1 = 0, i2 = 0, wordSpan = null
 
   for (let i = words.length - 1; i >= 0; i--) {
@@ -174,8 +178,10 @@ function renderRow(text, rowIndex, options={}) {
     } else {
       if (iastTexts.length === 1 && !iastTexts[0]) {
         iastSpan.classList.remove('audio-word')
-        createElement(iastSpan, 'sp', 'span', {html: '&nbsp;'})
-        createElement(devaSpan, 'sp', 'span', {html: '&nbsp;'})
+        const s1 = createElement(iastSpan, 'sp space', 'span', {html: '&nbsp;'});
+        const s2 = createElement(devaSpan, 'sp space', 'span', {html: '&nbsp;'});
+        (s1.closest('.word') || s1).classList.add('has-sp');
+        (s2.closest('.word') || s2).classList.add('has-sp');
         return
       }
       iastTexts.forEach((s, i) => renderIastTexts(s, i, null, iastSpan, hasSub, subIndexes))
@@ -191,7 +197,8 @@ function renderRow(text, rowIndex, options={}) {
       const subIdx = subIndexes.indexOf(i)
       if (subIdx >= 0) {
         wordSpan = createElement(devaSpan, 'sub-word', 'span',
-          {data_id: `${newWordId}-${subIdx}`})
+          {data_id: `${newWordId}-${subIdx}`});
+        (wordSpan.closest('.word') || wordSpan).classList.add('has-sub-word')
       }
       i2 += 1
       createElement(wordSpan || devaSpan, 'a ' + (i2 % 2 ? 'odd' : 'even'), 'span', {
@@ -222,6 +229,10 @@ function _makeAudioButton(options, idx, flag=null) {
       return _createVocSpan(null, options.audioPrefix, idx)
     }
   }
+  if (options['audioAsVoc']) {
+    return _createVocSpan(null, options.audioPrefix, idx)
+  }
+
   return audioHtml.replace('@dir', options.audioPrefix).replace(/@idx/g, idx)
 }
 
@@ -277,13 +288,16 @@ function toggleAudioWord(span) {
 
 function toggleAudioButton(button) {
   const audio = button && button.firstElementChild || {};
-  const btnPlaying = document.querySelector('.playing:has(audio)');
+  const btnPlaying = document.querySelector('.playing');
 
   if (audio.paused) {
     if (btnPlaying) {
       btnPlaying.classList.remove('playing');
-      btnPlaying.firstElementChild.pause();
-      btnPlaying.currentTime = 0;
+      const audio2 = btnPlaying.querySelector('audio');
+      if (audio2) {
+        audio2.pause();
+        audio2.currentTime = 0;
+      }
       audio.currentTime = 0;
     }
     audio.onended = audio.onended || onAudioEnded;

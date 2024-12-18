@@ -509,9 +509,13 @@ function exportSanscriptSingleton (global, schemes, devanagariVowelToMarks) {
 
     const vowelRe = /[aiuāīūṛṝḷḹèeòoṃḥ']+/;
     const puncRe = /[▷,?!:]/g;
+    const apostrophe = /[‘’]/g;
 
     /*
      * Split an iast word into aksara texts
+     *
+     * @param {string} data     iast word string
+     * @return {string[]}       each text is aksara or punctuation
      */
     Sanscript.splitAksara = function (data) {
         const items = [];
@@ -533,7 +537,7 @@ function exportSanscriptSingleton (global, schemes, devanagariVowelToMarks) {
         data.split(puncRe).forEach(s => {
             split(s);
             idx += s.length;
-            if (data[idx]) {
+            if (data[idx]) { // Add punctuation
                 items.push(data[idx++]);
             }
         });
@@ -590,7 +594,7 @@ function exportSanscriptSingleton (global, schemes, devanagariVowelToMarks) {
 
         // Easy way out for '{\m+}', '\', and '.h'.
         if (from === 'itrans') {
-            data = data.replace(/\{\\m\+\}/g, '.h.N');
+            data = data.replace(/{\\m\+}/g, '.h.N');
             data = data.replace(/\.h/g, '');
             data = data.replace(/\\([^'`_]|$)/g, '##$1##');
         }
@@ -600,9 +604,9 @@ function exportSanscriptSingleton (global, schemes, devanagariVowelToMarks) {
             console.error('transliteration from tamil_superscripted not fully implemented!');
         }
         else if (to === 'devanagari' && from === 'iast') {
-            data = data.replace('’', "'").replace(/[,?!:-]/g, '');
-            if (options['removeDevaAudio']) {
-                data = data.replace(/▷/g, '');
+            data = data.replace(apostrophe, "'").replace(/[,?!:-]/g, '');
+            if (options['removeDevaAudio']) { // remove audio mark in devanagari script
+                data = data.replace(/▷/g, ''); // to allow ligatures
             }
         }
 
@@ -642,10 +646,9 @@ function exportSanscriptSingleton (global, schemes, devanagariVowelToMarks) {
             result = result.replace(new RegExp(pattern, 'g'), '$2$1');
         }
 
-        if(typeof options.preferred_alternates[to] === 'object') {
+        if (typeof options.preferred_alternates[to] === 'object') {
             const keys = Object.keys(options.preferred_alternates[to]);
-            for (let i = 0; i< keys.length; i++)
-            {
+            for (let i = 0; i < keys.length; i++) {
                 result = result.split(keys[i]).join(options.preferred_alternates[to][keys[i]]);
             }
         }
@@ -665,28 +668,19 @@ function exportSanscriptSingleton (global, schemes, devanagariVowelToMarks) {
     Sanscript.transliterateWordwise = function (data, from, to, options) {
         options = options || {};
         const aksaraMode = options && options['split_aksara'];
-        const words = data.trim().replace(/▷./g, s => s[0] + ' ' + s[1])
-          .replace(/([|,]+|\|+\d+\|+)▷/g, s => ' ' + s).split(/\s+/g);
-        const mergeMn = /^[mn](\s.+)?$/
+        const words = data.trim()
+          // Add space after audio mark '▷' to avoid ligature
+          .replace(/▷./g, s => s[0] + ' ' + s[1])
+          // Add space before punctuation and '▷' to keep them together
+          .replace(/(\|+\d+\|+|[|,]+)▷/g, s => ' ' + s)
+          .split(/\s+/);
 
         delete options['split_aksara'];
         return words.map(function (word) {
             if (aksaraMode) {
                 const words = Sanscript.splitAksara(word);
-                // Move 'm' or 'n' into the previous aksara
-                for (let i = words.length - 1; i > 0; i--) {
-                    if (mergeMn.test(words[i])) {
-                        words[i - 1] += words[i][0];
-                        if (words[i].length > 2) {
-                            words[i] = words[i].substring(1).trim();
-                        } else {
-                            words.splice(i, 1);
-                        }
-                    }
-                }
-                const result = words.map(function (aksara) {
-                    return Sanscript.t(aksara, from, to, options);
-                });
+                const result = words.map(aksara => Sanscript.t(aksara, from, to, options));
+                // Separate each aksara with tabs
                 return [words.join('\t'), result.join('\t')];
             }
             const result = Sanscript.t(word, from, to, options);

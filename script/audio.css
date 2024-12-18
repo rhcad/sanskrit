@@ -26,6 +26,7 @@
 }
 
 .audio-button.voc {
+    background-color: transparent;
     background-image: url("../img/listen.gif");
     background-size: 12px 12px;
     width: 12px;

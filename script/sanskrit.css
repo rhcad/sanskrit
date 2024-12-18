@@ -39,20 +39,20 @@ a { text-decoration:none; }
   .show-odd .iast .a.odd { color: #171; }
   .show-odd .iast .a.even { color: #000; }
 }
-.word:not(:has(.sub-word)), .sub-word { display: inline-block; }
+.word:not(.has-sub-word), .sub-word { display: inline-block; }
 
 @media screen {
-  .hover-word .deva.word:not(:has(.sub-word)).hover,
+  .hover-word .deva.word:not(.has-sub-word).hover,
   .hover-word .deva .sub-word.hover {
     box-shadow: 0 1px #ccc inset;
   }
 
-  .hover-word .iast.word:not(:has(.sub-word)).hover,
+  .hover-word .iast.word:not(.has-sub-word).hover,
   .hover-word .iast .sub-word.hover {
     box-shadow: 0 -1px #ccc inset;
   }
 
-  .deva.word:not(:has(.sub-word)).hover,
+  .deva.word:not(.has-sub-word).hover,
   .deva .sub-word.hover {
     font-weight: bold;
   }
@@ -89,7 +89,7 @@ a { text-decoration:none; }
 
 body:not(.show-deva) .deva-row,
 body:not(.show-iast) .iast-row,
-body:not(.hover-word) span.sp,
+body:not(.hover-word) span.sp:not(.space),
 body:not(.show-audio) .audio-button { display: none; }
 
 @media print {
