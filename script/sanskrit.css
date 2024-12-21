@@ -9,6 +9,7 @@ body { font-size: 16px; }
 a { text-decoration:none; }
 #top-bar > span.home { float: left; margin-top: -4px; }
 .home img { width: 18px; height: 18px; }
+.home > * { vertical-align: middle; }
 
 .row { margin-bottom: .5em; }
 .indent { margin-left: 20px; }

@@ -391,17 +391,17 @@ document.getElementById('top-bar').addEventListener('click', function (event) {
         document.body.classList.remove('show-deva')
         document.body.classList.remove('show-audio')
       }
-      _renderBody(sandhi)
+      _renderBody(sandhi, toggleCls)
     } else if (['show-audio', 'show-iast', 'show-deva'].indexOf(toggleCls) >= 0) {
-      _renderBody(sandhi)
+      _renderBody(sandhi, toggleCls)
     }
     updateTopBar()
   }
 })
-window._renderBody = function (sandhi) {
+window._renderBody = function (sandhi, toggleCls) {
   newSection = null
   audioNums.length = 0
   document.getElementById('body').innerHTML = ''
-  window.renderBody(sandhi)
+  window.renderBody(sandhi, toggleCls)
   // console.log(Object.fromEntries(Object.entries(voc_audios).filter((v, i) => _vocFound[i])))
 }

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-Ua-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>辅音+辅音的连音变化</title>
+  <meta name="description" content="sanskrit,梵文,辅音+辅音,连音变化">
+  <meta name="keywords" content="sanskrit,梵文,辅音,Consonants,Vyañjana,辅音+辅音,连音变化">
+  <meta property="og:image" content="img/favicon.png">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="stylesheet" href="script/sanskrit.css?v=1216">
+  <link rel="stylesheet" href="script/audio.css?v=1214">
+  <style>
+    .title { text-align: center; }
+    .home > .title { margin-left: 1em; }
+
+    table { border-collapse: collapse; margin: .5em auto; }
+    th,td { padding: 0 .2em; vertical-align: middle;
+        border-left: 1px solid #ddd; border-bottom: 1px solid #ddd; }
+    th:last-child, td:last-child { border-right: 1px solid #ddd; }
+    tbody th:nth-last-child(2), tbody td:nth-last-child(2) { border-right: 1px solid #999; }
+
+    td.end { color: #117711; font-size: .8em; background-color: #fdfdfd; border-left: 1px solid #999; }
+    td.end span.d { font-size: 1.25em; font-weight: bold; }
+    span.d { font-family: "Sanskrit 2003", sans-serif; white-space: nowrap; }
+    tfoot span.d { display: inline-block; margin: .1em; padding: 0 .2em;
+        border: 1px solid #ddd; border-radius: 2px; background-color: #fdfdfd; }
+    tfoot br+span.d { margin-left: 1.4em; }
+
+    tr:not(:first-child) > th { border-top: 1px solid #999; }
+    th { border-bottom: 1px solid #999; }
+    table { border-top: 1px solid #555; border-bottom: 1px solid #555; }
+    td small { font-weight: 300; }
+
+    #body > div { font-size: .9em; }
+    [data-order].hi { color: #0d66c2; background-color: #eee; }
+
+    body:not(.show-end-s) [data-end-s],
+    body:not(.show-end-h) [data-end-h],
+    body:not(.show-end-c) tbody tr>:last-child { display: none; }
+  </style>
+</head>
+<body class="show-iast show-end-s show-end-h show-end-c">
+<div id="top-bar">
+  <span class="home" onclick="location.href='./'" title="Home"><img src="img/favicon.png" alt="Home"></span>
+  <span onclick="biggerFont()">+</span>
+  <span onclick="smallerFont()">-</span>
+  <span data-toggle="show-end-s">s列</span>
+  <span data-toggle="show-end-h">ḥ列</span>
+  <span data-toggle="show-end-c">末列</span>
+  <span data-toggle="show-deva">天城体</span>
+  <span data-toggle="show-iast">转写</span>
+</div>
+<span class="title">辅音+辅音的连音变化</span>
+<div id="body"></div>
+<script src="script/sanscript.es6.js?v=1214"></script>
+<script src="script/sanskrit.js?v=1216"></script>
+<script>
+  const raw = `
+    -k -ṭ -t -p -n    -s -r -as -ās -aḥ -āḥ -Vḥ |
+    -  -  -  -  -     7-ḥ 7-ḥ 7-aḥ 7-āḥ -   -   -   |k/kh/p/ph- 句尾
+    -  -  3-c -  4-ṃś   1-ś 1-ś 1-aś 1-āś 1-aś 1-āś 1-Vś |c- ch- (腭清)
+    6-g 6-ḍ 3-j 6-b 4-ṃ    -  -  -   -   2-o  2-ā  2-Vr |j- jh- (腭浊)
+    -  -  3-ṭ -  4-ṃṣ   1-ṣ 1-ṣ 1-aṣ 1-āṣ 1-aṣ 1-āṣ 1-Vṣ |ṭ- ṭh- (卷清)
+    6-g 6-ḍ 3-ḍ 6-b 4-ṃ    -  -  -   -   2-o  2-ā  2-Vr |ḍ- ḍh- (卷浊)
+    -  -  -   -  4-ṃs   -  1-s  -  -  1-as 1-ās 1-Vs |t- th- (齿清)
+    6-g 6-ḍ③ 6-d 6-b -     -  -  -   -   2-o  2-ā  2-Vr |g/gh/d/dh/b/bh-↲y/v/h- (其余浊等)
+    6-g 6-ḍ 6-d 6-b -     -  8-① -   -   2-o  2-ā  2-V① |r-
+    6-g 6-ḍ 3-l 6-b 4-ṃ/ṃl -  -  -   -   2-o  2-ā  2-Vr |l-
+    5-ṅ 5-ṇ 5-n 5-m -   -  -  -   -   2-o  2-ā  2-Vr |m- n- (鼻音)
+    -  -  8-c_② - 8-ñ_② - - - -   -   -   -   |ś-
+    -  -  -  -  -     -  -  -   -   -   -   -   |ṅ/ñ/ṇ/ṣ/s-
+    -  -  -  -  -     8-r 8-r 8-o  8-ā  -   -   -   |浊辅-
+    9-g 9-ḍ 9-d 9-b -     -  -  9-o_'-↲-a   -   9-a  9-ā  9-Vr |元音-
+    -k -ṭ -t -p -n    -s -r -as -ās -aḥ -āḥ -Vḥ |`
+  .trim().split('\n').map(r => r.trim().replace(/\|.+$/,
+      s => s.replace(/ /g, '_')).split(/\s+/));
+  const notes = ['注 V：除 a、ā 外的元音',
+    '① -r 遇 r-: r前的短元音变为长元音，去除 r↲-Vḥ 遇 r-: 止音前的短元音变为长元音，去除 r',
+    '② -t+ś-: -c ch-，-n+ś-: -ñ ch- 或 -ñ ś-',
+    '③ -ṭ+h-: -ḍ ḍh-，-t+h-: -d dh-', '　',
+    '1 -s/r/ḥ + 腭卷齿 清：变咝音',
+    '2 元音ḥ + 辅音：分别变为 -o、-ā、-Vr',
+    '3 -t + 腭卷l：同化',
+    '4 -n + 腭卷齿 清：变咝音加ṃ，-n + 腭卷 浊：变ṃ，鼻音化',
+    '5 -k/ṭ/t/p + m/n-：鼻音化',
+    '6 -k/ṭ/t/p + 大部分浊音：浊化',
+    '7 -s/r + 其余清辅音：变ḥ',
+    "9 -k/ṭ/t/p + 元音: 浊化；-as+a: -o '-",
+  ]
+
+  const iastRe = /[A-Za-zĀ-žḀ-ỹñ'|-]([A-Za-zĀ-žḀ-ỹñ'/| +-]*[A-Za-zĀ-žḀ-ỹñ'|-])?/g, brRe = / *↲ */g
+  const iastToDeva = s => '<span class="d">' + (hasBodyCls('show-deva') ?
+    s.replace(/[^V/-]+/g, a => Sanscript.t(a, 'iast', 'devanagari')) : s) + '</span>'
+
+  function hiOrder(event) {
+    const elem = (event.target || event).closest('[data-order]')
+    if (!elem.classList.contains('hi')) {
+      Array.from(document.querySelectorAll('.hi')).forEach(el => el.classList.remove('hi'))
+      Array.from(document.querySelectorAll(`[data-order="${elem.dataset.order}"]`)).forEach(el => el.classList.add('hi'))
+    }
+  }
+  function renderBody(_, toggleCls) {
+    if (toggleCls === 'show-deva' && hasBodyCls('show-deva')) {
+      document.body.classList.remove('show-iast')
+    } else if (toggleCls === 'show-iast' && hasBodyCls('show-iast')) {
+      document.body.classList.remove('show-deva')
+    }
+    const table = createElement(document.getElementById('body'), '', 'table')
+    const tbody = createElement(table, '', 'tbody')
+    raw.forEach((r, ri) => {
+      const tr = createElement(tbody, r[0] === '-k' ? 'rh' : 'rd', 'tr')
+      r.forEach((text, col) => {
+        const html = text.replace(/^[\d|]+|^-$/g, '')
+          .replace(/_/g, ' ')
+          .replace(iastRe, iastToDeva)
+          .replace(brRe, '<br>')
+          .replace(/\(.+\)|[①-⑨]/, s => `<small>${s}</small>`);
+        const attr = { html: html,
+          data_order: /^\d/.test(text) && parseInt(text) || undefined,
+          data_end_s: /[sr]$/.test(raw[0][col]) ? 1 : undefined,
+          data_end_h: /ḥ$/.test(raw[0][col]) ? 1 : undefined,
+        }
+        createElement(tr, text.startsWith('|') ? 'end' : '', r[0] === '-k' ? 'th' : 'td', attr)
+      })
+    })
+    const foot = createElement(table, '', 'tfoot')
+    notes.forEach(s => {
+      const html = s.replace(iastRe, iastToDeva).replace(brRe, '<br>')
+      const order = /^\d/.test(s) ? ` data-order="${parseInt(s)}"` : ''
+      createElement(foot, '', 'tr', {html: `<td colspan="13"${order}>${html}</td>`})
+    })
+
+    Array.from(document.querySelectorAll(`[data-order]`)).forEach(el => {
+      el.onclick = hiOrder
+      if (el.closest('tfoot')) {
+        el.onmouseenter = hiOrder
+      }
+    })
+  }
+  renderBody()
+  document.querySelector('.home').append(document.querySelector('.title'))
+</script>
+</body>
+</html>
