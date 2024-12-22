@@ -22,6 +22,7 @@
     th:last-child, td:last-child { border-right: 1px solid #ddd; }
     tbody th:nth-last-child(2), tbody td:nth-last-child(2) { border-right: 1px solid #999; }
     @media screen and (max-width: 600px) {
+        body { padding-left: 1px; padding-right: 1px; }
         th,td { padding: 0 .2em; }
     }
 
@@ -31,7 +32,7 @@
     span.d { font-family: "Sanskrit 2003", sans-serif; white-space: nowrap; }
     tfoot span.d { display: inline-block; margin: .1em; padding: 0 .2em;
         border: 1px solid #ddd; border-radius: 2px; background-color: #fdfdfd; }
-    tfoot br+span.d { margin-left: 1.4em; }
+    tfoot br+span.d { margin-left: 1.05em; }
 
     tr:not(:first-child) > th { border-top: 1px solid #999; }
     th { border-bottom: 1px solid #999; }
@@ -66,9 +67,9 @@
     -k -ṭ -t -p -n    -s -r -as -ās -aḥ -āḥ -Vḥ |
     -  -  -  -  -     7-ḥ 7-ḥ 7-aḥ 7-āḥ -   -   -   |k/kh/p/ph- 句尾
     -  -  3-c -  4-ṃś   1-ś 1-ś 1-aś 1-āś 1-aś 1-āś 1-Vś |c- ch- (腭清)
-    6-g 6-ḍ 3-j 6-b 4-ṃ    -  -  -   -   2-o  2-ā  2-Vr |j- jh- (腭浊)
+    6-g 6-ḍ 3-j 6-b 4-ñ    -  -  -   -   2-o  2-ā  2-Vr |j- jh- (腭浊)
     -  -  3-ṭ -  4-ṃṣ   1-ṣ 1-ṣ 1-aṣ 1-āṣ 1-aṣ 1-āṣ 1-Vṣ |ṭ- ṭh- (卷清)
-    6-g 6-ḍ 3-ḍ 6-b 4-ṃ    -  -  -   -   2-o  2-ā  2-Vr |ḍ- ḍh- (卷浊)
+    6-g 6-ḍ 3-ḍ 6-b 4-ṇ    -  -  -   -   2-o  2-ā  2-Vr |ḍ- ḍh- (卷浊)
     -  -  -   -  4-ṃs   -  1-s  -  -  1-as 1-ās 1-Vs |t- th- (齿清)
     6-g 6-ḍ 6-d_③ 6-b -     -  -  -   -   2-o  2-ā  2-Vr |g/gh/d/dh/b/bh-↲y/v/h- (其余浊等)
     6-g 6-ḍ 6-d 6-b -     -  8-① -   -   2-o  2-ā  2-V① |r-
@@ -77,27 +78,27 @@
     -  -  8-c_② - 8-ñ_② - - - -   -   -   -   |ś-
     -  -  -  -  -     -  -  -   -   -   -   -   |ṅ/ñ/ṇ/ṣ/s-
     -  -  -  -  -     8-r 8-r 8-o  8-ā  -   -   -   |浊辅-
-    9-g 9-ḍ 9-d 9-b -     -  -  9-o_'-↲-a   -   9-a  9-ā  9-Vr |元音-
+    9-g 9-ḍ 9-d 9-b 9-nn*    -  -  9-o_'-↲-a   -   9-a  9-ā  9-Vr |元音-
     -k -ṭ -t -p -n    -s -r -as -ās -aḥ -āḥ -Vḥ |`
   .trim().split('\n').map(r => r.trim().replace(/\|.+$/,
       s => s.replace(/ /g, '_')).split(/\s+/));
   const notes = ['注 V：除 a、ā 外的元音',
-    '① -r 遇 r-: r前的短元音变为长元音，去除 r↲-Vḥ 遇 r-: 止音前的短元音变为长元音，去除 r',
-    '② -t+ś-: -c ch-，-n+ś-: -ñ ch- 或 -ñ ś-',
-    '③ -ṭ+h-: -ḍ ḍh-，-t+h-: -d dh-', '　',
-    '1 -s/r/ḥ + 腭卷齿 清：变咝音',
+    '① -r/-Vḥ + r-:　 r/ḥ前的短元音变为长元音，去除 r',
+    '② -t+ś-: -c ch-，-n+ś-: -ñ ś-/ch-',
+    '③ -k/ṭ/t/p + h-：后词气浊化 -g gh-、-ḍ ḍh-、-d dh-、-b bh-', '　',
+    '1 -s/r/ḥ + 腭卷齿 清：同化为咝音',
     '2 元音ḥ + 辅音：分别变为 -o、-ā、-Vr',
     '3 -t + 腭卷l：同化',
-    '4 -n + 腭卷齿 清：变咝音加ṃ，-n + 腭卷 浊：变ṃ，鼻音化',
+    '4 -n + 腭卷齿 清：同化为咝音加ṃ↲-n + 腭卷 浊：同区鼻音 ñ、ṇ',
     '5 -k/ṭ/t/p + m/n-：鼻音化',
-    '6 -k/ṭ/t/p + 大部分浊音：浊化',
-    '7 -s/r + 其余清辅音：变ḥ',
-    "9 -k/ṭ/t/p + 元音: 浊化；-as+a: -o '-",
+    '6 -k/ṭ/t/p + 大部分浊音：浊化，遇h-见③',
+    '7 -s/r + 其余清辅音：变-ḥ',
+    "9 -k/ṭ/t/p + 元音: 浊化↲-as+a: -o '-，-as+其余元音: -a↲-S-ṅ/n + 元音: 鼻音重复，S为短元音",
   ]
 
   const iastRe = /[A-Za-zĀ-žḀ-ỹñ'|-]([A-Za-zĀ-žḀ-ỹñ'/| +-]*[A-Za-zĀ-žḀ-ỹñ'|-])?/g, brRe = / *↲ */g
   const iastToDeva = s => '<span class="d">' + (hasBodyCls('show-deva') ?
-    s.replace(/[^V/-]+/g, a => Sanscript.t(a, 'iast', 'devanagari')) : s) + '</span>'
+    s.replace(/[^VS/-]+/g, a => Sanscript.t(a, 'iast', 'devanagari')) : s) + '</span>'
 
   function hiOrder(event) {
     const elem = (event.target || event).closest('[data-order]')
@@ -133,13 +134,14 @@
     const foot = createElement(table, '', 'tfoot')
     notes.forEach(s => {
       const html = s.replace(iastRe, iastToDeva).replace(brRe, '<br>')
-      const order = /^\d/.test(s) ? ` data-order="${parseInt(s)}"` : ''
+      const order = /^[①②]/.test(s) ? ' data-order="8"' : /^③/.test(s) ? ' data-order="6"' :
+        /^\d/.test(s) ? ` data-order="${parseInt(s)}"` : '';
       createElement(foot, '', 'tr', {html: `<td colspan="13"${order}>${html}</td>`})
     })
 
     Array.from(document.querySelectorAll(`[data-order]`)).forEach(el => {
       el.onclick = hiOrder
-      if (el.closest('tfoot')) {
+      if (el.closest('tfoot') && /^\d/.test(el.textContent)) {
         el.onmouseenter = hiOrder
       }
     })
