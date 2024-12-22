@@ -17,11 +17,15 @@
     .home > .title { margin-left: 1em; }
 
     table { border-collapse: collapse; margin: .5em auto; }
-    th,td { padding: 0 .2em; vertical-align: middle;
+    th,td { padding: 0 .5em; vertical-align: middle;
         border-left: 1px solid #ddd; border-bottom: 1px solid #ddd; }
     th:last-child, td:last-child { border-right: 1px solid #ddd; }
     tbody th:nth-last-child(2), tbody td:nth-last-child(2) { border-right: 1px solid #999; }
+    @media screen and (max-width: 600px) {
+        th,td { padding: 0 .2em; }
+    }
 
+    tfoot { font-size: .9em; }
     td.end { color: #117711; font-size: .8em; background-color: #fdfdfd; border-left: 1px solid #999; }
     td.end span.d { font-size: 1.25em; font-weight: bold; }
     span.d { font-family: "Sanskrit 2003", sans-serif; white-space: nowrap; }
@@ -66,7 +70,7 @@
     -  -  3-ṭ -  4-ṃṣ   1-ṣ 1-ṣ 1-aṣ 1-āṣ 1-aṣ 1-āṣ 1-Vṣ |ṭ- ṭh- (卷清)
     6-g 6-ḍ 3-ḍ 6-b 4-ṃ    -  -  -   -   2-o  2-ā  2-Vr |ḍ- ḍh- (卷浊)
     -  -  -   -  4-ṃs   -  1-s  -  -  1-as 1-ās 1-Vs |t- th- (齿清)
-    6-g 6-ḍ③ 6-d 6-b -     -  -  -   -   2-o  2-ā  2-Vr |g/gh/d/dh/b/bh-↲y/v/h- (其余浊等)
+    6-g 6-ḍ 6-d_③ 6-b -     -  -  -   -   2-o  2-ā  2-Vr |g/gh/d/dh/b/bh-↲y/v/h- (其余浊等)
     6-g 6-ḍ 6-d 6-b -     -  8-① -   -   2-o  2-ā  2-V① |r-
     6-g 6-ḍ 3-l 6-b 4-ṃ/ṃl -  -  -   -   2-o  2-ā  2-Vr |l-
     5-ṅ 5-ṇ 5-n 5-m -   -  -  -   -   2-o  2-ā  2-Vr |m- n- (鼻音)
