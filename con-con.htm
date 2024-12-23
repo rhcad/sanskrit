@@ -17,10 +17,13 @@
     .home > .title { margin-left: 1em; }
 
     table { border-collapse: collapse; margin: .5em auto; }
-    th,td { padding: 0 .5em; vertical-align: middle;
-        border-left: 1px solid #ddd; border-bottom: 1px solid #ddd; }
-    th:last-child, td:last-child { border-right: 1px solid #ddd; }
+    th,td { padding: .1em .5em; vertical-align: middle;
+        border-left: 1px solid #eee; border-bottom: 1px solid #eee; }
+    th:last-child, td:last-child { border-right: 1px solid #eee; }
     tbody th:nth-last-child(2), tbody td:nth-last-child(2) { border-right: 1px solid #999; }
+    th:nth-child(4), td:nth-child(4),
+    th:nth-child(5), td:nth-child(5),
+    th:nth-child(9), td:nth-child(9) { border-right: 1px solid #ccc; }
     @media screen and (max-width: 600px) {
         body { padding-left: 1px; padding-right: 1px; }
         th,td { padding: 0 .2em; }
@@ -29,6 +32,7 @@
     tfoot { font-size: .9em; }
     td.end { color: #117711; font-size: .8em; background-color: #fdfdfd; border-left: 1px solid #999; }
     td.end span.d { font-size: 1.25em; font-weight: bold; }
+    tr:nth-child(2) td.end span.d, td.end:has(br) span.d:first-child { font-size: 1.1em; }
     span.d { font-family: "Sanskrit 2003", sans-serif; white-space: nowrap; }
     tfoot span.d { display: inline-block; margin: .1em; padding: 0 .2em;
         border: 1px solid #ddd; border-radius: 2px; background-color: #fdfdfd; }
@@ -41,20 +45,17 @@
 
     #body > div { font-size: .9em; }
     [data-order].hi { color: #0d66c2; background-color: #eee; }
+    [data-toggle="show-end-h"] { font-weight: bold; }
 
     body:not(.show-end-s) [data-end-s],
-    body:not(.show-end-h) [data-end-h],
-    body:not(.show-end-c) tbody tr>:last-child { display: none; }
+    body:not(.show-end-h) [data-end-h] { display: none; }
   </style>
 </head>
-<body class="show-iast show-end-s show-end-h show-end-c">
+<body class="show-iast show-end-s">
 <div id="top-bar">
   <span class="home" onclick="location.href='./'" title="Home"><img src="img/favicon.png" alt="Home"></span>
-  <span onclick="biggerFont()">+</span>
-  <span onclick="smallerFont()">-</span>
+  <span data-toggle="show-end-h">止音</span>
   <span data-toggle="show-end-s">s列</span>
-  <span data-toggle="show-end-h">ḥ列</span>
-  <span data-toggle="show-end-c">末列</span>
   <span data-toggle="show-deva">天城体</span>
   <span data-toggle="show-iast">转写</span>
 </div>
@@ -70,9 +71,9 @@
     6-g 6-ḍ 3-j 6-b 4-ñ    -  -  -   -   2-o  2-ā  2-Vr |j- jh- (腭浊)
     -  -  3-ṭ -  4-ṃṣ   1-ṣ 1-ṣ 1-aṣ 1-āṣ 1-aṣ 1-āṣ 1-Vṣ |ṭ- ṭh- (卷清)
     6-g 6-ḍ 3-ḍ 6-b 4-ṇ    -  -  -   -   2-o  2-ā  2-Vr |ḍ- ḍh- (卷浊)
-    -  -  -   -  4-ṃs   -  1-s  -  -  1-as 1-ās 1-Vs |t- th- (齿清)
+    -  -  -   -  4-ṃs   1-s  1-s  -  -  1-as 1-ās 1-Vs |t- th- (齿清)
     6-g 6-ḍ 6-d_③ 6-b -     -  -  -   -   2-o  2-ā  2-Vr |g/gh/d/dh/b/bh-↲y/v/h- (其余浊等)
-    6-g 6-ḍ 6-d 6-b -     -  8-① -   -   2-o  2-ā  2-V① |r-
+    6-g 6-ḍ 6-d 6-b -     -  8① -   -   2-o  2-ā  2-V① |r-
     6-g 6-ḍ 3-l 6-b 4-ṃ/ṃl -  -  -   -   2-o  2-ā  2-Vr |l-
     5-ṅ 5-ṇ 5-n 5-m -   -  -  -   -   2-o  2-ā  2-Vr |m- n- (鼻音)
     -  -  8-c_② - 8-ñ_② - - - -   -   -   -   |ś-
@@ -82,12 +83,12 @@
     -k -ṭ -t -p -n    -s -r -as -ās -aḥ -āḥ -Vḥ |`
   .trim().split('\n').map(r => r.trim().replace(/\|.+$/,
       s => s.replace(/ /g, '_')).split(/\s+/));
-  const notes = ['注 V：除 a、ā 外的元音',
-    '① -r/-Vḥ + r-:　 r/ḥ前的短元音变为长元音，去除 r',
+  const notes = ['注 V：除 a、ā 外的元音。点击单元格有助记高亮提示。',
+    '① -r/-Vḥ + r-:　 r/ḥ前的短元音变为长元音，去除r',
     '② -t+ś-: -c ch-，-n+ś-: -ñ ś-/ch-',
     '③ -k/ṭ/t/p + h-：后词气浊化 -g gh-、-ḍ ḍh-、-d dh-、-b bh-', '　',
     '1 -s/r/ḥ + 腭卷齿 清：同化为咝音',
-    '2 元音ḥ + 辅音：分别变为 -o、-ā、-Vr',
+    '2 元音ḥ + 辅音：分别变为 -o、-ā、-Vr (切换“止音”显示)',
     '3 -t + 腭卷l：同化',
     '4 -n + 腭卷齿 清：同化为咝音加ṃ↲-n + 腭卷 浊：同区鼻音 ñ、ṇ',
     '5 -k/ṭ/t/p + m/n-：鼻音化',
@@ -134,6 +135,7 @@
     const foot = createElement(table, '', 'tfoot')
     notes.forEach(s => {
       const html = s.replace(iastRe, iastToDeva).replace(brRe, '<br>')
+        .replace(/\(.+\)/, s => `<small>${s}</small>`)
       const order = /^[①②]/.test(s) ? ' data-order="8"' : /^③/.test(s) ? ' data-order="6"' :
         /^\d/.test(s) ? ` data-order="${parseInt(s)}"` : '';
       createElement(foot, '', 'tr', {html: `<td colspan="13"${order}>${html}</td>`})
