@@ -36,16 +36,17 @@
     span.d { font-family: "Sanskrit 2003", sans-serif; white-space: nowrap; }
     tfoot span.d { display: inline-block; margin: .1em; padding: 0 .2em;
         border: 1px solid #ddd; border-radius: 2px; background-color: #fdfdfd; }
-    tfoot br+span.d { margin-left: 1.05em; }
+    tfoot br+span.d { margin-left: 1.02em; }
 
     tr:not(:first-child) > th { border-top: 1px solid #999; }
-    th { border-bottom: 1px solid #999; }
+    th, tbody tr:last-child td { border-bottom: 1px solid #999; }
     table { border-top: 1px solid #555; border-bottom: 1px solid #555; }
     td small { font-weight: 300; }
 
     #body > div { font-size: .9em; }
     [data-order].hi { color: #0d66c2; background-color: #eee; }
     [data-toggle="show-end-h"] { font-weight: bold; }
+    [data-same] { color: #aaa !important; }
 
     body:not(.show-end-s) [data-end-s],
     body:not(.show-end-h) [data-end-h] { display: none; }
@@ -61,6 +62,10 @@
 </div>
 <span class="title">辅音+辅音的连音变化</span>
 <div id="body"></div>
+<script>
+  document.body.classList.toggle('show-end-h', document.body.clientWidth > 460)
+  document.querySelector('.home').append(document.querySelector('.title'))
+</script>
 <script src="script/sanscript.es6.js?v=1214"></script>
 <script src="script/sanskrit.js?v=1216"></script>
 <script>
@@ -77,24 +82,23 @@
     6-g 6-ḍ 3-l 6-b 4-ṃ/ṃl -  -  -   -   2-o  2-ā  2-Vr |l-
     5-ṅ 5-ṇ 5-n 5-m -   -  -  -   -   2-o  2-ā  2-Vr |m- n- (鼻音)
     -  -  8-c_② - 8-ñ_② - - - -   -   -   -   |ś-
-    -  -  -  -  -     -  -  -   -   -   -   -   |ṅ/ñ/ṇ/ṣ/s-
+    -  -  -  -  -     -  -  -   -   -   -   -   |ṅ/ñ/ṇ-
     -  -  -  -  -     8-r 8-r 8-o  8-ā  -   -   -   |浊辅-
-    9-g 9-ḍ 9-d 9-b 9-nn*    -  -  9-o_'-↲-a   -   9-a  9-ā  9-Vr |元音-
-    -k -ṭ -t -p -n    -s -r -as -ās -aḥ -āḥ -Vḥ |`
+    9-g 9-ḍ 9-d 9-b 9-nn*    -  -  9-o_'-↲-a   -   9-a  9-ā  9-Vr |元音-`
   .trim().split('\n').map(r => r.trim().replace(/\|.+$/,
       s => s.replace(/ /g, '_')).split(/\s+/));
   const notes = ['注 V：除 a、ā 外的元音。点击单元格有助记高亮提示。',
     '① -r/-Vḥ + r-:　 r/ḥ前的短元音变为长元音，去除r',
     '② -t+ś-: -c ch-，-n+ś-: -ñ ś-/ch-',
-    '③ -k/ṭ/t/p + h-：后词气浊化 -g gh-、-ḍ ḍh-、-d dh-、-b bh-', '　',
+    '③ -k/ṭ/t/p + h-：后词气浊化 -ggh-、-ḍḍh-、-ddh-、-bbh-，可分开', '　',
     '1 -s/r/ḥ + 腭卷齿 清：同化为咝音',
     '2 元音ḥ + 辅音：分别变为 -o、-ā、-Vr (切换“止音”显示)',
     '3 -t + 腭卷l：同化',
     '4 -n + 腭卷齿 清：同化为咝音加ṃ↲-n + 腭卷 浊：同区鼻音 ñ、ṇ',
     '5 -k/ṭ/t/p + m/n-：鼻音化',
     '6 -k/ṭ/t/p + 大部分浊音：浊化，遇h-见③',
-    '7 -s/r + 其余清辅音：变-ḥ',
-    "9 -k/ṭ/t/p + 元音: 浊化↲-as+a: -o '-，-as+其余元音: -a↲-S-ṅ/n + 元音: 鼻音重复，S为短元音",
+    '7 -s/r + 其余清辅音：变-ḥ↲-i/u + s：-iṣ、-uṣ',
+    "9 -k/ṭ/t/p + 元音: 浊化↲-as+a: -o '-，-as+其余元音: -a↲-S-ṅ/ṇ/n + 元音: 鼻音重复，S为短元音",
   ]
 
   const iastRe = /[A-Za-zĀ-žḀ-ỹñ'|-]([A-Za-zĀ-žḀ-ỹñ'/| +-]*[A-Za-zĀ-žḀ-ỹñ'|-])?/g, brRe = / *↲ */g
@@ -117,7 +121,7 @@
     const table = createElement(document.getElementById('body'), '', 'table')
     const tbody = createElement(table, '', 'tbody')
     raw.forEach((r, ri) => {
-      const tr = createElement(tbody, r[0] === '-k' ? 'rh' : 'rd', 'tr')
+      const tr = createElement(tbody, ri === 0 ? 'rh' : 'rd', 'tr')
       r.forEach((text, col) => {
         const html = text.replace(/^[\d|]+|^-$/g, '')
           .replace(/_/g, ' ')
@@ -125,11 +129,24 @@
           .replace(brRe, '<br>')
           .replace(/\(.+\)|[①-⑨]/, s => `<small>${s}</small>`);
         const attr = { html: html,
-          data_order: /^\d/.test(text) && parseInt(text) || undefined,
+          data_order: /^\d/.test(text) && parseInt(text) + '' || undefined,
           data_end_s: /[sr]$/.test(raw[0][col]) ? 1 : undefined,
           data_end_h: /ḥ$/.test(raw[0][col]) ? 1 : undefined,
+          data_same: ri && raw[0][col] === text.replace(/^\d/, '') ? '1' : undefined,
         }
-        createElement(tr, text.startsWith('|') ? 'end' : '', r[0] === '-k' ? 'th' : 'td', attr)
+        createElement(tr, text.startsWith('|') ? 'end' : '', ri === 0 ? 'th' : 'td', attr)
+        if (attr.data_order === '8' && attr.data_end_s &&
+          !attr.data_same && />-[roā]</.test(html)) {
+          console.log(html, r[r.length - 1])
+          for (let j = 1; j < ri; j++) {
+            const cell = tbody.rows[j].cells[col]
+            if (!cell.innerHTML && !/ś|清/.test(raw[j][raw[j].length - 1])) {
+              cell.innerHTML = html
+              cell.dataset.same = '1'
+              cell.dataset.order = attr.data_order
+            }
+          }
+        }
       })
     })
     const foot = createElement(table, '', 'tfoot')
@@ -149,7 +166,6 @@
     })
   }
   renderBody()
-  document.querySelector('.home').append(document.querySelector('.title'))
 </script>
 </body>
 </html>

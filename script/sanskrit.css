@@ -32,7 +32,7 @@ a { text-decoration:none; }
 .iast-org, #top-bar, .tip, .title.no-print { color: #777; }
 .word span.sp, .sec-title, .note, .note > a { color: #aaa; }
 .note, .note > a { font-size: 9px; }
-.tip { font-size: 11px; }
+.tip { font-size: 11px; user-select: none; }
 
 .show-odd .deva .a.odd { color: #171; }
 .show-odd .iast .a.odd { color: #aa6; }

@@ -403,5 +403,4 @@ window._renderBody = function (sandhi, toggleCls) {
   audioNums.length = 0
   document.getElementById('body').innerHTML = ''
   window.renderBody(sandhi, toggleCls)
-  // console.log(Object.fromEntries(Object.entries(voc_audios).filter((v, i) => _vocFound[i])))
 }
