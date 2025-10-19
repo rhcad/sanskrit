@@ -68,7 +68,7 @@ a { text-decoration:none; }
 }
 .section > .sec-title:hover::after { color: #0d66c2; }
 .section.collapse > .sec-title::after { content: "…"; }
-.section.collapse .row { display: none; }
+.section.collapse .row, .si { display: none; }
 
 #top-bar {
   box-shadow: 0 -1px #ddd inset;
@@ -94,7 +94,8 @@ body:not(.hover-word) span.sp:not(.space),
 body:not(.show-audio) .audio-button { display: none; }
 
 @media print {
-  #top-bar, .down-div, .note, .audio-button, .gray-btn, .no-print, #down-div { display: none; }
+  #top-bar, .down-div, .note, .audio-button, .gray-btn,
+  .no-print, #down-div, .section > .sec-title::after { display: none; }
   .audio-button::after { width: 0; opacity: 0; }
   #body { width: fit-content; margin: 0 auto;}
 }

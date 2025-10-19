@@ -44,8 +44,8 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False,
     mp3_with_text = mp3_with_text or de_silence > 1
     with open(mp3_file[:-3] + 'lrc', encoding='utf-8') as f:
         content = f.read()
-        merge_sentence = merge_sentence or ' ||' in content
-        assert not merge_sentence or ' |' in content
+        merge_sentence = merge_sentence or '||' in content
+        assert not merge_sentence or '|' in content
         lrc = pylrc.parse(content)
     song = AudioSegment.from_mp3(mp3_file)
     content, sentence, i = [], [], start_i

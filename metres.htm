@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>梵文诗律唱诵</title>
+  <meta name="description" content="梵文诗律唱诵">
+  <meta name="keywords" content="sanskrit,梵文,诗律,唱诵">
+  <meta property="og:image" content="img/favicon.png">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="stylesheet" href="script/sanskrit.css?v=1216">
+  <link rel="stylesheet" href="script/audio.css?v=1216">
+  <style>
+    body { font-size: 20px; }
+    .title { text-align: center; margin-bottom: .5em; }
+    .tip { font-size: 11px; margin-bottom: .7em; }
+  </style>
+</head>
+<body class="show-odd show-iast show-audio">
+<div id="top-bar">
+  <span class="home" onclick="location.href='./'" title="Home"><img src="img/favicon.png" alt="Home"></span>
+  <span onclick="biggerFont()">+</span>
+  <span onclick="smallerFont()">-</span>
+  <span data-toggle="show-odd">音节</span>
+  <span data-toggle="show-audio">读音</span>
+  <span data-toggle="auto-audio">连播</span>
+</div>
+<div class="title no-print">梵文诗律唱诵</div>
+<div id="body"></div>
+<script src="script/sanscript.es6.js?v=1216"></script>
+<script src="script/sanskrit.js?v=1216"></script>
+<script>
+  window._fontSize = 20
+  window.audioGap = 0
+  const iastContent = `
+#01 月亮文（6音节）
+śaśivadanā▷01
+śaśivadanānāṃ▷02 vrajanaruṇīnām▷03|
+adharasudhormi▷04 madhuripuraicchat▷05||
+
+#03 赞歌（8音节）
+anuṣṭubh▷06
+vāgarthāvica sampṛktau▷07 vāgarthapratipattaye▷08|
+jagataḥ pitagau vande▷09 pārvatīparameśvarau▷10||
+——（raghuvaṃśamahākāvyam 1.1）
+Gantukāmasya gantuśca▷11 yathā bhedaḥ pratīyate▷12|
+Tathā bhedo ’nayorjñeyo▷13 yathāsaṅkhyena paṇḍitaiḥ▷14||
+——（bodhicaryāvatāraḥ 1.13）
+（śloke ṣaṣṭhaṃ guru jñeyaṃ▷15 sarvatra laghu pañcamam▷16|
+Dvicatuṣpādayorhrasvaṃ▷17 saptamaṃ dīrghamanyayoḥ▷18||）
+
+#04 身斋（8音节: 4+6+6）
+pramānikā▷19
+Punātu bha▷20-ktiracyutā sadā▷21-cyutāṅghnipadmayoḥ▷22|
+Śrutismṛti▷23-pramāṇikā bhavām▷24a bugaśitārikā▷24b||
+（pramāṇikā jagai laghau||）▷25
+
+#05 因陀罗雷神（11音节: 5+6）
+indravajrā▷26
+Rātrau yathā me▷27-ghaghanāndhakāre▷28 vidyutkṣaṇaṃ da▷29-rśayati prakāśam▷30|
+Buddhānubhāve▷31-na tathā kadācil(t)▷32 lokasya puṇye▷33-ṣu matiḥ kṣaṇaṃ syāt▷34||
+
+#06 因陀罗之后出生的神（11音节: 5+6）
+upendravajrā▷35
+Mahīdharā ra▷36-tnamayāstathānye▷37 vanapradeśā▷38-śca vivekaramyāḥ▷39|
+Latāḥ supuṣpā▷40-bharaṇojjcalāśca▷41 drumāśca ye sa▷42-tphalanapraśākhāḥ▷43||
+
+#07 出生（11音节: 5+6）
+upajāti▷44
+Brahmālavālaṃ▷45 bhuvanaikapālaṃ▷46 yaśoviśālaṃ▷47 ṣiśupālakālam▷48|
+Saṃsāramāyā▷49-matimohajālaṃ▷50 bālaṃ mukundaṃ▷51 śirasā namāmi▷52||
+Anantarodī▷53-ritalakṣmabhājau▷54 pādau yadīyā▷55-vupajātayastāḥ▷56|
+Itthaṃ kilānyā▷57-svapi miśritāsu▷58 vadanti jāti▷59-ṣvidameva nāma▷60||
+
+#08 人名（11音节: 4+7）
+śālinī▷61
+Puṇjībhūtaṃ▷62 prema gopāṅganānāṃ▷63 mūrtībhūtaṃ▷64 bhāgadheyaṃ yadūnām▷65|
+Ekībhūtaṃ▷66 guptavittaṃ śrutīnām▷67 śyāmībhūtaṃ▷68 brahma me sannidhattām▷69||
+
+#09（11音节: 5+6）
+rathoddhatā▷70
+Nandanandana▷71-padāravindayoḥ▷72 syandamānama▷73-karandabindavaḥ▷74|
+Sindhavaḥ▷75 paramasau▷76-khyasampadām▷77 nandayan▷78a -tu kṛdayaṃ▷78b mamāniśam▷79||
+
+#10 欢迎（11音节: 6+5）
+svāgatā▷80
+Śātakumbharuci▷81a hāridukūlaḥ▷81b kekicandrakavi▷82a rājitacūlaḥ▷82b|
+Navyayauvanala▷83a sadbrajanāri▷83b -raṅjano Jayati▷84 kuṅjavihārī▷85||
+
+#11 美丽（11音节: 6+5）
+indirā▷86
+Jayati te ’dhikaṃ▷87 janmanā vrajaḥ▷88 śrayata indirā▷89 śaśvadatra hi▷90|
+Dayita dṛśyatāṃ▷91 dikṣu tāvakās▷92 tvayi dhṛtāsava▷93 stvāṃ vicinvate▷94||
+
+#12 家族的延续（12音节: 5+7）
+vaṃśastha▷95
+Rajojuṣe jan▷96-mani sattvavṛttaye▷97 sthitau prajānāṃ▷98 pralaye tamaḥ spṛśe▷99|
+Ajāya sarga▷100-sthitināśahetave▷101 trayīmayāya▷102 triguṇātmane namaḥ▷103||
+jatau tu vaṃśasthamudīritaṃ jagau▷104||
+jatau tu vaṃśasthamudīritaṃ jagau▷105||
+
+#13 蛇的步伐（12音节: 6+6）
+bhujaṅga-prayāta▷106
+Gale ruṇḍamālaṃ▷107 tanau sarpajālaṃ▷108 mahākālakālaṃ▷109 gaṇeśādhipālam▷110|
+Jaṭājūṭabhaṅgo▷111-ttaraṅgairviśālam▷112 śivaṃ śaṅkaraṃ▷113 śambhumīśānamīḍe▷114||`
+  window.renderBody = function () {
+    iastContent.split('\n').forEach((text, i) => renderRow(text, i, {
+      audioPrefix: 'mp3/metres/m', hoverWord: false}))
+  }
+  renderBody()
+</script>
+</body>
+</html>

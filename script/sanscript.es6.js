@@ -507,9 +507,11 @@ function exportSanscriptSingleton (global, schemes, devanagariVowelToMarks) {
         return buf.join('');
     };
 
-    const vowelRe = /[aiuāīūṛṝḷḹèeòoṃḥ']+/;
+    const vowelRe = /[aiuāīūṛṝḷḹèeòoṃḥ']+/i;
     const puncRe = /[▷,?!:]/g;
     const apostrophe = /[‘’]/g;
+    Sanscript.si = 0; //! syllable index
+    Sanscript.sn = 0; //! syllable count
 
     /*
      * Split an iast word into aksara texts
@@ -522,14 +524,23 @@ function exportSanscriptSingleton (global, schemes, devanagariVowelToMarks) {
         let idx = 0;
         function split(str) {
             while (str) {
-                const idx = str.search(vowelRe);
-                if (idx < 0) {
+                const vi = str.search(vowelRe);
+                if (vi < 0) {
                     items.push(str);
                     break;
                 }
                 str.replace(vowelRe, function (vowel) {
-                    items.push(str.substring(0, idx + vowel.length));
-                    str = str.substring(idx + vowel.length);
+                    const syllable = str.substring(0, vi + vowel.length),
+                      sy1 = syllable.replace(/[ṃḥ]+$/, ''),
+                      sy2 = syllable.substring(sy1.length);
+                    if (Sanscript.sn > 1) {
+                        if (++Sanscript.si > Sanscript.sn)
+                            Sanscript.si = 1;
+                        items.push(sy1 + `@${Sanscript.si}` + sy2);
+                    } else {
+                        items.push(syllable);
+                    }
+                    str = str.substring(vi + vowel.length);
                     return '';
                 });
             } }
