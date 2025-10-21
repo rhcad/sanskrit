@@ -79,8 +79,8 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False,
             i -= 1
         if merge_sentence:
             text_st += text + ' '
-            start_st = start_st or start
-            st_end = re.search(r' \||,', r.text)
+            start_st = 0 if '◆' in text else start_st or start
+            st_end = re.search(r'\|\|', r.text)
         i += 1
         text_fn = re.sub(r'[A-Z]', lambda m: m.group().lower(), text.replace("'", 'a'))
         print(i, start, end - start, text + text_ext, f' ▷{st_i}' if st_end else '',
@@ -119,7 +119,9 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False,
 
         if re.search(r'[,.|]\s*$', r.text):  # 如果行末有句点，就合并前面各行内容
             for j, s in enumerate(sentence[:-1]):
-                if not s.endswith('-'):
+                if '◆' in s:
+                    sentence[j] = '\n' + sentence[j] + '\n'
+                elif not s.endswith('-'):
                     sentence[j] += ' '
             if indent:
                 sentence[0] = '  ' + sentence[0]
@@ -130,7 +132,7 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False,
 
     print(out_dir_prefix + '.txt')
     with open(out_dir_prefix + '.txt', 'w', encoding='utf-8') as f:
-        f.write('\n'.join(content or sentence))
+        f.write('\n'.join(content or sentence).strip())
 
 
 if __name__ == '__main__':

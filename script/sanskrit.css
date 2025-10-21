@@ -69,6 +69,7 @@ a { text-decoration:none; }
 .section > .sec-title:hover::after { color: #0d66c2; }
 .section.collapse > .sec-title::after { content: "…"; }
 .section.collapse .row, .si { display: none; }
+.section + .section { margin-top: 1em; }
 
 #top-bar {
   box-shadow: 0 -1px #ddd inset;
