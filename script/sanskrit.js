@@ -69,9 +69,9 @@ function renderRow(text, rowIndex, options={}) {
   text = text.replace(/\s?-\s?/g, '-').replace(sandhiRe, s => s.substring(1, s.length-1)
     .split(',').slice(iSandhi[0], iSandhi[1]))
 
-  if (/（\d+音节）/.test(text)) {
+  if (/（\d+音节[:）]/.test(text)) {
     Sanscript.si = 0;
-    Sanscript.sn = parseInt(/（(\d+)音节）/.exec(text)[1]);
+    Sanscript.sn = parseInt(/（(\d+)音节/.exec(text)[1]);
   }
   if (/^#(\d|$)/.test(text)) {
     newSection = createElement(document.getElementById('body'), 'row section')
