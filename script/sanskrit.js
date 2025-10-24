@@ -105,8 +105,13 @@ function renderRow(text, rowIndex, options={}) {
       const ele = document.createElement('span'), flag = [];
       ele.innerHTML = _makeAudioButton(options, audios[a[0]], flag);
       if (ele.innerHTML) {
-        if (!flag[0] || flag[0] === 's') {
+        if (flag[0] === 's') {
+          iastSpan.classList.add('has-sentence-voc')
+        }
+        if (!flag[0] || flag[0] === 's') { // 不是词
           audioNums.push(audios[a[0]])
+        } else {
+          iastSpan.classList.add('has-word-voc')
         }
         iastSpan.append(ele.firstChild)
       }
@@ -176,6 +181,7 @@ function renderRow(text, rowIndex, options={}) {
     const voc = options['vocAudio'] && hasBodyCls('show-audio') && findVocAudio(w0)
 
     wordSpan = null
+    iastSpan.setAttribute('first-char', w0[0] || '')
     if (voc) {
       let i1 = 0;
       voc.forEach(v => {
@@ -222,6 +228,29 @@ function renderRow(text, rowIndex, options={}) {
     hasOrgRow = 1
     createElement(orgRow, 'float-right', 'div', {
       html: `<div onclick="_renderBody(true)" class="gray-btn" title="隐藏无连音变化的转写">✕</div>`})
+  }
+  if (hasBodyCls('merge-audio-words') && sentenceAudio) {
+    let audioWord, prevWord, prev
+    for (let word = iastRow.lastChild; word; word = prevWord) {
+      prevWord = word.previousSibling
+      if (word.classList.contains('audio-word')) {
+        audioWord = word
+      } else if (audioWord && word.lastChild) {
+        if (word.classList.contains('has-sp') && prevWord && prevWord.classList.contains('audio-word')) {
+          continue
+        }
+        if (word.getAttribute('first-char') === '◆') {
+          row.classList.add('section-title')
+          word.remove()
+          break
+        }
+        for (let c = word.lastChild; c; c = prev) {
+          prev = c.previousSibling
+          audioWord.insertBefore(c, audioWord.firstChild)
+        }
+        word.remove()
+      }
+    }
   }
 }
 

@@ -16,10 +16,14 @@
     body { font-size: 22px; }
     .section + .section { margin-top: 2em; }
     .title { text-align: center; margin-bottom: .5em; }
-    .tip { font-size: 11px; margin-bottom: .7em; }
+    .tip { font-size: 13px; margin-bottom: .8em; }
+    .audio-button.voc { background-size: 16px 16px; width: 16px; height: 16px; }
+    .word span.sp.space { width: .7em; display: inline-block; }
+    .word span.sp.space + .audio-button, .word span.sp.space + .sp + .audio-button { margin-left: -.7em; }
+    .section-title { text-indent: .5em; margin-bottom: .8em; }
   </style>
 </head>
-<body class="show-odd show-iast show-audio">
+<body class="show-odd show-iast show-audio merge-audio-words">
 <div id="top-bar">
   <span class="home" onclick="location.href='./'" title="Home"><img src="img/favicon.png" alt="Home"></span>
   <span onclick="biggerFont()">+</span>
@@ -30,20 +34,21 @@
   <span><a href="pdf/metres.pdf">下载<b>PDF</b></a></span>
 </div>
 <div class="title no-print">梵文诗律唱诵</div>
+<div class="tip no-print">注：点击<button class="audio-button voc" style="margin-right: 0"></button>左侧的词可播放，点击<button class="audio-button"></button>播放整句。开始播放后再次点击会停止。</div>
 <div id="body"></div>
 <script src="script/sanscript.es6.js?v=1216"></script>
-<script src="script/sanskrit.js?v=1217"></script>
+<script src="script/sanskrit.js?v=1301"></script>
 <script>
   window._fontSize = 22
   window.audioGap = 0
   const iastContent = `
 #01 月亮文（6音节）
-śaśivadanā▷01
+◆ śaśivadanā▷01
 śaśivadanānāṃ▷02 vrajanaruṇīnām▷03|
 adharasudhormi▷04 madhuripuraicchat▷05|| ▷500
 
 #03 赞歌（8音节）
-anuṣṭubh▷06
+◆ anuṣṭubh▷06
 vāgarthāvica sampṛktau▷07 vāgarthapratipattaye▷08|
 jagataḥ pitagau vande▷09 pārvatīparameśvarau▷10|| ▷501
 ——（raghuvaṃśamahākāvyam 1.1）
@@ -54,98 +59,98 @@ Tathā bhedo ’nayorjñeyo▷13 yathāsaṅkhyena paṇḍitaiḥ▷14|| ▷502
 Dvicatuṣpādayorhrasvaṃ▷17 saptamaṃ dīrghamanyayoḥ▷18||）
 
 #04 身斋（8音节: 4+6+6）
-pramānikā▷19
-Punātu bha▷20-ktiracyutā sadā▷21-cyutāṅghnipadmayoḥ▷22|
-Śrutismṛti▷23-pramāṇikā bhavām▷24a bugaśitārikā▷24b|| ▷504
+◆ pramānikā▷19   Punā...rikā ▷504
+Punātu bha▷20-ktiracyutā sadā▷21-cyutāṅghnipadmayoḥ▷22| ▷530
+Śrutismṛti▷23-pramāṇikā bhavām▷24a bugaśitārikā▷24b|| ▷531
 （pramāṇikā jagai laghau||）▷25
 
 #05 因陀罗雷神（11音节: 5+6）
-indravajrā▷26
+◆ indravajrā▷26  Rātrau...syāt ▷506
 Rātrau yathā me▷27-ghaghanāndhakāre▷28
-vidyutkṣaṇaṃ da▷29-rśayati prakāśam▷30|
+vidyutkṣaṇaṃ da▷29-rśayati prakāśam▷30| ▷532
 Buddhānubhāve▷31-na tathā kadācil(t)▷32
-lokasya puṇye▷33-ṣu matiḥ kṣaṇaṃ syāt▷34|| ▷506
+lokasya puṇye▷33-ṣu matiḥ kṣaṇaṃ syāt▷34|| ▷533
 
 #06 因陀罗之后出生的神（11音节: 5+6）
-upendravajrā▷35
+◆ upendravajrā▷35  Mahī...khāḥ ▷507
 Mahīdharā ra▷36-tnamayāstathānye▷37
-vanapradeśā▷38-śca vivekaramyāḥ▷39|
+vanapradeśā▷38-śca vivekaramyāḥ▷39| ▷534
 Latāḥ supuṣpā▷40-bharaṇojjcalāśca▷41
-drumāśca ye sa▷42-tphalanapraśākhāḥ▷43|| ▷507
+drumāśca ye sa▷42-tphalanapraśākhāḥ▷43|| ▷535
 
 #07 出生（11音节: 5+6）
-upajāti▷44
+◆ upajāti▷44  Brah...mi ▷508  Anan...nāma ▷509
 Brahmālavālaṃ▷45 bhuvanaikapālaṃ▷46
-yaśoviśālaṃ▷47 ṣiśupālakālam▷48|
+yaśoviśālaṃ▷47 ṣiśupālakālam▷48| ▷536
 Saṃsāramāyā▷49-matimohajālaṃ▷50
-bālaṃ mukundaṃ▷51 śirasā namāmi▷52|| ▷508
+bālaṃ mukundaṃ▷51 śirasā namāmi▷52|| ▷537
 --
 Anantarodī▷53-ritalakṣmabhājau▷54
-pādau yadīyā▷55-vupajātayastāḥ▷56|
+pādau yadīyā▷55-vupajātayastāḥ▷56| ▷538
 Itthaṃ kilānyā▷57-svapi miśritāsu▷58
-vadanti jāti▷59-ṣvidameva nāma▷60|| ▷509
+vadanti jāti▷59-ṣvidameva nāma▷60|| ▷539
 
 #08 人名（11音节: 4+7）
-śālinī▷61
+◆ śālinī▷61  Puṇjī...ttām ▷510
 Puṇjībhūtaṃ▷62 prema gopāṅganānāṃ▷63
-mūrtībhūtaṃ▷64 bhāgadheyaṃ yadūnām▷65|
+mūrtībhūtaṃ▷64 bhāgadheyaṃ yadūnām▷65| ▷540
 Ekībhūtaṃ▷66 guptavittaṃ śrutīnām▷67
-śyāmībhūtaṃ▷68 brahma me sannidhattām▷69|| ▷510
+śyāmībhūtaṃ▷68 brahma me sannidhattām▷69|| ▷541
 
-#09（11音节: 5+6）
-rathoddhatā▷70
+#09（11音节: 5+6、3+4+4）
+◆ rathoddhatā▷70  Nan...śam ▷511
 Nandanandana▷71-padāravindayoḥ▷72
-syandamānama▷73-karandabindavaḥ▷74|
+syandamānama▷73-karandabindavaḥ▷74| ▷542
 Sindhavaḥ▷75 paramasau▷76-khyasampadām▷77
-nandayan▷78a -tu kṛdayaṃ▷78b mamāniśam▷79|| ▷511
+nandayan▷78a-tu kṛdayaṃ▷78b mamāniśam▷79|| ▷543
 
 #10 欢迎（11音节: 6+5）
-svāgatā▷80
+◆ svāgatā▷80  Śāta...hārī ▷512
 Śātakumbharuci▷81a hāridukūlaḥ▷81b
-kekicandrakavi▷82a rājitacūlaḥ▷82b|
+kekicandrakavi▷82a rājitacūlaḥ▷82b| ▷544
 Navyayauvanala▷83a sadbrajanāri-▷83b
-raṅjano Jayati▷84 kuṅjavihārī▷85|| ▷512
+raṅjano Jayati▷84 kuṅjavihārī▷85|| ▷545
 
 #11 美丽（11音节: 6+5）
-indirā▷86
+◆ indirā▷86  Jayati...vate ▷513
 Jayati te ’dhikaṃ▷87 janmanā vrajaḥ▷88
-śrayata indirā▷89 śaśvadatra hi▷90|
+śrayata indirā▷89 śaśvadatra hi▷90| ▷546
 Dayita dṛśyatāṃ▷91 dikṣu tāvakās▷92
-tvayi dhṛtāsava▷93 stvāṃ vicinvate▷94|| ▷513
+tvayi dhṛtāsava▷93 stvāṃ vicinvate▷94|| ▷547
 
 #12 家族的延续（12音节: 5+7）
-vaṃśastha▷95
+◆ vaṃśastha▷95  Rajo...namaḥ ▷514
 Rajojuṣe jan▷96-mani sattvavṛttaye▷97
-sthitau prajānāṃ▷98 pralaye tamaḥ spṛśe▷99|
+sthitau prajānāṃ▷98 pralaye tamaḥ spṛśe▷99| ▷548
 Ajāya sarga▷100-sthitināśahetave▷101
-trayīmayāya▷102 triguṇātmane namaḥ▷103|| ▷514
+trayīmayāya▷102 triguṇātmane namaḥ▷103|| ▷549
 （jatau tu vaṃśasthamudīritaṃ jagau▷104|| ➁ ▷105）
 
 #13 蛇的步伐（12音节: 6+6）
-bhujaṅga-prayāta▷106
+◆ bhujaṅga-prayāta▷106  Ga...ḍe ▷517
 Gale ruṇḍamālaṃ▷107 tanau sarpajālaṃ▷108
-mahākālakālaṃ▷109 gaṇeśādhipālam▷110|
+mahākālakālaṃ▷109 gaṇeśādhipālam▷110| ▷550
 Jaṭājūṭabhaṅgo▷111-ttaraṅgairviśālam▷112
-śivaṃ śaṅkaraṃ▷113 śambhumīśānamīḍe▷114|| ▷517
+śivaṃ śaṅkaraṃ▷113 śambhumīśānamīḍe▷114|| ▷551
 
 #14 生气的话语（12音节: 6+6）
-toṭaka▷115
+◆ toṭaka▷115  Adha...dhuram ▷520
 Adharaṃ  madhuraṃ▷118 vadanaṃ  madhuraṃ▷119
-nayanaṃ  madhuraṃ▷120 hasitaṃ  madhuram▷121|
+nayanaṃ  madhuraṃ▷120 hasitaṃ  madhuram▷121| ▷552
 Hṛdayaṃ  madhuraṃ▷122 gamanaṃ  madhuraṃ▷123
-madhurādhi-pate▷124-rakhilaṃ  madhuram▷125|| ▷520
+madhurādhi-pate▷124-rakhilaṃ  madhuram▷125|| ▷553
 （vada  toṭakamabdhisakāgyutam▷116|| ➁ ▷117）
 
 #15 花环（12音节）
-sragviṇī▷126
+◆ sragviṇī▷126  Acyu...bhaje ▷521
 Acyutaṃ  keśavaṃ  rāmanārāyaṇaṃ▷127
-kṛṣṇadāmodaraṃ  vāsudevaṃ  harim▷128|
+kṛṣṇadāmodaraṃ  vāsudevaṃ  harim▷128| ▷554
 Śrīdharaṃ  mādhavaṃ▷129 gopikāvallabhaṃ▷130
-jānakīnāyakaṃ  rāmacandraṃ  bhaje▷131|| ▷521
+jānakīnāyakaṃ  rāmacandraṃ  bhaje▷131|| ▷555
 `
   window.renderBody = function () {
     iastContent.split('\n').forEach((text, i) => renderRow(text, i, {
-      audioPrefix: 'mp3/metres/m', hoverWord: false}))
+        audioPrefix: 'mp3/metres/m', hoverWord: false, sentenceAudio: true}))
   }
   renderBody()
 </script>
