@@ -90,6 +90,7 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False,
             i -= 1
             text = text.replace('=', '').strip()
         elif r.text.startswith('.'):  # 加点标记编号不变，文件名数字后加abc等子名
+            assert ab, f'invalid sub-num: {r.text}'
             ab = af[af.index(ab) + 1]
         else:
             ab = 'a' if lrc[i_ + 1].text.startswith('.') else ''

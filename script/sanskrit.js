@@ -26,7 +26,7 @@ function createElement(parent, cls, tag='div', attr={}) {
   return element
 }
 
-const audioHtml = `<button data-idx="@idx" class="audio-button" onclick="toggleAudioButton(this)"><audio src="@dir@idx.mp3"></audio></button>`
+const audioHtml = `<button data-idx="@idx" class="audio-button" onclick="toggleAudioButton(this)"><audio src="@dir@idx.mp3?_=${window.audioStamp||1}"></audio></button>`
 const sandhiRe = /\([^(),]*(,[^(),]*)+\)/g
 const audioRe1 = /▷\d+[a-f]?/g, audioRe2 = /\t*▷/g
 const audioNums = []
@@ -404,7 +404,7 @@ function updateTopBar() {
       hasBodyCls(btn.dataset.toggle)))
 }
 
-window._fontSize = 16
+window._fontSize = window._fontSize || 16
 function biggerFont() {
   if (_fontSize < 40) {
     _fontSize *= 1.05
