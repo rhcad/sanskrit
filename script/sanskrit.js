@@ -86,14 +86,14 @@ function renderRow(text, rowIndex, options={}) {
   const row = createElement(newSection || document.getElementById('body'),
     'row' + (/^(\t| {2})/.test(text) ? ' indent' : '') + (rowIndex ? '' : ' title'))
 
-  if (/^\s*——/.test(text)) {
-    const noteRow = createElement(row, 'iast-row indent')
-    noteRow.innerText = text
-    return
-  }
   const devaRow = createElement(row, 'deva-row')
   const iastRow = createElement(row, 'iast-row')
   const audios = [], a = [0, 0];
+
+  if (/^\s*——/.test(text)) {
+    devaRow.classList.add('indent')
+    iastRow.classList.add('indent')
+  }
   if (options.audioPrefix) {
     text = text.replace(audioRe1, s => audios.push(s.substring(1)) && '▷');
     if (audios.length > 1) {
@@ -219,7 +219,7 @@ function renderRow(text, rowIndex, options={}) {
       }
       i2 += 1
       createElement(wordSpan || devaSpan, 'a ' + (i2 % 2 ? 'odd' : 'even'), 'span', {
-        data_id: `a${newWordId}-${i}`, text: s, data_i: i2
+        data_id: `a${newWordId}-${i}`, text: s.replace('——', '—'), data_i: i2
       })
     })
     newWordId++

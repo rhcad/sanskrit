@@ -63,7 +63,7 @@ a { text-decoration:none; }
 .section > .sec-title::after {
   font-family: "Arial Unicode MS", sans-serif;
   content: "▴";
-  margin-left: 3em;
+  margin-left: 1em;
   color: #ccc;
 }
 .section > .sec-title:hover::after { color: #0d66c2; }

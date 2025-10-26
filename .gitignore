@@ -6,6 +6,7 @@ mp3/wsz*/
 mp3/metre*/
 lrc_mp3/src/heart_*.mp3
 lrc_mp3/src/wsz_*.mp3
+lrc_mp3/src/metre*.mp3
 voc/
 *.tmp
 
