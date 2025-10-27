@@ -70,8 +70,13 @@ function renderRow(text, rowIndex, options={}) {
     .split(',').slice(iSandhi[0], iSandhi[1]))
 
   if (/（\d+音节[:）]/.test(text)) {
-    Sanscript.si = 0;
-    Sanscript.sn = parseInt(/（(\d+)音节/.exec(text)[1]);
+    Sanscript.si = Sanscript.sn2 = 0
+    Sanscript.sn = parseInt(/（(\d+)音节/.exec(text)[1])
+    if (/（\d+音节[：:]\s*\d+\+\d+/.test(text)) { // eg: （11音节: 5+6）
+      Sanscript.sn2 = parseInt(/音节[：:]\s*(\d+)/.exec(text)[1])
+    }
+  } else if (/——/.test(text)) {
+    Sanscript.si = Sanscript.sn2 = Sanscript.sn = 0
   }
   if (/^#(\d|$)/.test(text)) {
     newSection = createElement(document.getElementById('body'), 'row section')
@@ -93,6 +98,7 @@ function renderRow(text, rowIndex, options={}) {
   if (/^\s*——/.test(text)) {
     devaRow.classList.add('indent')
     iastRow.classList.add('indent')
+    row.style.marginBottom = '0'
   }
   if (options.audioPrefix) {
     text = text.replace(audioRe1, s => audios.push(s.substring(1)) && '▷');
@@ -143,7 +149,7 @@ function renderRow(text, rowIndex, options={}) {
     let sp = createElement(wordSpan || iastSpan, 'a ' + (i1 % 2 ? 'odd' : 'even'), 'span', {
       data_id: `a${newWordId}-${i}`, data_i: i1,
       html: s.replace(/-/g, '<span class="sp">-</span>')
-        .replace(/@\d+/g, t => `<span class="si" end="${parseInt(t.substring(1))===Sanscript.sn}" si="${t.substring(1)}">${t.substring(1)}</span>`),
+        .replace(/@\d+/g, t => `<span class="si" end="${parseInt(t.substring(1))===Sanscript.sn2 || parseInt(t.substring(1))===Sanscript.sn}" si="${t.substring(1)}">${t.substring(1)}</span>`),
       onclick: clickSection ? 'toggleSection(this)' : undefined
     });
     sp = sp && sp.querySelector('.sp')
