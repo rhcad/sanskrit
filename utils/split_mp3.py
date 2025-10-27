@@ -1,3 +1,4 @@
+#! /usr/bin/env python3
 """
 从原始 mp3 文件、lrc歌词文件生成词和句的音频文件
 python3 split_mp3.py <mp3_file> <folder/prefix> [--options]

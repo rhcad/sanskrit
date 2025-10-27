@@ -1,3 +1,4 @@
+#! /usr/bin/env python3
 """
 Convert audio or video files to mp3 format
 Usage:

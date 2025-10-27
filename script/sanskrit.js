@@ -46,7 +46,7 @@ function renderRow(text, rowIndex, options={}) {
     console.assert(false, text)
   }
   if (hasBodyCls('show-audio')) {
-    text = text.replace(/[:,|] ▷5\d\d/g, s => s.replace(' ', ''))
+    text = text.replace(/[:,|] ▷[56]\d\d/g, s => s.replace(' ', ''))
   } else {
     text = text.replace(/\s*▷\d*[a-f]?/g, '')
   }
@@ -219,7 +219,8 @@ function renderRow(text, rowIndex, options={}) {
       }
       i2 += 1
       createElement(wordSpan || devaSpan, 'a ' + (i2 % 2 ? 'odd' : 'even'), 'span', {
-        data_id: `a${newWordId}-${i}`, text: s.replace('——', '—'), data_i: i2
+        data_id: `a${newWordId}-${i}`,
+        text: s.replace('——', '—'), data_i: i2
       })
     })
     newWordId++
@@ -263,9 +264,9 @@ function _createVocSpan(wordSpan, dir, idx) {
 function _makeAudioButton(options, idx, flag=null) {
   if (options['sentenceAudio']) {
     if (Array.isArray(flag)) {
-      flag[0] = /^5\d\d/.test(idx) ? 's' : 'w'
+      flag[0] = /^[56]\d\d/.test(idx) ? 's' : 'w'
     }
-    if (!/^5\d\d/.test(idx)) {
+    if (!/^[56]\d\d/.test(idx)) {
       return _createVocSpan(null, options.audioPrefix, idx)
     }
   }
@@ -407,13 +408,13 @@ function updateTopBar() {
 window._fontSize = window._fontSize || 16
 function biggerFont() {
   if (_fontSize < 40) {
-    _fontSize *= 1.05
+    window._fontSize *= 1.05
     document.body.style.fontSize = _fontSize + 'px'
   }
 }
 function smallerFont() {
   if (_fontSize > 9) {
-    _fontSize *= 0.95
+    window._fontSize *= 0.95
     document.body.style.fontSize = _fontSize + 'px'
   }
 }

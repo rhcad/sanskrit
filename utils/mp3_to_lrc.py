@@ -1,3 +1,4 @@
+#! /usr/bin/env python3
 """
 Split mp3 file into word files and lrc text file
 Usage:
@@ -8,7 +9,6 @@ from pydub import AudioSegment
 from pydub.silence import detect_nonsilent
 from os import path, makedirs
 import shutil
-import re
 
 
 def split_mp3(mp3_file, min_silence_len=80, silence_thresh=-40):

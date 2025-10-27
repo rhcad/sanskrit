@@ -690,7 +690,10 @@ function exportSanscriptSingleton (global, schemes, devanagariVowelToMarks) {
         return words.map(function (word) {
             if (aksaraMode) {
                 const words = Sanscript.splitAksara(word);
-                const result = words.map(aksara => Sanscript.t(aksara.replace(/@\d*|◆\s*/g, '').replace(/\.{3}/g, '…'), from, to, options));
+                const result = words.map(aksara => Sanscript.t(
+                  aksara.replace(/@\d*|◆\s*/g, '').replace(/\.{3}/g, '…').replace(/\d\.\d/g,
+                      s => s.replace('.', '．')), from, to, options)
+                  .replace(/．/g, '.'));
                 // Separate each aksara with tabs
                 return [words.join('\t'), result.join('\t')];
             }
