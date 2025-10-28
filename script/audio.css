@@ -38,7 +38,7 @@
 @media screen and (pointer: fine) {
     .audio-button:not(.voc):hover { background-color: #0a7aff; }
     .audio-button.voc:hover { opacity: 1; }
-    .audio-word:has(.audio-button):hover {
+    .audio-word[onclick]:hover {
         text-decoration: underline;
         text-decoration-color: #ccc;
         text-underline-position: under;

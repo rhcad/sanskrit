@@ -148,8 +148,8 @@ function renderRow(text, rowIndex, options={}) {
     const clickSection = /^\|{2}\d+\|{2}$/.test(s) && !iastSpan.closest('.word[onclick]')
     let sp = createElement(wordSpan || iastSpan, 'a ' + (i1 % 2 ? 'odd' : 'even'), 'span', {
       data_id: `a${newWordId}-${i}`, data_i: i1,
-      html: s.replace(/-/g, '<span class="sp">-</span>')
-        .replace(/@\d+/g, t => `<span class="si" end="${parseInt(t.substring(1))===Sanscript.sn2 || parseInt(t.substring(1))===Sanscript.sn}" si="${t.substring(1)}">${t.substring(1)}</span>`),
+      html: s.replace(/-/g, '<span class="sp">-</span>').replace(/◆\s*/, '')
+        .replace(/@\d+/g, t => `<span class="si" end="${ Sanscript.sn2 ? parseInt(t.substring(1))===Sanscript.sn2 || parseInt(t.substring(1))===Sanscript.sn2+1 : parseInt(t.substring(1))===Sanscript.sn}" si="${t.substring(1)}">${t.substring(1)}</span>`),
       onclick: clickSection ? 'toggleSection(this)' : undefined
     });
     sp = sp && sp.querySelector('.sp')
@@ -236,7 +236,8 @@ function renderRow(text, rowIndex, options={}) {
     createElement(orgRow, 'float-right', 'div', {
       html: `<div onclick="_renderBody(true)" class="gray-btn" title="隐藏无连音变化的转写">✕</div>`})
   }
-  if (hasBodyCls('merge-audio-words') && sentenceAudio) {
+  if (sentenceAudio) {
+    const needMerge = hasBodyCls('merge-audio-words')
     let audioWord, prevWord, prev
     for (let word = iastRow.lastChild; word; word = prevWord) {
       prevWord = word.previousSibling
@@ -244,6 +245,11 @@ function renderRow(text, rowIndex, options={}) {
         audioWord = word
       } else if (audioWord && word.lastChild) {
         if (word.classList.contains('has-sp') && prevWord && prevWord.classList.contains('audio-word')) {
+          continue
+        }
+        if (!needMerge) {
+          word.setAttribute('onclick', `toggleAudioWord(this,${audioWord.getAttribute('data-id')})`)
+          word.classList.add('audio-word')
           continue
         }
         if (word.getAttribute('first-char') === '◆') {
@@ -329,7 +335,11 @@ function isInViewport(element) {
         rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) - 20;
 }
 
-function toggleAudioWord(span) {
+function toggleAudioWord(span, aid=0) {
+  if (aid && span) {
+    span = span.closest('.iast-row,.deva-row')
+    span = span.querySelector(`.word[data-id="${aid}"]:not(.has-sp)`)
+  }
   toggleAudioButton(span.querySelector('.audio-button'))
 }
 
