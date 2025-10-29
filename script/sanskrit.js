@@ -338,7 +338,7 @@ function isInViewport(element) {
 function toggleAudioWord(span, aid=0) {
   if (aid && span) {
     span = span.closest('.iast-row,.deva-row')
-    span = span.querySelector(`.word[data-id="${aid}"]:not(.has-sp)`)
+    span = span.querySelector(`.word[data-id="${aid}"]:has(.audio-button)`)
   }
   toggleAudioButton(span.querySelector('.audio-button'))
 }
