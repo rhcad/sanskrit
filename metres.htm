@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="script/sanskrit.css?v=1307">
   <link rel="stylesheet" href="script/audio.css?v=1307">
   <style>
-    body { font-size: 22px; }
+    body { font-size: 19px; }
     .section + .section { margin-top: 2em; }
     .title { text-align: center; margin-bottom: .5em; }
     .tip { font-size: 13px; margin-bottom: .8em; }
@@ -22,6 +22,10 @@
     .word span.sp.space + .audio-button, .word span.sp.space + .sp + .audio-button { margin-left: -.7em; }
     .section-title { margin-left: 20px; margin-bottom: 1.4em; }
     .iast-row:has(.has-sentence-voc) { margin-bottom: 1em; }
+    .gana { display: inline-block; }
+    .gana::before { content: "["; font-weight: 300; }
+    .gana::after { content: "]"; font-weight: 300; }
+    .gana small { font-weight: 400; font-size: .6em; }
   </style>
 </head>
 <body class="show-odd show-iast show-audio">
@@ -42,16 +46,16 @@
 <script>
   window.audioStamp = 1024
 </script>
-<script src="script/sanscript.es6.js?v=1303"></script>
-<script src="script/sanskrit.js?v=1308"></script>
+<script src="script/sanscript.es6.js?v=1311"></script>
+<script src="script/sanskrit.js?v=1311"></script>
 <script>
-  window._fontSize = 22
+  window._fontSize = 19
   window.audioGap = 0
   const iastContent = `
-#01 月亮文（6音节）
-◆ śaśivadanā▷01
+#01 月亮文（6音节）[न(短短短) य(短长长)]
+◆ śaśivadanā▷01  ﹍ śaśi...chat▷500
 śaśivadanānāṃ▷02 vrajanaruṇīnām▷03 |
-adharasudhormi▷04 madhuripur-aicchat▷05b || ▷500
+adharasudhormi▷04 madhuripur-aicchat▷05b ||
 ——śaśivadanā  nyau ||
 
 #03 赞歌（8音节）
@@ -65,14 +69,14 @@ Tathā bhedo ’nayorjñeyo▷13 yathāsaṅkhyena paṇḍitaiḥ▷14 || ▷50
 （śloke ṣaṣṭhaṃ guru jñeyaṃ▷15 sarvatra laghu pañcamam▷16 |
 Dvicatuṣpādayorhrasvaṃ▷17 saptamaṃ dīrghamanyayoḥ▷18 ||）
 
-#04 身斋（8音节: 4+4）
-◆ pramānikā▷19   Punā...rikā ▷504
+#04 身斋（8音节: 4+4）[ज(短长短) र(长短长) ल(短) ग(长)]
+◆ pramāṇikā▷19 ﹍  Punā...rikā ▷504
 Punātu bha▷20-ktir-acyutā▷21a sadācyutā▷21b-ṅghnipadmayoḥ▷22a | ▷530
 Śrutismṛti▷23-pramāṇikā▷24a bhavāmbuga▷25a-śitārikā▷25b || ▷531
 （pramāṇikā jagai laghau ||）▷25
 
-#05 因陀罗雷神（11音节: 5+6）
-◆ indravajrā▷26  Rātrau...syāt ▷506
+#05 天帝杵（11音节: 5+6）[त(长长短) त(长长短) ज(短长短) ग(长) ग(长)]
+◆ indravajrā▷26 ﹍ Rātrau...syāt ▷506
 Rātrau yathā me▷27-ghaghanāndhakāre▷28 ▷532a
 vidyut kṣaṇaṃ da▷29-rśayati prakāśam▷30 | ▷532b
 Buddhānubhāve▷31-na tathā kadācil(t)▷32 ▷533a
@@ -80,8 +84,8 @@ lokasya puṇye▷33-ṣu matiḥ kṣaṇaṃ syāt▷34 || ▷533b
 ——bodhicaryāvatāraḥ 1.5
 （syādindravajrā▷34a  yadi tau jagau gaḥ ||▷34b）➁▷34c
 
-#06 因陀罗之后的神（5+6音节）
-◆ upendravajrā▷35  Mahī...khāḥ ▷507
+#06 近帝杵（5+6音节）[ज(短长短) त(长长短) ज(短长短) ग(长) ग(长)]
+◆ upendravajrā▷35 ﹍ Mahī...khāḥ ▷507
 Mahīdharā ra▷36-tnamayās tathānye▷37 ▷534a
 vanapradeśā▷38-śca vivekaramyāḥ▷39 | ▷534b
 Latāḥ supuṣpā▷40-bharaṇojjcalāśca▷41 ▷535a
@@ -89,7 +93,7 @@ drumāśca ye sa▷42-tphalanapraśākhāḥ▷43 || ▷535b
 ——bodhicaryāvatāraḥ 2.3
 （upendravajrā▷43a  jatajāstato gauḥ ||▷43b）➁▷43c
 
-#07 出生（11音节: 5+6）
+#07 出生（11音节: 5+6）音步: 上面 06 05
 ◆ upajāti▷44  Brah...mi ▷508  Anan...nāma ▷509
 Brahmālavālaṃ▷45 bhuvanaikapālaṃ▷46
 yaśoviśālaṃ▷47 ṣiśupālakālam▷48 | ▷536
@@ -101,71 +105,71 @@ pādau yadīyā▷55-vupajātayastāḥ▷56 | ▷538
 Itthaṃ kilānyā▷57-svapi miśritāsu▷58
 vadanti jāti▷59-ṣvidameva nāma▷60 || ▷539
 
-#08 人名（11音节: 4+7）
-◆ śālinī▷61  Puṇjī...ttām ▷510
+#08 人名（11音节: 4+7）[म(长长长) त(长长短) त(长长短) ग(长) ग(长)]
+◆ śālinī▷61 ﹍ Puṇjī...ttām ▷510
 Puṇjībhūtaṃ▷62 prema gopāṅganānāṃ▷63
 mūrtībhūtaṃ▷64 bhāgadheyaṃ yadūnām▷65 | ▷540
 Ekībhūtaṃ▷66 guptavittaṃ śrutīnām▷67
 śyāmībhūtaṃ▷68 brahma me sannidhattām▷69 || ▷541
 ——（māttau  gau  ttena  śālinī  vedalokaiḥ ||）
 
-#09（11音节: 5+6、3+4+4）
-◆ rathoddhatā▷70  Nan...śam ▷511
+#09（11音节: 5+6、3+4+4）[र(长短长) न(短短短) र(长短长) ल(短) ग(长)]
+◆ rathoddhatā▷70 ﹍ Nan...śam ▷511
 Nandanandana▷71-padāravindayoḥ▷72 ▷542a
 syandamā▷73a-namakara▷73b-ndabindavaḥ▷74a | ▷542b
 Sindhavaḥ▷75 paramasau▷76-khyasampadām▷77 ▷543a
 nandayan▷78a-tu kṛdayaṃ▷78b mamāniśam▷79 || ▷543b
 ——（rātparairnaralagai  rathoddhatā ||）
 
-#10 欢迎（11音节: 6+5）
-◆ svāgatā▷80  Śāta...hārī ▷512
+#10 欢迎（11音节: 6+5）[र(长短长) न(短短短) भ(长短短) ग(长)ग(长)]
+◆ svāgatā▷80 ﹍ Śāta...hārī ▷512
 Śātakumbharuci▷81a hāridukūlaḥ▷81b
 kekicandrakavi▷82a rājitacūlaḥ▷82b | ▷544
 Navyayauvanala▷83a sadbrajanāri-▷83b
 raṅjano Jayati▷84 kuṅjavihārī▷85 || ▷545 ➁▷85a
 （svāgatā  ranabhagaurguruṇā  ca ||）
 
-#11 美丽（11音节: 6+5）
-◆ indirā▷86  Jayati...vate ▷513
+#11 美丽（11音节: 6+5）[न(短短短) ग(长)  र(长短长) र(长短长) ल(短)]
+◆ indirā▷86 ﹍ Jayati...vate ▷513
 Jayati te ’dhikaṃ▷87 janmanā vrajaḥ▷88  ▷546a
 śrayata indirā▷89 śaśvad-atra hi▷90 | ▷546b
 Dayita dṛśyatāṃ▷91 dikṣu tāvakās▷92  ▷547a
 tvayi dhṛtāsavas▷93 tvāṃ vicinvate▷94 || ▷547b ➁▷94a
 （nararalairgurāvindirā  matā ||）
 
-#12 家族的延续（12音节: 5+7）
-◆ vaṃśastha▷95  Rajo...namaḥ ▷514
+#12 家族的延续（12音节: 5+7）[ज(短长短) त(长长短) ज(短长短) र(长短长)]
+◆ vaṃśastha▷95 ﹍ Rajo...namaḥ ▷514
 Rajojuṣe ja▷96-nmani sattvavṛttaye▷97 ▷548a
 sthitau prajānāṃ▷98 pralaye tamaḥ spṛśe▷99 | ▷548b
 Ajāya sarga▷100-sthitināśahetave▷101 ▷549a
 trayīmayāya▷102 triguṇātmane namaḥ▷103 || ▷549b
 （jatau tu vaṃśasthamudīritaṃ jagau▷104 ||）➁ ▷105
 
-#13 蛇的步伐（12音节: 6+6）
-◆ bhujaṅga-prayāta▷106  Ga...ḍe ▷517
+#13 蛇的步伐（12音节: 6+6）[य(短长长) x4]
+◆ bhujaṅga-prayāta▷106 ﹍ Ga...ḍe ▷517
 Gale ruṇḍamālaṃ▷107 tanau sarpajālaṃ▷108
 mahākālakālaṃ▷109 gaṇeśādhipālam▷110 | ▷550
 Jaṭājūṭabhaṅgo▷111-ttaraṅgairviśālam▷112
 śivaṃ śaṅkaraṃ▷113 śambhumīśānamīḍe▷114 || ▷551
 ——（bhujaṅgaprayātaṃ  caturbhiryakāraiḥ ||）
 
-#14 生气的话语（12音节: 3×4）
-◆ toṭaka▷115  Adha...dhuram ▷520
+#14 生气的话语（12音节: 3×4）[स(短短长) x4]
+◆ toṭaka▷115 ﹍ Adha...dhuram ▷520
 Adharaṃ  madhuraṃ▷118 vadanaṃ  madhuraṃ▷119
 nayanaṃ  madhuraṃ▷120 hasitaṃ  madhuram▷121 | ▷552
 Hṛdayaṃ  madhuraṃ▷122 gamanaṃ  madhuraṃ▷123
 madhurādhi-pate▷124-rakhilaṃ  madhuram▷125 || ▷553
 （vada  toṭakamabdhisakāgyutam▷116 ||）➁ ▷117
 
-#15 花环（12音节: 3×4）
-◆ sragviṇī▷126  Acyu...bhaje ▷521
+#15 花环（12音节: 3×4）[र(长短长) x4]
+◆ sragviṇī▷126 ﹍ Acyu...bhaje ▷521
 Acyutaṃ  keśavaṃ  rāmanārāyaṇaṃ▷127
 kṛṣṇadāmodaraṃ  vāsudevaṃ  harim▷128 | ▷554
 Śrīdharaṃ  mādhavaṃ▷129 gopikāvallabhaṃ▷130
 jānakīnāyakaṃ  rāmacandraṃ  bhaje▷131 || ▷555
 ——（kīrtitaiṣā  catūrephikā  sragviṇī ||）
 
-#16 drutavilambita（12音节: 7+5）
+#16 drutavilambita（12音节: 7+5）[न(短短短) भ(长短短) भ(长短短) र(长短长)]
 Aśanamācara kāñ▷136-canabhājane▷137 ▷558a
 tvamapi kukkura mā▷138 kuru vismayam▷139| ▷558b
 iha hi pāmaranā▷140-yakamandire▷141 ▷558c
@@ -174,8 +178,11 @@ na hi satāmasatāṃ▷142 ca vivecanam▷143 || ▷558d
 Drutavilambitamā▷133-ha nabhau bharau▷134|| ▷556 ➁▷135
 `
   window.renderBody = function () {
-    iastContent.split('\n').forEach((text, i) => renderRow(text, i, {
-        audioPrefix: 'mp3/metres/m', hoverWord: false, sentenceAudio: true}))
+    const opt = {audioPrefix: 'mp3/metres/m', hoverWord: false, sentenceAudio: true,
+      sectionRender: text => text.replace(/\[[^\]]+]/, g => '<span class="gana">' + g.slice(1,-1).replace(
+        /\([^)]+\)/g, s => `<small>${s}</small>`) + '</span>')
+    }
+    iastContent.split('\n').forEach((text, i) => renderRow(text, i, opt))
   } // m01~131,500~555.mp3
   renderBody()
 </script>

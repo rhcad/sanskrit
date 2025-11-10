@@ -82,7 +82,7 @@ function renderRow(text, rowIndex, options={}) {
     newSection = createElement(document.getElementById('body'), 'row section')
     if (text.length > 1)
       createElement(newSection, 'sec-title', 'h3', {
-        text: text.substring(1),
+        html: (options['sectionRender'] || (s => s))(text.substring(1)),
         onclick: 'toggleSection(this)'
       })
     return
@@ -340,6 +340,14 @@ function toggleAudioWord(span, aid=0) {
     span = span.closest('.iast-row,.deva-row')
     span = span.querySelector(`.word[data-id="${aid}"]:has(.audio-button)`)
   }
+  const hitSpan = window.event.target
+  if (hitSpan && hitSpan.closest('.word') === span) {
+    for (let p = hitSpan; p; p = p.nextElementSibling) {
+      if (p.classList.contains('audio-button')) {
+        return toggleAudioButton(p)
+      }
+    }
+  }
   toggleAudioButton(span.querySelector('.audio-button'))
 }
 
@@ -383,7 +391,7 @@ function toggleAudioButton(button) {
 
 const voc_audios = window.voc_audios || {}
 const voc_audio_keys = Object.keys(voc_audios).map(s => s.replace(/-/g, ''))
-const _vocRe1 = /\s?-\s?/g, _vocRe2 = /\t|▷/g, _vocFound = {}
+const _vocRe1 = /\s?-\s?/g, _vocRe2 = /[\t▷]/g, _vocFound = {}
 
 function findVocAudio(word) {
   let ret = null, n = 0
