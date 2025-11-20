@@ -833,6 +833,9 @@ function exportSanscriptSingleton (global, schemes, devanagariVowelToMarks) {
                 .replace(RE_REMAIN_NUM_DOT, (s) => s.replace('.', '##.##'))
                 .replace(RE_REMOVE_LIGATURE, '')
                 .replace(RE_ALTERNATE_PUNC, (s) => (s.length > 1 ? s[0] : '') + '|');
+            if (options.removeDevaAudio) {
+                data = data.replace(/▷/g, '');
+            }
         }
 
         const fromShortcuts = schemes[from]["shortcuts"];
@@ -916,8 +919,9 @@ function exportSanscriptSingleton (global, schemes, devanagariVowelToMarks) {
                 const rtI0 = syllables[i0 + 1] === '▷' ? i0 + 2 : i0 + 1;
                 if (rType === '2' || rType === '6') {
                     const leadCon = RE_CONSONANT2.exec(right.substring(rtConIdx))[0];
-                    if (syllables[rtI0].indexOf(leadCon) === rtConIdx &&
-                        leadCon.length === 1 && /[ṅñṇnmrṣsh]/.test(leadCon)) {
+                    if (syllables[rtI0].indexOf(leadCon) === rtConIdx
+                        && leadCon.length === 1 && /[ṅñṇnmrṣsh]/.test(leadCon)
+                        && !/[ñnm][y]|[ṣs][v]/.test(right.substring(rtConIdx))) {
                         syllables[rtI0] = syllables[rtI0].replace(leadCon, '');
                         syllables[leftI0] += leadCon;
                         if (!syllables[rtI0]) {

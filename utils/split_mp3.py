@@ -25,7 +25,7 @@ def de_silencer(audio, filename, mode=1):
     audio.export(filename, format='mp3')
 
 
-def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False,
+def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False, join_ln=' ',
               only_i=0, mp3_with_text=False, de_silence=1, rebuild=False,
               start_i=0, st_i=500):
     """
@@ -33,6 +33,7 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False,
     :param mp3_file: 原始 mp3 文件
     :param out_dir_prefix: 输出目录及词音频文件前缀，例如 '../mp3/heart_m/h'，缺省同源文件的目录
     :param merge_sentence: 是否合并生成句音频，是则需要在lrc中某些行末有标点 '|'或'||'，有'||'时自动为True
+    :param join_ln: 合并句文本时的连接字符，n表示换行
     :param only_i: 仅生成指定序号的词音频，用于微调某个词的时刻位置
     :param mp3_with_text: 生成的词音频文件是否带iast转写，便于试听检查
     :param de_silence: 是否去除词的无声部分，0-按lrc时刻拆分，1-去除词首尾的无声部分，2-无声部分都拆开以便拆词
@@ -45,11 +46,14 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False,
     mp3_with_text = mp3_with_text or de_silence > 1
     with open(mp3_file[:-3] + 'lrc', encoding='utf-8') as f:
         content = f.read()
-        merge_sentence = merge_sentence or '||' in content
+        merge_sentence = False if merge_sentence in ['no', 'not'] else \
+            merge_sentence or '||' in content
+        if merge_sentence and 'n' in join_ln:
+            join_ln = '\n'
         assert not merge_sentence or '|' in content
         lrc = pylrc.parse(content)
     song = AudioSegment.from_mp3(mp3_file)
-    content, sentence, i = [], [], start_i
+    content, sentence, voc_i = [], [], start_i
     print(lrc.title, len(lrc), 'rows')
 
     if not out_dir_prefix:
@@ -59,7 +63,9 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False,
         shutil.rmtree(path.dirname(out_dir_prefix), True)
     makedirs(path.dirname(out_dir_prefix), exist_ok=True)
 
-    start_st, text_st, ab, st_end, indent = 0, '', '', False, False
+    start_st, st_voc_n = 0, 0
+    text_st, ab = '', ''
+    st_end, indent = False, False
     af = ['a', 'b', 'c', 'd', 'e', 'f']
     for i_, r in enumerate(lrc[:-1]):  # lrc末行有时刻无文本
         start = round(r.time * 1000)  # 开始时刻，毫秒
@@ -77,18 +83,20 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False,
             continue
         if text.startswith('.'):  # 中途需要拆词时，在多出的行中“[time]. ”加点标记编号不变，以免打乱后续文件名
             text = text[1:].strip()
-            i -= 1
+            voc_i -= 1
         if merge_sentence:
-            text_st += text + ' '
+            text_st += text + join_ln
             start_st = 0 if '◆' in text else start_st or start
-            st_end = re.search(r'\|\|', r.text)
-        i += 1
+            st_end = re.search(r'\|\|', r.text) and not re.search(r'^\|\|', r.text)
+        voc_i += 1
+        st_voc_n += 1
         text_fn = re.sub(r'[A-Z]', lambda m: m.group().lower(), text.replace("'", 'a'))
-        print(i, start, end - start, text + text_ext, f' ▷{st_i}' if st_end else '',
+        print(voc_i, start, end - start, text + text_ext,
+              f' ▷{st_i}' if st_end and st_voc_n > 1 else '',
               '' if merge_sentence or text_fn == text else text_fn)
 
         if r.text.startswith('='):  # 相邻两行词文本相同，就不增加编号
-            i -= 1
+            voc_i -= 1
             text = text.replace('=', '').strip()
         elif r.text.startswith('.'):  # 加点标记编号不变，文件名数字后加abc等子名
             assert ab, f'invalid sub-num: {r.text}'
@@ -96,12 +104,12 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False,
         else:
             ab = 'a' if lrc[i_ + 1].text.startswith('.') else ''
 
-        if not only_i or i in range(only_i - 4, only_i + 5):
+        if not only_i or voc_i in range(only_i - 4, only_i + 5):
             if not merge_sentence and end - start > 1500:
                 end -= 100
             out_fn = out_dir_prefix + '%02d%s.mp3' % (
-                i, ' ' + text[:20].strip() if mp3_with_text else ab)
-            if rebuild or not path.exists(out_fn):
+                voc_i, ' ' + re.sub('[/:*?"<>|]', '', text[:20]).strip() if mp3_with_text else ab)
+            if voc_i == only_i or rebuild or not path.exists(out_fn):
                 de_silencer(song[start:end], out_fn, de_silence)
             if ' ' not in text_fn and len(text_fn.split('-')) < 3 and \
                     de_silence == 1 and not path.exists(f'voc/{text_fn}.mp3'):
@@ -109,22 +117,23 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False,
                     makedirs('voc', exist_ok=True)
                     shutil.copy(out_fn, f'voc/{text_fn}.mp3')
 
-        sentence.append(text + ('▷%02d%s' % (i, ab)) + text_ext + (f' ▷{st_i}' if st_end else ''))
+        sentence.append(text + ('▷%02d%s' % (voc_i, ab)) + text_ext + (
+            f' ▷{st_i}' if st_end and st_voc_n > 1 else ''))
         if st_end:
-            if not only_i and de_silence < 2:
+            if not only_i and de_silence < 2 and st_voc_n > 1:
                 assert start_st
                 out_fn = out_dir_prefix + '%d%s.mp3' % (
                     st_i, ' ' + text_st[:20].strip() if mp3_with_text else '')
                 if not path.exists(out_fn):
                     song[start_st:end].export(out_fn, format='mp3')
-            start_st, st_i, text_st = 0, st_i + 1, ''
+            start_st, st_i, text_st, st_voc_n = 0, st_i + 1, '', 0
 
         if re.search(r'[,.|]\s*$', r.text):  # 如果行末有句点，就合并前面各行内容
             for j, s in enumerate(sentence[:-1]):
                 if '◆' in s:
                     sentence[j] = '\n' + sentence[j] + '\n'
                 elif not s.endswith('-'):
-                    sentence[j] += ' '
+                    sentence[j] += join_ln
             if indent:
                 sentence[0] = '  ' + sentence[0]
             row = ''.join(sentence)
@@ -134,7 +143,7 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False,
 
     print(out_dir_prefix + '.txt')
     with open(out_dir_prefix + '.txt', 'w', encoding='utf-8') as f:
-        f.write('\n'.join(content or sentence).strip())
+        f.write('\n'.join((content or []) + sentence).strip())
 
 
 if __name__ == '__main__':

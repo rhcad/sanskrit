@@ -95,7 +95,8 @@ function renderRow(text, rowIndex, options={}) {
   const iastRow = createElement(row, 'iast-row')
   const audios = [], a = [0, 0];
 
-  if (/^\s*——/.test(text)) {
+  if (/^\s*(——|◆)/.test(text)) {
+    text = text.replace(/^\s*◆\s*/, '')
     devaRow.classList.add('indent')
     iastRow.classList.add('indent')
     row.style.marginBottom = '0'
@@ -148,7 +149,7 @@ function renderRow(text, rowIndex, options={}) {
     const clickSection = /^\|{2}\d+\|{2}$/.test(s) && !iastSpan.closest('.word[onclick]')
     let sp = createElement(wordSpan || iastSpan, 'a ' + (i1 % 2 ? 'odd' : 'even'), 'span', {
       data_id: `a${newWordId}-${i}`, data_i: i1,
-      html: s.replace(/-/g, '<span class="sp">-</span>').replace(/◆\s*/, '')
+      html: s.replace(/-/g, '<span class="sp">-</span>')
         .replace(/@\d+/g, t => `<span class="si" end="${ Sanscript.sn2 ? parseInt(t.substring(1))===Sanscript.sn2 || parseInt(t.substring(1))===Sanscript.sn2+1 : parseInt(t.substring(1))===Sanscript.sn}" si="${t.substring(1)}">${t.substring(1)}</span>`),
       onclick: clickSection ? 'toggleSection(this)' : undefined
     });
@@ -251,11 +252,6 @@ function renderRow(text, rowIndex, options={}) {
           word.setAttribute('onclick', `toggleAudioWord(this,${audioWord.getAttribute('data-id')})`)
           word.classList.add('audio-word')
           continue
-        }
-        if (word.getAttribute('first-char') === '◆') {
-          row.classList.add('section-title')
-          word.remove()
-          break
         }
         for (let c = word.lastChild; c; c = prev) {
           prev = c.previousSibling

@@ -4,6 +4,8 @@ mp3/*/*.txt
 mp3/heart_*/
 mp3/wsz*/
 mp3/metre*/
+mp3/karuna*/
+mp3/bca*/
 lrc_mp3/src/heart_*.mp3
 lrc_mp3/src/wsz_*.mp3
 lrc_mp3/src/metre*.mp3
