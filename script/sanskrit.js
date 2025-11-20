@@ -232,6 +232,10 @@ function renderRow(text, rowIndex, options={}) {
     })
     newWordId++
   })
+  if (text.endsWith('-')) {
+    createElement(createElement(iastRow, 'iast word'), '', 'span', {text: '-'})
+    createElement(createElement(devaRow, 'deva word'), '', 'span', {text: '-'})
+  }
   if (orgRow && !hasOrgRow) {
     hasOrgRow = 1
     createElement(orgRow, 'float-right', 'div', {
