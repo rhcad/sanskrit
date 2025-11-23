@@ -729,7 +729,7 @@ function exportSanscriptSingleton (global, schemes, devanagariVowelToMarks) {
 
         const hasVowel = RE_AKSARA_VOWEL.test(text);
         const con = text.replace(RE_AKSARA_CONS_HELP[0], '')
-            .replace(RE_AKSARA_CONS_HELP[2], '\t\t')
+            .replace(RE_AKSARA_CONS_HELP[2], '\t')
             .replace(RE_CONSONANT2, '\t')
             .replace(RE_CONSONANT1, '\t');
         const n = (RE_AKSARA_CONS_HELP[1].exec(con) || [''])[0].length; // count of consonants at head
