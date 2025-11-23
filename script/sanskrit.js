@@ -69,14 +69,16 @@ function renderRow(text, rowIndex, options={}) {
   text = text.replace(/\s?-\s?/g, '-').replace(sandhiRe, s => s.substring(1, s.length-1)
     .split(',').slice(iSandhi[0], iSandhi[1]))
 
-  if (/（\d+音节[:）]/.test(text)) {
-    Sanscript.si = Sanscript.sn2 = 0
-    Sanscript.sn = parseInt(/（(\d+)音节/.exec(text)[1])
-    if (/（\d+音节[：:]\s*\d+\+\d+/.test(text)) { // eg: （11音节: 5+6）
-      Sanscript.sn2 = parseInt(/音节[：:]\s*(\d+)/.exec(text)[1])
+  if (/（\d+音节[,：:）]/.test(text)) {
+    Sanscript.si = Sanscript.yati = 0
+    Sanscript.sn = parseInt(/[（(](\d+)音节/.exec(text)[1]);
+    if (/（\d+音节[,：:]\s*\d+\+\d+/.test(text)) { // eg: （11音节: 5+6）
+      const m = /音节[,：:]\s*(\d+)(\+\d+)?/.exec(text)
+      Sanscript.yati = parseInt(m && m[1])
+      Sanscript.yati2 = parseInt((m && m[2] || '')[1])
     }
   } else if (/——/.test(text)) {
-    Sanscript.si = Sanscript.sn2 = Sanscript.sn = 0
+    Sanscript.si = Sanscript.yati = Sanscript.sn = 0
   }
   if (/^#(\d|$)/.test(text)) {
     newSection = createElement(document.getElementById('body'), 'row section')
@@ -90,6 +92,12 @@ function renderRow(text, rowIndex, options={}) {
 
   const row = createElement(newSection || document.getElementById('body'),
     'row' + (/^(\t| {2})/.test(text) ? ' indent' : '') + (rowIndex ? '' : ' title'))
+
+  if (/——\[/.test(text) && options['metreRender']) {
+    row.classList.add('indent', 'metre')
+    row.innerHTML = options['metreRender'](text.substr(2))
+    return
+  }
 
   const devaRow = createElement(row, 'deva-row')
   const iastRow = createElement(row, 'iast-row')
@@ -150,7 +158,7 @@ function renderRow(text, rowIndex, options={}) {
     let sp = createElement(wordSpan || iastSpan, 'a ' + (i1 % 2 ? 'odd' : 'even'), 'span', {
       data_id: `a${newWordId}-${i}`, data_i: i1,
       html: s.replace(/-/g, '<span class="sp">-</span>')
-        .replace(/@\d+/g, t => `<span class="si" end="${ Sanscript.sn2 ? parseInt(t.substring(1))===Sanscript.sn2 || parseInt(t.substring(1))===Sanscript.sn2+1 : parseInt(t.substring(1))===Sanscript.sn}" si="${t.substring(1)}">${t.substring(1)}</span>`),
+        .replace(/@\d+/g, t => `<span class="si" end="${ Sanscript.yati ? parseInt(t.substring(1))===Sanscript.yati || parseInt(t.substring(1))===Sanscript.yati+1 : parseInt(t.substring(1))===Sanscript.sn}" si="${t.substring(1)}">${t.substring(1)}</span>`),
       onclick: clickSection ? 'toggleSection(this)' : undefined
     });
     sp = sp && sp.querySelector('.sp')

@@ -21,6 +21,11 @@
     .word span.sp.space + .audio-button, .word span.sp.space + .sp + .audio-button { margin-left: -.7em; }
     .section-title { margin-left: 20px; margin-bottom: 1.4em; }
     .iast-row:has(.has-sentence-voc) { margin-bottom: 1.5em; }
+    .metre { color: gray; font-size: .9em; }
+    .gana { display: inline-block; }
+    .gana::before { content: "("; font-weight: 300; }
+    .gana::after { content: ")"; font-weight: 300; }
+    .gana small { font-weight: 400; font-size: .6em; }
   </style>
 </head>
 <body class="show-odd show-iast show-audio">
@@ -38,15 +43,16 @@
 <div class="tip no-print">Śāntideva(寂天论师)造论，Kashinath Nyaupane(咯什纳塔·尼奥巴内)教授朗诵，梵文内容来自 <a href="http://www.bodhisvara.com" target="_blank">BodhiSvara</a><br>
   注：点击<button class="audio-button voc" style="margin-right: 0"></button>左侧的词可播放，点击<button class="audio-button"></button>播放整句。➁ 表示第二、三遍。开始播放后再次点击会停止。</div>
 <div id="body"></div>
-<script src="script/sanscript.es6.js?v=1313"></script>
-<script src="script/sanskrit.js?v=1314"></script>
+<script src="script/sanscript.es6.js?v=1317"></script>
+<script src="script/sanskrit.js?v=1317"></script>
 <script>
   window._fontSize = 19
   window.audioGap = 0
   const iastContent = `
+——[韵律 lakṣmī （8音节: 长短长 长短长 长长）]
 bodhicittānuśaṃso nāma prathamaḥ paricchedaḥ▷01|
 || om namo buddhāya▷02 ||
-——
+——[韵律 piculam （11音节: 短短长 短短长 短长短 长长）]
 sugatān sasutān sadharmakāyān▷03
 praṇipatyādarato’khilāṃśca vandyān▷04|
 sugatātmajasaṃvarāvatāraṃ▷05
@@ -59,24 +65,27 @@ mama tāvadanena yāti vṛddhiṃ▷11
 kuśalaṃ bhāvayituṃ prasādavegaḥ▷12|
 atha matsamadhātureva paśye▷13-
 daparo’pyenamato’pi sārthako’yam▷14||3|| ▷503
+——[韵律 sahajā （10音节: 短短长 短短长 短长短 长）]
 kṣaṇasaṃpadiyaṃ sudurlabhā▷15
 pratilabdhā puruṣārthasādhanī▷16|
 yadi nātra vicintyate hitaṃ▷17
 punarapyeṣa samāgamaḥ kutaḥ▷18||4|| ▷504
-——
+——[韵律 5-indravajrā （11音节 5+6: 长长短长长 + 短短长短长长）]
 rātrau yathā meghaghanāndhakāre▷19
 vidyut kṣaṇaṃ darśayati prakāśam▷20|
 buddhānubhāvena tathā kadāci▷21-
 llokasya puṇyeṣu matiḥ kṣaṇaṃ syāt▷22||5|| ▷505
+——[韵律 7-upajāti （11音节 5+6: ?长短长长 + 短短长短长长）]
 tasmācchubhaṃ durbalameva nityaṃ▷23
 balaṃ tu pāpasya mahatsughoram▷24|
 tajjīyate’nyena śubhena kena▷25
 saṃbodhicittaṃ yadi nāma na syāt▷26||6|| ▷506
+——[韵律 5-indravajrā （11音节 5+6: 长长短长长 + 短短长短长长）]
 kalpānanalpān pravicintayadbhi▷27-
 rdṛṣṭaṃ munīndrairhitametadeva▷28|
 yataḥ sukhenaiva sukhaṃ pravṛddha▷29-
 mutplāvayatyapramitāñjanaughān▷30||7|| ▷507
-——
+——[韵律 piculam （11音节: 短短长 短短长 短长短 长长）]
 bhavaduḥkhaśatāni tartukāmai▷31-
 rapi sattvavyasanāni hartukāmaiḥ▷32|
 bahusaukhyaśatāni bhoktukāmai▷33-
@@ -97,7 +106,7 @@ kadalīva phalaṃ vihāya yāti▷47
 kṣayamanyat kuśalaṃ hi sarvameva▷48|
 satataṃ phalati kṣayaṃ na yāti▷49
 prasavatyeva tu bodhicittavṛkṣaḥ▷50||12|| ▷512
-——
+——[韵律 7-upajāti （11音节 5+6: ?长短长长 + 短短长短长长）]
 kṛtvāpi pāpāni sudāruṇāni▷51
 yadāśrayāduttarati kṣaṇena▷52|
 śūrāśrayeṇeva mahābhayāni▷53
@@ -115,12 +124,16 @@ bodhipraṇidhicittasya saṃsāre’pi phalaṃ mahat▷63|
 na tvavicchinnapuṇyatvaṃ yathā prasthānacetasaḥ▷64||17|| ▷517
 yataḥ prabhṛtyaparyantasattvadhātupramokṣaṇe▷65|
 samādadāti taccittamanivartyena cetasā▷66||18|| ▷518
+——[韵律 bhārṅgī （8音节: 短长短 短短长 长长）]
 tataḥprabhṛti suptasya pramattasyāpyanekaśaḥ▷67|
 avicchinnāḥ puṇyadhārāḥ pravartante nabhaḥsamāḥ▷68||19|| ▷519
+——[韵律 amānikā （8音节: 短长短 长短长 长长）]
 idaṃ subāhupṛcchāyāṃ sopapattikamuktavān▷69|
 hīnādhimuktisattvārthaṃ svayameva tathāgataḥ▷70||20|| ▷520
+——[韵律 kulādhārī （8音节: 短长长 长短长 长长）]
 śiraḥśūlāni sattvānāṃ nāśayāmīti cintayan▷71|
 aprameyeṇa puṇyena gṛhyate sma hitāśayaḥ▷72||21|| ▷521
+——
 kimutāpratimaṃ śūlamekaikasya jihīrṣataḥ▷73|
 aprameyaguṇaṃ sattvamekaikaṃ ca cikīrṣataḥ▷74||22|| ▷522
 kasya mātuḥ piturvāpi hitāśaṃseyamīdṛśī▷75|
@@ -141,7 +154,7 @@ nāśayatyapi saṃmohaṃ sādhustena samaḥ kutaḥ▷89|
 kuto vā tādṛśaṃ mitraṃ puṇyaṃ vā tādṛśaṃ kutaḥ▷90||30|| ▷530
 kṛte yaḥ pratikurvīta so’pi tāvatpraśasyate▷91|
 avyāpāritasādhustu bodhisattvaḥ kimucyatām▷92||31|| ▷531
-——
+——[韵律 subhadrikā （11音节: 短短短 短短短 长短长 短长）]
 katipayajanasattradāyakaḥ▷93
 kuśalakṛdityabhipūjyate janaiḥ▷94|
 kṣaṇamaśanakamātradānataḥ▷95
@@ -150,6 +163,7 @@ kimu niravadhisattvasaṃkhyayā▷97
 niravadhikālamanuprayacchataḥ▷98|
 gaganajanaparikṣayākṣayaṃ▷99
 sakalamanorathasaṃprapūraṇam▷100||33|| ▷533
+——[韵律 piculam （11音节: 短短长 短短长 短长短 长长）]
 iti sattrapatau jinasya putre▷101
 kaluṣaṃ sve hṛdaye karoti yaśca▷102|
 kaluṣodayasaṃkhyayā sa kalpān▷103
@@ -158,14 +172,18 @@ atha yasya manaḥ prasādameti▷105
 prasavettasya tato’dhikaṃ phalam▷106|
 mahatā hi balena pāpakaṃ▷107
 jinaputreṣu śubhaṃ tvayatnataḥ▷108||35|| ▷535
+——[韵律 5-indravajrā （11音节 5+6: 长长短长长 + 短短长短长长）]
 teṣāṃ śarīrāṇi namaskaromi▷109
 yatroditaṃ tadvaracittaratnam▷110|
 yatrāpakāro’pi sukhānubandhī▷111
 sukhākarāṃstān śaraṇaṃ prayāmi▷112 ②▷113 ||36|| ▷536
 iti śrī śāntideva viracite bodhicaryāvatāre bodhicittānuśaṃsa nāma prathamaḥ paricchedaḥ▷114|| oṃ▷115
 `
+
   window.renderBody = function () {
     const opt = {audioPrefix: 'mp3/bca1/a', hoverWord: false, sentenceAudio: true,
+      metreRender: text => text.slice(1,-1).replace(/（[^）]+）/, g => '<span class="gana">' + g.slice(1,-1).replace(
+        /[长短]+/g, s => `<small>${s}</small>`) + '</span>')
     }
     iastContent.split('\n').forEach((text, i) => renderRow(text, i, opt))
   }

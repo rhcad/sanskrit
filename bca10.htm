@@ -21,6 +21,11 @@
     .word span.sp.space + .audio-button, .word span.sp.space + .sp + .audio-button { margin-left: -.7em; }
     .section-title { margin-left: 20px; margin-bottom: 1.4em; }
     .iast-row:has(.has-sentence-voc) { margin-bottom: 1.5em; }
+    .metre { color: gray; font-size: .9em; }
+    .gana { display: inline-block; }
+    .gana::before { content: "("; font-weight: 300; }
+    .gana::after { content: ")"; font-weight: 300; }
+    .gana small { font-weight: 400; font-size: .6em; }
   </style>
 </head>
 <body class="show-odd show-iast show-audio">
@@ -38,16 +43,17 @@
 <div class="tip no-print">Śāntideva(寂天论师)造论，Kashinath Nyaupane(咯什纳塔·尼奥巴内)教授朗诵，梵文内容来自 <a href="http://www.bodhisvara.com" target="_blank">BodhiSvara</a><br>
   注：点击<button class="audio-button voc" style="margin-right: 0"></button>左侧的词可播放，点击<button class="audio-button"></button>播放整句。➁ 表示第二、三遍。开始播放后再次点击会停止。</div>
 <div id="body"></div>
-<script src="script/sanscript.es6.js?v=1313"></script>
-<script src="script/sanskrit.js?v=1314"></script>
+<script src="script/sanscript.es6.js?v=1317"></script>
+<script src="script/sanskrit.js?v=1317"></script>
 <script>
   window._fontSize = 19
   window.audioGap = 0
   const iastContent = `
+——[韵律 kṛṣṇagatikā （8音节: 长短短 短长短 长长）]
 bodhipariṇāmanā nāma daśamaḥ paricchedaḥ▷01|
-——
 bodhicaryāvatāraṃ me yadvicintayataḥ śubham▷02|
 tena sarve janāḥ santu bodhicaryāvibhūṣaṇāḥ▷03||1|| ▷501
+——
 sarvāsu dikṣu yāvantaḥ kāyacittavyathāturāḥ▷04|
 te prāpnuvantu matpuṇyaiḥ sukhaprāmodyasāgarān▷05||2|| ▷502
 āsaṃsāraṃ sukhajyānirmā bhūtteṣāṃ kadācana▷06|
@@ -56,9 +62,10 @@ yāvanto narakāḥ kecidvidyante lokadhātuṣu▷08|
 sukhāvatīsukhāmodyairmodantāṃ teṣu dehinaḥ▷09||4|| ▷504
 śītārtāḥ prāpnuvantūṣṇamuṣṇārtāḥ santu śītalāḥ▷10|
 bodhisattvamahāmeghasaṃbhavairjalasāgaraiḥ▷11||5|| ▷505
+——[韵律 pañcaśikhā （8音节: 短短长 短短长 长长）]
 asipatravanaṃ teṣāṃ syānnandanavanadyuti▷12|
 kūṭaśālmalivṛkṣāśca jāyantāṃ kalpapādapāḥ▷13||6|| ▷506
-——
+——[韵律 5-indravajrā （11音节 5+6: 长长短长长 + 短短长短长长）]
 kādambakāraṇḍavacakravāka▷14-
 haṃsādikolāhalaramyaśobhaiḥ▷15|
 sarobhiruddāmasarojagandhai▷16-
@@ -71,20 +78,22 @@ aṅgārataptopalaśastravṛṣṭi▷22-
 radyaprabhṛtyastu ca puṣpavṛṣṭiḥ▷23|
 tacchastrayuddhaṃ ca paraspareṇa▷24
 krīḍārthamadyāstu ca puṣpayuddham▷25||9|| ▷509
+——[韵律 19-mālinī （15音节 8+7: 短短短短短短长长 + 长短长长短长长）]
 patitasakalamāṃsāḥ kundavarṇāsthidehā▷26
 dahanasamajalāyāṃ vaitaraṇyāṃ nimagnāḥ▷27|
 mama kuśalabalena prāptadivyātmabhāvāḥ▷28
 saha suravanitābhiḥ santu mandākinīsthāḥ▷29||10|| ▷510
-——
+——[韵律 27-sragdharā （21音节 7+7+7: 长长长长短长长 + 短短短短短短长 + 长短长长短长长）]
 trastāḥ paśyantvakasmādiha yamapuruṣāḥ kākagṛdhrāśca ghorā▷30
 dhvāntaṃ dhvastaṃ samantātsukharatijananī kasya saumyā prabheyam▷31|
 ityūrdhvaṃ prekṣamāṇā gaganatalagataṃ vajrapāṇiṃ jvalantaṃ▷32
 dṛṣṭvā prāmodyavegādvyapagataduritā yāntu tenaiva sārdham▷33||11|| ▷511
+——[韵律 19-mālinī （15音节 8+7: 短短短短短短长长 + 长短长长短长长）]
 patati kamalavṛṣṭirgandhapānīyamiśrā▷34-
-cchamiti (?)narakavahniṃ dṛśyate nāśayantī▷35|
+cchamiti（?)narakavahniṃ dṛśyate nāśayantī▷35|
 kimidamiti sukhenāhlāditānāmakasmā▷36-
 dbhavatu kamalapāṇerdarśanaṃ nārakāṇām▷37||12|| ▷512
-——
+——[韵律 27-sragdharā （21音节 7+7+7: 长长长长短长长 + 短短短短短短长 + 长短长长短长长）]
 āyātāyāta śīghraṃ bhayamapanayata bhrātaro jīvitāḥ smaḥ▷38
 saṃprāpto’smākameṣa jvaladabhayakaraḥ ko’pi cīrīkumāraḥ▷39|
 sarvaṃ yasyānubhāvādvyasanamapagataṃ prītivegāḥ pravṛttāḥ▷40
@@ -93,17 +102,20 @@ paśyantvenaṃ bhavantaḥ suraśatamukuṭairarcyamānāṅghripadmaṃ▷42
 kārūṇyādārdradṛṣṭiṃ śirasi nipatitānekapuṣpaughavṛṣṭim▷43|
 kūṭāgārairmanojñaiḥ stutimukharasurastrīsahasropagītai▷44-
 rdṛṣṭvāgre mañjughoṣaṃ bhavatu kalakalaḥ sāṃprataṃ nārakāṇām▷45||14|| ▷514
-——
+——[韵律 piculam （11音节: 短短长 短短长 短长短 长长）]
 iti matkuśalaiḥ samantabhadra▷46-
 pramukhānāvṛtabodhisattvameghān▷47|
 sukhaśītasugandhavātavṛṣṭī▷48-
 nabhinandantu vilokya nārakāste▷49||15|| ▷515
+——
 śāmyantu vedanāstīvrā nārakāṇāṃ bhayāni ca▷50|
 durgatibhyo vimucyantāṃ sarvadurgativāsinaḥ▷51||16|| ▷516
 anyonyabhakṣaṇabhayaṃ tiraścāmapagacchatu▷52|
 bhavantu sukhinaḥ pretā yathottarakurau narāḥ▷53||17|| ▷517
+——[韵律 vidyunmālā （8音节: 长长长 长长长 长长）]
 saṃtarpyantāṃ pretāḥ snāpyantāṃ śītalā bhavantu sadā▷54|
 āryāvalokiteśvarakaragalitakṣīradhārābhiḥ▷55||18|| ▷518
+——
 andhāḥ paśyantu rūpāṇi śṛṇvantu badhirāḥ sadā▷56|
 garbhiṇyaśca prasūyantāṃ māyādevīva nirvyathāḥ▷57||19|| ▷519
 vastrabhojanapānīyaṃ srakcandanavibhūṣaṇam▷58|
@@ -116,10 +128,13 @@ sarvā diśaḥ śivāḥ santu sarveṣāṃ pathivartinām▷64|
 yena kāryeṇa gacchanti tadupāyena sidhyatu▷65||23|| ▷523
 nauyānayātrārūḍhāśca santu siddhamanorathāḥ▷66|
 kṣemeṇa kūlamāsādya ramantāṃ saha bandhubhiḥ▷67||24|| ▷524
+——[韵律 atijani （8音节: 长长长 长短短 短长）]
 kāntāronmārgapatitā labhantāṃ sārthasaṃgatim▷68|
 aśrameṇa ca gacchantu cauravyāghrādinirbhayāḥ▷69||25|| ▷525
+——[韵律 lakṣmī （8音节: 长短长 长短长 长长）]
 suptamattapramattānāṃ vyādhyāraṇyādisaṃkaṭe▷70|
 anāthābālavṛddhānāṃ rakṣāṃ kurvantu devatāḥ▷71||26|| ▷526
+——
 sarvākṣaṇavinirmuktāḥ śraddhāprajñākṛpānvitāḥ▷72|
 ākārācārasaṃpannāḥ santu jātismarāḥ sadā▷73||27|| ▷527
 bhavantvakṣayakośāśca yāvadgaganagañjavat▷74|
@@ -130,8 +145,10 @@ yāḥ kāścana striyo loke puruṣatvaṃ vrajantu tāḥ▷78|
 prāpnuvantūccatāṃ nīcā hatamānā bhavantu ca▷79||30|| ▷530
 anena mama puṇyena sarvasattvā aśeṣataḥ▷80|
 viramya sarvapāpebhyaḥ kurvantu kuśalaṃ sadā▷81||31|| ▷531
+——[韵律 kurucarī （8音节: 长短长 长短短 短长）]
 bodhicittāvirahitā bodhicaryāparāyaṇāḥ▷82|
 buddhaiḥ parigṛhītāśca mārakarmavivarjitāḥ▷83||32|| ▷532
+——
 aprameyāyuṣaścaiva sarvasattvā bhavantu te▷84|
 nityaṃ jīvantu sukhitā mṛtyuśabdo’pi naśyatu▷85||33|| ▷533
 ramyāḥ kalpadrumodyānairdiśaḥ sarvā bhavantu ca▷86|
@@ -150,18 +167,23 @@ sphīto bhavatu lokaśca rājā bhavatu dhārmikaḥ▷97||39|| ▷539
 bhavantu karuṇāviṣṭā ḍākinīrākṣasādayaḥ▷99||40|| ▷540
 mā kaścidduḥkhitaḥ sattvo mā pāpī mā ca rogitaḥ▷100|
 mā hīnaḥ paribhūto vā mā bhūtkaścicca durmanāḥ▷101||41|| ▷541
+——[韵律 atijani （8音节: 长长长 长短短 短长）]
 pāṭhasvādhyāyakalilā vihārāḥ santu susthitāḥ▷102|
 nityaṃ syātsaṃghasāmagrī saṃghakāryaṃ ca sidhyatu▷103||42|| ▷542
+——[韵律 amānikā （8音节: 短长短 长短长 长长）]
 vivekalābhinaḥ santuḥ śikṣākāmāśca bhikṣavaḥ▷104|
 karmaṇyacittā dhyāyantu sarvavikṣepavarjitāḥ▷105||43|| ▷543
+——
 lābhinyaḥ santu bhikṣuṇyaḥ kalahāyāsavarjitāḥ▷106|
 bhavantvakhaṇḍaśīlāśca sarve pravrajitāstathā▷107||44|| ▷544
 duḥśīlāḥ santu saṃvignāḥ pāpakṣayaratāḥ sadā▷108|
 sugaterlābhinaḥ santu tatra cākhaṇḍitavratāḥ▷109||45|| ▷545
 paṇḍitāḥ saṃskṛtāḥ santu lābhinaḥ paiṇḍapātikāḥ▷110|
 bhavantu śuddhasaṃtānāḥ sarvadikkhyātakīrtayaḥ▷111||46|| ▷546
+——[韵律 kulādhārī （8音节: 短长长 长短长 长长）]
 abhuktvāpāyikaṃ duḥkhaṃ vinā duṣkaracaryayā▷112|
 divyenaikena kāyena jagadbuddhatvamāpnuyāt▷113||47|| ▷547
+——
 pūjyantāṃ sarvasaṃbuddhāḥ sarvasattvairanekadhā▷114|
 acintyabauddhasaukhyena sukhinaḥ santu bhūyasā▷115||48|| ▷548
 sidhyantu bodhisattvānāṃ jagadarthaṃ manorathāḥ▷116|
@@ -170,25 +192,33 @@ pratyekabuddhāḥ sukhino bhavantu śrāvakāstathā▷118|
 devāsuranarairnityaṃ pūjyamānāḥ sagauravaiḥ▷119||50|| ▷550
 jātismaratvaṃ pravrajyāmahaṃ ca prāpnuyāṃ sadā▷120|
 yāvatpramuditābhūmiṃ mañjughoṣaparigrahāt▷121||51|| ▷551
+——[韵律 lakṣmī （8音节: 长短长 长短长 长长）]
 yena tenāsanenāhaṃ yāpayeyaṃ balānvitaḥ▷122|
 vivekavāsasāmagrīṃ prāpnuyāṃ sarvajātiṣu▷123||52|| ▷552
+——[韵律 kulādhārī （8音节: 短长长 长短长 长长）]
 yadā ca draṣṭukāmaḥ syāṃ praṣṭukāmaśca kiṃcana▷124|
 tameva nāthaṃ paśyeyaṃ mañjunāthamavighnataḥ▷125||53|| ▷553
+——
 daśadigvyomaparyantasarvasattvārthasādhane▷126|
 yathā carati mañjuśrīḥ saiva caryā bhavenmama▷127||54|| ▷554
 ākāśasya sthitiryāvadyāvacca jagataḥ sthitiḥ▷128|
 tāvanmama sthitirbhūyājjagadduḥkhāni nighnataḥ▷129||55|| ▷555
 yatkiṃcijjagato duḥkhaṃ tatsarvaṃ mayi pacyatām▷130|
 bodhisattvaśubhaiḥ sarvairjagatsukhitamastu ca▷131||56|| ▷556
+——[韵律 kulādhārī （8音节: 短长长 长短长 长长）]
 jagadduḥkhaikabhaiṣajyaṃ sarvasaṃpatsukhākaram▷132|
 lābhasatkārasahitaṃ ciraṃ tiṣṭhatu śāsanam▷133||57|| ▷557
+——
 mañjughoṣaṃ namasyāmi yatprasādānmatiḥ śubhe▷134|
 kalyāṇamitraṃ vande’haṃ yatprasādācca vardhate▷135 ②▷136||58|| ▷558
 iti śrī śāntideva viracite bodhicaryāvatāre bodhipariṇāmanā nāma daśamaḥ paricchedaḥ▷137|| oṃ▷138
 ■ ▷139
 `
+
   window.renderBody = function () {
     const opt = {audioPrefix: 'mp3/bca10/a', hoverWord: false, sentenceAudio: true,
+      metreRender: text => text.slice(1,-1).replace(/（[^）]+）/, g => '<span class="gana">' + g.slice(1,-1).replace(
+        /[长短]+/g, s => `<small>${s}</small>`) + '</span>')
     }
     iastContent.split('\n').forEach((text, i) => renderRow(text, i, opt))
   }
