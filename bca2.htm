@@ -10,12 +10,12 @@
   <meta name="keywords" content="sanskrit,metres,梵文,诗律,唱诵,入菩萨行论,śāntidevaviracitaḥ,bodhicaryāvatāraḥ">
   <meta property="og:image" content="img/favicon.png">
   <link rel="icon" type="image/png" href="img/favicon.png">
-  <link rel="stylesheet" href="script/sanskrit.css?v=1307">
+  <link rel="stylesheet" href="script/sanskrit.css?v=1321">
   <link rel="stylesheet" href="script/audio.css?v=1307">
   <style>
     body { font-size: 19px; }
     .title { text-align: center; margin-bottom: .5em; }
-    .tip { font-size: 13px; margin-bottom: .8em; }
+    .tip { font-size: 13px; margin-bottom: 2em; }
     .audio-button.voc { background-size: 16px 16px; width: 16px; height: 16px; }
     .word span.sp.space { width: .7em; display: inline-block; }
     .word span.sp.space + .audio-button, .word span.sp.space + .sp + .audio-button { margin-left: -.7em; }
@@ -34,6 +34,7 @@
   <span onclick="biggerFont()">+</span>
   <span onclick="smallerFont()">-</span>
   <span data-toggle="show-odd">音节</span>
+  <span data-toggle="show-weight">轻重</span>
   <span data-toggle="show-deva">天城体</span>
   <span data-toggle="show-iast">转写</span>
   <span data-toggle="show-audio">读音</span>
@@ -41,202 +42,211 @@
 </div>
 <div class="title no-print">Bodhicaryāvatāraḥ 卷二唱诵</div>
 <div class="tip no-print">Śāntideva(寂天论师)造论，Kashinath Nyaupane(咯什纳塔·尼奥巴内)教授朗诵，梵文内容来自 <a href="http://www.bodhisvara.com" target="_blank">BodhiSvara</a><br>
-  注：点击<button class="audio-button voc" style="margin-right: 0"></button>左侧的词可播放，点击<button class="audio-button"></button>播放整句。➁ 表示第二、三遍。开始播放后再次点击会停止。</div>
+  注：点击<button class="audio-button voc" style="margin-right: 0"></button>左侧的词可播放，
+  点击<button class="audio-button"></button>播放整句。
+  ➁ 表示第二遍。开始播放后再次点击会停止。<br>
+  点击顶部“轻重”按钮可在行首显示每个音节的轻重：L(laghu轻)、G(guru重)。
+</div>
 <div id="body"></div>
-<script src="script/sanscript.es6.js?v=1317"></script>
-<script src="script/sanskrit.js?v=1317"></script>
+<script src="script/sanscript.es6.js?v=1321"></script>
+<script src="script/sanskrit.js?v=1321"></script>
 <script>
   window._fontSize = 19
   window.audioGap = 0
   const iastContent = `
-pāpadeśanā nāma dvitīyaḥ paricchedaḥ▷01|
+pāpadeśanā nāma dvitīyaḥ paricchedaḥ▷01||
+
 ——[韵律 5-indravajrā （11音节 5+6）]
-taccittaratnagrahaṇāya samyak▷02
-pūjāṃ karomyeṣa tathāgatānām▷03|
-saddharmaratnasya ca nirmalasya▷04
-buddhātmajānāṃ ca guṇodadhīnām▷05||1|| ▷501
-——[韵律 7-upajāti （11音节 5+6）]
-yāvanti puṣpāṇi phalāni caiva▷06
-bhaiṣajyajātāni ca yāni santi▷07|
-ratnāni yāvanti ca santi loke▷08
-jalāni ca svacchamanoramāṇi▷09||2|| ▷502
+[GGLGG LLGLGG] taccittaratnagrahaṇāya samyak▷02
+[GGLGG LLGLGG] pūjāṃ karomyeṣa tathāgatānām▷03| ▷501
+[GGLGG LLGLGG] saddharmaratnasya ca nirmalasya▷04
+[GGLGG LLGLGG] buddhātmajānāṃ ca guṇodadhīnām▷05||1|| ▷502
+[GGLGG LLGLGG] yāvanti puṣpāṇi phalāni caiva▷06
+[GGLGG LLGLGG] bhaiṣajyajātāni ca yāni santi▷07| ▷503
+[GGLGG LLGLGG] ratnāni yāvanti ca santi loke▷08
+[LGLGG LLGLGG] jalāni ca svacchamanoramāṇi▷09||2|| ▷504
 ——[韵律 6-upendravajrā （11音节 5+6）]
-mahīdharā ratnamayāstathānye▷10
-vanapradeśāśca vivekaramyāḥ▷11|
-latāḥ sapuṣpābharaṇojjvalāśca▷12
-drumāśca ye satphalanamraśākhāḥ▷13||3|| ▷503
-——[韵律 5-indravajrā （11音节 5+6）]
-devādilokeṣu ca gandhadhūpāḥ▷14
-kalpadrumā ratnamayāśca vṛkṣāḥ▷15|
-sarāṃsi cāmbhoruhabhūṣaṇāni▷16
-haṃsasvanātyantamanoharāṇi▷17||4|| ▷504
+[LGLGG LLGLGG] mahīdharā ratnamayāstathānye▷10
+[LGLGG LLGLGG] vanapradeśāśca vivekaramyāḥ▷11| ▷505
+[LGLGG LLGLGG] latāḥ sapuṣpābharaṇojjvalāśca▷12
+[LGLGG LLGLGG] drumāśca ye satphalanamraśākhāḥ▷13||3|| ▷506
 ——[韵律 7-upajāti （11音节 5+6）]
-akṛṣṭajātāni ca śasyajātā▷18-
-nyanyāni vā pūjyavibhūṣaṇāni▷19|
-ākāśadhātuprasarāvadhīni▷20
-sarvāṇyapīmānyaparigrahāṇi▷21||5|| ▷505
+[GGLGG LLGLGG] devādilokeṣu ca gandhadhūpāḥ▷14
+[GGLGG LLGLLG] kalpadrumā ratnamayāśca vṛkṣāḥ▷15| ▷507
+[LGLGG LLGLGG] sarāṃsi cāmbhoruhabhūṣaṇāni▷16
+[GGLGG LLGLGG] haṃsasvanātyantamanoharāṇi▷17||4|| ▷508
+[LGLGG LLGLGG] akṛṣṭajātāni ca śasyajātā▷18-
+[GGLGG LLGLGG] nyanyāni vā pūjyavibhūṣaṇāni▷19| ▷509
+[GGLGG LLGLGG] ākāśadhātuprasarāvadhīni▷20
+[GGLGG LLGLGG] sarvāṇyapīmānyaparigrahāṇi▷21||5|| ▷510
 ——[韵律 5-indravajrā （11音节 5+6）]
-ādāya buddhyā munipuṃgavebhyo▷22
-niryātayāmyeṣa saputrakebhyaḥ▷23|
-gṛhṇantu tanme varadakṣiṇīyā▷24
-mahākṛpā māmanukampamānāḥ▷25||6|| ▷506
+[GGLGG LLGLGG] ādāya buddhyā munipuṃgavebhyo▷22
+[GGLGG LLGLGG] niryātayāmyeṣa saputrakebhyaḥ▷23| ▷511
+[GGLGG LLLLGG] gṛhṇantu tanme varadakṣiṇīyā▷24
+[LGLGG LLGLGG] mahākṛpā māmanukampamānāḥ▷25||6|| ▷512
 ——[韵律 7-upajāti （11音节 5+6）]
-apuṇyavānasmi mahādaridraḥ▷26
-pūjārthamanyanmama nāsti kiṃcit▷27|
-ato mamārthāya parārthacittā▷28
-gṛhṇantu nāthā idamātmaśaktyā▷29||7|| ▷507
-dadāmi cātmānamahaṃ jinebhyaḥ▷30
-sarveṇa sarvaṃ ca tadātmajebhyaḥ▷31|
-parigrahaṃ me kurutāgrasattvā▷32
-yuṣmāsu dāsatvamupaimi bhaktyā▷33||8|| ▷508
-parigraheṇāsmi bhavatkṛtena▷34
-nirbhīrbhave sattvahitaṃ karomi▷35|
-pūrvaṃ ca pāpaṃ samatikramāmi▷36
-nānyacca pāpaṃ prakaromi bhūyaḥ▷37||9|| ▷509
+[LGLGG LLGLGG] apuṇyavānasmi mahādaridraḥ▷26
+[GGLGG LLGLGG] pūjārthamanyanmama nāsti kiṃcit▷27| ▷513
+[LGLGG LLGLGG] ato mamārthāya parārthacittā▷28
+[GGLGG LLGLGG] gṛhṇantu nāthā idamātmaśaktyā▷29||7|| ▷514
+[LGLGG LLGLGG] dadāmi cātmānamahaṃ jinebhyaḥ▷30
+[GGLGG LLGLGG] sarveṇa sarvaṃ ca tadātmajebhyaḥ▷31| ▷515
+[LGLGG LLGLGG] parigrahaṃ me kurutāgrasattvā▷32
+[GGLGG LLGLGG] yuṣmāsu dāsatvamupaimi bhaktyā▷33||8|| ▷516
+[LGLGG LLGLGG] parigraheṇāsmi bhavatkṛtena▷34
+[GGLGG LLGLGG] nirbhīrbhave sattvahitaṃ karomi▷35| ▷517
+[GGLGG LLGLGG] pūrvaṃ ca pāpaṃ samatikramāmi▷36
+[GGLGG LLGLGG] nānyacca pāpaṃ prakaromi bhūyaḥ▷37||9|| ▷518
 ——[韵律 5-indravajrā （11音节 5+6）]
-ratnojjvalastambhamanorameṣu▷38
-muktāmayodbhāsivitānakeṣu▷39|
-svacchojjvalasphāṭikakuṭṭimeṣu▷40
-sugandhiṣu snānagṛheṣu teṣu▷41||10|| ▷510
+[GGLGG LLGLGG] ratnojjvalastambhamanorameṣu▷38
+[GGLGG LLGLGG] muktāmayodbhāsivitānakeṣu▷39| ▷519
+[GGLGG LLGLGG] svacchojjvalasphāṭikakuṭṭimeṣu▷40
+[LGLGG LLGLGG] sugandhiṣu snānagṛheṣu teṣu▷41||10|| ▷520
 ——[韵律 7-upajāti （11音节 5+6）]
-manojñagandhodakapuṣpapūrṇaiḥ▷42
-kumbhairmahāratnamayairanekaiḥ▷43|
-snānaṃ karomyeṣa tathāgatānāṃ▷44
-tadātmajānāṃ ca sagītivādyam▷45||11|| ▷511
-pradhūpitairghautamalairatulyai▷46-
-rvastraiśca teṣāṃ tanumunmṛṣāmi▷47|
-tataḥ suraktāni sudhūpitāni▷48
-dadāmi tebhyo varacīvarāṇi▷49||12|| ▷512
+[LGLGG LLGLGG] manojñagandhodakapuṣpapūrṇaiḥ▷42
+[GGLGG LLGLGG] kumbhairmahāratnamayairanekaiḥ▷43| ▷521
+[GGLGG LLGLGG] snānaṃ karomyeṣa tathāgatānāṃ▷44
+[LGLGG LLGLGG] tadātmajānāṃ ca sagītivādyam▷45||11|| ▷522
+[LGLGG LLGLGG] pradhūpitairghautamalairatulyai▷46-
+[GGLGG LLGLGG] rvastraiśca teṣāṃ tanumunmṛṣāmi▷47| ▷523
+[LGLGG LLGLGG] tataḥ suraktāni sudhūpitāni▷48
+[LGLGG LLGLGG] dadāmi tebhyo varacīvarāṇi▷49||12|| ▷524
 ——[韵律 5-indravajrā （11音节 5+6）]
-divyairmṛduślakṣṇavicitraśobhai▷50-
-rvastrairalaṃkāravaraiśca taistaiḥ▷51|
-samantabhadrājitamañjughoṣa▷52-
-lokeśvarādīnapi maṇḍayāmi▷53||13|| ▷513
-sarvatrisāhasravisārigandhai▷54-
-rgandhottamaistānanulepayāmi▷55|
-sūttaptasūnmṛṣṭasudhautahema▷56-
-prabhojjvalān sarvamunīndrakāyān▷57||14|| ▷514
-māndāravendīvaramallikādyaiḥ▷58
-sarvaiḥ sugandhaiḥ kusumairmanojñaiḥ▷59|
-abhyarcayābhyarcyatamān munīndrān▷60
-sragbhiśca saṃsthānamanoramābhiḥ▷61||15|| ▷515
-sphītasphuradgandhamanoramaiśca▷62
-tān dhūpameghairupadhūpayāmi▷63|
-bhojyaiśca khādyairvividhaiśca peyai▷64-
-stebhyo nivedyaṃ ca nivedayāmi▷65||16|| ▷516
+[GGLGG LLGLGG] divyairmṛduślakṣṇavicitraśobhai▷50-
+[GGLGG LLGLGG] rvastrairalaṃkāravaraiśca taistaiḥ▷51| ▷525
+[LGLGG LLGLGG] samantabhadrājitamañjughoṣa▷52-
+[GGLGG LLGLGG] lokeśvarādīnapi maṇḍayāmi▷53||13|| ▷526
+[GGLGG LLGLGG] sarvatrisāhasravisārigandhai▷54-
+[GGLGG LLGLGG] rgandhottamaistānanulepayāmi▷55| ▷527
+[GGLGG LLGLGG] sūttaptasūnmṛṣṭasudhautahema▷56-
+[LGLGG LLGLGG] prabhojjvalān sarvamunīndrakāyān▷57||14|| ▷528
+[GGLGG LLLLGG] māndāravendīvaramallikādyaiḥ▷58
+[GGLGG LLGLGG] sarvaiḥ sugandhaiḥ kusumairmanojñaiḥ▷59| ▷529
+[GGLGG LLGLGG] abhyarcayābhyarcyatamān munīndrān▷60
+[GGLGG LLGLGG] sragbhiśca saṃsthānamanoramābhiḥ▷61||15|| ▷530
+[GGLGG LLGLGG] sphītasphuradgandhamanoramaiśca▷62
+[GGLGG LLGLGG] tān dhūpameghairupadhūpayāmi▷63| ▷531
+[GGLGG LLGLGG] bhojyaiśca khādyairvividhaiśca peyai▷64-
+[GGLGG LLGLGG] stebhyo nivedyaṃ ca nivedayāmi▷65||16|| ▷532
 ——[韵律 7-upajāti （11音节 5+6）]
-ratnapradīpāṃśca nivedayāmi▷66
-suvarṇapadmeṣu niviṣṭapaṅktīn▷67|
-gandhopalipteṣu ca kuṭṭimeṣu▷68
-kirāmi puṣpaprakarān manojñān▷69||17|| ▷517
-pralambamuktāmaṇihāraśobhā▷70-
-nābhāsvarān diṅmukhamaṇḍanāṃstān▷71|
-vimānameghān stutigītaramyān▷72
-maitrīmayebhyo’pi nivedayāmi||▷73 18|| ▷518
-suvarṇadaṇḍaiḥ kamanīyarūpaiḥ▷74
-saṃsaktamuktāni samucchritāni▷75|
-pradhārayāmyeṣa mahāmunīnāṃ▷76
-ratnātapatrāṇyatiśobhanāni▷77||19|| ▷519
-——[不规则韵律 （8音节）]
-ataḥ paraṃ pratiṣṭhantāṃ pūjāmeghā manoramāḥ▷78|
-tūryasaṃgītimeghāśca sarvasattvapraharṣaṇāḥ▷79||20|| ▷520
-sarvasaddharmaratneṣu caityeṣu pratimāsu ca▷80|
-puṣparatnādivarṣāśca pravartantāṃ nirantaram▷81||21|| ▷521
-mañjughoṣaprabhṛtayaḥ pūjayanti yathā jinān▷82|
-tathā tathāgatānnāthān saputrān pūjayāmyaham▷83||22|| ▷522
-svarāṅgasāgaraiḥ stotraiḥ staumi cāhaṃ guṇodadhīn▷84|
-stutisaṃgītimeghāśca saṃbhavantveṣvananyathā▷85||23|| ▷523
-sarvakṣetrāṇusaṃkhyaiśca praṇāmaiḥ praṇamāmyaham▷86|
-sarvatryadhvagatān buddhān sahadharmagaṇottamān▷87||24|| ▷524
-sarvacaityāni vande’haṃ bodhisattvāśrayāṃstathā▷88|
-namaḥ karomyupādhyāyānabhivandyān yatīṃstathā▷89||25|| ▷525
-buddhaṃ gacchāmi śaraṇaṃ yāvadā bodhimaṇḍataḥ▷90|
-dharmaṃ gacchāmi śaraṇaṃ bodhisattvagaṇaṃ tathā▷91||26|| ▷526
-vijñāpayāmi saṃbuddhān sarvadikṣu vyavasthitān▷92|
-mahākāruṇikāṃścāpi bodhisattvān kṛtāñjaliḥ▷93||27|| ▷527
-anādimati saṃsāre janmanyatraiva vā punaḥ▷94|
-yanmayā paśunā pāpaṃ kṛtaṃ kāritameva vā▷95||28|| ▷528
-yaccānumoditaṃ kiṃcidātmaghātāya mohataḥ▷96|
-tadatyayaṃ deśayāmi paścāttāpena tāpitaḥ▷97||29|| ▷529
-ratnatraye’pakāro yo mātapitṛṣu vā mayā▷98|
-guruṣvanyeṣu vā kṣepāt kāyavāgbuddhibhiḥ kṛtaḥ▷99||30|| ▷530
-anekadoṣaduṣṭena mayā pāpena nāyakāḥ▷100|
-yatkṛtaṃ dāruṇaṃ pāpaṃ tatsarvaṃ deśayāmyaham▷101||31|| ▷531
-kathaṃ ca niḥsarāmyasmāt paritrāyata satvaram▷102|
-mā mamākṣīṇapāpasya maraṇaṃ śīghrameṣyati▷103||33|| ▷532
-kṛtākṛtāparīkṣo’yaṃ mṛtyurviśrambhaghātakaḥ▷104|
-svasthāsvasthairaviśvāsya ākasmikamahāśaniḥ▷105||34|| ▷533
-priyāpriyanimittena pāpaṃ kṛtamanekadhā▷106|
-sarvamutsṛjya gantavyamiti na jñātamīdṛśam▷107||35|| ▷534
-apriyā na bhaviṣyanti priyo me na bhaviṣyati▷108|
-ahaṃ ca na bhaviṣyāmi sarvaṃ ca na bhaviṣyati▷109||36|| ▷535
-tattatsmaraṇatāṃ yāti yadyadvastvanubhūyate▷110|
-svapnānubhūtavatsarvaṃ gataṃ na punarīkṣyate▷111||37|| ▷536
-ihaiva tiṣṭhatastāvadgatā naike priyāpriyāḥ▷112|
-tannimittaṃ tu yatpāpaṃ tatsthitaṃ ghoramagrataḥ▷113||38|| ▷537
-evamāgantuko’smīti na mayā pratyavekṣitam▷114|
-mohānunayavidveṣaiḥ kṛtaṃ pāpamanekadhā▷115||39|| ▷538
-rātriṃdivamaviśrāmamāyuṣo vardhate vyayaḥ▷116|
-āyasya cāgamo nāsti na mariṣyāmi kiṃ nvaham▷117||40|| ▷539
-iha śayyāgatenāpi bandhumadhye’pi tiṣṭhatā▷118|
-mayaivekena soḍhavyā marmacchedādivedanā▷119||41|| ▷540
-yamadūtairgṛhītasya kuto bandhuḥ kutaḥ suhṛt▷120|
-puṇyamekaṃ tadā trāṇaṃ mayā tacca na sevitam▷121||42|| ▷541
-anityajīvitāsaṅgādidaṃ bhayamajānatā▷122|
-pramattena mayā nāthā bahu pāpamupārjitam▷123||43|| ▷542
-aṅgacchedārthamapyadya nīyamāno viśuṣyati▷124|
-pipāsito dīnadṛṣṭiranyadevekṣate jagat▷125||44|| ▷543
-kiṃ punarbhairavākārairyamadūtairadhiṣṭhitaḥ▷126|
-mahātrāsajvaragrastaḥ purīṣotsargaveṣṭitaḥ▷127||45|| ▷544
-kātarairdṛṣṭipātaiśca trāṇānveṣī caturdiśam▷128|
-ko me mahābhayādasmātsādhustrāṇaṃ bhaviṣyati▷129||46|| ▷545
-trāṇaśūnyā diśo dṛṣṭvā punaḥ saṃmohamāgataḥ▷130|
-tadāhaṃ kiṃ kariṣyāmi tasmin sthāne mahābhaye▷131||47|| ▷546
-adyaiva śaraṇaṃ yāmi jagannāthān mahābalān▷132|
-jagadrakṣārthamudyuktān sarvatrāsaharān jinān▷133||48|| ▷547
-taiścāpyadhigataṃ dharmaṃ saṃsārabhayanāśanam▷134|
-śaraṇaṃ yāmi bhāvena bodhisattvagaṇaṃ tathā▷135||49|| ▷548
-samantabhadrāyātmānaṃ dadāmi bhayavihvalaḥ▷136|
-punaśca mañjughoṣāya dadāmyātmānamātmanā▷137||50|| ▷549
-taṃ cāvalokitaṃ nāthaṃ kṛpāvyākulacāriṇam▷138|
-viraumyārtaravaṃ bhītaḥ sa māṃ rakṣatu pāpinam▷139||51|| ▷550
-āryamākāśagarbhaṃ ca kṣitigarbhaṃ ca bhāvataḥ▷140|
-sarvān mahākṛpāṃścāpi trāṇānveṣī viraumyaham▷141||52|| ▷551
-yaṃ dṛṣṭvaiva ca saṃtrastāḥ palāyante caturdiśam▷142|
-yamadūtādayo duṣṭāstaṃ namasyāmi vajriṇam▷143||53|| ▷552
-atītya yuṣmadvacanaṃ sāṃprataṃ bhayadarśanāt▷144|
-śaraṇaṃ yāmi vo bhīto bhayaṃ nāśayata drutam▷145||54|| ▷553
-itvaravyādhibhīto’pi vaidyavākyaṃ na laṅghayet▷146|
-kimu vyādhiśatairgrastaścaturbhiścaturuttaraiḥ▷147||55|| ▷554
-ekenāpi yataḥ sarve jambudvīpagatā narāḥ▷148|
-naśyanti yeṣāṃ bhaiṣajyaṃ sarvadikṣu na labhyate▷149||56|| ▷555
-tatra sarvajñavaidyasya sarvaśalyāpahāriṇaḥ▷150|
-vākyamullaṅghayāmīti dhiṅ māmatyantamohitam▷151||57|| ▷556
-atyapramattastiṣṭhāmi prapāteṣvitareṣvapi▷152|
-kimu yojanasāhasre prapāte dīrghakālike▷153||58|| ▷557
-adyaiva maraṇaṃ naiti na yuktā me sukhāsikā▷154|
-avaśyameti sā velā na bhaviṣyāmyahaṃ yadā▷155||59|| ▷558
-abhayaṃ kena me dattaṃ niḥsariṣyāmi vā katham▷156|
-avaśyaṃ na bhaviṣyāmi kasmānme susthitaṃ manaḥ▷157||60|| ▷559
-pūrvānubhūtanaṣṭebhyaḥ kiṃ me sāramavasthitam▷158|
-yeṣu me’bhiniviṣṭena gurūṇāṃ laṅghitaṃ vacaḥ▷159||61|| ▷560
-jīvalokamimaṃ tyaktvā bandhūn paricitāṃstathā▷160|
-ekākī kvāpi yāsyāmi kiṃ me sarvaiḥ priyāpriyaiḥ▷161||62|| ▷561
-iyameva tu me cintā yuktā rātriṃdivaṃ tadā▷162|
-aśubhānniyataṃ duḥkhaṃ niḥsareyaṃ tataḥ katham▷163||63|| ▷562
-mayā bālena mūḍhena yatkiṃcitpāpamācitam▷164|
-prakṛtyā yacca sāvadyaṃ prajñaptyāvadyameva ca▷165||64|| ▷563
-tatsarvaṃ deśayāmyeṣa nāthānāmagrataḥ sthitaḥ▷166|
-kṛtāñjalirduḥkhabhītaḥ praṇipatya punaḥ punaḥ▷167||65|| ▷564
-atyayamatyayatvena pratigṛhṇantu nāyakāḥ▷168|
-na bhadrakamidaṃ nāthā na kartavyaṃ punarmayā▷169 ②▷170 ||66|| ▷565
-iti śrī śāntideva viracite bodhicaryāvatāre pāpadeśanā nāma dvitīyaḥ paricchedaḥ▷171|| oṃ▷172
+[GGLGG LLGLGG] ratnapradīpāṃśca nivedayāmi▷66
+[LGLGG LLGLGG] suvarṇapadmeṣu niviṣṭapaṅktīn▷67| ▷533
+[GGLGG LLGLGG] gandhopalipteṣu ca kuṭṭimeṣu▷68
+[LGLGG LLGLGG] kirāmi puṣpaprakarān manojñān▷69||17|| ▷534
+[LGLGG LLGLGG] pralambamuktāmaṇihāraśobhā▷70-
+[GGLGG LLGLGG] nābhāsvarān diṅmukhamaṇḍanāṃstān▷71| ▷535
+[LGLGG LLGLGG] vimānameghān stutigītaramyān▷72
+[GGLGG LLGLGG] maitrīmayebhyo’pi nivedayāmi||▷73 18|| ▷536
+[LGLGG LLGLGG] suvarṇadaṇḍaiḥ kamanīyarūpaiḥ▷74
+[GGLGG LLGLGG] saṃsaktamuktāni samucchritāni▷75| ▷537
+[LGLGG LLGLGG] pradhārayāmyeṣa mahāmunīnāṃ▷76
+[GGLGG LLGLGG] ratnātapatrāṇyatiśobhanāni▷77||19|| ▷538
+——[韵律 3-anuṣṭubh （8音节，奇xxxxLGGx 偶xxxxLGLx）]
+[LGLGLGGG GGGGLGLG] ataḥ paraṃ pratiṣṭhantāṃ▷78a pūjāmeghā manoramāḥ▷78b| ▷539
+[GLGGLGGG GLGGLGLG] tūryasaṃgītimeghāśca▷79a sarvasattvapraharṣaṇāḥ▷79b||20|| ▷540
+[GLGGLGGG GGGLLGLG] sarvasaddharmaratneṣu▷80a caityeṣu pratimāsu ca▷80b| ▷541
+[GLGGLGGG LGGGLGLG] puṣparatnādivarṣāśca▷81a pravartantāṃ nirantaram▷81b||21|| ▷542
+[GLGGLLLG GLGLLGLG] mañjughoṣaprabhṛtayaḥ▷82a pūjayanti yathā jinān▷82b| ▷543
+[LGLGLGGG LGGGLGLG] tathā tathāgatānnāthān▷83a saputrān pūjayāmyaham▷83b||22|| ▷544
+[LGLGLGGG GLGGLGLG] svarāṅgasāgaraiḥ stotraiḥ▷84a staumi cāhaṃ guṇodadhīn▷84b| ▷545
+[LLGGLGGG GLGGLGLG] stutisaṃgītimeghāśca▷85a saṃbhavantveṣvananyathā▷85b||23|| ▷546
+[GLGGLGGG LGGLLGLG] sarvakṣetrāṇusaṃkhyaiśca▷86a praṇāmaiḥ praṇamāmyaham▷86b| ▷547
+[GGGLLGGG LLGLLGLG] sarvatryadhvagatān buddhān▷87a sahadharmagaṇottamān▷87b||24|| ▷548
+[GLGGLGGG GLGGLGLG] sarvacaityāni vande’haṃ▷88a bodhisattvāśrayāṃstathā▷88b| ▷549
+[LGLGLGGG LLGGLGLG] namaḥ karomyupādhyāyā▷89a- nabhivandyān yatīṃstathā▷89b||25|| ▷550
+——[韵律 3-anuṣṭubh （8音节，偶xxxxLGLx）]
+[GGGGLLLG GLGGLGLG] buddhaṃ gacchāmi śaraṇaṃ▷90a yāvadā bodhimaṇḍataḥ▷90b| ▷551
+[GGGGLLLG GLGLLGLG] dharmaṃ gacchāmi śaraṇaṃ▷91a bodhisattvagaṇaṃ tathā▷91b||26|| ▷552
+——[韵律 3-anuṣṭubh （8音节，奇xxxxLGGx 偶xxxxLGLx）]
+[LGLGLGGG GLLGLGLG] vijñāpayāmi saṃbuddhān▷92a sarvadikṣu vyavasthitān▷92b| ▷553
+[LGGLLGGG GLGGLGLG] mahākāruṇikāṃścāpi▷93a bodhisattvān kṛtāñjaliḥ▷93b||27|| ▷554
+[LGLLLGGG GGGGLGLG] anādimati saṃsāre▷94a janmanyatraiva vā punaḥ▷94b| ▷555
+[GLGLLGGG LGGLLGLG] yanmayā paśunā pāpaṃ▷95a kṛtaṃ kāritameva vā▷95b||28|| ▷556
+[GGLGLGGG GLGGLGLG] yaccānumoditaṃ kiṃci▷96a- dātmaghātāya mohataḥ▷96b| ▷557
+[LGLGGLGG GGGGLGLG] tadatyayaṃ deśayāmi▷97a paścāttāpena tāpitaḥ▷97b||29|| ▷558
+[GGLGLGGG GLLLLGLG] ratnatraye’pakāro yo▷98a mātapitṛṣu vā mayā▷98b| ▷559
+[LGGGLGGG GLGGLGLG] guruṣvanyeṣu vā kṣepāt▷99a kāyavāgbuddhibhiḥ kṛtaḥ▷99b||30|| ▷560
+[LGLGLGGG LGGGLGLG] anekadoṣaduṣṭena▷100a, mayā pāpena nāyakāḥ▷100b| ▷561
+[GLGGLGGG GGGGLGLG] yatkṛtaṃ dāruṇaṃ pāpaṃ▷101a, tatsarvaṃ deśayāmyaham▷101b||31|| ▷562
+[LGLGLGGG LGGLLGLG] kathaṃ ca niḥsarāmyasmāt▷102a, paritrāyata satvaram▷102b| ▷563
+[GLGGLGGG LLGGLGLG] mā mamākṣīṇapāpasya▷103a, maraṇaṃ śīghrameṣyati▷103b||33|| ▷564
+[LGLGLGGG GGGGLGLG] kṛtākṛtāparīkṣo’yaṃ▷104a, mṛtyurviśrambhaghātakaḥ▷104b| ▷565
+[GGGGLGGG GGLLLGLG] svasthāsvasthairaviśvāsya▷105a, ākasmikamahāśaniḥ▷105b||34|| ▷566
+[LGLLLGGG GGLLLGLG] priyāpriyanimittena▷106a, pāpaṃ kṛtamanekadhā▷106b| ▷567
+[GLGGLGGG LLLGLGLG] sarvamutsṛjya gantavya▷107a-, miti na jñātamīdṛśam▷107b||35|| ▷568
+[GLGLLGGG LGGLLGLG] apriyā na bhaviṣyanti▷108a, priyo me na bhaviṣyati▷108b| ▷569
+[LGLLLGGG GGLLLGLG] ahaṃ ca na bhaviṣyāmi▷109a, sarvaṃ ca na bhaviṣyati▷109b||36|| ▷570
+[GGLLLGGG GGGLLGLG] tattatsmaraṇatāṃ yāti▷110a, yadyadvastvanubhūyate▷110b| ▷571
+[GGLGLGGG LGLLLGLG] svapnānubhūtavatsarvaṃ▷111a, gataṃ na punarīkṣyate▷111b||37|| ▷572
+[LGLGLGGG LGGGLGLG] ihaiva tiṣṭhatastāva▷112a-, dgatā naike priyāpriyāḥ▷112b| ▷573
+[GLGGLGGG GLGGLGLG] tannimittaṃ tu yatpāpaṃ▷113a, tatsthitaṃ ghoramagrataḥ▷113b||38|| ▷574
+[GLGGLGGG LLGGLGLG] evamāgantuko’smīti▷114a, na mayā pratyavekṣitam▷114b| ▷575
+[GGLLLGGG LGGLLGLG] mohānunayavidveṣaiḥ▷115a, kṛtaṃ pāpamanekadhā▷115b||39|| ▷576
+——[韵律 3-anuṣṭubh （8音节，奇xxxxLGGx 偶xxxxLGLx）]
+[GGLLLGGG GLGGLGLG] rātriṃdivamaviśrāma▷116a-, māyuṣo vardhate vyayaḥ▷116b| ▷577
+[GGLGLGGG LLGGLGLG] āyasya cāgamo nāsti▷117a, na mariṣyāmi kiṃ nvaham▷117b||40|| ▷578
+[LLGGLGGG GLGGLGLG] iha śayyāgatenāpi▷118a, bandhumadhye’pi tiṣṭhatā▷118b| ▷579
+[LGGGLGGG GGGGLGLG] mayaivekena soḍhavyā▷119a, marmacchedādivedanā▷119b||41|| ▷580
+[LLGGLGGG LGGGLGLG] yamadūtairgṛhītasya▷120a, kuto bandhuḥ kutaḥ suhṛt▷120b| ▷581
+[GLGGLGGG LGGLLGLG] puṇyamekaṃ tadā trāṇaṃ▷121a, mayā tacca na sevitam▷121b||42|| ▷582
+[LGLGLGGG LGLLLGLG] anityajīvitāsaṅgā▷122a-, didaṃ bhayamajānatā▷122b| ▷583
+[LGGLLGGG LLGLLGLG] pramattena mayā nāthā▷123a, bahu pāpamupārjitam▷123b||43|| ▷584
+[GGGGLGGG GLGGLGLG] aṅgacchedārthamapyadya▷124a, nīyamāno viśuṣyati▷124b| ▷585
+[LGLGGLGG GLGGLGLG] pipāsito dīnadṛṣṭi▷125a-, ranyadevekṣate jagat▷125b||44|| ▷586
+[GLGGLGGG LLGGLGLG] kiṃ punarbhairavākārai▷126a-, ryamadūtairadhiṣṭhitaḥ▷126b| ▷587
+[LGGGLGGG LGGGLGLG] mahātrāsajvaragrastaḥ▷127a, purīṣotsargaveṣṭitaḥ▷127b||45|| ▷588
+[GLGGLGGG GGGGLGLG] kātarairdṛṣṭipātaiśca▷128a, trāṇānveṣī caturdiśam▷128b| ▷589
+[GGLGLGGG GGGGLGLG] ko me mahābhayādasmā▷129a-, tsādhustrāṇaṃ bhaviṣyati▷129b||46|| ▷590
+[GLGGLGGG LGGGLGLG] trāṇaśūnyā diśo dṛṣṭvā▷130a, punaḥ saṃmohamāgataḥ▷130b| ▷591
+[LGGGLGGG GGGGLGLG] tadāhaṃ kiṃ kariṣyāmi▷131a, tasmin sthāne mahābhaye▷131b||47|| ▷592
+[GGLLLGGG LGGGLGLG] adyaiva śaraṇaṃ yāmi▷132a, jagannāthān mahābalān▷132b| ▷593
+[LGLGLGGG GGGLLGLG] jagadrakṣārthamudyuktān▷133a, sarvatrāsaharān jinān▷133b||48|| ▷594
+[GGLLLGGG GGLLLGLG] taiścāpyadhigataṃ dharmaṃ▷134a, saṃsārabhayanāśanam▷134b| ▷595
+[LLGGLGGG GLGLLGLG] śaraṇaṃ yāmi bhāvena▷135a, bodhisattvagaṇaṃ tathā▷135b||49|| ▷596
+——[韵律 3-anuṣṭubh （8音节，奇xxxxLGGx 偶xxxxLGLx）]
+[LGLGGGGG LGLLLGLG] samantabhadrāyātmānaṃ▷136a, dadāmi bhayavihvalaḥ▷136b| ▷597
+[LGLGLGGG LGGGLGLG] punaśca mañjughoṣāya▷137a, dadāmyātmānamātmanā▷137b||50|| ▷598
+[GGLGLGGG LGGLLGLG] taṃ cāvalokitaṃ nāthaṃ▷138a, kṛpāvyākulacāriṇam▷138b| ▷599
+[LGGLLGGG LGLLLGLG] viraumyārtaravaṃ bhītaḥ▷139a, sa māṃ rakṣatu pāpinam▷139b||51|| ▷600
+[GLGGLGGG LLGGLGLG] āryamākāśagarbhaṃ ca▷140a, kṣitigarbhaṃ ca bhāvataḥ▷140b| ▷601
+[GGLGLGGG GGGGLGLG] sarvān mahākṛpāṃścāpi▷141a, trāṇānveṣī viraumyaham▷141b||52|| ▷602
+[GGGLLGGG LGGGLGLG] yaṃ dṛṣṭvaiva ca saṃtrastāḥ▷142a, palāyante caturdiśam▷142b| ▷603
+[LLGGLGGG GLGGLGLG] yamadūtādayo duṣṭā▷143a-, staṃ namasyāmi vajriṇam▷143b||53|| ▷604
+[LGLGGLLG GLGLLGLG] atītya yuṣmadvacanaṃ▷144a, sāṃprataṃ bhayadarśanāt▷144b| ▷605
+[LLGGLGGG LGGLLGLG] śaraṇaṃ yāmi vo bhīto▷145a, bhayaṃ nāśayata drutam▷145b||54|| ▷606
+[GLGGLGGG GLGGLGLG] itvaravyādhibhīto’pi▷146a, vaidyavākyaṃ na laṅghayet▷146b| ▷607
+[LGGLLGGG LGGLLGLG] kimu vyādhiśatairgrasta▷147a-, ścaturbhiścaturuttaraiḥ▷147b||55|| ▷608
+[GGGLLGGG GGGLLGLG] ekenāpi yataḥ sarve▷148a, jambudvīpagatā narāḥ▷148b| ▷609
+[GGLGGGGG GLLLLGLG] naśyanti yeṣāṃ bhaiṣajyaṃ▷149a, sarvadikṣu na labhyate▷149b||56|| ▷610
+[GLGLLGGG GLGGLGLG] tatra sarvajñavaidyasya▷150a, sarvaśalyāpahāriṇaḥ▷150b| ▷611
+[GLLGLGGG GGGGLGLG] vākyamullaṅghayāmīti▷151a, dhiṅ māmatyantamohitam▷151b||57|| ▷612
+[GGLGGGGG LGGLLGLG] atyapramattastiṣṭhāmi▷152a, prapāteṣvitareṣvapi▷152b| ▷613
+[LLGLLGGG LGGGLGLG] kimu yojanasāhasre▷153a, prapāte dīrghakālike▷153b||58|| ▷614
+[GGLLLGGG LGGGLGLG] adyaiva maraṇaṃ naiti▷154a, na yuktā me sukhāsikā▷154b| ▷615
+[LGLGLGGG LLGGLGLG] avaśyameti sā velā▷155a, na bhaviṣyāmyahaṃ yadā▷155b||59|| ▷616
+——[韵律 3-anuṣṭubh （8音节，奇xxxxLGGx 偶xxxxLGLx）]
+[LLGGLGGG GLGGLGLG] abhayaṃ kena me dattaṃ▷156a, niḥsariṣyāmi vā katham▷156b| ▷617
+[LGGLLGGG GGGGLGLG] avaśyaṃ na bhaviṣyāmi▷157a, kasmānme susthitaṃ manaḥ▷157b||60|| ▷618
+[GGLGLGGG GGGLLGLG] pūrvānubhūtanaṣṭebhyaḥ▷158a, kiṃ me sāramavasthitam▷158b| ▷619
+[GLGLLGGG LGGGLGLG] yeṣu me’bhiniviṣṭena▷159a, gurūṇāṃ laṅghitaṃ vacaḥ▷159b||61|| ▷620
+[GLGLLGGG GGLLLGLG] jīvalokamimaṃ tyaktvā▷160a, bandhūn paricitāṃstathā▷160b| ▷621
+[GGGGLGGG GGGGLGLG] ekākī kvāpi yāsyāmi▷161a, kiṃ me sarvaiḥ priyāpriyaiḥ▷161b||62|| ▷622
+[LLGLLGGG GGGGLGLG] iyameva tu me cintā▷162a, yuktā rātriṃdivaṃ tadā▷162b| ▷623
+[LLGLLGGG GLGGLGLG] aśubhānniyataṃ duḥkhaṃ▷163a, niḥsareyaṃ tataḥ katham▷163b||63|| ▷624
+[LGGGLGGG GGGGLGLG] mayā bālena mūḍhena▷164a, yatkiṃcitpāpamācitam▷164b| ▷625
+[LGGGLGGG LGGGLGLG] prakṛtyā yacca sāvadyaṃ▷165a, prajñaptyāvadyameva ca▷165b||64|| ▷626
+[GGGGLGGG GGGGLGLG] tatsarvaṃ deśayāmyeṣa▷166a, nāthānāmagrataḥ sthitaḥ▷166b| ▷627
+[LGLGGLGG LLGLLGLG] kṛtāñjalirduḥkhabhītaḥ▷167a, praṇipatya punaḥ punaḥ▷167b||65|| ▷628
+[GLLGLGGG LLGGLGLG] atyayamatyayatvena▷168a, pratigṛhṇantu nāyakāḥ▷168b| ▷629
+[LGLLLGGG LGGGLGLG] na bhadrakamidaṃ nāthā▷169a, na kartavyaṃ punarmayā▷169b| ▷630 ||66|| ➁▷170
+
+Iti śrī śāntideva viracite bodhicaryāvatāre pāpadeśanā nāma dvitīyaḥ paricchedaḥ▷171|| Oṃ▷172
 `
 
   window.renderBody = function () {
     const opt = {audioPrefix: 'mp3/bca2/b', hoverWord: false, sentenceAudio: true,
-      metreRender: text => text.slice(1,-1).replace(/（[^）]+）/, g => '<span class="gana">' + g.slice(1,-1).replace(
-        /[长短]+/g, s => `<small>${s}</small>`) + '</span>')
+      metreRender: text => text.slice(1,-1).replace(/（[^）]+）/g, g => '<span class="gana">' + g.slice(1,-1).replace(
+        /\([^)]+\)/g, s => `<small>${s}</small>`) + '</span>')
     }
     iastContent.split('\n').forEach((text, i) => renderRow(text, i, opt))
   }

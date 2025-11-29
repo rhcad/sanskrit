@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>梵文诗律唱诵 5~7,12</title>
+  <meta name="description" content="梵文诗律唱诵 5-indravajrā,6-upendravajrā,7-upajāti,12-vaṃśastha">
+  <meta name="keywords" content="sanskrit,metres,梵文,诗律,唱诵,indravajrā,upendravajrā,upajāti,vaṃśastha">
+  <meta property="og:image" content="img/favicon.png">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="stylesheet" href="script/sanskrit.css?v=1321">
+  <link rel="stylesheet" href="script/audio.css?v=1307">
+  <style>
+    body { font-size: 19px; }
+    .section + .section { margin-top: 2em; }
+    .title { text-align: center; margin-bottom: .5em; }
+    .tip { font-size: 13px; margin-bottom: 1em; }
+    .audio-button.voc { background-size: 16px 16px; width: 16px; height: 16px; }
+    .word span.sp.space { width: .7em; display: inline-block; }
+    .word span.sp.space + .audio-button, .word span.sp.space + .sp + .audio-button { margin-left: -.7em; }
+    .section-title { margin-left: 20px; margin-bottom: 1.4em; }
+    .iast-row:has(.has-sentence-voc) { margin-bottom: 1em; }
+    .gana { display: inline-block; }
+    .gana::before { content: "["; font-weight: 300; }
+    .gana::after { content: "]"; font-weight: 300; }
+    .gana small { font-weight: 400; font-size: .6em; }
+  </style>
+</head>
+<body class="show-odd show-iast show-audio show-weight">
+<div id="top-bar">
+  <span class="home" onclick="location.href='bca.htm'" title="Home"><img src="img/favicon.png" alt="Home"></span>
+  <span onclick="biggerFont()">+</span>
+  <span onclick="smallerFont()">-</span>
+  <span data-toggle="show-odd">音节</span>
+  <span data-toggle="show-weight">轻重</span>
+  <span data-toggle="show-deva">天城体</span>
+  <span data-toggle="show-iast">转写</span>
+  <span data-toggle="show-audio">读音</span>
+</div>
+<div class="title no-print">梵文诗律唱诵 5~7,12</div>
+<div class="tip no-print">注：点击<button class="audio-button voc" style="margin-right: 0"></button>左侧的词可播放，
+  点击<button class="audio-button"></button>播放整句。➁ 表示第二遍。开始播放后再次点击会停止。<br>
+  行首的[LG]表示每个音节的轻重：L(laghu轻)、G(guru重)。
+</div>
+<div id="body"></div>
+<script>
+  window.audioStamp = 1024
+</script>
+<script src="script/sanscript.es6.js?v=1321"></script>
+<script src="script/sanskrit.js?v=1321"></script>
+<script>
+  window._fontSize = 19
+  window.audioGap = 0
+  const iastContent = `
+#5 Indra-vajrā 天帝杵（11音节: 5+6）[त(长长短) त(长长短) ज(短长短) ग(长) ग(长)]
+[GGLGG LLGLGG] Rātrau yathā me▷27-ghaghanāndhakāre▷28 ▷532a
+[GGLGG LLGLGG] vidyut kṣaṇaṃ da▷29-rśayati prakāśam▷30 | ▷532b
+[GGLGG LLGLGG] Buddhānubhāve▷31-na tathā kadācil(t)▷32 ▷533a
+[GGLGG LLGLGG] lokasya puṇye▷33-ṣu matiḥ kṣaṇaṃ syāt▷34 || ▷533b
+——bodhicaryāvatāraḥ 1.5
+[GGLGG LLGLGG] （syādindravajrā▷34a  yadi tau jagau gaḥ ||▷34b）➁▷34c
+
+#6 Upendra-vajrā 近帝杵（11音节: 5+6）[ज(短长短) त(长长短) ज(短长短) ग(长) ग(长)]
+[LGLGG LLGLGG] Mahīdharā ra▷36-tnamayās tathānye▷37 ▷534a
+[LGLGG LLGLGG] vanapradeśā▷38-śca vivekaramyāḥ▷39 | ▷534b
+[LGLGG LLGLGG] Latāḥ supuṣpā▷40-bharaṇojjcalāśca▷41 ▷535a
+[LGLGG LLGLGG] drumāśca ye sa▷42-tphalanapraśākhāḥ▷43 || ▷535b
+——bodhicaryāvatāraḥ 2.3
+[LGLGG LLGLGG] （upendravajrā▷43a  jatajāstato gauḥ ||▷43b）➁▷43c
+
+#7 Upajāti 出生（11音节: 5+6）
+[GGLGG LLGLGG] Brahmālavālaṃ▷45 bhuvanaikapālaṃ▷46
+[LGLGG LLGLGG] yaśoviśālaṃ▷47 ṣiśupālakālam▷48 | ▷536
+[GGLGG LLGLGG] Saṃsāramāyā▷49-matimohajālaṃ▷50
+[GGLGG LLGLGG] bālaṃ mukundaṃ▷51 śirasā namāmi▷52 || ▷537
+
+[LGLGG LLGLGG] Anantarodī▷53-ritalakṣmabhājau▷54
+[GGLGG LLGLGG] pādau yadīyā▷55-vupajātayastāḥ▷56 | ▷538
+[GGLGG LLGLGG] Itthaṃ kilānyā▷57-svapi miśritāsu▷58
+[LGLGG LLGLGG] vadanti jāti▷59-ṣvidameva nāma▷60 || ▷539
+
+#12 Vaṃśa-stha 家族延续（11音节: 5+6）
+[LGLGG LLGLGLG] Rajojuṣe ja▷96-nmani sattvavṛttaye▷97 ▷548a
+[LGLGG LLGLGLG] sthitau prajānāṃ▷98 pralaye tamaḥ spṛśe▷99 | ▷548b
+[LGLGG LLGLGLG] Ajāya sarga▷100-sthitināśahetave▷101 ▷549a
+[LGLGG LLGLGLG] trayīmayāya▷102 triguṇātmane namaḥ▷103 || ▷549b
+[LGLGG LLGLGLG] （jatau tu vaṃśasthamudīritaṃ jagau▷104 ||）➁ ▷105
+
+#12 Indra-vaṃśa 天帝家族（11音节: 5+6）
+[GGLGG LLGLGLG] vāṇī vareṇyā spṛ haṇ īyavāṇinī
+[GGLGG LLGLGLG] pāṇītapāṇinyurusaṃskriyānayā|
+[GGLGG LLGLGLG] bhūyādalokānubhavāya bhāvukā
+[GGLGG LLGLGLG] pāyādamāyāvilavākchalaṃ jagat||
+`
+
+  window.renderBody = function () {
+    const opt = {audioPrefix: 'mp3/7-upajati/m', hoverWord: false, sentenceAudio: true,
+      sectionRender: text => text.replace(/\[[^\]]+]/g, g => '<span class="gana">' + g.slice(1,-1).replace(
+        /\([^)]+\)/g, s => `<small>${s}</small>`) + '</span>')
+    }
+    const rows = iastContent.split('\n');
+    rows.forEach((text, i) => {
+      opt.nextRow = rows[i + 1]
+      renderRow(text, i, opt)
+    })
+  }
+  renderBody()
+</script>
+</body>
+</html>

@@ -132,7 +132,7 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False, join_ln=' ',
             for j, s in enumerate(sentence[:-1]):
                 if '◆' in s:
                     sentence[j] = '\n' + sentence[j] + '\n'
-                elif not s.endswith('-'):
+                elif '\n' in join_ln or not s.endswith('-'):
                     sentence[j] += join_ln
             if indent:
                 sentence[0] = '  ' + sentence[0]

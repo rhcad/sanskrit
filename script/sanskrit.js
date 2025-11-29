@@ -30,7 +30,8 @@ const audioHtml = `<button data-idx="@idx" class="audio-button" onclick="toggleA
 const sandhiRe = /\([^(),]*(,[^(),]*)+\)/g
 const audioRe1 = /▷\d+[a-f]?/g, audioRe2 = /\t*▷/g
 const audioNums = []
-const puncRe = /^[,?!:]$/
+const puncRe = /^[♪(),?!:]$/
+const hzPunc = /[\u4e00-\u9fa5\uFF01-\uFF5E\u3000-\u303F()]+/g
 let newWordId = 1
 let hasOrgRow = 0
 let newSection = null
@@ -102,12 +103,14 @@ function renderRow(text, rowIndex, options={}) {
   const devaRow = createElement(row, 'deva-row')
   const iastRow = createElement(row, 'iast-row')
   const audios = [], a = [0, 0];
+  const weights = (/^\[.+]|\[.+]$/.exec(text) || '')[0]
 
+  text = text.replace(/^\[.+]|\[.+]$/, '')
   if (/^\s*(——|◆)/.test(text)) {
     text = text.replace(/^\s*◆\s*/, '')
     devaRow.classList.add('indent')
     iastRow.classList.add('indent')
-    row.style.marginBottom = '0'
+    row.style.marginBottom = options.nextRow === '' ? '1em' : '0'
   }
   if (options.audioPrefix) {
     text = text.replace(audioRe1, s => audios.push(s.substring(1)) && '▷');
@@ -134,7 +137,8 @@ function renderRow(text, rowIndex, options={}) {
       return
     }
     if (puncRe.test(s)) {
-      return createElement(iastSpan, 'punc', 'span', {text: s})
+      return createElement(iastSpan, 'punc', 'span', {
+        text: s, first_char: s[0]})
     }
     const firstSp = /^[:-]|^$/.test(s) && (!audio || audio[1] === 0)
     if (firstSp) {
@@ -157,6 +161,7 @@ function renderRow(text, rowIndex, options={}) {
     const clickSection = /^\|{2}\d+\|{2}$/.test(s) && !iastSpan.closest('.word[onclick]')
     let sp = createElement(wordSpan || iastSpan, 'a ' + (i1 % 2 ? 'odd' : 'even'), 'span', {
       data_id: `a${newWordId}-${i}`, data_i: i1,
+      data_hz: hzPunc.test(s),
       html: s.replace(/-/g, '<span class="sp">-</span>')
         .replace(/@\d+/g, t => `<span class="si" end="${ Sanscript.yati ? parseInt(t.substring(1))===Sanscript.yati || parseInt(t.substring(1))===Sanscript.yati+1 : parseInt(t.substring(1))===Sanscript.sn}" si="${t.substring(1)}">${t.substring(1)}</span>`),
       onclick: clickSection ? 'toggleSection(this)' : undefined
@@ -176,9 +181,15 @@ function renderRow(text, rowIndex, options={}) {
   let i1 = 0, i2 = 0, wordSpan = null
 
   for (let i = words.length - 1; i >= 0; i--) {
-    const w = words[i], c = w[0][0], dash = c === '-'
+    const w = words[i]
+    const c = w[0][0]
+    const dash = c === '-'
+    const type = Sanscript.getAksaraType(c)
+
     if (dash) {
       w[0] = w[0].substring(1)
+    } else if (type === 'p') {
+
     }
     if (dash || i > 0) {
       words.splice(i, 0, [dash ? c : '', ''])
@@ -235,11 +246,18 @@ function renderRow(text, rowIndex, options={}) {
       i2 += 1
       createElement(wordSpan || devaSpan, 'a ' + (i2 % 2 ? 'odd' : 'even'), 'span', {
         data_id: `a${newWordId}-${i}`,
-        text: s.replace('——', '—'), data_i: i2
+        text: s.replace('——', '—'),
+        data_i: i2,
+        data_hz: hzPunc.test(s)
       })
     })
     newWordId++
   })
+  if (weights) {
+    const el = createElement(null, 'weight', 'span')
+    iastRow.prepend(el)
+    createElement(el, '', 'span', {html: weights + ' '})
+  }
   if (text.endsWith('-')) {
     createElement(createElement(iastRow, 'iast word'), '', 'span', {text: '-'})
     createElement(createElement(devaRow, 'deva word'), '', 'span', {text: '-'})
@@ -252,7 +270,7 @@ function renderRow(text, rowIndex, options={}) {
   if (sentenceAudio) {
     const needMerge = hasBodyCls('merge-audio-words')
     let audioWord, prevWord, prev
-    for (let word = iastRow.lastChild; word; word = prevWord) {
+    for (let word = iastRow.lastChild; word && !word.classList.contains('weight'); word = prevWord) {
       prevWord = word.previousSibling
       if (word.classList.contains('audio-word')) {
         audioWord = word

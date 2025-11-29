@@ -6,6 +6,12 @@ body { font-size: 16px; }
 .float-right { float: right; }
 [onclick] { cursor: pointer; }
 
+.weight { font-size: .6em; }
+.gana { font-size: .8rem; }
+.weight, .gana { color: #999;
+  font-family: Monaco, Courier New, Consolas, Menlo, monospace; }
+body:not(.show-weight) .weight { display: none; }
+
 a { text-decoration:none; }
 #top-bar > span.home { float: left; margin-top: -4px; }
 .home img { width: 18px; height: 18px; }
@@ -40,7 +46,11 @@ a { text-decoration:none; }
   .show-odd .iast .a.odd { color: #171; }
   .show-odd .iast .a.even { color: #000; }
 }
+.word .punc { color: #999; }
+.word[first-char="|"] .a { color: #666 !important; }
+.punc[first-char="♪"] { font-size: .9rem; margin-right: .2rem; }
 .word:not(.has-sub-word), .sub-word { display: inline-block; }
+[data-hz] { font-family: "宋体", SimSun, serif; font-size: 1rem; }
 
 @media screen {
   .hover-word .deva.word:not(.has-sub-word).hover,
@@ -61,7 +71,7 @@ a { text-decoration:none; }
 
 .sec-title { font-size: 1em; margin-block-start: .3em; margin-block-end: .3em;}
 .section > .sec-title::after {
-  font-family: "Arial Unicode MS", sans-serif;
+  font-family: "Arial Unicode MS", Arial, sans-serif;
   content: "▴";
   margin-left: 1em;
   color: #ccc;
