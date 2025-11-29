@@ -21,14 +21,15 @@
     .word span.sp.space { width: .7em; display: inline-block; }
     .word span.sp.space + .audio-button, .word span.sp.space + .sp + .audio-button { margin-left: -.7em; }
     .section-title { margin-left: 20px; margin-bottom: 1.4em; }
-    .iast-row:has(.has-sentence-voc) { margin-bottom: 1em; }
+    .iast-row:has(.has-sentence-voc) { margin-bottom: .7em; }
+    .iast-row:has(.has-sloka-end) { margin-bottom: 1.5em; }
     .gana { display: inline-block; }
     .gana::before { content: "["; font-weight: 300; }
     .gana::after { content: "]"; font-weight: 300; }
     .gana small { font-weight: 400; font-size: .6em; }
   </style>
 </head>
-<body class="show-odd show-iast show-audio">
+<body class="show-odd show-iast show-audio show-weight">
 <div id="top-bar">
   <span class="home" onclick="location.href='./'" title="Home"><img src="img/favicon.png" alt="Home"></span>
   <span onclick="biggerFont()">+</span>
@@ -62,7 +63,7 @@
 [LLLLGL LLLLGG] adharasudhormi▷04 madhuripur-aicchat▷05b ||
 ——śaśivadanā  nyau ||
 
-#03 赞歌（8音节）[奇xxxxLGGx] [偶xxxxLGLx]
+#03 赞歌（8音节）[奇xxxxLGGx 偶xxxxLGLx]
 ◆ anuṣṭubh▷06
 [GGGLLGGG GGGLLGLG] vāgarthāv-ica sampṛktau▷07 vāgarthapratipattaye▷08 |
 [LLGLLGGG GLGLLGLG] jagataḥ pitagau vande▷09 pārvatīparameśvarau▷10 || ▷501
@@ -75,8 +76,10 @@
 
 #04 身斋（8音节: 4+4）[ज(短长短) र(长短长) ल(短) ग(长)]
 ◆ pramāṇikā▷19 ﹍  Punā...rikā ▷504
-[LGLG LGLGLGLGLGLG] Punātu bha▷20-ktir-acyutā▷21a sadācyutā▷21b-ṅghnipadmayoḥ▷22a | ▷530
-[LGLG LGLGLGLLLGLG] Śrutismṛti▷23-pramāṇikā▷24a bhavāmbuga▷25a-śitārikā▷25b || ▷531
+[LGLG LGLG] Punātu bha▷20-ktir-acyutā▷21a
+[LGLG LGLG] sadācyutā▷21b-ṅghnipadmayoḥ▷22a | ▷530
+[LGLG LGLG] Śrutismṛti▷23-pramāṇikā▷24a
+[LGLL LGLG] bhavāmbuga▷25a-śitārikā▷25b || ▷531
 [LGLG LGLG] （pramāṇikā jagai laghau ||）▷25
 
 #05 天帝杵（11音节: 5+6）[त(长长短) त(长长短) ज(短长短) ग(长) ग(长)]
@@ -96,6 +99,7 @@
 [LGLGG LLGLGG] drumāśca ye sa▷42-tphalanapraśākhāḥ▷43 || ▷535b
 ——bodhicaryāvatāraḥ 2.3
 [LGLGG LLGLGG] （upendravajrā▷43a  jatajāstato gauḥ ||▷43b）➁▷43c
+——注：05与06的差异是 indravajrā 以重音节开头、upendravajrā 以轻音节开头
 
 #07 出生（11音节: 5+6）音步: 混合 06 05
 ◆ upajāti▷44  Brah...mi ▷508  Anan...nāma ▷509
@@ -103,11 +107,12 @@
 [LGLGG LLGLGG] yaśoviśālaṃ▷47 ṣiśupālakālam▷48 | ▷536
 [GGLGG LLGLGG] Saṃsāramāyā▷49-matimohajālaṃ▷50
 [GGLGG LLGLGG] bālaṃ mukundaṃ▷51 śirasā namāmi▷52 || ▷537
---
+
 [LGLGG LLGLGG] Anantarodī▷53-ritalakṣmabhājau▷54
 [GGLGG LLGLGG] pādau yadīyā▷55-vupajātayastāḥ▷56 | ▷538
 [GGLGG LLGLGG] Itthaṃ kilānyā▷57-svapi miśritāsu▷58
 [LGLGG LLGLGG] vadanti jāti▷59-ṣvidameva nāma▷60 || ▷539
+——注：upajāti 由 indravajrā 和 upendravajrā 自由组合
 
 #08 人名（11音节: 4+7）[म(长长长) त(长长短) त(长长短) ग(长) ग(长)]
 ◆ śālinī▷61 ﹍ Puṇjī...ttām ▷510
@@ -148,6 +153,7 @@
 [LGLGG LLGLGLG] Ajāya sarga▷100-sthitināśahetave▷101 ▷549a
 [LGLGG LLGLGLG] trayīmayāya▷102 triguṇātmane namaḥ▷103 || ▷549b
 [LGLGG LLGLGLG] （jatau tu vaṃśasthamudīritaṃ jagau▷104 ||）➁ ▷105
+——注：vaṃśastha 比 upendravajrā 多了倒数第二个音节(轻音节)
 
 #13 蛇的步伐（12音节: 6+6）[य(短长长) x4]
 ◆ bhujaṅga-prayāta▷106 ﹍ Ga...ḍe ▷517

@@ -30,8 +30,8 @@ const audioHtml = `<button data-idx="@idx" class="audio-button" onclick="toggleA
 const sandhiRe = /\([^(),]*(,[^(),]*)+\)/g
 const audioRe1 = /▷\d+[a-f]?/g, audioRe2 = /\t*▷/g
 const audioNums = []
-const puncRe = /^[♪(),?!:]$/
-const hzPunc = /[\u4e00-\u9fa5\uFF01-\uFF5E\u3000-\u303F()]+/g
+const puncRe = /^[♪(),?!:：]$/
+const hzPunc = /[\u4e00-\u9fa5\uFF01-\uFF5E\u3000-\u303F()]+/
 let newWordId = 1
 let hasOrgRow = 0
 let newSection = null
@@ -126,6 +126,9 @@ function renderRow(text, rowIndex, options={}) {
         if (flag[0] === 's') {
           iastSpan.classList.add('has-sentence-voc')
         }
+        if (iastSpan.parentElement.innerText.indexOf('||') >= 0) {
+          iastSpan.classList.add('has-sloka-end')
+        }
         if (!flag[0] || flag[0] === 's') { // 不是词
           audioNums.push(audios[a[0]])
         } else {
@@ -159,9 +162,10 @@ function renderRow(text, rowIndex, options={}) {
     }
     i1 += 1
     const clickSection = /^\|{2}\d+\|{2}$/.test(s) && !iastSpan.closest('.word[onclick]')
-    let sp = createElement(wordSpan || iastSpan, 'a ' + (i1 % 2 ? 'odd' : 'even'), 'span', {
+    const isHz = hzPunc.test(s)
+    let sp = createElement(wordSpan || iastSpan, isHz ? 'hz' : 'a ' + (i1 % 2 ? 'odd' : 'even'), 'span', {
       data_id: `a${newWordId}-${i}`, data_i: i1,
-      data_hz: hzPunc.test(s),
+      data_hz: isHz,
       html: s.replace(/-/g, '<span class="sp">-</span>')
         .replace(/@\d+/g, t => `<span class="si" end="${ Sanscript.yati ? parseInt(t.substring(1))===Sanscript.yati || parseInt(t.substring(1))===Sanscript.yati+1 : parseInt(t.substring(1))===Sanscript.sn}" si="${t.substring(1)}">${t.substring(1)}</span>`),
       onclick: clickSection ? 'toggleSection(this)' : undefined

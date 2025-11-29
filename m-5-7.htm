@@ -21,7 +21,8 @@
     .word span.sp.space { width: .7em; display: inline-block; }
     .word span.sp.space + .audio-button, .word span.sp.space + .sp + .audio-button { margin-left: -.7em; }
     .section-title { margin-left: 20px; margin-bottom: 1.4em; }
-    .iast-row:has(.has-sentence-voc) { margin-bottom: 1em; }
+    .iast-row:has(.has-sentence-voc) { margin-bottom: .7em; }
+    .iast-row:has(.has-sloka-end) { margin-bottom: 1.5em; }
     .gana { display: inline-block; }
     .gana::before { content: "["; font-weight: 300; }
     .gana::after { content: "]"; font-weight: 300; }
@@ -54,7 +55,7 @@
   window._fontSize = 19
   window.audioGap = 0
   const iastContent = `
-#5 Indra-vajrā 天帝杵（11音节: 5+6）[त(长长短) त(长长短) ज(短长短) ग(长) ग(长)]
+#05 Indra-vajrā 天帝杵（11音节: 5+6）[त(长长短) त(长长短) ज(短长短) ग(长) ग(长)]
 [GGLGG LLGLGG] Rātrau yathā me▷27-ghaghanāndhakāre▷28 ▷532a
 [GGLGG LLGLGG] vidyut kṣaṇaṃ da▷29-rśayati prakāśam▷30 | ▷532b
 [GGLGG LLGLGG] Buddhānubhāve▷31-na tathā kadācil(t)▷32 ▷533a
@@ -62,15 +63,16 @@
 ——bodhicaryāvatāraḥ 1.5
 [GGLGG LLGLGG] （syādindravajrā▷34a  yadi tau jagau gaḥ ||▷34b）➁▷34c
 
-#6 Upendra-vajrā 近帝杵（11音节: 5+6）[ज(短长短) त(长长短) ज(短长短) ग(长) ग(长)]
+#06 Upendra-vajrā 近帝杵（11音节: 5+6）[ज(短长短) त(长长短) ज(短长短) ग(长) ग(长)]
 [LGLGG LLGLGG] Mahīdharā ra▷36-tnamayās tathānye▷37 ▷534a
 [LGLGG LLGLGG] vanapradeśā▷38-śca vivekaramyāḥ▷39 | ▷534b
 [LGLGG LLGLGG] Latāḥ supuṣpā▷40-bharaṇojjcalāśca▷41 ▷535a
 [LGLGG LLGLGG] drumāśca ye sa▷42-tphalanapraśākhāḥ▷43 || ▷535b
 ——bodhicaryāvatāraḥ 2.3
 [LGLGG LLGLGG] （upendravajrā▷43a  jatajāstato gauḥ ||▷43b）➁▷43c
+——注：05与06的差异是 Indravajrā 以重音节开头、Upendravajrā 以轻音节开头
 
-#7 Upajāti 出生（11音节: 5+6）
+#07 Upajāti 出生（11音节: 5+6）
 [GGLGG LLGLGG] Brahmālavālaṃ▷45 bhuvanaikapālaṃ▷46
 [LGLGG LLGLGG] yaśoviśālaṃ▷47 ṣiśupālakālam▷48 | ▷536
 [GGLGG LLGLGG] Saṃsāramāyā▷49-matimohajālaṃ▷50
@@ -80,6 +82,7 @@
 [GGLGG LLGLGG] pādau yadīyā▷55-vupajātayastāḥ▷56 | ▷538
 [GGLGG LLGLGG] Itthaṃ kilānyā▷57-svapi miśritāsu▷58
 [LGLGG LLGLGG] vadanti jāti▷59-ṣvidameva nāma▷60 || ▷539
+——注：Upajāti 由 Indravajrā 和 Upendravajrā 自由组合
 
 #12 Vaṃśa-stha 家族延续（11音节: 5+6）
 [LGLGG LLGLGLG] Rajojuṣe ja▷96-nmani sattvavṛttaye▷97 ▷548a
@@ -87,12 +90,14 @@
 [LGLGG LLGLGLG] Ajāya sarga▷100-sthitināśahetave▷101 ▷549a
 [LGLGG LLGLGLG] trayīmayāya▷102 triguṇātmane namaḥ▷103 || ▷549b
 [LGLGG LLGLGLG] （jatau tu vaṃśasthamudīritaṃ jagau▷104 ||）➁ ▷105
+——注：Vaṃśastha 比 Upendravajrā 多了倒数第二个音节(轻音节)
 
 #12 Indra-vaṃśa 天帝家族（11音节: 5+6）
 [GGLGG LLGLGLG] vāṇī vareṇyā spṛ haṇ īyavāṇinī
 [GGLGG LLGLGLG] pāṇītapāṇinyurusaṃskriyānayā|
 [GGLGG LLGLGLG] bhūyādalokānubhavāya bhāvukā
 [GGLGG LLGLGLG] pāyādamāyāvilavākchalaṃ jagat||
+——注：Indravaṃśa 比 Indravajrā 多了倒数第二个音节(轻音节)，与 Vaṃśastha 的差异是首音节
 `
 
   window.renderBody = function () {

@@ -35,7 +35,7 @@ a { text-decoration:none; }
 .iast-org { font-weight: 300; font-size: .9em; }
 .iast-org b { color: #000; }
 
-.iast-org, #top-bar, .tip, .title.no-print { color: #777; }
+.iast-org, #top-bar, .tip, .tip a, .title.no-print { color: #777; }
 .word span.sp, .sec-title, .note, .note > a { color: #aaa; }
 .note, .note > a { font-size: 9px; }
 .tip { font-size: 11px; user-select: none; }
