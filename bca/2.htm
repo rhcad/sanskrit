@@ -8,10 +8,10 @@
   <title>2 Bodhicaryāvatāraḥ 卷二唱诵</title>
   <meta name="description" content="梵文诗律唱诵-入菩萨行论,Śāntideva 寂天论师,Kashinath Nyaupane (咯什纳塔·尼奥巴内)教授朗诵">
   <meta name="keywords" content="sanskrit,metres,梵文,诗律,唱诵,入菩萨行论,śāntidevaviracitaḥ,bodhicaryāvatāraḥ">
-  <meta property="og:image" content="img/favicon.png">
-  <link rel="icon" type="image/png" href="img/favicon.png">
-  <link rel="stylesheet" href="script/sanskrit.css?v=1321">
-  <link rel="stylesheet" href="script/audio.css?v=1307">
+  <meta property="og:image" content="../img/favicon.png">
+  <link rel="icon" type="image/png" href="../img/favicon.png">
+  <link rel="stylesheet" href="../script/sanskrit.css?v=1321">
+  <link rel="stylesheet" href="../script/audio.css?v=1307">
   <style>
     body { font-size: 19px; }
     .title { text-align: center; margin-bottom: .5em; }
@@ -31,7 +31,7 @@
 </head>
 <body class="show-odd show-iast show-audio">
 <div id="top-bar">
-  <span class="home" onclick="location.href='bca.htm'" title="Home"><img src="img/favicon.png" alt="Home"></span>
+  <span class="home" onclick="location.href='./'" title="Home"><img src="../img/favicon.png" alt="Home"></span>
   <span onclick="biggerFont()">+</span>
   <span onclick="smallerFont()">-</span>
   <span data-toggle="show-odd">音节</span>
@@ -49,8 +49,8 @@
   点击顶部“轻重”按钮可在行首显示每个音节的轻重：L(laghu轻)、G(guru重)。
 </div>
 <div id="body"></div>
-<script src="script/sanscript.es6.js?v=1321"></script>
-<script src="script/sanskrit.js?v=1321"></script>
+<script src="../script/sanscript.es6.js?v=1321"></script>
+<script src="../script/sanskrit.js?v=1321"></script>
 <script>
   window._fontSize = 19
   window.audioGap = 0
@@ -245,7 +245,7 @@ Iti śrī śāntideva viracite bodhicaryāvatāre pāpadeśanā nāma dvitīya�
 `
 
   window.renderBody = function () {
-    const opt = {audioPrefix: 'mp3/bca2/b', hoverWord: false, sentenceAudio: true,
+    const opt = {audioPrefix: '../mp3/bca2/b', hoverWord: false, sentenceAudio: true,
       metreRender: text => text.slice(1,-1).replace(/（[^）]+）/g, g => '<span class="gana">' + g.slice(1,-1).replace(
         /\([^)]+\)/g, s => `<small>${s}</small>`) + '</span>')
     }

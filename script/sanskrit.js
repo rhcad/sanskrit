@@ -103,9 +103,9 @@ function renderRow(text, rowIndex, options={}) {
   const devaRow = createElement(row, 'deva-row')
   const iastRow = createElement(row, 'iast-row')
   const audios = [], a = [0, 0];
-  const weights = (/^\[.+]|\[.+]$/.exec(text) || '')[0]
+  const weights = (/^\[[LG ]+]|\[[LG ]+]$/.exec(text) || '')[0]
 
-  text = text.replace(/^\[.+]|\[.+]$/, '')
+  text = text.replace(/^\[[LG ]+]|\[[LG ]+]$/, '')
   if (/^\s*(——|◆)/.test(text)) {
     text = text.replace(/^\s*◆\s*/, '')
     devaRow.classList.add('indent')
