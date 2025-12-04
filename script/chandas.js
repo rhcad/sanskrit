@@ -93,7 +93,7 @@ AddArdhasamavrtta('29-śiśulīlā1',  'LLGLLG LGLGG ', 'LLGGL LGLGLG')
 AddArdhasamavrtta('29-śiśulīlā2',  'LLGLLL LGLGG ', 'LLGGL LGLGLLG')
 AddArdhasamavrtta('29-śiśulīlā3',  'LLLLLL GLGLG ', 'LLLLG LLGLGLG')
 
-AddArdhasamavrtta('30-puṣpitāgrā', 'LLLLLLGLGLGG', 'LLLLGLLGLGLGG')
+AddArdhasamavrtta('30-puṣpitāgrā', 'LLLLLLG  LGLGG', 'LLLLGLLG LGLGG')
 
 /**
  * 给定颂文的一个诗行，计算其韵律(每个音节的轻重)

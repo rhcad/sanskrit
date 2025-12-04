@@ -100,7 +100,7 @@
     rows.forEach((text, i) => {
       // 保留有特定行首标记的行，韵律标识行除外
       if (!text || /^(◆|——|#)/.test(text) ||
-        (i === 0 || i === rows.length - 1) && text.indexOf('|') >= 0)  {
+        (i === 0 || i === rows.length - 1 && /^iti /i.test(text)) && text.indexOf('|') >= 0)  {
         if (!/^——\[/.test(text)) { // 不是待重新生成的韵律标识行
           result.push(text) // 原样保留
         }
@@ -147,6 +147,7 @@
         verse.push(text)
       }
       let metre = (verse.length || mergeEnd) && calcMetre(text, mergeEnd ? 3 : verse.length - 1)
+      //ticks = metre && metre.length + metre.replace(/L/g, '').length
       if (mergeEnd && metre) {
         metre = addSpaceInMetre(metre, 3)
         splitLine = 0
