@@ -5,7 +5,12 @@ from os import path
 
 
 def merge_mp3(src_path, dest_file=''):
-    files = sorted(glob(path.join(src_path, '*.mp3')))
+    """
+    Merge mp3 files in src_path into a mp3 file (dest_file).
+    :param src_path: the source direction with mp3 files
+    :param dest_file: target mp3 filename, empty to test source files
+    """
+    files = sorted(glob(path.join(str(src_path), '*.mp3')))
     result = None
     print(f'{len(files)} mp3 files in {src_path}')
     for fn in files:

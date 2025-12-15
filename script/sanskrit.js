@@ -32,6 +32,7 @@ const audioRe1 = /▷\d+[a-f]?/g, audioRe2 = /\t*▷/g
 const audioNums = []
 const puncRe = /^[♪(),?!:：]$/
 const hzPunc = /[\u4e00-\u9fa5\uFF01-\uFF5E\u3000-\u303F()]+/
+const weightRe = /^\[[LG\s\u3000]+]|\[[LG\s\u3000]+]$/
 let newWordId = 1
 let hasOrgRow = 0
 let newSection = null
@@ -103,9 +104,9 @@ function renderRow(text, rowIndex, options={}) {
   const devaRow = createElement(row, 'deva-row')
   const iastRow = createElement(row, 'iast-row')
   const audios = [], a = [0, 0];
-  const weights = (/^\[[LG ]+]|\[[LG ]+]$/.exec(text) || '')[0]
+  const weights = (weightRe.exec(text) || '')[0]
 
-  text = text.replace(/^\[[LG ]+]|\[[LG ]+]$/, '')
+  text = text.replace(weightRe, '')
   if (/^\s*(——|◆)/.test(text)) {
     text = text.replace(/^\s*◆\s*/, '')
     devaRow.classList.add('indent')
