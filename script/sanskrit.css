@@ -32,8 +32,9 @@ a { text-decoration:none; }
   font-family: "Microsoft Sans Serif", "Arial Unicode MS", sans-serif;
 }
 .iast { margin-bottom: .3em; }
-.iast-org { font-weight: 300; font-size: .9em; }
+.iast-org { font-weight: 300; font-size: .9em; margin-bottom: .9em; }
 .iast-org b { color: #000; }
+.iast-org::before { content: "[org] "; font-size: .8em; color: #999; }
 
 .iast-org, #top-bar, .tip, .tip a, .title.no-print { color: #777; }
 .word span.sp, .sec-title, .note, .note > a { color: #aaa; }

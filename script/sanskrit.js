@@ -485,7 +485,6 @@ document.getElementById('top-bar').addEventListener('click', function (event) {
       if (!sandhi && !event.target.dataset.sandhi) {
         event.target.dataset.sandhi = 'changed'
         document.body.classList.remove('show-deva')
-        document.body.classList.remove('show-audio')
       }
       _renderBody(sandhi, toggleCls)
     } else if (['show-audio', 'show-iast', 'show-deva'].indexOf(toggleCls) >= 0) {
