@@ -179,6 +179,10 @@ function renderRow(text, rowIndex, options={}) {
     }
   }
 
+  if (options.inlineHzYin) {
+    iastRow.classList.add('has-hz-yin')
+    return renderInlineHzYin(text, iastRow)
+  }
   let words = Sanscript.iastToDevanagari(text, {
     split_aksara: true, removeDevaAudio: hasBodyCls('show-audio') && hasBodyCls('show-iast') && hasBodyCls('show-deva')})
   const orgRow = orgHtml && createElement(row, 'iast-row iast-org', 'div', {html: orgHtml})
@@ -296,6 +300,37 @@ function renderRow(text, rowIndex, options={}) {
       }
     }
   }
+}
+
+function _renderHzYin(s) {
+  return '</span><span class="hz-yin no-select">' + s.slice(1, -1).replace(/-/, '<small>引</small>') + '</span></div><div class="char-box"><span>'
+}
+
+function renderInlineHzYin(text, iastRow) {
+  const num = /^\[(\d+)]/.exec(text)
+  if (num) {
+    iastRow.innerHTML = `<div class="char-box num">(${num[1]})</div>`
+    text = text.substring(num[0].length)
+  }
+  const chars = text.split(' ')
+  chars.forEach((s, i) => {
+    if (i > 0) {
+      iastRow.innerHTML += '<div class="char-box sp">&nbsp;</div>'
+    }
+    let html = '<div class="char-box"><span>' + s.replace(
+      /\([^)]+\)/g, _renderHzYin) + '</span></div>'
+    if (':|'.indexOf(s[0]) >= 0) {
+      html = html.replace('">', ' punc">')
+    }
+    iastRow.innerHTML += html.replace(/<div class="char-box"><span><\/span><\/div>/g, '')
+  })
+  Array.from(iastRow.querySelectorAll('.hz-yin')).forEach(span => {
+    if (span.firstChild.textContent.length > 1) {
+      const di = createElement(null, 'digraph', 'span', {text: span.firstChild.textContent})
+      span.firstChild.remove()
+      span.prepend(di)
+    }
+  })
 }
 
 function _createVocSpan(wordSpan, dir, idx) {

@@ -663,6 +663,7 @@ function exportSanscriptSingleton (global, schemes, devanagariVowelToMarks) {
         return i === sy.length - 1 ||
             RE_AKSARA_TYPE_NUM.test(sy[i + 1]) ||
             RE_AKSARA_TYPE_PUNC.test(sy[i + 1]) ||
+            sy[i + 1] === '▷' && i + 2 === sy.length ||
             sy[i + 1] === '▷' && i + 2 < sy.length && isConsonantAtEnd(sy, i + 1);
     };
 
