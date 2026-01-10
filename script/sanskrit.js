@@ -302,8 +302,11 @@ function renderRow(text, rowIndex, options={}) {
   }
 }
 
-function _renderHzYin(s) {
-  return '</span><span class="hz-yin no-select">' + s.slice(1, -1).replace(/-/, '<small>引</small>') + '</span></div><div class="char-box"><span>'
+const _yinSigns = {'~': '弹', '-': '引', 's': '卷'}
+const _renderHzYin = (s) => {
+  s = s.slice(1, -1).replace(/石s/g, '石').replace(/[s~-]/g, c => '<small>' + c.split(
+    '').map(c => _yinSigns[c]).join('') + '</small>')
+  return '</span><span class="hz-yin no-select">' + s + '</span></div><div class="char-box"><span>'
 }
 
 function renderInlineHzYin(text, iastRow) {
@@ -326,7 +329,8 @@ function renderInlineHzYin(text, iastRow) {
   })
   Array.from(iastRow.querySelectorAll('.hz-yin')).forEach(span => {
     if (span.firstChild.textContent.length > 1) {
-      const di = createElement(null, 'digraph', 'span', {text: span.firstChild.textContent})
+      const html = span.firstChild.textContent.replace(/石/, '石<small>卷</small>')
+      const di = createElement(null, 'digraph', 'span', {html: html})
       span.firstChild.remove()
       span.prepend(di)
     }

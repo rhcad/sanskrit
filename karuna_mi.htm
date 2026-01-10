@@ -18,51 +18,51 @@
   <span class="home" onclick="location.href='./'" title="Home"><img src="img/favicon.png" alt="Home"></span>
   <span onclick="biggerFont()">+</span>
   <span onclick="smallerFont()">-</span>
-  <span data-toggle="show-odd">音节</span>
 </div>
+<div class="tip no-print">注：下标小字含义：“弹”表示左边字发弹舌音，“引”表示左边字念长音，“卷”表示左边字念卷舌音，下划线表示组合音。</div>
 <div id="body"></div>
 <script src="script/sanscript.es6.js?v=1324"></script>
 <script src="script/sanskrit.js?v=1325"></script>
 <script>
   const iastContent = `
 #1 归敬
-[01]na(南)mo(无-) ra(啰)tna(怛那)-tra(怛啰)yā(呀-)ya(呀)
-[02]na(南)ma(无) ā(阿-)ryā(唎呀-)- va(哇)lo(咯-)ki(羯)te(得-)śva(悉哇)rā(啰-)ya(呀)
-[04]bo(钵)dhi(提)sa(萨)ttvā(帝哇-)ya(呀) ma(摩)hā(哈-)sa(萨)ttvā(帝哇-)ya(呀) ma(摩)hā(哈-)-kā(咖-)ru(卢)ṇi(尼)kā(咖-)ya(呀) |
-[07]oṃ(唵) sa(萨)rva(乐哇)-ra(啰)vi(威)ye(曳-) su(数)dha(他)na(那)-dā(怛-)sya(思呀) |
-[10]na(南)ma(无)skṛ(思咯栗)tvā(帝哇-) i(伊)maṃ(曼) ā(阿-)ryā(唎呀-)va(哇)lo(咯-)ki(羯)te(得-)śva(悉哇)ra(啰) raṃ(楞)dha(他)va(哇)
-[12]na(南)mo(无-) na(那)ra(啰)kin(谨)di(地) hrīḥ(醯唎) ma(摩)hā(哈-)-vāt(哇-d)-svā(梭哇-)me(咩-)
-[14]sa(萨)rva(乐哇)-a(阿)rtha(乐他)do(豆-) śu(输)bhaṃ(朋) ā(阿-)je(浙-)yaṃ(央) |
-[16]sa(萨)rva(乐哇)-sa(萨)ttva(帝哇) na(南)mo(无-) va(哇)śā(夏-)ta(怛) na(南)mo(无-) vā(哇-)ga(嘠) ma(马)vi(威)ta(怛)to(豆-)
+[01]na(南)mo(无) ra(啰~)tna(怛那)-tra(怛啰~)yā(呀-)ya(哑)
+[02]na(南)ma(无) ā(阿-)ryā(唎呀-)- va(哇)lo(咯)ki(羯)te(嘚)śva(悉哇)rā(啰-~)ya(哑)
+[04]bo(钵)dhi(提)sa(萨)ttvā(帝哇-)ya(哑) ma(摩)hā(哈-)sa(萨)ttvā(帝哇-)ya(哑) ma(摩)hā(哈-)-kā(咖-)ru(卢~)ṇi(尼s)kā(咖-)ya(哑) |
+[07]oṃ(唵) sa(萨)rva(勒哇)-ra(啰~)vi(威)ye(曳) su(数)dha(他)na(那)-dā(怛-)sya(思呀) |
+[10]na(南)ma(无)skṛ(思咯栗~)tvā(帝哇-) i(伊)maṃ(曼) ā(阿-)ryā(唎呀-)va(哇)lo(咯)ki(羯)te(嘚)śva(悉哇)ra(啰~) raṃ(楞~)dha(他)va(哇)
+[12]na(南)mo(无) na(那)ra(啰~)kin(谨)di(地) hrīḥ(醯唎-~) ma(摩)hā(哈-)-vāt(哇-d)-svā(斯哇-)me(咩)
+[14]sa(萨)rva(勒哇)-ar(阿勒)tha(他)do(豆) śu(输)bhaṃ(朋) ā(阿-)je(浙)yaṃ(央) |
+[16]sa(萨)rva(勒哇)-sa(萨)ttva(帝哇) na(南)mo(无) va(哇)śā(夏-)ta(怛) na(南)mo(无) vā(哇-)ga(嘎) ma(马)vi(威)ta(怛)to(豆)
 #2 中心
-[18]ta(怛)dya(帝呀)thā(他-): oṃ(唵) a(阿)va(哇)lo(咯-)ki(羯) lo(咯-)kā(咖-)te(得-) krān(葛啷-)te(得-) |
-[22]e(呃-)-hrīḥ(醯唎) ma(摩)hā(哈-) bo(钵)dhi(提)sa(萨)ttva(帝哇) |
-[24]sa(萨)rva(乐哇) sa(萨)rva(乐哇) mā(嘛-)lā(喇-) mā(嘛-)lā(喇-) ma(摩)hi(醯)ma(摩)-hṛ(醯唎)da(嗒)yaṃ(央) |
-[27]ku(咕)ru(噜) ku(咕)ru(噜) ka(咖)rmaṃ(乐曼) |
-[28]dhu(吐)ru(噜) dhu(吐)ru(噜) vi(威)ja(迦)ya(呀)te(得-) ma(摩)hā(哈-) vi(威)ja(迦)ya(呀)te(得-) |
-[30]dha(他)ra(啰) dha(他)ra(啰) dhi(提)ri(唎)ṇi(尼)-śva(悉哇)ra(啰) |
-[33]ca(咂)la(喇) ca(咂)la(喇) ma(嘛)ma(嘛) vi(威)ma(嘛)la(喇) mu(穆)kte(葛得-)re(惹-) |
-[36]e(呃-)hi(醯) e(呃-)hi(醯) sī(咝-)na(那) sī(咝-)na(那) a(阿)rṣaṃ(喇商) pra(部啰)ca(咂)li(利) |
-[39]vi(威)ṣva(石哇)-vi(威)ṣvaṃ(石旺) pra(部啰)śa(夏)ya(呀) |
-[41]hu(虎)ru(噜) hu(虎)ru(噜) mā(嘛-)lā(喇-) hu(虎)ru(噜) hu(虎)ru(噜) hrīḥ(醯唎) |
-[43]sa(萨)ra(啰)-sa(萨)ra(啰) si(思)ri(唎)-si(思)ri(唎) su(苏)ru(噜)-su(苏)ru(噜) |
-[46]bo(钵)dhi(提)ya(呀) bo(钵)dhi(提)ya(呀) bo(钵)dha(他)ya(呀) bo(钵)dha(他)ya(呀)
+[18]ta(怛)dya(帝呀)thā(他-): oṃ(唵) a(阿)va(哇)lo(咯)ki(羯) lo(咯)kā(咖-)te(嘚) krān(葛啷-~)te(嘚) |
+[22]e(呃)-hrīḥ(醯唎-~) ma(摩)hā(哈-) bo(钵)dhi(提)sa(萨)ttva(帝哇) |
+[24]sa(萨)rva(勒哇) sa(萨)rva(勒哇) mā(嘛-)lā(喇-) mā(嘛-)lā(喇-) ma(摩)hi(醯)ma(摩)-hṛ(醯唎~)da(嗒)yaṃ(央) |
+[27]ku(咕)ru(噜~) ku(咕)ru(噜~) kar(咖勒)maṃ(曼) |
+[28]dhu(吐)ru(噜~) dhu(吐)ru(噜~) vi(威)ja(迦)ya(哑)te(嘚) ma(摩)hā(哈-) vi(威)ja(迦)ya(哑)te(嘚) |
+[30]dha(他)ra(啰~) dha(他)ra(啰~) dhi(提)ri(唎~)ṇi(尼s)-śva(悉哇)ra(啰~) |
+[33]ca(咂)la(喇) ca(咂)la(喇) ma(嘛)ma(嘛) vi(威)ma(嘛)la(喇) mu(穆)kte(葛得)re(惹~) |
+[36]e(呃)hi(醯) e(呃)hi(醯) sī(咝-)na(那) sī(咝-)na(那) ar(阿喇)ṣaṃ(商s) pra(波喇~)ca(咂)li(利) |
+[39]vi(威)ṣva(石s哇)-vi(威)ṣvaṃ(石s旺) pra(波喇~)śa(夏)ya(哑) |
+[41]hu(虎)ru(噜~) hu(虎)ru(噜~) mā(嘛-)lā(喇-) hu(虎)ru(噜~) hu(虎)ru(噜~) hrīḥ(醯唎-~) |
+[43]sa(萨)ra(啰~)-sa(萨)ra(啰~) si(思)ri(唎~)-si(思)ri(唎~) su(苏)ru(噜~)-su(苏)ru(噜~) |
+[46]bo(钵)dhi(提)ya(哑) bo(钵)dhi(提)ya(哑) bo(钵)dha(他)ya(哑) bo(钵)dha(他)ya(哑)
 #3 祈愿
-[48]mai(弥-)tre(帝唎-)ya(呀) na(那)ra(啰)kin(谨)di(地) |
-[50]dar(地利)śi(瑟)ṇi(尼)na(那) bha(帕)ya(呀)mā(麻)na(那) svā(梭哇-)hā(哈-) |
-[53]si(思)ddhā(他-)ya(呀) svā(梭哇-)hā(哈-) ma(摩)hā(哈-) si(思)ddhā(他-)ya(呀) svā(梭哇-)hā(哈-) |
-[54]si(思)ddhā(他-)-yo(优-)ge(给-)-śva(悉哇)rā(啰-)ya(呀) svā(梭哇-)hā(哈-) |
-[60]na(那)ra(啰)kin(谨)di(地) svā(梭哇-)hā(哈-) ma(摩)ra(啰)nā(那-)rā(啰-) svā(梭哇-)hā(哈-) |
-[64]śi(悉)ra(啰)-siṃ(僧)ha(哈)-mu(穆)khā(咖-)ya(呀) svā(梭哇-)hā(哈-) |
-[66]sa(萨)rva(乐哇) ma(摩)hā(哈-)-si(思)ddhā(他-)ya(呀) svā(梭哇-)hā(哈-) |
-[68]ca(者)kra(葛啰) ā(阿-)si(思)ddhā(他-)ya(呀) svā(梭哇-)hā(哈-) |
-[70]pa(跋)dma(的摩)-ka(噶)stā(思嗒-)ya(呀) svā(梭哇-)hā(哈-) |
-[72]na(那)ra(啰)kin(谨)di(地) vā(哇-)ga(嘠)rā(啰-)ya(呀) svā(梭哇-)hā(哈-) |
-[74]ma(摩)va(哇)ri(唎)-saṅ(胜)khā(羯-)ra(啰)ya(呀) svā(梭哇-)hā(哈-)
+[48]mai(弥-)tre(帝唎~)ya(哑) na(那)ra(啰~)kin(谨)di(地) |
+[50]dar(嗒利)śi(瑟)ṇi(尼s)na(那) bha(帕)ya(哑)mā(麻-)na(那) svā(斯哇-)hā(哈-) |
+[53]si(思)ddhā(他-)ya(哑) svā(斯哇-)hā(哈-) ma(摩)hā(哈-) si(思)ddhā(他-)ya(哑) svā(斯哇-)hā(哈-) |
+[54]si(思)ddhā(他-)-yo(油)ge(给)-śva(悉哇)rā(啰-~)ya(哑) svā(斯哇-)hā(哈-) |
+[60]na(那)ra(啰~)kin(谨)di(地) svā(斯哇-)hā(哈-) ma(摩)ra(啰~)nā(那-)rā(啰-~) svā(斯哇-)hā(哈-) |
+[64]śi(悉)ra(啰~)-siṃ(僧)ha(哈)-mu(穆)khā(咖-)ya(哑) svā(斯哇-)hā(哈-) |
+[66]sa(萨)rva(勒哇) ma(摩)hā(哈-)-si(思)ddhā(他-)ya(哑) svā(斯哇-)hā(哈-) |
+[68]ca(者)kra(葛啰~) ā(阿-)si(思)ddhā(他-)ya(哑) svā(斯哇-)hā(哈-) |
+[70]pa(跋)dma(的摩)-ka(噶)stā(思嗒-)ya(哑) svā(斯哇-)hā(哈-) |
+[72]na(那)ra(啰~)kin(谨)di(地) vā(哇-)ga(嘎)rā(啰-~)ya(哑) svā(斯哇-)hā(哈-) |
+[74]ma(摩)va(哇)ri(唎~)-saṅ(胜)khā(羯-)ra(啰~)ya(哑) svā(斯哇-)hā(哈-)
 #4 结尾
-[76]na(南)mo(无-) ra(啰)tna(怛那)-tra(怛啰)yā(呀-)ya(呀) |
-[77]na(南)ma(无) ā(阿-)ryā(唎呀-)- va(哇)lo(咯-)ki(羯)te(得-)śva(悉哇)rā(啰-)ya(呀) svā(梭哇-)hā(哈-) |
-[81]oṃ(唵) si(思)ddhyan(殿)tu(都) man(漫)tra(怛啰)-pa(跋)dā(怛-)ya(呀) svā(梭哇-)hā(哈-)
+[76]na(南)mo(无) ra(啰~)tna(怛那)-tra(怛啰~)yā(呀-)ya(哑) |
+[77]na(南)ma(无) ā(阿-)ryā(唎呀-)- va(哇)lo(咯)ki(羯)te(嘚)śva(悉哇)rā(啰-~)ya(哑) svā(斯哇-)hā(哈-) |
+[81]oṃ(唵) si(思)ddhyan(殿)tu(都) man(漫)tra(怛啰~)-pa(跋)dā(怛-)ya(哑) svā(斯哇-)hā(哈-)
 `
 
   window.renderBody = function () {
