@@ -112,7 +112,7 @@ body:not(.show-audio) .audio-button { display: none; }
   #body { width: fit-content; margin: 0 auto;}
 }
 
-.has-hz-yin { display: flex; }
+.has-hz-yin { display: flex; flex-wrap: wrap; }
 .char-box { text-align: center; font-size: 1.35em; }
 .char-box.sp { min-width: .6em; }
 .char-box.punc { font-size: .9em; color: gray; padding-top: .2em; }

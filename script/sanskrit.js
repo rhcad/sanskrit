@@ -181,6 +181,7 @@ function renderRow(text, rowIndex, options={}) {
 
   if (options.inlineHzYin) {
     iastRow.classList.add('has-hz-yin')
+    devaRow.remove()
     return renderInlineHzYin(text, iastRow)
   }
   let words = Sanscript.iastToDevanagari(text, {
