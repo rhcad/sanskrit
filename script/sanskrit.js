@@ -302,15 +302,15 @@ function renderRow(text, rowIndex, options={}) {
   }
 }
 
-const _yinSigns = {'~': '弹', '+': '引', 's': '卷'}
+const _yinSigns = {'~': '弹', '+': '引', 'r': '卷', 'b': '半'}
 const _renderHzYin = (s) => {
-  s = s.slice(1, -1).replace(/石s/g, '石')
-    .replace(/[~+s]/g, c => '<small>' + c.split('').map(c => _yinSigns[c]).join('') + '</small>')
+  s = s.slice(1, -1).replace(/石r/g, '石')
+    .replace(/[~+r]/g, c => '<sub>' + c.split('').map(c => _yinSigns[c]).join('') + '</sub>')
   return '</span><span class="hz-yin no-select">' + s + '</span></div><div class="char-box"><span>'
 }
 
 function renderInlineHzYin(text, iastRow) {
-  const num = /^\[(\d+)]/.exec(text)
+  const num = /^\[(\d+)]\s?/.exec(text)
   if (num) {
     iastRow.innerHTML = `<div class="char-box num">(${num[1]})</div>`
     text = text.substring(num[0].length)
@@ -324,8 +324,7 @@ function renderInlineHzYin(text, iastRow) {
         '<div class="char-box sp">&nbsp;</div>'
     }
     pos += s.length
-    let html = '<div class="char-box"><span>' + s.replace(
-      /\([^)]+\)/g, _renderHzYin) + '</span></div>'
+    let html = '<div class="char-box"><span>' + s.replace(/\([^)]+\)/g, _renderHzYin) + '</span></div>'
     if (':|'.indexOf(s[0]) >= 0) {
       html = html.replace('">', ' punc">')
     }
