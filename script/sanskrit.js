@@ -179,6 +179,10 @@ function renderRow(text, rowIndex, options={}) {
     }
   }
 
+  if (options.inlineHzYin) {
+    iastRow.classList.add('has-hz-yin')
+    return renderInlineHzYin(text, iastRow)
+  }
   let words = Sanscript.iastToDevanagari(text, {
     split_aksara: true, removeDevaAudio: hasBodyCls('show-audio') && hasBodyCls('show-iast') && hasBodyCls('show-deva')})
   const orgRow = orgHtml && createElement(row, 'iast-row iast-org', 'div', {html: orgHtml})
@@ -296,6 +300,45 @@ function renderRow(text, rowIndex, options={}) {
       }
     }
   }
+}
+
+const _yinSigns = {'~': '弹', '+': '引', 'r': '卷', 'b': '半'}
+const _renderHzYin = (s) => {
+  s = s.slice(1, -1).replace(/石r/g, '石')
+    .replace(/[~+r]/g, c => '<sub>' + c.split('').map(c => _yinSigns[c]).join('') + '</sub>')
+  return '</span><span class="hz-yin no-select">' + s + '</span></div><div class="char-box"><span>'
+}
+
+function renderInlineHzYin(text, iastRow) {
+  const num = /^\[(\d+)]\s?/.exec(text)
+  if (num) {
+    iastRow.innerHTML = `<div class="char-box num">(${num[1]})</div>`
+    text = text.substring(num[0].length)
+  }
+  const chars = text.split(/[ -]/)
+  let pos = 0
+  chars.forEach((s, i) => {
+    if (i > 0) {
+      const sp = text[pos++]
+      iastRow.innerHTML += sp === '-' ? '<div class="char-box"><span>-</span></div>' :
+        '<div class="char-box sp">&nbsp;</div>'
+    }
+    pos += s.length
+    let html = '<div class="char-box"><span>' + s.replace(/\([^)]+\)/g, _renderHzYin) + '</span></div>'
+    if (':|'.indexOf(s[0]) >= 0) {
+      html = html.replace('">', ' punc">')
+    }
+    iastRow.innerHTML += html.replace(/<div class="char-box"><span><\/span><\/div>/g, '')
+  })
+  Array.from(iastRow.querySelectorAll('.hz-yin')).forEach(span => {
+    if (span.firstChild.textContent.length > 1) {
+      const html = span.firstChild.textContent.replace('b', '')
+        .replace(/石/, '石<small>卷</small>')
+      const di = createElement(null, 'digraph', 'span', {html: html})
+      span.firstChild.remove()
+      span.prepend(di)
+    }
+  })
 }
 
 function _createVocSpan(wordSpan, dir, idx) {
@@ -485,7 +528,6 @@ document.getElementById('top-bar').addEventListener('click', function (event) {
       if (!sandhi && !event.target.dataset.sandhi) {
         event.target.dataset.sandhi = 'changed'
         document.body.classList.remove('show-deva')
-        document.body.classList.remove('show-audio')
       }
       _renderBody(sandhi, toggleCls)
     } else if (['show-audio', 'show-iast', 'show-deva'].indexOf(toggleCls) >= 0) {

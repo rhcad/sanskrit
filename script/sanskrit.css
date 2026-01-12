@@ -32,8 +32,9 @@ a { text-decoration:none; }
   font-family: "Microsoft Sans Serif", "Arial Unicode MS", sans-serif;
 }
 .iast { margin-bottom: .3em; }
-.iast-org { font-weight: 300; font-size: .9em; }
+.iast-org { font-weight: 300; font-size: .9em; margin-bottom: .9em; }
 .iast-org b { color: #000; }
+.iast-org::before { content: "[org] "; font-size: .8em; color: #aaa; }
 
 .iast-org, #top-bar, .tip, .tip a, .title.no-print { color: #777; }
 .word span.sp, .sec-title, .note, .note > a { color: #aaa; }
@@ -110,3 +111,17 @@ body:not(.show-audio) .audio-button { display: none; }
   .audio-button::after { width: 0; opacity: 0; }
   #body { width: fit-content; margin: 0 auto;}
 }
+
+.has-hz-yin { display: flex; }
+.char-box { text-align: center; font-size: 1.35em; }
+.char-box.sp { min-width: .6em; }
+.char-box.punc { font-size: .9em; color: gray; padding-top: .2em; }
+.hz-yin { display: block; user-select: none; font-size: .6em; white-space: nowrap;
+    font-family: "宋体", SimSun, serif; color: #333; }
+.hz-yin .digraph { margin-left: .1em; margin-right: .1em; text-decoration: underline;
+    text-underline-position: under; text-decoration-color: #999; }
+.hz-yin small, .hz-yin sub { font-size: .55em; margin-left: -.1em; color: #000; }
+.digraph + small, .digraph + sub { margin-left: -.2em; }
+.hz-yin sub { margin-bottom: -.5em; display: inline-block; }
+.char-box.num { font-size: .7em; padding-top: .7em; color: #ddd; margin-right: .3em; }
+@media print { .hz-yin { color: #000; }}

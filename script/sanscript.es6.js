@@ -663,6 +663,7 @@ function exportSanscriptSingleton (global, schemes, devanagariVowelToMarks) {
         return i === sy.length - 1 ||
             RE_AKSARA_TYPE_NUM.test(sy[i + 1]) ||
             RE_AKSARA_TYPE_PUNC.test(sy[i + 1]) ||
+            sy[i + 1] === '▷' && i + 2 === sy.length ||
             sy[i + 1] === '▷' && i + 2 < sy.length && isConsonantAtEnd(sy, i + 1);
     };
 
@@ -919,15 +920,15 @@ function exportSanscriptSingleton (global, schemes, devanagariVowelToMarks) {
                 }
             }
             // If left syllable ends with vowel
-            else if (options.move_consonant && RE_END_VOWEL.test(left) && rtBeginCon) {
+            else if (options.move_consonant && RE_END_VOWEL.test(left) && rtBeginCon && rtConIdx === 0) {
                 // If right syllable begins with consonant cluster
-                const rType = Sanscript.getAksaraType(right.substring(rtConIdx));
+                const rType = Sanscript.getAksaraType(right);
                 const rtI0 = syllables[i0 + 1] === '▷' ? i0 + 2 : i0 + 1;
                 if (rType === '2' || rType === '6') {
-                    const leadCon = RE_CONSONANT2.exec(right.substring(rtConIdx))[0];
+                    const leadCon = RE_CONSONANT2.exec(right)[0];
                     if (syllables[rtI0].indexOf(leadCon) === rtConIdx
-                        && leadCon.length === 1 && /[ṅñṇnmrṣsh]/.test(leadCon)
-                        && !/[ñnm][y]|[ṣs][v]/.test(right.substring(rtConIdx))) {
+                        && leadCon.length === 1 && /[ṅñṇnmrṣs]/.test(leadCon)
+                        && !/[ñnm][y]|[ṣs][v]/.test(right)) {
                         syllables[rtI0] = syllables[rtI0].replace(leadCon, '');
                         syllables[leftI0] += leadCon;
                         if (!syllables[rtI0]) {
