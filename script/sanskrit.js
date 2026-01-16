@@ -319,6 +319,7 @@ function renderInlineHzYin(text, iastRow) {
   const num = /^\[(\d+)]\s?/.exec(text)
   if (num) {
     iastRow.innerHTML = `<div class="char-box num">(${num[1]})</div>`
+    iastRow.setAttribute('id', 'iast-' + num[1])
     text = text.substring(num[0].length)
   }
   const chars = text.split(/[ -]/)
