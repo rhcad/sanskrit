@@ -10,23 +10,33 @@
   <meta name="keywords" content="sanskrit,maha karuna dharani,大悲咒梵文">
   <meta property="og:image" content="img/favicon.png">
   <link rel="icon" type="image/png" href="img/favicon.png">
-  <link rel="stylesheet" href="script/sanskrit.css?v=1330">
+  <link rel="stylesheet" href="script/sanskrit.css?v=1332">
   <style>
     .title { text-align: center; margin-bottom: .3em; }
     @media screen { .tip.print { opacity: 0; width: 5em; height: 2em; }}
+    #vows { margin-left: 7%; margin-top: 1em; font-size: .9em; font-family: 宋体, SimSun, serif; }
+    #core { margin-left: 20em; margin-bottom: -2.2em; }
+    #core>.iast-row::before { content: "心咒："; color: gray; margin-top: .4em;
+        font-family: 宋体, SimSun, serif; font-size: .8em; }
+    @media only screen and (max-width: 767px) { #core { margin-left: 2em; margin-bottom: 1em; }}
   </style>
 </head>
-<body class="show-iast">
+<body class="show-iast show-iast1 show-hz-yin show-ancient">
 <div id="top-bar">
   <span class="home" onclick="location.href='./'" title="Home"><img src="img/favicon.png" alt="Home"></span>
   <span onclick="biggerFont()">+</span>
   <span onclick="smallerFont()">-</span>
+  <span data-toggle="show-iast1">梵文</span>
+  <span data-toggle="show-hz-yin">普通话字音</span>
+  <span data-toggle="show-ancient">唐音字</span>
 </div>
 <div class="title no-print">大悲咒84句梵文校音版</div>
-<div class="tip no-print">注：下标小字“弹”表示左边字发弹舌音，“引”表示左边字念长音，“卷”表示左边字念卷舌音，双字或三字的下划线表示组合音，单字下划线表示念半音或声母音。</div>
+<div class="tip no-print">注：下标小字“弹”表示左边字发弹舌音，“引”表示左边字念长音，“卷”表示左边字念卷舌音，双字或三字的下划线表示组合音，单字下划线表示念半音或声母音。<br>
+  每句的第二行是普通话发音字，第三行是流通版唐音字（与闽南话接近，可用“泉腔鲤音”小程序查音）。</div>
 <div id="body"></div>
-<div class="tip print" style="margin-top: 2em; font-weight: 300;">注：下标“弹”表示左边字发弹舌音，“引”表示左边字念长音，“卷”表示左边字念卷舌音，双字或三字的下划线表示组合音，单字下划线表示念半音或声母音。</div>
-<div style="margin-left: 7%; margin-top: 1em; font-size: .9em; font-family: 宋体, SimSun, serif;">
+<div class="tip print" style="margin-top: 2em; font-weight: 300;">注：下标“弹”表示左边字发弹舌音，“引”表示左边字念长音，“卷”表示左边字念卷舌音，双字或三字的下划线表示组合音，单字下划线表示念半音或声母音。
+  每句的第二行是普通话发音字，第三行是流通版唐音字（与闽南话接近，可用“泉腔鲤音”小程序查音）。</div>
+<div id="vows">
 　　南无大悲观世音 愿我速知一切法<br>
 　　南无大悲观世音 愿我早得智慧眼<br>
 　　南无大悲观世音 愿我速度一切众<br>
@@ -42,51 +52,55 @@
 　　我若向修罗 恶心自调伏　我若向畜生 自得大智慧
 </div>
 <script src="script/sanscript.es6.js?v=1324"></script>
-<script src="script/sanskrit.js?v=1330"></script>
+<script src="script/sanskrit.js?v=1332"></script>
 <script>
   const iastContent = `
 #1 归敬文
-[01]na(南)mo(无) ra(啰~)tna(怛那)-tra(哆啰~)yā(哑+)ya(耶)
-[02]na(南)ma(无) ā(阿+)ryā(唎哑+)-va(斡)lo(罗)ki(羯)te(得)śva(悉斡)rā(啰+~)ya(耶)
-[04]bo(钵)dhi(提)sa(萨)ttvā(埵哇+)ya(耶) ma(麻)hā(哈+)sa(萨)ttvā(埵哇+)ya(耶) ma(麻)hā(哈+)-kā(嘎+)ru(卢~)ṇi(尼r)kā(嘎+)ya(耶) |
-[07]oṃ(唵) sa(萨)rva(勒斡)-ra(啰~)vi(威)ye(曳) su(数)dha(塔)na(那)-da(达)sya(思呀) |
-[10]na(南)ma(无) skṛ(sg栗~)tvā(埵哇+) i(伊)maṃ(曼) ā(阿+)ryā(唎哑+)-va(斡)lo(罗)ki(羯)te(得)śva(悉斡)ra(啰~) raṃ(楞~)dha(塔)va(斡)
-[12]na(南)mo(无) na(那)ra(啰~)kin(谨)di(地) hrīḥ(醯唎+~) ma(麻)hā(哈+)-vā(哇+)t(的b)-svā(斯哇+)me(咩)
-[14]sa(萨)rva(斡) a(阿)rtha(他)do(豆) śu(输)bhaṃ(胖) ā(阿+)je(浙)yaṃ(央) |
-[16]sa(萨)rva(勒斡)-sa(萨)ttva(埵斡)  na(南)mo(无) va(斡)śā(夏+)ta(答)  na(南)mo(无) vā(哇+)ga(嘎) ma(麻)vi(威)ta(答)to(豆)
+[01]na(那|南)mo(莫|無)_(_|喝b) ra(啰~|囉)tna(怛那|怛那)-tra(哆啰~|哆囉)yā(哑+|夜)ya(呀|耶)
+[02]na(那|南)ma(莫|無) ā(阿+|阿)ryā(唎哑+|唎耶)-va(斡|婆)lo(罗|盧)ki(羯|羯)te(得|帝)śva(悉斡|爍鉢)rā(啰+~|囉)ya(呀|耶)
+[04]bo(钵|菩)dhi(提|提)sa(萨|薩)ttvā(埵哇+|跢婆)ya(呀|耶) ma(麻|摩)hā(哈+|訶)sa(萨|薩)ttvā(埵哇+|跢婆)ya(呀|耶) ma(麻|摩)hā(哈+|訶)-kā(嘎+|迦)ru(卢~|盧)ṇi(尼r|尼)kā(嘎+|迦)ya(呀|耶) |
+[07]oṃ(唵|唵) sa(萨|薩)rva(勒斡|皤)-ra(啰~|囉)vi(威|罰)ye(曳|曳) su(苏|數)dha(塔|怛)na(那|那)-dā(达+|怛)sya(思呀|寫) |
+[10]na(那|南)ma(莫|無) skṛ(思葛栗~|悉吉利)tvā(埵哇+|埵) i(伊|伊)maṃ(曼|蒙) ā(阿+|阿)ryā(唎哑+|唎耶)-va(斡|婆)lo(罗|盧)ki(羯|吉)te(得|帝)śva(悉斡|室佛)ra(啰~|囉) raṃ(楞~|楞)dha(塔|馱)va(斡|婆)
+[12]na(那|南)mo(莫|無) na(那|那)ra(啰~|囉)kin(谨|謹)di(地|墀) hrīḥ(醯唎+~|醯唎) ma(麻|摩)hā(哈+|訶)-va(斡|皤)dha(塔|哆)-svā(斯哇+|沙)me(咩|咩)
+[14]sa(萨|薩)rva(斡|婆)-a(阿|阿)rtha(他|他)do(豆|豆) śu(须|輸)bhaṃ(胖|朋) ā(阿+|阿)je(浙|逝)yaṃ(央|孕) |
+[16]sa(萨|薩)rva(勒斡|婆)-sa(萨|薩)ttva(埵斡|薩哆)  na(那|那)mo(莫|摩) va(斡|婆)śā(夏+|薩)ta(答|哆)  na(那|那)mo(莫|摩) vā(哇+|婆)ga(嘎|伽) ma(麻|摩)vi(威|罰)ta(答|特)to(豆|豆)
 #2 中心内容
-[18]ta(答)dya(帝呀)thā(他+): oṃ(唵)  a(阿)va(斡)lo(罗)ki(羯) lo(罗)kā(嘎+)te(得) krān(葛啷+~)te(得) |
-[22]e(呃)-hrīḥ(醯唎+~) ma(麻)hā(哈+)-bo(钵)dhi(提)sa(萨)ttva(埵斡) |
-[24]sa(萨)rva(勒斡)-sa(萨)rva(勒斡)  mā(嘛+)lā(喇+)-mā(嘛+)lā(喇+)  ma(麻)hi(醯)ma(麻)-hṛ(醯唎~)da(达)yaṃ(央) |
-[27]ku(咕)ru(噜~)-ku(咕)ru(噜~) ka(咖)r(勒b)maṃ(曼) |
-[28]dhu(吐)ru(噜~)-dhu(吐)ru(噜~) vi(威)ja(迦)ya(呀)te(得)  ma(麻)hā(哈+)-vi(威)ja(迦)ya(呀)te(得) |
-[30]dha(塔)ra(啰~)-dha(塔)ra(啰~) dhi(提)ri(唎~)ṇi(尼r)-śva(悉斡)ra(啰~)ya(耶) |
-[33]ca(咂)la(喇)-ca(咂)la(喇) ma(嘛)ma(嘛) vi(威)ma(嘛)la(喇) mu(穆)kte(葛得)re(惹~) |
-[36]e(呃)hy(醯)-e(呃)hi(醯)  sī(室+)na(那)-sī(室+)na(那)  a(阿)r(喇b)ṣaṃ(商r) pra(波喇~)ca(咂)li(利) |
-[39]vi(威)ṣva(石r斡)-vi(威)ṣvaṃ(石r旺) pra(波喇~)śa(夏)ya(耶) |
-[41]hu(虎)ru(噜~)-hu(虎)ru(噜~) mā(嘛+)lā(喇+)  hu(虎)ru(噜~)-hu(虎)ru(噜~) hrīḥ(醯唎+~) |
-[43]sa(萨)ra(啰~)-sa(萨)ra(啰~)  si(思)ri(唎~)-si(思)ri(唎~)  su(苏)ru(噜~)-su(苏)ru(噜~) |
-[46]bo(钵)dhi(提)ya(耶) bo(钵)dhi(提)ya(耶)  bo(钵)dha(塔)ya(耶) bo(钵)dha(塔)ya(耶)
+[18]ta(答|怛)dya(帝呀|姪)thā(他+|他): oṃ(唵|唵)  a(阿|阿)va(斡|婆)lo(罗|盧)ki(羯|醯) lo(罗|盧)kā(嘎+|迦)te(得|帝) krān(葛啷+~|迦羅)te(得|帝) |
+[22]e(呃|夷)-hrīḥ(醯唎+~|醯唎) ma(麻|摩)hā(哈+|訶)-bo(钵|菩)dhi(提|提)sa(萨|薩)ttva(埵斡|埵) |
+[24]sa(萨|薩)rva(勒斡|婆)-sa(萨|薩)rva(勒斡|婆)  mā(嘛+|摩)lā(喇+|羅)-mā(嘛+|摩)lā(喇+|羅)  ma(麻|摩)hi(醯|醯)ma(麻|摩)-hṛ(醯唎~|醯)da(达|馱)yaṃ(央|孕) |
+[27]ku(咕|俱)ru(噜~|盧)-ku(咕|俱)ru(噜~|盧) ka(咖|羯)r(勒b|_)maṃ(曼|懞) |
+[28]dhu(吐|度)ru(噜~|盧)-dhu(吐|度)ru(噜~|盧) vi(威|罰)ja(迦|闍)ya(呀|耶)te(得|帝)  ma(麻|摩)hā(哈+)-vi(威|罰)ja(迦|闍)ya(呀|耶)te(得|帝) |
+[30]dha(塔|陀)ra(啰~|羅)-dha(塔|陀)ra(啰~|羅) dhi(提|地)ri(唎~|利)ṇi(尼r|尼)-śva(悉斡|室佛)ra(啰~|羅)ya(呀|耶) |
+[33]ca(遮|遮)la(喇|羅)-ca(遮|遮)la(喇|羅) ma(嘛|摩)ma(嘛|摩) vi(威|罰)ma(嘛|摩)la(喇|羅) mu(穆|穆)kte(得|帝)re(惹~) |
+[36]e(呃|伊)hy(醯|醯)-e(呃|移)hi(醯|醯)  sī(室+|室)na(那|那)-sī(室+|室)na(那|那)  a(阿|阿)r(喇b|囉)ṣaṃ(商r|嘇) pra(波喇~|佛囉)ca(遮|舍)li(利|利) |
+[39]vi(威|罰)ṣva(石r斡|沙)-vi(威|罰)ṣvaṃ(石r旺|嘇) pra(波喇~|佛羅)śa(夏|舍)ya(呀|耶) |
+[41]hu(虎|呼)ru(噜~|嚧)-hu(虎|呼)ru(噜~|嚧) mā(嘛+|摩)lā(喇+|囉)  hu(虎|呼)ru(噜~|嚧)-hu(虎|呼)ru(噜~|嚧) hrīḥ(醯唎+~|醯利) |
+[43]sa(萨|娑)ra(啰~|囉)-sa(萨|娑)ra(啰~|囉)  si(思|悉)ri(唎~|利)-si(思|悉)ri(唎~|利)  su(苏|蘇)ru(噜~|嚧)-su(苏|蘇)ru(噜~|嚧) |
+[46]bo(钵|菩)dhi(提|提)ya(呀|夜) bo(钵|菩)dhi(提|提)ya(呀|夜)  bo(钵|菩)dha(塔|馱)ya(呀|夜) bo(钵|菩)dha(塔|馱)ya(呀|夜)
 #3 祈愿
-[48]mai(弥+)tre(帝惹~)ya(耶) na(那)ra(啰~)kin(谨)di(地) |
-[50]da(达)rśi(利瑟)ṇi(尼r)na(那) bha(帕)ya(呀)mā(麻+)na(那) svā(斯哇+)hā(哈+) |
-[53]si(思)ddhā(塔+)ya(耶) svā(斯哇+)hā(哈+)  ma(麻)hā(哈+) si(思)ddhā(塔+)ya(耶) svā(斯哇+)hā(哈+) |
-[57]si(思)ddhā(塔+)-yo(哟)ge(给)-śva(悉斡)rā(啰+~)ya(耶) svā(斯哇+)hā(哈+) |
-[60]na(那)ra(啰~)kin(谨)di(地) svā(斯哇+)hā(哈+)  ma(麻)ra(啰~)nā(那+)rā(啰+~) svā(斯哇+)hā(哈+) |
-[64]śi(悉)ra(啰~)-siṃ(僧)ha(哈)-mu(穆)khā(咔+)ya(耶) svā(斯哇+)hā(哈+) |
-[66]sa(萨)rva(勒斡) ma(麻)hā(哈+)-si(思)ddhā(塔+)ya(耶) svā(斯哇+)hā(哈+) |
-[68]ca(者)kra(葛啰~) ā(阿+)si(思)ddhā(塔+)ya(耶) svā(斯哇+)hā(哈+) |
-[70]pa(巴)dma(达摩)-ka(咖)stā(思嗒+)ya(耶) svā(斯哇+)hā(哈+) |
-[72]na(那)ra(啰~)kin(谨)di(地) vā(哇+)ga(嘎)rā(啰+~)ya(耶) svā(斯哇+)hā(哈+) |
-[74]ma(麻)va(斡)ri(唎~)-saṅ(胜)khā(咔+)ra(啰~)ya(耶) svā(斯哇+)hā(哈+)
+[48]mai(弥+|彌)tre(帝勒~|帝利)ya(呀|夜) na(那|那)ra(啰~|囉)kin(谨|謹)di(地|墀) |
+[50]da(达|地)rśi(利瑟|唎瑟)ṇi(尼r|尼)na(那|那) pañ(帮|波)ñāya(孃呀|夜)mā(麻+|摩)na(那|那) svā(斯哇+|娑婆)hā(哈+|訶) |
+[53]si(思|悉)ddhā(塔+|陀)ya(呀|夜) svā(斯哇+|娑婆)hā(哈+|訶)  ma(麻|摩)hā(哈+|訶) si(思|悉)ddhā(塔+|陀)ya(呀|夜) svā(斯哇+|娑婆)hā(哈+|訶) |
+[57]si(思|悉)ddha(塔|陀)-yo(哟|喻)ge(给|藝)-śva(悉斡|室皤)rā(啰+~|囉)ya(呀|耶) svā(斯哇+|娑婆)hā(哈+|訶) |
+[60]na(那|那)ra(啰~|囉)kin(谨|謹)di(地|墀) svā(斯哇+|娑婆)hā(哈+|訶)  ma(麻|摩)ra(啰~|囉)nā(那+|那)rā(啰+~|囉) svā(斯哇+|娑婆)hā(哈+|訶) |
+[64]śi(悉|悉)ra(啰~|囉)-siṃ(僧|僧)ha(哈|阿)-mu(穆|穆)khā(咔+|佉)ya(呀|耶) svā(斯哇+|娑婆)hā(哈+|訶) |
+[66]sa(萨|娑)rva(勒斡|婆) ma(麻|摩)hā(哈+|訶)-ā(阿+|阿)si(思|悉)ddhā(塔+|陀)ya(呀|夜) svā(斯哇+|娑婆)hā(哈+|訶) |
+[68]ca(者|者)kra(葛啰~|吉囉) ā(阿+|阿)si(思|悉)ddhā(塔+|陀)ya(呀|夜) svā(斯哇+|娑婆)hā(哈+|訶) |
+[70]pa(巴|波)dma(达摩|陀摩)-ha(哈|羯)stā(思嗒+|悉哆)ya(呀|夜) svā(斯哇+|娑婆)hā(哈+|訶) |
+[72]na(那|那)ra(啰~|囉)kin(谨|謹)di(地|墀) vā(哇+|皤)ga(嘎|羯)rā(啰+~|囉)ya(呀|夜) svā(斯哇+|娑婆)hā(哈+|訶) |
+[74]ma(麻|摩)va(斡|婆)ri(唎~|利)-saṅ(胜|勝)khā(咔+|羯)ra(啰~|囉)ya(呀|夜) svā(斯哇+|娑婆)hā(哈+|訶)
 #4 结尾文
-[76]na(南)mo(无) ra(啰~)tna(怛那)-tra(哆啰~)yā(哑+)ya(耶) |
-[77]na(南)ma(无) ā(阿+)ryā(唎哑+)-va(斡)lo(罗)ki(羯)te(得)śva(悉斡)rā(啰+~)ya(耶) svā(斯哇+)hā(哈+) |
-[81]oṃ(唵) si(思)ddhyan(天淹)tu(都) man(漫)tra(哆啰~)-pa(巴)dā(达+)ya(耶) svā(斯哇+)hā(哈+)
+[76]na(那|南)mo(莫|無)_(_|喝b) ra(啰~|囉)tna(怛那|怛那)-tra(哆啰~|哆囉)yā(哑+|夜)ya(呀|耶) |
+[77]na(那|南)ma(莫|無) ā(阿+|阿)ryā(唎哑+|唎耶)-va(斡|婆)lo(罗|嚧)ki(羯|吉)te(得|帝)śva(悉斡|爍皤)rā(啰+~|囉)ya(呀|夜) svā(斯哇+|娑婆)hā(哈+|訶) |
+[81]oṃ(唵|唵) si(思|悉)ddhyan(天淹|殿)tu(都|都) man(曼|曼)tra(哆啰~|哆囉)-pa(巴|鉢)dā(达+|馱)ya(呀|耶) svā(斯哇+|娑婆)hā(哈+|訶)
+oṃ(唵) va(斡)jra(吉啰~) dha(塔)rma(勒马) hrīḥ(醯唎+~)
 `
 
   window.renderBody = function () {
     iastContent.split('\n').forEach((text, i) => renderRow(text, i, {inlineHzYin: true}))
+    const core = document.querySelector('.row:has(.has-hz-yin):not(:has(.num))')
+    core.setAttribute('id', 'core')
+    document.getElementById('vows').prepend(core)
   }
   renderBody()
 </script>

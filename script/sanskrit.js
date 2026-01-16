@@ -304,10 +304,15 @@ function renderRow(text, rowIndex, options={}) {
 }
 
 const _yinSigns = {'~': '弹', '+': '引', 'r': '卷', 'b': '半'}
-const _renderHzYin = (s) => {
-  s = s.slice(1, -1).replace(/石r/g, '石')
-    .replace(/[~+r]/g, c => '<sub>' + c.split('').map(c => _yinSigns[c]).join('') + '</sub>')
-  return '</span><span class="hz-yin no-select">' + s + '</span></div><div class="char-box"><span>'
+const _renderHzYin = (s0) => {
+  const s1 = s0.slice(1, -1)
+  const ancient = (/\|(.+)/.exec(s1) || '')[1]
+  const s2 = s1.replace(/\|(.+)/, '').replace(/石r/g, '石')
+  const s3 = s2.replace(/[~+r]/g, c => '<sub>' + c.split('').map(c => _yinSigns[c]).join('') + '</sub>')
+  const s4 = ((/[~+r]+$/.exec(s2) || '')[0] || '').replace(/[~+r]/g, c => '<sub>&emsp;</sub>')
+  return '</span><span class="hz-yin no-select">' + s3 + (!ancient ? '' :
+    '</span><span class="hz-yin no-select ancient">' + ancient + s4 + '</span>') +
+    '</span></div><div class="char-box"><span>'
 }
 
 function renderInlineHzYin(text, iastRow) {
@@ -325,7 +330,7 @@ function renderInlineHzYin(text, iastRow) {
         '<div class="char-box sp">&nbsp;</div>'
     }
     pos += s.length
-    let html = '<div class="char-box"><span>' + s.replace(/\([^)]+\)/g, _renderHzYin) + '</span></div>'
+    let html = '<div class="char-box"><span>' + s.replace(/_/g, '&ensp;').replace(/\([^)]+\)/g, _renderHzYin) + '</span></div>'
     if (':|'.indexOf(s[0]) >= 0) {
       html = html.replace('">', ' punc">')
     }

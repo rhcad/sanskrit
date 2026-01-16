@@ -116,12 +116,17 @@ body:not(.show-audio) .audio-button { display: none; }
 .char-box { text-align: center; font-size: 1.35em; }
 .char-box.sp { min-width: .6em; }
 .char-box.punc { font-size: .9em; color: gray; padding-top: .2em; }
-.hz-yin { display: block; user-select: none; font-size: .6em; white-space: nowrap;
+.hz-yin { display: block; font-size: .6em; white-space: nowrap;
     font-family: "宋体", SimSun, serif; color: #333; }
 .hz-yin .digraph { margin-left: .1em; margin-right: .1em; text-decoration: underline;
     text-underline-position: under; text-decoration-color: #999; }
 .hz-yin small, .hz-yin sub { font-size: .55em; margin-left: -.1em; color: #000; }
 .digraph + small, .digraph + sub { margin-left: -.2em; }
-.hz-yin sub { margin-bottom: -.5em; display: inline-block; }
+.hz-yin sub { user-select: none; margin-bottom: -.5em; display: inline-block; }
 .char-box.num { font-size: .7em; padding-top: .7em; color: #ddd; margin-right: .3em; }
+.hz-yin.ancient { color: #363; }
 @media print { .hz-yin { color: #000; }}
+
+body:not(.show-iast1) .char-box > span:first-child { display: none; }
+body:not(.show-hz-yin) .hz-yin:not(.ancient) { display: none; }
+body:not(.show-ancient) .hz-yin.ancient { display: none; }
