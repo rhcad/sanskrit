@@ -124,21 +124,22 @@ body:not(.show-audio) .audio-button { display: none; }
 .char-box.punc { font-size: .9em; color: gray; padding-top: .2em; }
 .hz-yin { display: block; font-size: .6em; white-space: nowrap;
     font-family: "宋体", SimSun, serif; color: #333; }
+@media print { .hz-yin:not(.ancient) { color: #000; font-weight: 500; }}
 .hz-yin .digraph { margin-left: .1em; margin-right: .1em; text-decoration: underline;
     text-underline-position: under; text-decoration-color: #999; }
 .hz-yin.heavy .digraph { text-decoration-color: #222; }
-.hz-yin small, .hz-yin sub { font-size: .55em; margin-left: -.1em; color: #000; }
+.hz-yin small, .hz-yin sub { font-size: .55em; font-weight: 300; margin-left: -.1em; color: #000; }
 .digraph + small, .digraph + sub { margin-left: -.2em; }
 .hz-yin sub { margin-bottom: -.5em; display: inline-block; }
 .char-box.num { color: #ccc; margin-right: .3em; margin-top: -.1em; }
-.char-box.num > :first-child { font-size: .5em; padding-bottom: .5em;
+.char-box.num > :first-child { font-size: .5em;
     padding-bottom: .45em; display: inline-block; }
-.char-box.num > .hz-yin { opacity: .4; font-size: .5em; margin-bottom: .2em; }
+.char-box.num > .hz-yin { opacity: .5; font-size: .5em; margin-bottom: .2em; }
 .char-box.num > .hz-yin::before { content: "["; color: #aaa; }
 .char-box.num > .hz-yin::after { content: "]"; color: #aaa; }
-.show-hz-yin .hz-yin.ancient { color: #686; }
+.char-box.num > .hz-yin.ancient {}
+.show-hz-yin .char-box:not(.num) .hz-yin.ancient { color: #686; font-weight: 300; }
 .show-hz-yin .row { margin-bottom: .2em; }
-@media print { .hz-yin { color: #000; }}
 
 body:not(.show-hz-yin):not(.show-ancient) .has-hz-yin,
 body:not(.show-iast1):not(.show-ancient) .has-hz-yin,
