@@ -3,7 +3,7 @@
 2. 薩怛他 佛陀 俱胝瑟尼釤 (二)
 2. satata buddha koṭīṣṇīsaṃ
 3. 南無 薩婆 勃陀 勃地 薩跢鞞 弊 (三)
-3. namaḥ sarva buddha bodhi satve-bhyaḥ
+3. namaḥ sarva buddha bodhi-satve-bhyaḥ
 4. 南無 薩多南 三藐 三菩陀 俱知南 (四)
 4. namaḥ saptānāṃ samyak-saṃbuddha koṭīnāṃ
 5. 娑 舍囉婆迦 僧伽喃 (五)
@@ -526,10 +526,10 @@
 262. kīla-yāmi
 263. 毘多 囉伽 訖唎擔 (六十三)
 263. vīta-rāga-kṛtāṃ
-264. 毘陀夜闍 瞋陀 夜彌 (六十四)
-264. vidyāṃ cheda-yāmi
-265. 雞囉 夜彌 跋闍囉 波儞 (六十五)
-265. kīla-yāmi vajra-pāṇi
+264. 毘陀夜闍 瞋陀 夜彌 雞囉 夜彌 (六十四)
+264. vidyāṃ cheda-yāmi kīla-yāmi
+265. 跋闍囉 波儞 (六十五)
+265. vajra-pāṇi
 266. 具醯夜 具醯夜 (六十六)
 266. guhya guhya
 267. 迦地 般帝 訖唎擔 (六十七)
@@ -810,10 +810,10 @@
 403. agni udaka
 404. 末囉 鞞囉 建跢囉 (四)
 404. māra-vīra kāntāra
-405. 阿迦囉 蜜唎咄 怛斂部迦 (五)
-405. akāla-mṛtyu tryambuka
-406. 地栗剌吒 (六)
-406. trailāṭa
+405. 阿迦囉 蜜唎咄 (五)
+405. akāla-mṛtyu
+406. 怛斂部迦 地栗剌吒 (六)
+406. tryambuka trailāṭa
 407. 毖唎瑟質迦 (七)
 407. vṛścika
 408. 薩婆 那俱囉 (八)

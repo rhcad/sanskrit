@@ -115,43 +115,60 @@ body:not(.show-audio) .audio-button { display: none; }
   #top-bar, .down-div, .note, .audio-button, .gray-btn,
   .no-print, #down-div, .section > .sec-title::after { display: none; }
   .audio-button::after { width: 0; opacity: 0; }
-  #body { width: fit-content; margin: 0 auto;}
+  #body { width: fit-content; margin: 0 auto; }
 }
 
+/* .row > .iast-row.has-hz-yin > .char-box > .hz-yin */
+
 .has-hz-yin { display: flex; flex-wrap: wrap; }
-.char-box { text-align: center; font-size: 1.35em; }
+.char-box:not(.num) { text-align: center; font-size: 1.35em; }
 .char-box.sp { min-width: .6em; }
 .char-box.punc { font-size: .9em; color: gray; padding-top: .2em; }
+.char-box > span:first-child { font-size: .9em; }
+
 .hz-yin { display: block; font-size: .6em; white-space: nowrap;
     font-family: "宋体", SimSun, serif; color: #333; }
-@media print { .hz-yin:not(.ancient) { color: #000; font-weight: 500; }}
+.char-box:not(.num) .hz-yin:not(.ancient) { font-size: .8em; margin-bottom: .2em; }
+@media print {
+  .char-box:not(.num) .hz-yin:not(.ancient) { color: #000; font-weight: 500; }
+}
 .hz-yin .digraph { margin-left: .1em; margin-right: .1em; text-decoration: underline;
     text-underline-position: under; text-decoration-color: #999; }
 .hz-yin.heavy .digraph { text-decoration-color: #222; }
 .hz-yin small, .hz-yin sub { font-size: .55em; font-weight: 300; margin-left: -.1em; color: #000; }
 .digraph + small, .digraph + sub { margin-left: -.2em; }
 .hz-yin sub { margin-bottom: -.5em; display: inline-block; }
-.char-box.num { color: #ccc; margin-right: .3em; margin-top: -.1em; }
-.char-box.num > :first-child { font-size: .5em;
-    padding-bottom: .45em; display: inline-block; }
-.char-box.num > .hz-yin { opacity: .5; font-size: .5em; margin-bottom: .2em; }
+.pin { font-size: .8em; border: 1px dotted #ddd; border-radius: 4px; }
+
+.char-box.num { margin-right: .3em; margin-top: -.1em; }
+.char-box.num > :first-child { font-size: .5em; color: #999;
+    padding-top: 1.2em; padding-bottom: .45em; display: inline-block; }
+.char-box.num > .hz-yin { opacity: .5; font-size: .6em; color: #bbb;
+    padding-top: .7em; padding-bottom: .5em; }
+.char-box.num > :first-child::before { content: "("; color: #ccc; }
+.char-box.num > :first-child::after { content: ")"; color: #ccc; }
 .char-box.num > .hz-yin::before { content: "["; color: #aaa; }
 .char-box.num > .hz-yin::after { content: "]"; color: #aaa; }
 .char-box.num > .hz-yin.ancient {}
+.show-hz-yin .char-box.num > .hz-yin.ancient {}
 .show-hz-yin .char-box:not(.num) .hz-yin.ancient { color: #686; font-weight: 300; }
-.show-hz-yin .row { margin-bottom: .2em; }
+.show-hz-yin .row:not(.has-note) { margin-bottom: -.05em; }
+.show-hz-yin .row.has-note { margin-top: .5em; }
+
+/* only show one of iast, hz-yin and ancient: show as inline-blocks */
 
 body:not(.show-hz-yin):not(.show-ancient) .has-hz-yin,
 body:not(.show-iast1):not(.show-ancient) .has-hz-yin,
 body:not(.show-hz-yin):not(.show-iast1) .has-hz-yin { display: block; }
+
 body:not(.show-hz-yin):not(.show-ancient) .char-box,
 body:not(.show-iast1):not(.show-ancient) .char-box,
 body:not(.show-hz-yin):not(.show-iast1) .char-box { display: inline-block; }
+
 body:not(.show-iast1):not(.show-ancient) .hz-yin:not(.ancient),
 body:not(.show-hz-yin):not(.show-iast1) .hz-yin.ancient { display: inline-block; }
 
-body:not(.show-iast1) .char-box > span:first-child,
+body:not(.show-iast1) .char-box > span:first-child, /* exclude .char-box.num > small:first-child */
 body:not(.show-hz-yin) .hz-yin:not(.ancient),
 body:not(.show-ancient) .hz-yin.ancient { display: none !important; }
 body:not(.show-iast1) .char-box.num .hz-yin { display: none; }
-

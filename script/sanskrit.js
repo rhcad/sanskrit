@@ -112,6 +112,7 @@ function renderRow(text, rowIndex, options={}) {
     text = text.replace(/^\s*◆\s*/, '')
     devaRow.classList.add('indent')
     iastRow.classList.add('indent')
+    row.classList.add('has-note')
     row.style.marginBottom = options.nextRow === '' ? '1em' : '0'
   }
   if (options.audioPrefix) {
@@ -180,10 +181,10 @@ function renderRow(text, rowIndex, options={}) {
     }
   }
 
-  if (options.inlineHzYin) {
+  if (options.inlineHzYin && !/^\s*(——|◆)/.test(text)) {
     iastRow.classList.add('has-hz-yin')
     devaRow.remove()
-    return renderInlineHzYin(text, iastRow)
+    return renderInlineHzYin(text, iastRow, options)
   }
   let words = Sanscript.iastToDevanagari(text, {
     split_aksara: true, removeDevaAudio: hasBodyCls('show-audio') && hasBodyCls('show-iast') && hasBodyCls('show-deva')})
@@ -305,22 +306,23 @@ function renderRow(text, rowIndex, options={}) {
 }
 
 const _yinSigns = {'~': '弹', '+': '引', 'r': '卷', 'b': '半'}
-const _renderHzYin = (s0) => {
+const _renderHzYin = (s0, options) => {
   const s1 = s0.slice(1, -1)
   const ancient = (/\|(.+)/.exec(s1) || '')[1] || ''
   const s2 = s1.replace(/\|(.+)/, '').replace(/石r/g, '石')
   const s3 = s2.replace(/[~+r]/g, c => '<sub>' + c.split('').map(c => _yinSigns[c]).join('') + '</sub>')
   const s4 = ((/[~+r]+$/.exec(s2) || '')[0] || '').replace(/[~+r]/g, c => '<sub>&emsp;</sub>')
+  const toPin = c => options.toPin && options.toPin(c) || c
   const heavy = ancient.length === 1 && s2.replace(/[~+rb]/g, '').length > 1
-  return `</span><span class="hz-yin${heavy ? ' heavy' : ''}">${s3}` + (!ancient ? '' :
+  return `</span><span class="hz-yin${heavy ? ' heavy' : ''}">${toPin(s3)}` + (!ancient ? '' :
     `</span><span class="hz-yin ancient">${ancient + s4}</span>`) +
     '</span></div><div class="char-box"><span>'
 }
 
-function renderInlineHzYin(text, iastRow) {
+function renderInlineHzYin(text, iastRow, options) {
   const num = /^\[(\d+)]\s?/.exec(text)
   if (num) {
-    iastRow.innerHTML = `<div class="char-box num"><small>(${num[1]})</small></div>`
+    iastRow.innerHTML = `<div class="char-box num" id="box-${num[1]}"><small>${num[1]}</small></div>`
     iastRow.setAttribute('id', 'iast-' + num[1])
     text = text.substring(num[0].length)
   }
@@ -333,18 +335,20 @@ function renderInlineHzYin(text, iastRow) {
         '<div class="char-box sp">&nbsp;</div>'
     }
     pos += s.length
-    let html = '<div class="char-box"><span>' + s.replace(/_/g, '&ensp;').replace(/\([^)]+\)/g, _renderHzYin) + '</span></div>'
+    let html = '<div class="char-box"><span>' + s.replace(/_/g, '&ensp;').replace(
+      /\([^)]+\)/g, s => _renderHzYin(s, options)) + '</span></div>'
     if (':|'.indexOf(s[0]) >= 0) {
       html = html.replace('">', ' punc">')
     }
     iastRow.innerHTML += html.replace(/<div class="char-box"><span><\/span><\/div>/g, '')
   })
   Array.from(iastRow.querySelectorAll('.hz-yin')).forEach(span => {
-    if (span.firstChild.textContent.length > 1) {
-      const html = span.firstChild.textContent.replace('b', '')
+    const child = span.firstChild
+    if (child.textContent.length > 1 && (!child.classList || !child.classList.contains('pin'))) {
+      const html = child.textContent.replace('b', '')
         .replace(/石/, '石<small>卷</small>')
       const di = createElement(null, 'digraph', 'span', {html: html})
-      span.firstChild.remove()
+      child.remove()
       span.prepend(di)
     }
   })
