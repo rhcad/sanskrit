@@ -124,7 +124,7 @@ body:not(.show-audio) .audio-button { display: none; }
 .char-box:not(.num) { text-align: center; font-size: 1.35em; }
 .char-box.sp { min-width: .6em; }
 .char-box.punc { font-size: .9em; color: gray; padding-top: .2em; }
-.char-box > span:first-child { font-size: .9em; }
+.char-box > span:first-child { font-size: .85em; }
 
 .hz-yin { display: block; font-size: .6em; white-space: nowrap;
     font-family: "宋体", SimSun, serif; color: #333; }
@@ -141,19 +141,20 @@ body:not(.show-audio) .audio-button { display: none; }
 .pin { font-size: .8em; border: 1px dotted #ddd; border-radius: 4px; }
 
 .char-box.num { margin-right: .3em; margin-top: -.1em; }
-.char-box.num > :first-child { font-size: .5em; color: #999;
-    padding-top: 1.2em; padding-bottom: .45em; display: inline-block; }
-.char-box.num > .hz-yin { opacity: .5; font-size: .6em; color: #bbb;
-    padding-top: .7em; padding-bottom: .5em; }
+.char-box.num > :first-child { font-size: .6em; color: #999;
+    padding-top: 1em; padding-bottom: .2em; display: inline-block; }
+.char-box.num > .hz-yin { opacity: .6; font-size: .6em; color: #bbb;
+    padding-top: .7em; padding-bottom: .4em; }
 .char-box.num > :first-child::before { content: "("; color: #ccc; }
 .char-box.num > :first-child::after { content: ")"; color: #ccc; }
-.char-box.num > .hz-yin::before { content: "["; color: #aaa; }
-.char-box.num > .hz-yin::after { content: "]"; color: #aaa; }
+.char-box.num > .hz-yin::before { content: "["; color: #aaa; font-size: .6em; }
+.char-box.num > .hz-yin::after { content: "]"; color: #aaa; font-size: .6em; }
 .char-box.num > .hz-yin.ancient {}
+#iast-1 .char-box.num:first-child > .hz-yin { opacity: 1; color: #999; }
 .show-hz-yin .char-box.num > .hz-yin.ancient {}
 .show-hz-yin .char-box:not(.num) .hz-yin.ancient { color: #686; font-weight: 300; }
 .show-hz-yin .row:not(.has-note) { margin-bottom: -.05em; }
-.show-hz-yin .row.has-note { margin-top: .5em; }
+.show-hz-yin .row.has-note { margin-top: .3em; font-size: .8em; }
 
 /* only show one of iast, hz-yin and ancient: show as inline-blocks */
 

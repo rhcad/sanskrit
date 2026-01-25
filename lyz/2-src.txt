@@ -502,21 +502,21 @@
 221. 萨斡 (给啰)诃南 (二百二十一)
 221. sarva-grahānāṃ
 222. 威(地呀门) 扯达 哑弥 (二十二)
-222. vidyāṃ cheda-yāmi
+222. vidyāṃ cchinda-yāmi
 223. 给剌 哑弥 (二十三)
 223. kīla-yāmi|
 
 224. 巴唎 (跋啰)佳嘎 (葛唎)档 (二十四)
 224. pari vrajaka kṛtāṃ
 225. 威(地哑门) 扯达 哑弥 (二十五)
-225. vidyāṃ cheda-yāmi
+225. vidyāṃ cchinda-yāmi
 226. 给剌 哑弥 (二十六)
 226. kīla-yāmi|
 
 227. 哒谨尼 (葛唎)档 (二十七)
 227. ḍākinī-kṛtāṃ
 228. 威(地哑门) 扯达 哑弥 (二十八)
-228. vidyāṃ cheda-yāmi
+228. vidyāṃ cchinda-yāmi
 229. 给剌 哑弥 (二十九)
 229. kīla-yāmi|
 
@@ -525,35 +525,35 @@
 231. 噜(地啰) (葛唎)档 (二百三十一)
 231. rudra-kṛtāṃ
 232. 威(地哑门) 扯达 哑弥 (三十二)
-232. vidyāṃ cheda-yāmi
+232. vidyāṃ cchinda-yāmi
 233. 给剌 哑弥 (三十三)
 233. kīla-yāmi|
 
 234. 那啰哑呐 (葛唎)档 (三十四)
 234. nārāyana kṛtāṃ
 235. 威(地哑门) 扯达 哑弥 (三十五)
-235. vidyāṃ cheda-yāmi
+235. vidyāṃ cchinda-yāmi
 236. 给剌 哑弥 (三十六)
 236. kīla-yāmi|
 
 237. 怛埵 伽噜嘚谢 (葛唎)档 (三十七)
 237. tatva-garuḍeśe-kṛtāṃ
 238. 威(地哑门) 扯达 哑弥 (三十八)
-238. vidyāṃ cheda-yāmi
+238. vidyāṃ cchinda-yāmi
 239. 给剌 哑弥 (三十九)
 239. kīla-yāmi|
 
 240. 麻哈 嘎剌 麻(怛唎) 伽呐 (葛唎)档 (四十)
 240. mahā-kāla mātṛ-gaṇa kṛtāṃ
 241. 威(地哑门) 扯达 哑弥 (二百四十一)
-241. vidyāṃ cheda-yāmi
+241. vidyāṃ cchinda-yāmi
 242. 给剌 哑弥 (四十二)
 242. kīla-yāmi|
 
 243. 嘎跋利嘎 (葛唎)档 (四十三)
 243. kāpālika-kṛtāṃ
 244. 威(地哑门) 扯达 哑弥 (四十四)
-244. vidyāṃ cheda-yāmi
+244. vidyāṃ cchinda-yāmi
 245. 给剌 哑弥 (四十五)
 245. kīla-yāmi|
 
@@ -562,14 +562,14 @@
 247. 萨斡(啰塔) 萨达那 (葛唎)档 (四十七)
 247. sarvārtha-sādhana-kṛtāṃ
 248. 威(地哑门) 扯达 哑弥 (四十八)
-248. vidyāṃ cheda-yāmi
+248. vidyāṃ cchinda-yāmi
 249. 给剌 哑弥 (四十九)
 249. kīla-yāmi|
 
 250. 赭都(啰) 帕耆你 (葛唎)档 (五十)
 250. catur-bhāgini kṛtāṃ
 251. 威(地哑门) 扯达 哑弥 (二百五十一)
-251. vidyāṃ cheda-yāmi
+251. vidyāṃ cchinda-yāmi
 252. 给剌 哑弥 (五十二)
 252. kīla-yāmi|
 
@@ -580,26 +580,26 @@
 255. 萨黑呀 (葛唎)档 (五十五)
 255. saheya-kṛtāṃ
 256. 威(地哑门) 扯达 哑弥 (五十六)
-256. vidyāṃ cheda-yāmi
+256. vidyāṃ cchinda-yāmi
 257. 给剌 哑弥 (五十七)
 257. kīla-yāmi|
 
 258. 那(葛那) (夏喇)麻呐 (葛唎)档 (五十八)
 258. nagna-śramaṇa-kṛtāṃ
 259. 威(地哑门) 扯达 哑弥 (五十九)
-259. vidyāṃ cheda-yāmi
+259. vidyāṃ cchinda-yāmi
 260. 给剌 哑弥 (六十)
 260. kīla-yāmi|
 
 261. 阿(喇汉) (葛唎)档 威(地哑门) 扯达 哑弥 (二百六十一)
-261. arhat-kṛtāṃ vidyāṃ cheda-yāmi
+261. arhat-kṛtāṃ vidyāṃ cchinda-yāmi
 262. 给剌 哑弥 (六十二)
 262. kīla-yāmi|
 
 263. 威答 啰伽 (葛唎)档 (六十三)
 263. vīta-rāga-kṛtāṃ
 264. 威(地哑门) 扯达 哑弥 给剌 哑弥 (六十四)
-264. vidyāṃ cheda-yāmi kīla-yāmi|
+264. vidyāṃ cchinda-yāmi kīla-yāmi|
 
 265. 斡(吉啰) 班你 (六十五)
 265. vajra-pāṇi
@@ -608,7 +608,7 @@
 267. 嘎提 巴帝 (葛唎)档 (六十七)
 267. kādhi-pati-kṛtāṃ
 268. 威(地哑门) 扯达 哑弥 (六十八)
-268. vidyāṃ cheda-yāmi
+268. vidyāṃ cchinda-yāmi
 269. 给剌 哑弥 (六十九)
 269. kīla-yāmi|
 

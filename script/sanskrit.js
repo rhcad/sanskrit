@@ -311,7 +311,7 @@ const _renderHzYin = (s0, options) => {
   const ancient = (/\|(.+)/.exec(s1) || '')[1] || ''
   const s2 = s1.replace(/\|(.+)/, '').replace(/石r/g, '石')
   const s3 = s2.replace(/[~+r]/g, c => '<sub>' + c.split('').map(c => _yinSigns[c]).join('') + '</sub>')
-  const s4 = ((/[~+r]+$/.exec(s2) || '')[0] || '').replace(/[~+r]/g, c => '<sub>&emsp;</sub>')
+  const s4 = ((/[~+r]+$/.exec(s2) || '')[0] || '').replace(/[~+r]/g, _ => '<sub>&emsp;</sub>')
   const toPin = c => options.toPin && options.toPin(c) || c
   const heavy = ancient.length === 1 && s2.replace(/[~+rb]/g, '').length > 1
   return `</span><span class="hz-yin${heavy ? ' heavy' : ''}">${toPin(s3)}` + (!ancient ? '' :
@@ -319,12 +319,15 @@ const _renderHzYin = (s0, options) => {
     '</span></div><div class="char-box"><span>'
 }
 
+let _lastNum = 0, _hzBoxId = 0
 function renderInlineHzYin(text, iastRow, options) {
   const num = /^\[(\d+)]\s?/.exec(text)
   if (num) {
     iastRow.innerHTML = `<div class="char-box num" id="box-${num[1]}"><small>${num[1]}</small></div>`
     iastRow.setAttribute('id', 'iast-' + num[1])
     text = text.substring(num[0].length)
+    _lastNum = num[1]
+    _hzBoxId = 0
   }
   const chars = text.split(/[ -]/)
   let pos = 0
@@ -335,12 +338,13 @@ function renderInlineHzYin(text, iastRow, options) {
         '<div class="char-box sp">&nbsp;</div>'
     }
     pos += s.length
-    let html = '<div class="char-box"><span>' + s.replace(/_/g, '&ensp;').replace(
+    let html = `<div class="char-box"><span>` + s.replace(/_/g, '&ensp;').replace(
       /\([^)]+\)/g, s => _renderHzYin(s, options)) + '</span></div>'
     if (':|'.indexOf(s[0]) >= 0) {
       html = html.replace('">', ' punc">')
     }
     iastRow.innerHTML += html.replace(/<div class="char-box"><span><\/span><\/div>/g, '')
+      .replace(/"char-box">/g, _ => `"char-box" id="c${_lastNum}-${++_hzBoxId}">`)
   })
   Array.from(iastRow.querySelectorAll('.hz-yin')).forEach(span => {
     const child = span.firstChild

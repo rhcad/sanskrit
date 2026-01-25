@@ -443,19 +443,19 @@
 221. 薩婆 揭囉訶南 (二百二十一)
 221. sarva-grahānāṃ
 222. 毘陀耶闍 瞋陀 夜彌 (二十二)
-222. vidyāṃ cheda-yāmi
+222. vidyāṃ cchinda-yāmi
 223. 雞囉 夜彌 (二十三)
 223. kīla-yāmi
 224. 波唎 跋囉者迦 訖唎擔 (二十四)
 224. pari vrajaka kṛtāṃ
 225. 毘陀夜闍 瞋陀 夜彌 (二十五)
-225. vidyāṃ cheda-yāmi
+225. vidyāṃ cchinda-yāmi
 226. 雞囉 夜彌 (二十六)
 226. kīla-yāmi
 227. 茶演尼 訖唎擔 (二十七)
 227. ḍākinī-kṛtāṃ
 228. 毘陀夜闍 瞋陀 夜彌 (二十八)
-228. vidyāṃ cheda-yāmi
+228. vidyāṃ cchinda-yāmi
 229. 雞囉 夜彌 (二十九)
 229. kīla-yāmi
 230. 摩訶 般輸般怛夜 (三十)
@@ -463,31 +463,31 @@
 231. 嚧陀囉 訖唎擔 (二百三十一)
 231. rudra-kṛtāṃ
 232. 毘陀夜闍 瞋陀 夜彌 (三十二)
-232. vidyāṃ cheda-yāmi
+232. vidyāṃ cchinda-yāmi
 233. 雞囉 夜彌 (三十三)
 233. kīla-yāmi
 234. 那囉夜拏 訖唎擔 (三十四)
 234. nārāyana kṛtāṃ
 235. 毘陀夜闍 瞋陀 夜彌 (三十五)
-235. vidyāṃ cheda-yāmi
+235. vidyāṃ cchinda-yāmi
 236. 雞囉 夜彌 (三十六)
 236. kīla-yāmi
 237. 怛埵 伽嚧茶西 訖唎擔 (三十七)
 237. tatva-garuḍeśe-kṛtāṃ
 238. 毘陀夜闍 瞋陀 夜彌 (三十八)
-238. vidyāṃ cheda-yāmi
+238. vidyāṃ cchinda-yāmi
 239. 雞囉 夜彌 (三十九)
 239. kīla-yāmi
 240. 摩訶 迦囉 摩怛唎 伽拏 訖唎擔 (四十)
 240. mahā-kāla mātṛ-gaṇa kṛtāṃ
 241. 毘陀夜闍 瞋陀 夜彌 (二百四十一)
-241. vidyāṃ cheda-yāmi
+241. vidyāṃ cchinda-yāmi
 242. 雞囉 夜彌 (四十二)
 242. kīla-yāmi
 243. 迦波唎迦 訖唎擔 (四十三)
 243. kāpālika-kṛtāṃ
 244. 毘陀夜闍 瞋陀 夜彌 (四十四)
-244. vidyāṃ cheda-yāmi
+244. vidyāṃ cchinda-yāmi
 245. 雞囉 夜彌 (四十五)
 245. kīla-yāmi
 246. 闍耶 羯囉 摩度 羯囉 (四十六)
@@ -495,13 +495,13 @@
 247. 薩婆囉他 娑達那 訖唎擔 (四十七)
 247. sarvārtha-sādhana-kṛtāṃ
 248. 毘陀夜闍 瞋陀 夜彌 (四十八)
-248. vidyāṃ cheda-yāmi
+248. vidyāṃ cchinda-yāmi
 249. 雞囉 夜彌 (四十九)
 249. kīla-yāmi
 250. 赭咄囉 婆耆儞 訖唎擔 (五十)
 250. catur-bhāgini kṛtāṃ
 251. 毘陀夜闍 瞋陀 夜彌 (二百五十一)
-251. vidyāṃ cheda-yāmi
+251. vidyāṃ cchinda-yāmi
 252. 雞囉 夜彌 (五十二)
 252. kīla-yāmi
 253. 毘唎羊訖 唎知 (五十三)
@@ -511,23 +511,23 @@
 255. 索醯夜 訖唎擔 (五十五)
 255. saheya-kṛtāṃ
 256. 毘陀夜闍 瞋陀 夜彌 (五十六)
-256. vidyāṃ cheda-yāmi
+256. vidyāṃ cchinda-yāmi
 257. 雞囉 夜彌 (五十七)
 257. kīla-yāmi
 258. 那揭那 舍囉婆拏 訖唎擔 (五十八)
 258. nagna-śramaṇa-kṛtāṃ
 259. 毘陀夜闍 瞋陀 夜彌 (五十九)
-259. vidyāṃ cheda-yāmi
+259. vidyāṃ cchinda-yāmi
 260. 雞囉 夜彌 (六十)
 260. kīla-yāmi
 261. 阿羅漢 訖唎擔 毘陀夜闍 瞋陀 夜彌 (二百六十一)
-261. arhat-kṛtāṃ vidyāṃ cheda-yāmi
+261. arhat-kṛtāṃ vidyāṃ cchinda-yāmi
 262. 雞囉 夜彌 (六十二)
 262. kīla-yāmi
 263. 毘多 囉伽 訖唎擔 (六十三)
 263. vīta-rāga-kṛtāṃ
 264. 毘陀夜闍 瞋陀 夜彌 雞囉 夜彌 (六十四)
-264. vidyāṃ cheda-yāmi kīla-yāmi
+264. vidyāṃ cchinda-yāmi kīla-yāmi
 265. 跋闍囉 波儞 (六十五)
 265. vajra-pāṇi
 266. 具醯夜 具醯夜 (六十六)
@@ -535,7 +535,7 @@
 267. 迦地 般帝 訖唎擔 (六十七)
 267. kādhi-pati-kṛtāṃ
 268. 毘陀夜闍 瞋陀 夜彌 (六十八)
-268. vidyāṃ cheda-yāmi
+268. vidyāṃ cchinda-yāmi
 269. 雞囉 夜彌 (六十九)
 269. kīla-yāmi
 270. 囉叉罔 (七十)

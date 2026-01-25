@@ -10,6 +10,7 @@
 句308 vidya-acā 连音变化为 vidyā-cā
 grahāt 末尾的 t 改为 ḥ
 uṣṇīṣa、graha、bhya 前加连字符'-'
+cheda 改为 cchinda
 
 字音改动 (0-src.txt vs 1-src.txt)：
 句111 制喝那阿 改为 制喝婆，与jihva对应
