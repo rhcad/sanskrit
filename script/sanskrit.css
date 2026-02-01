@@ -127,7 +127,7 @@ body:not(.show-audio) .audio-button { display: none; }
 .char-box > span:first-child { font-size: .85em; }
 
 .hz-yin { display: block; font-size: .6em; white-space: nowrap;
-    font-family: "宋体", SimSun, serif; color: #333; }
+    font-family: "宋体", SimSun, KaiXinSong, HanaMin, serif; color: #333; }
 .char-box:not(.num) .hz-yin:not(.ancient) { font-size: .8em; margin-bottom: .2em; }
 @media print {
   .char-box:not(.num) .hz-yin:not(.ancient) { color: #000; font-weight: 500; }
@@ -138,7 +138,9 @@ body:not(.show-audio) .audio-button { display: none; }
 .hz-yin small, .hz-yin sub { font-size: .55em; font-weight: 300; margin-left: -.1em; color: #000; }
 .digraph + small, .digraph + sub { margin-left: -.2em; }
 .hz-yin sub { margin-bottom: -.5em; display: inline-block; }
-.pin { font-size: .8em; border: 1px dotted #ddd; border-radius: 4px; }
+.pin { border: 1px dotted #ddd; border-radius: 4px; }
+.pin:not(:has(small)) { font-size: .8em; }
+.hz-yin .pin > small { font-size: .7em; }
 
 .char-box.num { margin-right: .3em; margin-top: -.1em; }
 .char-box.num > :first-child { font-size: .6em; color: #999;
