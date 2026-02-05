@@ -27,14 +27,16 @@
     .gana::before { content: "("; font-weight: 300; }
     .gana::after { content: ")"; font-weight: 300; }
     .gana small { font-weight: 400; font-size: .6em; }
+    body:not(.show-tip) .row.metre, body:not(.show-tip) .tip { display: none; }
   </style>
 </head>
-<body class="show-odd show-iast show-audio">
+<body class="show-odd show-iast show-tip show-audio">
 <div id="top-bar">
   <span class="home" onclick="location.href='./'" title="Home"><img src="../img/favicon.png" alt="Home"></span>
   <span onclick="biggerFont()">+</span>
   <span onclick="smallerFont()">-</span>
   <span data-toggle="show-odd">音节</span>
+  <span data-toggle="show-tip" title="韵律提示">提示</span>
   <span data-toggle="show-weight">轻重</span>
   <span data-toggle="show-deva">天城体</span>
   <span data-toggle="show-iast">转写</span>

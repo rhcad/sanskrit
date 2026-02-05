@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Buddhacarita Ch9</title>
+  <meta name="description" content="梵文诗律唱诵-佛所行赞,Aśvaghoṣa's Buddhacarita">
+  <meta name="keywords" content="sanskrit,metres,梵文,诗律,唱诵,佛所行赞,马鸣,Buddhacarita,Aśvaghoṣa">
+  <meta property="og:image" content="../img/favicon.png">
+  <link rel="icon" type="image/png" href="../img/favicon.png">
+  <link rel="stylesheet" href="../script/sanskrit.css?v=1324">
+  <link rel="stylesheet" href="../script/audio.css?v=1324">
+  <style>
+    body { font-size: 19px; }
+    .title { text-align: center; margin-bottom: .5em; }
+    .tip { font-size: 13px; margin-bottom: 2em; }
+    .audio-button.voc { background-size: 16px 16px; width: 16px; height: 16px; }
+    .word span.sp.space { width: .7em; display: inline-block; }
+    .word span.sp.space + .audio-button, .word span.sp.space + .sp + .audio-button { margin-left: -.7em; }
+    .section-title { margin-left: 20px; margin-bottom: 1.4em; }
+    .iast-row:has(.has-sentence-voc) { margin-bottom: .7em; }
+    .iast-row:has(.has-sloka-end) { margin-bottom: 1.5em; }
+    .metre { color: gray; font-size: .9em; }
+    .gana { display: inline-block; }
+    .gana::before { content: "("; font-weight: 300; }
+    .gana::after { content: ")"; font-weight: 300; }
+    .gana small { font-weight: 400; font-size: .6em; }
+    body:not(.show-tip) .row.metre { display: none; }
+  </style>
+</head>
+<body class="show-odd show-iast show-tip">
+<div id="top-bar">
+  <span class="home" onclick="location.href='./'" title="Home"><img src="../img/favicon.png" alt="Home"></span>
+  <span onclick="biggerFont()">+</span>
+  <span onclick="smallerFont()">-</span>
+  <span data-toggle="show-odd">音节</span>
+  <span data-toggle="show-tip" title="韵律提示">提示</span>
+  <span data-toggle="show-weight">轻重</span>
+  <span data-toggle="show-deva">天城体</span>
+  <span data-toggle="show-iast">转写</span>
+</div>
+<div class="title">Buddhacarita Ch9: kumārānveṣaṇaḥ</div>
+<div id="body"></div>
+<script src="../script/sanscript.es6.js?v=1324"></script>
+<script src="../script/sanskrit.js?v=1324"></script>
+<script>
+  window._fontSize = 19
+  window.audioGap = 0
+
+  const iastContent = `
+——[韵律 7-upajāti （11音节 5+6）]
+[LGLGG LLGLGG GGLGG LLGLGG] tatas tadā mantri-purohitau tau bāṣpa-pratodābhihatau nṛpeṇa |
+[GGLGG LLGLGG GGLGL LLGLLG] viddhau sad-aśvāv iva sarva-yatnāt sauhārda-śīghraṁ yayatur vanaṁ tat ||9.1||
+——[韵律 6-upendravajrā （11音节 5+6）]
+[LGLGG LLGLGG LGLGG LLGLGG] tam āśramam jāta-pariśramau tāv upetya kāle sadṛśānuyātrau |
+[GGLGG LLGLGG LGLGG LLGLGG] rājarddhim utsṛjya vinīta-ceṣṭāv upeyatur bhārgava-dhiṣṇyam eva ||9.2||
+——[不规则韵律 （11音节）]
+[GGLGLLLGLGL GGLGGLLGLGG] tau nyāyatas taṁ pratipūjya vipraṁ tenārcitau tāv api cānurūpam |
+[LGLGGLLGLGL GGLGGLLGLGG] kṛtāsanau bhārgavam āsana-sthaṁ chittvā kathām ūcatur ātma-kṛtyam ||9.3||
+——[韵律 5-indravajrā （11音节 5+6）]
+[GGLGG LLGLGG GGLLG LLGLGG] śuddhaujasaḥ śuddha-viśāla-kīrter ikṣvāku-vaṁśa-prabhavasya rājñaḥ |
+[LLLLG LLGLGL LGLGG LLGLGG] imaṁ janaṁ vettu bhavān adhīraṁ śruta-grahe mantra-parigrahe ca ||9.4||
+——[韵律 7-upajāti （11音节 5+6）]
+[GGLGG LLGLGG GGLGG LLLLGG] tasyendra-kalpasya jayanta-kalpaḥ putro jarā-mṛtyu-bhayaṁ titīrṣuḥ |
+[LGLGG LLGLGG GGLGG LLGLGG] ihābhyupetaḥ kila tasya hetor āvām upetau bhagavān avaitu ||9.5||
+——[韵律 5-indravajrā （11音节 5+6）]
+[GGLGG LLGLGG GGLGG LLGLGG] tau so ’bravīd asti sa dīrgha-bāhuḥ prāptaḥ kumāro na tu nāvabuddhaḥ |
+[GGLGG LLGLGL GGLGG LLGLLG] dharmo ’yam āvartaka ity avetya yātas tv arāḍābhimukho mumukṣuḥ ||9.6||
+——[韵律 7-upajāti （11音节 5+6）]
+[GGLGG LLGLGL LGLGG LLGLGG] tasmāt tatas tāv upalabhya tattvaṁ taṁ vipram āmantrya tadaiva sadyaḥ |
+[GGLGG LLGLGG LGLGG LLGLGG] khinnāvakhinnāv iva rāja-bhaktyā prasasratus tena yataḥ sa yātaḥ ||9.7||
+——[韵律 5-indravajrā （11音节 5+6）]
+[GGLGG LLGLGL LGLGL LLGLGG] yāntau tatas tau mṛjayā vihīnam apaśyatāṁ taṁ vapuṣā jvalantam |
+[LGLGL LLLLGG GLLGG LLGLGG] nṛpopaviṣṭaṁ pathi vṛkṣa-mūle sūryaṁ ghanābhogam iva praviṣṭam ||9.8||
+——[不规则韵律 （11音节）]
+[GLLGGLLGLGL LGLGGLLGLGG] yānaṁ vihāyopayayau tatas taṁ purohito mantra-dhareṇa sārdham |
+[LGLGLLLGLGG GLLLGLLGLGG] yathā vana-sthaṁ saha-vāmadevo rāmaṁ didṛkṣur munir aurvaśeyaḥ ||9.9||
+——[韵律 7-upajāti （11音节 5+6）]
+[GGLGG LLGLGL LGLGG LLGLGG] tāv arcayām āsatur arhatas taṁ divīva śukrāṅgirasau mahendram |
+[GGLGG LLGLGG LGLGG LLGLGG] pratyarcayām āsa sa cārhatas tau divīva śukrāṅgirasau mahendraḥ ||9.10||
+——[不规则韵律 （11音节）]
+[LGLLGLLGLGG LGLGGLLGLGG] kṛtābhyanujñāv abhitas tatas tau niṣīdatuḥ śākya-kula-dhvajasya |
+[LGLGGLLLLGG LGLGGLLGLGG] virejatus tasya ca saṁnikarṣe punar-vasū yoga-gatāv ivendoḥ ||9.11||
+——[不规则韵律 （11音节）]
+[LLLGGLLGLGL LGLGGLLLLGG] taṁ vṛkṣa-mūla-stham abhijvalantaṁ puro-hito rāja-sutaṁ babhāṣe |
+[LGLGLLLGLGG LGLGGLLLLGG] yathopaviṣṭaṁ divi pārijāte bṛhas-patiḥ śakra-sutaṁ jayantam ||9.12||
+——[韵律 5-indravajrā （11音节 5+6）]
+[GGLGG LLGLGG GLLGG LLGLGG] tvac-choka-śalye hṛdayāvagāḍhe mohaṁ gato bhūmi-tale muhūrtam |
+[LGLGG LLGLGG GGLGG LLLLGG] kumāra rājā nayanāmbu-varṣo yat tvām avocat tad idaṁ nibodha ||9.13||
+——[韵律 jihmāśayā （11音节）]
+[GGLGLLLGLLG LGLGGLLGLGG] jānāmi dharmaṁ prati niścayaṁ te paraimi te bhāvinam etam artham |
+[LLLGGLLGLGG GGLGGLLGLGG] ahaṁ tv akāle vana-samśrayāt te śokāgnināgni-pratimena dahye ||9.14||
+——[韵律 7-upajāti （11音节 5+6）]
+[LGLGG LLGLGL GGLGG LLGLGG] tad ehi dharma-priya mat-priyārthaṁ dharmārtham eva tyaja buddhim etām |
+[LLLGG LLGLGG LGLGG LLGLGG] ayaṁ hi mā śoka-rayaḥ pravṛddho nadī-rayaḥ kūlam ivābhihanti ||9.15||
+[GGLLG LLGLGG LGLGG LLGLGG] meghāmbu-kakṣādriṣu yā hi vṛttiḥ samīraṇārkāgni-mahāśanīnām |
+[GGLGG LLGLGG LGLGG LLGLGG] tāṁ vṛttim asmāsu karoti śoko vikarṣaṇocchoṣaṇa-dāha-bhedaiḥ ||9.16||
+[GGLGG LLGLGL GGLLG LLGLGG] tad bhuṅkṣva tāvad vasudhādhipatyaṁ kāle vanaṁ yāsyasi śāstra-dṛṣṭe |
+[LGLGG LLGLGG GGLGG LLGLGG] an-iṣṭa-bandhau kuru māpy upekṣāṁ sarveṣu bhūteṣu dayā hi dharmaḥ ||9.17||
+——[韵律 6-upendravajrā （11音节 5+6）]
+[LGLGG LLGLGG LGLGG LLGLGG] na caiṣa dharmo vana eva siddhaḥ pure ’pi siddhir niyatā yatīnām |
+[GGLGG LLGLGL LLLGL LLGLGG] buddhiś ca yatnaś ca nimittam atra vanaṁ ca liṅgaṁ ca hi bhīru-cihnam ||9.18||
+——[韵律 5-indravajrā （11音节 5+6）]
+[GGLGL LLGLGG GGLGG LLGLGG] maulī-dharair aṁsa-viṣakta-hāraiḥ keyūra-viṣṭabdha-bhujair narendraiḥ |
+[GGLGG LLGLGG GGLGG LLGLGG] lakṣmy-aṅka-madhye parivartamānaiḥ prāpto gṛha-sthair api mokṣa-dharmaḥ ||9.19||
+——[韵律 7-upajāti （11音节 5+6）]
+[LGLGG LLGLGG GGLGG LLGLGG] dhruvānujau yau bali-vajrabāhū vaibhrājam āṣāḍham athāntidevam |
+[LGLGL LLLLGL GLLLG LLGLGG] videha-rājaṁ janakaṁ tathaiva [pāka]-drumaṁ sena-jitaś ca rājñaḥ ||9.20||
+——[韵律 5-indravajrā （11音节 5+6）]
+[GGLGG LLGLGL GGLGG LLGLGG] etān gṛha-sthān nṛpatīn avehi naiḥśreyase dharma-vidhau vinītān |
+[LGLGG LLGLGL GGLGL LLGLLG] ubhe ’pi tasmād yugapad bhajasva vittādhipatyaṁ ca nṛpa-śriyaṁ ca ||9.21||
+[GGLGG LLGLGL LGLGL LLGLGG] icchāmi hi tvām upaguhya gāḍhaṁ kṛtābhiṣekaṁ salilārdram eva |
+[LGLGL LLGLGG GGLGG LLLLGG] dhṛtātapatraṁ samudīkṣamāṇas tenaiva harṣeṇa vanaṁ praveṣṭum ||9.22||
+[GGLGG LLGLGL GGLGG LLGLGG] ity abravīd bhūmi-patir bhavantaṁ vākyena bāṣpa-grathitākṣareṇa |
+[GGLGG LLGLGL GGLGG LLGLGG] śrutvā bhavān arhati tat-priyārthaṁ snehena tat-sneham anuprayātum ||9.23||
+[GGLGG LLGLGG GGLGG LLGLGG] śokāmbhasi tvat-prabhave hy agādhe duḥkhārṇave majjati śākya-rājaḥ |
+[GGLGG LLGLGL LGLLG LLGLGG] tasmāt tam uttāraya nātha-hīnaṁ nir-āśrayaṁ magnam ivārṇave nauḥ ||9.24||
+——[韵律 uditavijohā （11音节）]
+[GGLGGLLLLGL GGLGGLLGLGG] bhīṣmeṇa gaṅgodara-saṁbhavena rāmeṇa rāmeṇa ca bhārgaveṇa |
+[GGLLGLLGLGL LGLGGLLGLGG] śrutvā kṛtaṁ karma pituḥ priyārthaṁ pitus tvam apy arhasi kartum iṣṭam ||9.25||
+——[韵律 6-upendravajrā （11音节 5+6）]
+[LGLGG LLGLGG LGLGG LLGLGG] saṁvardhayitrīṁ samavehi devīm agastya-juṣṭāṁ diśam aprayātām |
+[LGLGG LLGLGG LGLGG LLLLGG] pranaṣṭa-vatsām iva vatsalāṁ gām ajasram ārtāṁ karuṇaṁ rudantīm ||9.26||
+——[不规则韵律 （11音节）]
+[LGLLGLLGLGG GGLGGLLGLGG] haṁsena haṁsīm iva viprayuktāṁ tyaktāṁ gajeneva vane kareṇum |
+[GGLGGLLGLGG GLLGGLLGLGG] ārtāṁ sa-nāthām api nātha-hīnāṁ trātuṁ vadhūm arhasi darśanena ||9.27||
+——[不规则韵律 （11音节）]
+[GLLLGLLGLGL LGLGGLLGLGG] ekaṁ sutaṁ bālam an-arha-duḥkhaṁ saṁtāpam antar-gatam udvahantam |
+[LGLLGLLGLGG GGLGGLLGLGG] taṁ rāhulaṁ mokṣaya bandhu-śokād rāhūpasargād iva pūrṇa-candram ||9.28||
+——[韵律 5-indravajrā （11音节 5+6）]
+[GGLGG LLGLGL GGLGG LLGLGG] śokāgninā tvad virahendhanena niḥśvāsa-dhūmena tamaḥ-śikhena |
+[GGLGG LLGLGL GGLLG LLLLGG] tvad-darśanāmbv icchati dahyamānam antaḥpuraṁ caiva puraṁ ca kṛtsnam ||9.29||
+——[韵律 7-upajāti （11音节 5+6）]
+[LGLGG LLGLGG GGLGG LLGLGG] sa bodhisattvaḥ paripūrṇa-sattvaḥ śrutvā vacas tasya purohitasya |
+[GGLGL LLGLLG GGLLG LLGLGG] dhyātvā muhūrtaṁ guṇavad guṇa-jñaḥ pratyuttaraṁ praśritam ity uvāca ||9.30||
+——[不规则韵律 （11音节）]
+[LGLGLLLGLLG LGLGGLLGLGG] avaimi bhāvaṁ tanaye pitṛṇāṁ viśeṣato yo mayi bhūmi-pasya |
+[GGLGGLLGLGG GGLGGLLLLGG] jānann api vyādhi-jarā-vipadbhyo bhītas tv agatyā sva-janaṁ tyajāmi ||9.31||
+——[不规则韵律 （11音节）]
+[GLLLGLLLLGG GGLGGLLGLGG] draṣṭuṁ priyaṁ kaḥ sva-janaṁ hi necchen nānte yadi syāt priya-viprayogaḥ |
+[LGLGGLLGLGG LGLLGLLGLGG] yadā tu bhūtvāpi ciram viyogas tato guruṁ snigdham api tyajāmi ||9.32||
+——[韵律 upasthitā （11音节）]
+[GGLLGLLGLGL GLLGGLLGLLG] madd-hetukaṁ yat tu narādhipasya śokaṁ bhavān āha na tat priyaṁ me |
+[GGLGGLLGLGL LGLGGLLGLGG] yat svapna-bhūteṣu samāgameṣu saṁtapyate bhāvini viprayoge ||9.33||
+——[不规则韵律 （11音节）]
+[GLLGGLLGLGG GGLGLLLGLGG] evaṁ ca te niścayam etu buddhir dṛṣṭvā vicitraṁ jagataḥ pracāram |
+[LGLGGLLGLGL LGLGGLLGLGG] saṁtāpa-hetur na suto na bandhur ajñāna-naimittika eṣa tāpaḥ ||9.34||
+——[不规则韵律 （11音节）]
+[LGLGGLLLLGG GGLGGLLGLGG] yadādhvagānām iva saṁgatānāṁ kāle viyogo niyataḥ prajānām |
+[GGLGGLLGLGL GGLLGLLGLGG] prājño janaḥ ko nu bhajeta śokaṁ bandhu-pratijñāta-janair vihīnaḥ ||9.35||
+——[不规则韵律 （11音节）]
+[LGLGGLLLLGG LGLGGLLGLGG] ihaiti hitvā svajanaṁ paratra pralabhya cehāpi punaḥ prayāti |
+[GGLGGLLGLGG GLLGGLLGLGG] gatvāpi tatrāpy aparatra gacchety evaṁ jane tyāgini ko ’nurodhaḥ ||9.36||
+——[韵律 7-upajāti （11音节 5+6）]
+[LGLGG LLGLGG GGLGG LLGLGG] yadā ca garbhāt prabhṛti pravṛttaḥ sarvāsv avasthāsu vadhāya mṛtyuḥ |
+[GGLGG LLLLLG GGLGG LLGLGG] kasmād akāle vana-saṁśrayaṁ me putra-priyas tatra bhavān avocat ||9.37||
+[LGLGG LLGLGG GGLGG LLGLGG] bhavaty akālo viṣayābhipattau kālas tathaivārtha-vidhau pradiṣṭaḥ |
+[GGLGG LLGLGG GGLGG LLGLGG] kālo jagat karṣati sarva-kālān arcārhakaḥ śreyasi sarva-kālaḥ ||9.38||
+——[不规则韵律 （11音节）]
+[GLLLGLLGLGG LGLGLLLLLGG] rājyaṁ mumukṣur mayi yac ca rājā tad apy udāraṁ sadṛśaṁ pituś ca |
+[LGLGLLLLLLL GGLGGLLGLGG] pratigrahītuṁ mama na kṣamaṁ tu lobhād apathyānnam ivāturasya ||9.39||
+——[不规则韵律 （11音节）]
+[LLLGGLLLLGL LLLGLLLGLGG] kathaṁ nu mohāyatanaṁ nṛ-patvaṁ kṣamaṁ prapattuṁ viduṣā nareṇa |
+[GGLGGLLGLGL LGLGGLLGLGG] sodvegatā yatra madaḥ śramaś ca parāpacāreṇa ca dharma-pīḍā ||9.40||
+——[韵律 upasthitā （11音节）]
+[GGLLGLLGLGL LGLLGLLGLGG] jāmbūnadaṁ harmyam iva pradīptaṁ viṣeṇa saṁyuktam ivottamānnam |
+[GGLLGLLGLGL GLLGLLLGLLG] grāhākulaṁ cāmbv iva sāravindaṁ rājyaṁ hi ramyaṁ vyasanāśrayaṁ ca ||9.41||
+——[韵律 7-upajāti （11音节 5+6）]
+[GLLGL LLLLGG GGLGG LLGLGG] itthaṁ ca rājyaṁ na sukhaṁ na dharmaḥ pūrve yathā jāta-ghṛṇā narendrāḥ |
+[LGLGG LLGLGG GGLGG LLGLGG] vayaḥ-prakarṣe ’parihārya-duḥkhe rājyāni muktvā vanam eva jagmuḥ ||9.42||
+——[不规则韵律 （11音节）]
+[LLLGGLLGLGG GLLLGLLGLGG] varaṁ hi bhuktāni tṛṇāny araṇye toṣaṁ paraṁ ratnam ivopaguhya |
+[LGLLGLLGLGL GGLGGLLGLGG] sahoṣitaṁ śrī-sulabhair na caiva doṣair adṛśyair iva kṛṣṇa-sarpaiḥ ||9.43||
+——[不规则韵律 （11音节）]
+[GLLGGLLGLGG GGLGGLLLLGG] ślāghyaṁ hi rājyāni vihāya rājñāṁ dharmābhilāṣeṇa vanaṁ praveṣṭum |
+[GGLLGLLGLGL LLLGGLLLLGG] bhagna-pratijñasya na tūpapannaṁ vanaṁ parityajya gṛhaṁ praveṣṭum ||9.44||
+——[韵律 5-indravajrā （11音节 5+6）]
+[GGLGG LLGLGG GGLGG LLLLGG] jātaḥ kule ko hi naraḥ sa-sattvo dharmābhilāṣeṇa vanaṁ praviṣṭaḥ |
+[GGLGG LLGLGG LLLGG LLLLGG] kāṣāyam utsṛjya vimukta-lajjaḥ puraṁdarasyāpi puraṁ śrayeta ||9.45||
+[GGLGG LLGLGL GGLGL LLGLGG] lobhādd hi mohād atha vā bhayena yo vāntam annaṁ punar ādadīta |
+[GGLGG LLGLGL LGLGG LLGLGG] lobhāt sa mohād atha vā bhayena saṁtyajya kāmān punar ādadīta ||9.46||
+[GGLGG LLGLLG GGLGG LLGLGG] yaś ca pradīptāc charaṇāt kathaṁ-cin niṣkramya bhūyaḥ praviśet tad eva |
+[GGLGG LLGLGG GGLGG LLGLGG] gārhasthyam utsṛjya sa dṛṣṭa-doṣo mohena bhūyo ’bhilaṣed grahītum ||9.47||
+——[韵律 7-upajāti （11音节 5+6）]
+[GGLGG LLGLGG LGLGG LLGLGG] yā ca śrutir mokṣam avāptavanto nṛpā gṛha-sthā iti naitad asti |
+[LGLGG LLGLGG GGLGG LLGLGG] śama-pradhānaḥ kva ca mokṣa-dharmo daṅḍa-pradhānaḥ kva ca rāja-dharmaḥ ||9.48||
+——[不规则韵律 （11音节）]
+[LGLGGLLLLGL GGLGGLLGLGG] śame ratiś cec chithilaṁ ca rājyaṁ rājye matiś cec chama-viplavaś ca |
+[LGLGLLLGLGL GGLGGLLGLGG] śamaś ca taikṣṇyaṁ ca hi nopapannaṁ śītoṣṇayor aikyam ivodakāgnyoḥ ||9.49||
+——[韵律 5-indravajrā （11音节 5+6）]
+[GGLGG LLGLGG GGLGG LLGLGG] tan niścayād vā vasudhādhipās te rājyāni muktvā śamam āptavantaḥ |
+[GGLGG LLGLGG LGLGG LLGLGG] rājyād mitā vā nibhṛtendriyatvād anaiṣṭhike mokṣa-kṛtābhidhānāḥ ||9.50||
+[GGLGG LLGLGG GGLLG LLGLGG] teṣāṁ ca rājye ’stu śamo yathāvat prāpto vanaṁ nāham aniścayena |
+[GGLGL LLGLLL GGLGG LLLLGG] chittvā hi pāśaṁ gṛha-bandhu-saṁjñaṁ muktaḥ punar na pravivikṣur asmi ||9.51||
+——[韵律 upasthitā （11音节）]
+[GGLLGLLGLGL GGLLGLLGLLG] ity ātma-vijñāna-guṇānurūpaṁ mukta-spṛhaṁ hetumad ūrjitaṁ ca |
+[GGLGGLLGLGL GGLLGLLGLGG] śrutvā narendrātmajam uktavantaṁ pratyuttaraṁ mantra-dharo ’py uvāca ||9.52||
+——[韵律 5-indravajrā （11音节 5+6）]
+[GGLGG LLGLGL GLLGG LLGLGG] yo niścayo mantra-dharo tavāyaṁ nāyaṁ na yukto na tu kāla-yuktaḥ |
+[GGLGG LLLLGL GGLGG LLGLGG] śokāya dattvā pitaraṁ vayaḥ-sthaṁ syād dharma-kāmasya hi te na dharmaḥ ||9.53||
+——[不规则韵律 （11音节）]
+[GLLGGLLGLGG GGLGGLLLLGG] nūnaṁ ca buddhis tava nāti-sūkṣmā dharmārthakāmeṣv avicakṣaṇā vā |
+[GGLGGLLGLGL GLLGLLLGLGG] hetor adṛṣṭasya phalasya yas tvaṁ pratyakṣam arthaṁ paribhūya yāsi ||9.54||
+——[韵律 6-upendravajrā （11音节 5+6）]
+[LGLGG LLGLGG GGLGG LLGLLG] punar-bhavo ’stīti ca ke-cid āhur nāstīti ke-cin niyata-pratijñāḥ |
+[GLLGL LLGLGG GGLLG LLGLGG] evaṁ yadā saṁśayito ’yam arthas tasmāt kṣamaṁ bhoktum upasthitā śrīḥ ||9.55||
+——[韵律 7-upajāti （11音节 5+6）]
+[GGLGG LLGLGL LGLGG LLGLGG] bhūyaḥ pravṛttir yadi kā-cid asti raṁsyāmahe tatra yathopapattau |
+[LGLGG LLGLGG GGLGG LLGLGG] atha pravṛttiḥ parato na kā-cit siddho ’prayatnāj jagato ’sya mokṣaḥ ||9.56||
+——[韵律 5-indravajrā （11音节 5+6）]
+[GGLGG LLGLGG GGLGL LLGLGG] astīti ke-cit para-lokam āhur mokṣasya yogaṁ na tu varṇayanti |
+[GGLGG LLGLGL GGLGG LLLLGG] agner yathā hy auṣṇyam apāṁ dravatvaṁ tadvat pravṛttau prakṛtiṁ vadanti ||9.57||
+[GGLGG LLGLGL LGLLG LLGLGG] ke-cit svabhāvād iti varṇayanti śubhāśubhaṁ caiva bhavābhavau ca |
+[GGLLG LLLLGG LGLGG LLGLGG] svābhāvikaṁ sarvam idaṁ ca yasmād ato ’pi mogho bhavati prayatnaḥ ||9.58||
+——[韵律 6-upendravajrā （11音节 5+6）]
+[LGLGG LLGLGG LGLGL LLGLGG] yad indriyāṇāṁ niyataḥ pracāraḥ priyāpriyatvaṁ viṣayeṣu caiva |
+[LGLGG LLGLGL GGLGG LLGLGG] saṁyujyate yaj jarayārttibhiś ca kas tatra yatno nanu sa svabhāvaḥ ||9.59||
+——[韵律 5-indravajrā （11音节 5+6）]
+[GGLGG LLGLGL GGLGG LLGLGG] adbhir hutāśaḥ śamam abhyupaiti tejāṁsi cāpo gamayanti śoṣam |
+[GGLGG LLGLLG GLLGG LLGLGG] bhinnāni bhūtāni śarīra-saṁsthāny aikyaṁ ca dattvā jagad udvahanti ||9.60||
+[GGLGG LLGLGG GGLGG LLGLGG] yat pāṇi-pādodara-pṛṣṭha-mūrdhnā nirvartate garbha-gatasya bhāvaḥ |
+[LGLGG LLGLGG GGLLG LLGLGG] yad ātmanas tasya ca tena yogaḥ svābhāvikaṁ tat-kathayanti taj-jñāḥ ||9.61||
+[GGLGG LLGLGL LGLGL LLLLGG] kaḥ kaṇṭakasya prakaroti taikṣṇyaṁ vicitra-bhāvaṁ mṛga-pakṣiṇāṁ vā |
+[LGLGG LLLLGL LGLGG LLGLGG] svabhāvataḥ sarvam idaṁ pravṛttaṁ na kāma-kāro ’sti kutaḥ prayatnaḥ ||9.62||
+——[韵律 7-upajāti （11音节 5+6）]
+[GLLGG LLGLGG GGLGG LLGLGG] sargaṁ vadantīśvaratas tathānye tatra prayatne puruṣaṣya ko ’rthaḥ |
+[LGLGG LLGLGG GGLGG LLGLGG] ya eva hetur jagataḥ pravṛttau hetur nivṛttau niyataḥ sa eva ||9.63||
+——[韵律 5-indravajrā （11音节 5+6）]
+[GGLGG LLGLGG GGLLG LLLLLG] ke-cid vadanty ātma-nimittam eva prādur-bhavaṁ caiva bhava-kṣayaṁ ca |
+[GGLLG LLGLGG GGLGG LLLLGG] prādur-bhavaṁ tu pravadanty ayatnād yatnena mokṣādhigamaṁ bruvanti ||9.64||
+[LGLGL LGLGGGGLGGLLGLGG] naraḥ pit&#7773;ṇām anṛṇaḥ prajābhir vedair ṛṣīṇāṁ kratubhiḥ surāṇām |
+[GGLGG LLGLGG GGLGG LLGLGG] utpadyate sārdham ṛṇais tribhis tair yasyāsti mokṣaḥ kila tasya mokṣaḥ ||9.65||
+[GGLGG LLGLGL GLLGG LLGLGG] ity evam etena vidhi-krameṇa mokṣaṁ sa-yatnasya vadanti taj-jñāḥ |
+[LGLGG LLGLGL LLLGG LLGLGG] prayatnavanto ’pi hi vikrameṇa mumukṣavaḥ khedam avāpnuvanti ||9.66||
+[GGLGG LLGLGG GGLGG LLLLGG] tat saumya mokṣe yadi bhaktir asti nyāyena sevasva vidhiṁ yathoktam |
+[GLLGG LLGLGL LGLGG LLGLGG] evaṁ bhaviṣyaty upapattir asya saṁtāpa-nāśaś ca narādhipasya ||9.67||
+[GGLGG LLGLGG LGLGG LLLLGG] yā ca pravṛttā tava doṣa-buddhis tapo-vanebhyo bhavanaṁ praveṣṭum |
+[GGLGG LLGLGG GGLGG LLGLGG] tatrāpi cintā tava tāta mā bhūt pūrve ’pi jagmuḥ sva-gṛhān vanebhyaḥ ||9.68||
+——[韵律 6-upendravajrā （11音节 5+6）]
+[LGLGG LLGLGG LGLGG LLGLGG] tapo-vana-stho ’pi vṛtaḥ prajābhir jagāma rājā puram ambarīṣaḥ |
+[LGLGG LLGLGG LGLGG LLLLGG] tathā mahīṁ viprakṛtām anāryais tapovanād etya rarakṣa rāmaḥ ||9.69||
+[LGLGG LLGLGG LGLGG LLLLGG] tathaiva śālvādhipatir drumākhyo vanāt sasūnur nagaraṁ viveśa |
+[GGLGG LLGLGG GGLLG LLGLGG] brahmarṣi-bhūtaś ca muner vasiṣṭhād dadhre śriyaṁ sāṁkṛtir antidevaḥ ||9.70||
+——[不规则韵律 （11音节）]
+[GLLGGLLGLGG LGLGGLLGLGG] evaṁ-vidhā dharma-yaśaḥ-pradīpā vanāni hitvā bhavanāny atīyuḥ |
+[GGLGGLLLLGL LGLGGLLGLGG] tasmān na doṣo ’sti gṛhaṁ prayātuṁ tapo-vanād dharma-nimittam eva ||9.71||
+——[韵律 12-vaṃśastha （12音节 5+7）]
+[LGLGG LLGLGLG LLLLG LLGLLLG] tato vacas tasya niśamya mantriṇaḥ priyaṁ hitaṁ caiva nṛpasya cakṣuṣaḥ |
+[LGLGG LLGLGLL LGLGG LLGLGLG] anūnam avyastam asaktam adrutaṁ dhṛtau sthito rāja-suto ’bravīd vacaḥ ||9.72||
+——[不规则韵律 （12音节）]
+[LGLGGLLGLLLG LGLGGLLGLGLG] ihāsti nāstīti ya eṣa saṁśayaḥ parasya vākyair na mamātra niścayaḥ |
+[LGLGLLLGLGLG LLLGGLLGLGLG] avetya tattvaṁ tapasā śamena vā svayaṁ grahīṣyāmi yad atra niścitam ||9.73||
+——[韵律 12-vaṃśastha （12音节 5+7）]
+[LGLLL LLLLGLL LGLGG LLGLGLG] na me kṣamaṁ saṁśaya-jaṁ hi darśanaṁ grahītum avyakta-paras-parāhatam |
+[LGLGG LLGLGLG LGLGG LLGLGLG] budhaḥ para-pratyayato hi ko vrajej jano ’ndhakāre ’ndha ivāndha-deśikaḥ ||9.74||
+——[不规则韵律 （12音节）]
+[LGLGGLLGLLLG LGLGLLLGLGLG] adṛṣṭa-tattvasya sato ’pi kiṁ tu me śubhāśubhe saṁśayite śubhe matiḥ |
+[LGLGGLLLLGLG LLLGGLLGLGLG] vṛthāpi khedo hi varaṁ śubhātmanaḥ sukhaṁ na tattve ’pi vigarhitātmanaḥ ||9.75||
+——[不规则韵律 （12音节）]
+[LLLGGLLGLGLL LGLGGLLGLGLG] imaṁ tu dṛṣṭvāgamam avyavasthitaṁ yad uktam āptais tad avehi sādhv iti |
+[LGLGGLLGLGLG LGLGGLLLLGLG] prahīṇa-doṣa-tvam avehi cāptatāṁ prahīṇa-doṣo hy anṛtaṁ na vakṣyati ||9.76||
+——[不规则韵律 （12音节）]
+[LGLGLLLGLGLG LGLGGLLGLGLG] gṛha-praveśaṁ prati yac ca me bhavān uvāca rāma-prabhṛtīn nidarśanam |
+[LGLGLLLGLGLG LLLGGLLLLGLG] na te pramāṇaṁ na hi dharma-niścayeṣv alaṁ pramāṇāya parikṣata-vratāḥ ||9.77||
+——[韵律 12-vaṃśastha （12音节 5+7）]
+[LGLGG LLGLGLG LGLGL LLGLGLG] tad evam apy eva ravir mahīṁ pated api sthiratvaṁ himavān giris tyajet |
+[LGLGG LLGLGLG LGLGG LLGLGLG] adṛṣṭa-tattvo viṣayonmukhendriyaḥ śrayeya na tv eva gṛhān pṛthag-janaḥ ||9.78||
+——[不规则韵律 （12音节）]
+[LLLGLLLLLGLL LGLGGLLGLGLG] ahaṁ viśeyaṁ jvalitaṁ hutāśanaṁ na cākṛtārthaḥ praviśeyam ālayam |
+[LGLLGLLGLGLG LGLGGLLGLGLG] iti pratijñāṁ sa cakāra garvito yatheṣṭam utthāya ca nirmamo yayau ||9.79||
+——[韵律 12-vaṃśastha （12音节 5+7）]
+[LGLGG LLGLGLG LGLGG LLGLGLG] tataḥ sa-bāṣpau saciva-dvijāv ubhau niśamya tasya sthiram eva niścayam |
+[LGLGG LLGLGLG LGLGG LLGLGLG] viṣaṇṇa-vaktrāv anugamya duḥkhitau śanair agatyā puram eva jagmatuḥ ||9.80||
+——[韵律 17-praharṣiṇī （13音节 3+10）]
+[GGG LLLLGLGLGG GGL LLLLGLGLGG] tat-snehād atha nṛpateś ca bhaktitas tau sāpekṣaṁ pratiyayatuś ca tasthatuś ca |
+[GGL LLLLGLGLGG LGL LLLLGLGLGG] dur-dharṣaṁ ravim iva dīptam ātma-bhāsā taṁ draṣṭuṁ na hi pathi śekatur na moktum ||9.81||
+——[不规则韵律 （13音节）]
+[GGLLLLLGLLLGG GGGLLLLGLGLGG] tau jñātuṁ parama-gater gatiṁ tu tasya pracchannāṁś cara-puruṣāñ chucīn vidhāya |
+[GGLLLLLGLLLGG GGGLLLLGLGLLG] rājānaṁ priya-suta-lālasaṁ nu gatvā drakṣyāvaḥ katham iti jagmatuḥ kathaṁ-cit ||9.82||
+iti buddha-carite mahā-kāvye kumārānveṣaṇo nāma navamaḥ sargaḥ ||9||
+`
+
+  window.renderBody = function () {
+    const opt = {audioPrefix: '../mp3/bc4/a', hoverWord: false, sentenceAudio: true,
+      metreRender: text => text.slice(1,-1).replace(/（[^）]+）/g, g => '<span class="gana">' + g.slice(1,-1).replace(
+        /\([^)]+\)/g, s => `<small>${s}</small>`) + '</span>')
+    }
+    iastContent.split('\n').forEach((text, i) => renderRow(text, i, opt))
+  }
+  renderBody()
+</script>
+</body>
+</html>

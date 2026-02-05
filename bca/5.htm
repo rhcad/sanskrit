@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>5 Bodhicaryāvatāraḥ 卷五</title>
+  <meta name="description" content="梵文诗律唱诵-入菩萨行论,Śāntideva 寂天论师,Kashinath Nyaupane (咯什纳塔·尼奥巴内)教授朗诵">
+  <meta name="keywords" content="sanskrit,metres,梵文,诗律,唱诵,入菩萨行论,śāntidevaviracitaḥ,bodhicaryāvatāraḥ">
+  <meta property="og:image" content="../img/favicon.png">
+  <link rel="icon" type="image/png" href="../img/favicon.png">
+  <link rel="stylesheet" href="../script/sanskrit.css?v=1324">
+  <link rel="stylesheet" href="../script/audio.css?v=1324">
+  <style>
+    body { font-size: 19px; }
+    .title { text-align: center; margin-bottom: .5em; }
+    .tip { font-size: 13px; margin-bottom: 2em; }
+    .audio-button.voc { background-size: 16px 16px; width: 16px; height: 16px; }
+    .word span.sp.space { width: .7em; display: inline-block; }
+    .word span.sp.space + .audio-button, .word span.sp.space + .sp + .audio-button { margin-left: -.7em; }
+    .section-title { margin-left: 20px; margin-bottom: 1.4em; }
+    .iast-row:has(.has-sentence-voc) { margin-bottom: .7em; }
+    .iast-row:has(.has-sloka-end) { margin-bottom: 1.5em; }
+    .metre { color: gray; font-size: .9em; }
+    .gana { display: inline-block; }
+    .gana::before { content: "("; font-weight: 300; }
+    .gana::after { content: ")"; font-weight: 300; }
+    .gana small { font-weight: 400; font-size: .6em; }
+    body:not(.show-tip) .row.metre { display: none; }
+  </style>
+</head>
+<body class="show-odd show-iast show-tip">
+<div id="top-bar">
+  <span class="home" onclick="location.href='./'" title="Home"><img src="../img/favicon.png" alt="Home"></span>
+  <span onclick="biggerFont()">+</span>
+  <span onclick="smallerFont()">-</span>
+  <span data-toggle="show-odd">音节</span>
+  <span data-toggle="show-tip" title="韵律提示">提示</span>
+  <span data-toggle="show-weight">轻重</span>
+  <span data-toggle="show-deva">天城体</span>
+  <span data-toggle="show-iast">转写</span>
+</div>
+<div class="title no-print">Bodhicaryāvatāraḥ 卷五</div>
+<div id="body"></div>
+<script src="../script/sanscript.es6.js?v=1324"></script>
+<script src="../script/sanskrit.js?v=1324"></script>
+<script>
+  window._fontSize = 19
+  window.audioGap = 0
+
+  const iastContent = `
+saṃprajanyarakṣaṇaṃ nāma pañcamaḥ paricchedaḥ|
+
+——[韵律 3-anuṣṭubh （8音节）]
+[LGLLLGGL GGGGLGLG] śikṣāṃ rakṣitukāmena cittaṃ rakṣyaṃ prayatnataḥ|
+[LLGLLGGG LGGLLLLG] na śikṣā rakṣituṃ śakyā calaṃ cittamarakṣatā||1||
+
+[LGGGLGGG LGGGLGLG] adāntā mattamātaṅgā na kurvantīha tāṃ vyathām|
+[LGLGLGGG GGGLLGLG] karoti yāmavīcyādau muktaścittamataṅgajaḥ||2||
+
+[GGGGLGGG LLGGLGLG] baddhaśceccittamātaṅgaḥ smṛtirajjvā samantataḥ|
+[LLGGLGGG GGGGLGLG] bhayamastaṃgataṃ sarvaṃ kṛtsnaṃ kalyāṇamāgatam||3||
+
+
+[GGGGLGLG GGGGLGLG] vyāghrāḥ siṃhā gajā ṛkṣāḥ sarpāḥ sarve ca śatravaḥ|
+[GGLLLGGL GGGGLGLG] sarve narakapālāśca ḍākinyo rākṣasāstathā||4||
+
+——[韵律 3-anuṣṭubh （8音节）]
+[GGGGLGGG GGGGLGLG] sarve baddhā bhavantyete cittasyaikasya bandhanāt|
+[GGGGLLLG GGGGLGLG] cittasyaikasya damanāt sarve dāntā bhavanti ca||5||
+
+[GGLGLGGL GGGLLGLG] yasmādbhayāni sarvāṇi duḥkhānyapramitāni ca|
+[GGGLLGGL LLGGLGLG] cittādeva bhavantīti kathitaṃ tattvavādinā||6||
+
+[GGLGLLLG LLGGLGLG] śastrāṇi kena narake ghaṭitāni prayatnataḥ|
+[GGGGLGGL LGGGLGLG] taptāyaḥkuṭṭimaṃ kena kuto jātāśca tāḥ striyaḥ||7||
+
+[GLGLLGGG GGGGLGLG] pāpacittasamudbhūtaṃ tattatsarvaṃ jagau muniḥ|
+[GGLGGGGG GGGGLGLG] tasmānna kaścit trailokye cittādanyo bhayānakaḥ||8||
+
+[LLGGLGGG GLGLLGLG] adaridraṃ jagatkṛtvā dānapāramitā yadi|
+[LGLGLGGL GLGGLGLG] jagaddaridramadyāpi sā kathaṃ pūrvatāyinām||9||
+
+[LGLLLGGG GLGGLGLG] phalena saha sarvasvatyāgacittājjane’khile|
+[GLGLLGGG GGGGLGLG] dānapāramitā proktā tasmātsā cittameva tu||10||
+
+[GGLGLGGG GLGGLGLG] matsyādayaḥ kva nīyantāṃ mārayeyaṃ yato na tān|
+[GGLLLGGL GLGLLGLG] labdhe viraticitte tu śīlapāramitā matā||11||
+
+[LLGGLGGL GLGLLGLG] kiyato mārayiṣyāmi durjanān gaganopamān|
+[GLGGLGGL GLGGLGLG] mārite krodhacitte tu māritāḥ sarvaśatravaḥ||12||
+
+[GGGLLGGG LGGLLGLG] bhūmiṃ chādayituṃ sarvāṃ kutaścarma bhaviṣyati|
+[LGGGLGGL GGLLLGLG] upānaccarmamātreṇa channā bhavati medinī||13||
+
+[GGGGLGGG GGGLLGLG] bāhyā bhāvā mayā tadvacchakyā vārayituṃ na hi|
+[LGGGLGGL GLGGLGLG] svacittaṃ vārayiṣyāmi kiṃ mamānyairnivāritaiḥ||14||
+
+[LGLGLGGG GLGGLGLG] sahāpi vākśarīrābhyāṃ mandavṛtterna tatphalam|
+[GLGGLGGL GGGGLGLG] yatpaṭorekakasyāpi cittasya brahmatādikam||15||
+
+[LGLGLGGL GLGLLGLG] japāstapāṃsi sarvāṇi dīrghakālakṛtānyapi|
+[GLGGLGGL LGGGLGLG] anyacittena mandena vṛthaivetyāha sarvavit||16||
+
+[GGGGLGGG GLGLLGLG] duḥkhaṃ hantuṃ sukhaṃ prāptuṃ te bhramanti mudhāmbare|
+[GGGGLGGG GGGGLGLG] yairetaddharmasarvasvaṃ cittaṃ guhyaṃ na bhāvitam||17||
+
+[GGLGLGGG LGGGLLLG] tasmātsvadhiṣṭhitaṃ cittaṃ mayā kāryaṃ surakṣitam|
+[GLLGLGGG LLGGLGLG] cittarakṣāvrataṃ mukttvā bahubhiḥ kiṃ mama vrataiḥ||18||
+
+[LGLLLGGG LLGLLGLG] yathā capalamadhyastho rakṣati vraṇamādarāt|
+[GGGLLGGG LGGGLGLG] evaṃ durjanamadhyastho rakṣeccittavraṇaṃ sadā||19||
+
+[LLGLLGGG LGGLLGLG] vraṇaduḥkhalavādbhīto rakṣāmi vraṇamādarāt|
+[GGLGLGGG GGGGLGLG] saṃghātaparvatāghātādbhītaścittavraṇaṃ na kim||20||
+
+[LGLLLGGL LLGGLGLG] anena hi vihāreṇa viharan durjaneṣvapi|
+[LLGLLGGL LGGGLGLG] pramadājanamadhye’pi yatirdhīro na khaṇḍyate||21||
+
+[GGGGLGGG GGGGLGLG] lābhā naśyantu me kāmaṃ satkāraḥ kāyajīvitam|
+[GGGGLLLG GLGGLGLG] naśyatvanyacca kuśalaṃ mā tu cittaṃ kadācana||22||
+
+[GGLLLGGG LGGLLGLG] cittaṃ rakṣitukāmānāṃ mayaiṣa kriyate’ñjaliḥ|
+[LGLGLGGL GLGGLLLG] smṛtiṃ ca saṃprajanyaṃ ca sarvayatnena rakṣata||23||
+
+[GGLGLGGG LLGGLGLG] vyādhyākulo naro yadvanna kṣamaḥ sarvakarmasu|
+[LGGLLGGG LLGGLGLG] tathābhyāṃ vikalaṃ cittaṃ na kṣamaṃ sarvakarmasu||24||
+
+[LGLGLGGG LLGLLGLG] asaṃprajanyacittasya śrutacintitabhāvitam|
+[GGLGLLLG GLGLLGLG] sacchidrakumbhajalavanna smṛtāvavatiṣṭhate||25||
+
+[LGGLLGGG GGGLLGLG] aneke śrutavanto’pi śrāddhā yatnaparā api|
+[LGLGLGGL LGGGLGLG] asaṃprajanyadoṣeṇa bhavantyāpattikaśmalāḥ||26||
+
+[LGLGLGGG LLGGLGLG] asaṃprajanyacaureṇa smṛtimoṣānusāriṇā|
+[LLGGLGGL LLGGLGLG] upacityāpi puṇyāni muṣitā yānti durgatim||27||
+
+[GLGLLGGL LLGLLGLG] kleśataskarasaṃgho’yamavatāragaveṣakaḥ|
+[GGLGGGGL GLGLLGLG] prāpyāvatāraṃ muṣṇāti hanti sadgatijīvitam||28||
+
+[GGLGLGGG GLGGLGLG] tasmātsmṛtirmanodvārānnāpaneyā kadācana|
+[LGGGLGGG GGGGLGLG] gatāpi pratyupasthāpyā saṃsmṛtyāpāyikīṃ vyathām||29||
+
+[LGGGLGGG GGGLLGLG] upādhyāyānuśāsanyā bhītyāpyādarakāriṇām|
+[GGGLLGGG LLGGLGLG] dhanyānāṃ gurusaṃvāsātsukaraṃ jāyate smṛtiḥ||30||
+
+[GGLGLGGL GGGGLGLG] buddhāśca bodhisattvāśca sarvatrāvyāhatekṣaṇāḥ|
+[GLGGLGGG GGGLLGLG] sarvamevāgratasteṣāṃ teṣāmasmi puraḥ sthitaḥ||31||
+
+[LGGGLGGG LGLLLGLG] iti dhyātvā tathā tiṣṭhet trapādarabhayānvitaḥ|
+[GGGLLGGG LGGLLGLG] buddhānusmṛtirapyevaṃ bhavettasya muhurmuhuḥ||32||
+
+[GLGGLGGL LLGGLGLG] saṃprajanyaṃ tadāyāti na ca yātyāgataṃ punaḥ|
+[LGLGLGGG LGLLLGLG] smṛtiryadā manodvāre rakṣārthamavatiṣṭhate||33||
+
+[GGGLLGGG LGGGLGLG] pūrvaṃ tāvadidaṃ cittaṃ sadopasthāpyamīdṛśam|
+[LGLGGLLG GGGGLGLG] nirindriyeṇeva mayā sthātavyaṃ kāṣṭhavatsadā||34||
+
+——[不规则韵律 （8音节）]
+[GLGGLLGG LGGGLGLG] niṣphalā netravikṣepā na kartavyāḥ kadācana|
+[GGGGLLLG GGGLLGLG] nidhyāyantīva satataṃ kāryā dṛṣṭiradhogatā||35||
+
+——[韵律 3-anuṣṭubh （8音节）]
+[GLGGLGGL LGGGLGLG] dṛṣṭiviśrāmahetostu diśaḥ paśyetkadācana|
+[GGLGGGGG GLGGLGLG] ābhāsamātraṃ dṛṣṭvā ca svāgatārthaṃ vilokayet||36||
+
+[GGGLLGGG LGGGLGLG] mārgādau bhayabodhārthaṃ muhuḥ paśyeccaturdiśam|
+[LGGGLGGL LGGGLGLG] diśo viśramya vīkṣeta parāvṛtyaiva pṛṣṭhataḥ||37||
+
+[LGLLLGGL LGGGLGLG] saredapasaredvāpi puraḥ paścānnirūpya ca|
+[GGGGLGGL GGGGLGLG] evaṃ sarvāsvavasthāsu kāryaṃ buddhvā samācaret||38||
+
+[GGGLLGGL GGGGLGLG] kāyenaivamavastheyamityākṣipya kriyāṃ punaḥ|
+[LGGGLLLG GGGLLGLG] kathaṃ kāyaḥ sthita iti draṣṭavyaṃ punarantarā||39||
+
+[LGGGLGGL GLGGLGLG] nirūpyaḥ sarvayatnena cittamattadvipastathā|
+[GLGGLGGG LGGGLGLG] dharmacintāmahāstambhe yathā baddho na mucyate||40||
+
+[GLGGLLLG GLGGLGLG] kutra me vartata iti pratyavekṣyaṃ tathā manaḥ|
+[LGGLLGGL LLGGLGLG] samādhānadhuraṃ naiva kṣaṇamapyutsṛjedyathā||41||
+
+[LGLGLGGG GLGGLGLG] bhayotsavādisaṃbandhe yadyaśakto yathāsukham|
+[GLGGLGGL GGGLLGLG] dānakāle tu śīlasya yasmāduktamupekṣaṇam||42||
+
+[GGGGLGGG LGGLLGLG] yad buddhvā kartumārabdhaṃ tato’nyanna vicintayet|
+[LGLGGGGG GLGGLGLG] tadeva tāvanniṣpādyaṃ tadgatenāntarātmanā||43||
+
+[GGLLLGGL GLGGLGLG] evaṃ hi sukṛtaṃ sarvamanyathā nobhayaṃ bhavet|
+[LGLGGGGL GGGGLGLG] asaṃprajanyakleśo’pi vṛddhiṃ caivaṃ gamiṣyati||44||
+
+[GGLGLGGL GLGGLGLG] nānāvidhapralāpeṣu vartamāneṣvanekadhā|
+[GGLGLGGL GGGGLGLG] kautūhaleṣu sarveṣu hanyādautsukyamāgatam||45||
+
+[GGLLLGGL GGLLLGLG] mṛnmardanatṛṇacchedarekhādyaphalamāgatam|
+[GGGGLGLG GGGLLGLG] smṛtvā tāthāgatīṃ śikṣāṃ bhītastatkṣaṇamutsṛjet||46||
+
+[LGLLLGGG GLGGLGLG] yadā calitukāmaḥ syādvaktukāmo’pi vā bhavet|
+[LGGGLGGG GGGGLGLG] svacittaṃ pratyavekṣyādau kuryāddhairyeṇa yuktimat||47||
+
+[LLGGLLLG LGGGLGLG] anunītaṃ pratihataṃ yadā paśyetsvakaṃ manaḥ|
+[LGGGLGGG GGGGLGLG] na kartavyaṃ na vaktavyaṃ sthātavyaṃ kāṣṭhavattadā||48||
+
+[GLGGLGGG LGGLLGLG] uddhataṃ sopahāsaṃ vā yadā mānamadānvitam|
+[GGGLLGGG GLGLLGLG] sotprāsātiśayaṃ vakraṃ vañcakaṃ ca mano bhavet||49||
+
+[LGGGLGGG LLGLLGLG] yadātmotkarṣaṇābhāsaṃ parapaṃsanameva vā|
+[GLGGLGGG GGGGLGLG] sādhikṣepaṃ sasaṃrambhaṃ sthātavyaṃ kāṣṭhavattadā||50||
+
+[GLGGLGGL LLGGLGLG] lābhasatkārakīrtyarthi parivārārthi vā punaḥ|
+[LGGGGGGG GGGGLGLG] upasthānārthe me cittaṃ tasmāttiṣṭhāmi kāṣṭhavat||51||
+
+[LGLGGGGL LLGGLGLG] parārtharūkṣaṃ svārthārthi pariṣatkāmameva vā|
+[GLGLLGGG GGGGLGLG] vaktumicchati me cittaṃ tasmāttiṣṭhāmi kāṣṭhavat||52||
+
+[LLGLLGGG LGGLLGLG] asahiṣṇvalasaṃ bhītaṃ pragalbhaṃ mukharaṃ tathā|
+[LLGLLGGL GGGGLGLG] svapakṣābhiniviṣṭaṃ ca tasmāttiṣṭhāmi kāṣṭhavat||53||
+
+[GGGGLGGL GLGGLGLG] evaṃ saṃkliṣṭamālokya niṣphalārambhi vā manaḥ|
+[LGGGLGGG LLLGLGLG] nigṛhṇīyād dṛḍhaṃ śūraḥ pratipakṣeṇa tatsadā||54||
+
+[LGLGGLGG GGGLLGLG] suniścitaṃ suprasannaṃ dhīraṃ sādaragauravam|
+[LGGLLGGG LGGLLGLG] salajjaṃ sabhayaṃ śāntaṃ parārādhanatatparam||55||
+
+[LGLLLGGG GGGLLGLG] parasparaviruddhābhirbālecchābhirakheditam|
+[GGGGLGGL GGLLLGLG] kleśotpādādidaṃ hyetadeṣāmiti dayānvitam||56||
+
+[GLGLLGGL LLGGLGLG] ātmasattvavaśaṃ nityamanavadyeṣu vastuṣu|
+[GGLLLGGG GLGGLGLG] nirmāṇamiva nirmānaṃ dhārayāmyeṣa mānasam||57||
+
+[LGGGLLLG GGGGLGLG] cirātprāptaṃ kṣaṇavaraṃ smṛtvā smṛtvā muhurmuhuḥ|
+[GLGGLGGL GLGGLGLG] dhārayāmīdṛśaṃ cittamaprakampyaṃ sumeruvat||58||
+
+[GGGLLGGG GLGLLGLG] gṛdhrairāmiṣasaṃgṛddhaiḥ kṛṣyamāṇa itastataḥ|
+[LLGGLGGG GGGGLGLG] na karotyanyathā kāyaḥ kasmādatra pratikriyām||59||
+
+[LLGGLGGG GGGLLGLG] rakṣasīmaṃ manaḥ kasmādātmīkṛtya samucchrayam|
+[GGGLLGGG GGLLLGLG] tvattaścetpṛthagevāyaṃ tenātra tava ko vyayaḥ||60||
+
+[GGLGLGGL GLGLLGLG] na svīkaroṣi he mūḍha kāṣṭhaputtalakaṃ śucim|
+[LGLLLGGG GGLLLGLG] amedhyaghaṭitaṃ yantraṃ kasmādrakṣasi pūtikam||61||
+
+[LGGLLGGG LGGLLGLG] imaṃ carmapuṭaṃ tāvatsvabuddhyaiva pṛthakkuru|
+[GLGLLGGG LGGGLGLG] asthipañjarato māṃsaṃ prajñāśastreṇa mocaya||62||
+
+[GGLLLGGG GLGGLGLG] asthīnyapi pṛthakkṛtvā paśya majjānamantataḥ|
+[LGLGLGGG LLGLLGLG] kimatra sāramastīti svayameva vicāraya||63||
+
+[GLGGLGGL LGGGLGLG] evamanviṣya yatnena na dṛṣṭaṃ sāramatra te|
+[LLGLLGGG GLGGLLLG] adhunā vada kasmāttvaṃ kāyamadyāpi rakṣasi||64||
+
+[LGLGLLLG LGGGLGLG] na khāditavyamaśuci tvayā peyaṃ na śoṇitam|
+[GGLGLGGL GGGLLGLG] nāntrāṇi cūṣitavyāni kiṃ kāyena kariṣyasi||65||
+
+[GGGLLGGG GGGGLLLG] yuktaṃ gṛdhraśṛgālāderāhārārthaṃ tu rakṣitum|
+[GGLLLGGG LGGGLGLG] karmopakaraṇaṃ tvetanmanuṣyāṇāṃ śarīrakam||66||
+
+[GGGLLGGL GLGGLGLG] evaṃ te rakṣataścāpi mṛtyurācchidya nirdayaḥ|
+[GGGLLGGG LGGGLGLG] kāyaṃ dāsyati gṛdhrebhyastadā tvaṃ kiṃ kariṣyasi||67||
+
+[GGLGLGGL LGGGLGLG] na sthāsyatīti bhṛtyāya na vastrādi pradīyate|
+[GGGLLGGG GGGLLGLG] kāyo yāsyati khāditvā kasmāttvaṃ kuruṣe vyayam||68||
+
+[GGGGLGGG GGLLLGLG] datvāsmai vetanaṃ tasmātsvārthaṃ kuru mano’dhunā|
+[LLGLLGGG GGGGLGLG] na hi vaitanikopāttaṃ sarvaṃ tasmai pradīyate||69||
+
+[GGGGLGGLGGLLLGLG] kāye naubuddhimādhāya gatyāgamananiśrayāt||
+[LGGGLGGGLLGGLGLG] yathākāmaṃgamaṃ kāyaṃ kuru sattvārthasiddhaye||70||
+
+[GGLGLGGG GGLLLGLG] evaṃ vaśīkṛtasvātmā nityaṃ smitamukho bhavet|
+[LGLLLGGG GGGGLGLG] tyajed bhṛkuṭisaṃkocaṃ pūrvābhāṣī jagatsuhṛt||71||
+
+[LGLGGLLG LGGGLLLG] saśabdapātaṃ sahasā na pīṭhādīn vinikṣipet|
+[GGLGLGGG GGGLLGLG] nāsphālayetkapāṭaṃ ca syānniḥśabdaruciḥ sadā||72||
+
+[LGLGGGGL GGGLLGLG] bako biḍālaścauraśca niḥśabdo nibhṛtaścaran|
+[GGLLLGGL GGGGLGLG] prāpnotyabhimataṃ kāryamevaṃ nityaṃ yatiścaret||73||
+
+[LLGLLLGG LLGGLGLG] paracodanadakṣāṇāmanadhīṣṭopakāriṇām|
+[LGGLLGGG GLGGLGLG] pratīcchecchirasā vākyaṃ sarvaśiṣyaḥ sadā bhavet||74||
+
+[LGLGLGGL GLGLLGLG] subhāṣiteṣu sarveṣu sādhukāramudīrayet|
+[GLGLLGGG LLGGLGLG] puṇyakāriṇamālokya stutibhiḥ saṃpraharṣayet||75||
+
+[LGGLLGGG LGGGLGLG] parokṣaṃ ca guṇān brūyādanubrūyācca toṣataḥ|
+[LGGGLGGL GLGGLLLG] svavarṇe bhāṣyamāṇe ca bhāvayettadguṇajñatām||76||
+
+[GGGGLGGG GGGLLGLG] sarvārambhā hi tuṣṭyarthāḥ sā vittairapi durlabhā|
+[GGGLLGGG LGLLLGLG] bhokṣye tuṣṭimukhaṃ tasmātparaśramakṛtairguṇaiḥ||77||
+
+[LGLGLGGG LGLLLGLG] na cātra me vyayaḥ kaścitparatra ca mahatsukham|
+[GGLGGGGL LGGGLGLG] aprītiduḥkhaṃ dveṣaistu mahadduḥkhaṃ paratra ca||78||
+
+[GGLGGLLG GGGGLGLG] viśvastavinyastapadaṃ vispaṣṭārthaṃ manoramam|
+[LLGGLGGG LLGGLGLG] śrutisaukhyaṃ kṛpāmūlaṃ mṛdumandasvaraṃ vadet||79||
+
+[LLGGLGGG LLGGLGLG] ṛju paśyetsadā sattvāṃścakṣuṣā saṃpibanniva|
+[GGGLLGGL GGGGLGLG] etāneva samāśritya buddhatvaṃ me bhaviṣyati||80||
+
+[GGGLLGGG LLLGLGLG] sātatyābhiniveśotthaṃ pratipakṣotthameva ca|
+[LGLGLGGL GLGLLGLG] guṇopakārikṣetre ca duḥkhite ca mahacchubham||81||
+
+[LLGGLGGG LGGGLGLG] dakṣa utthānasaṃpannaḥ svayaṃkārī sadā bhavet|
+[GLGGLGGG GLGGLGLG] nāvakāśaḥ pradātavyaḥ kasyacitsarvakarmasu||82||
+
+[GLGLLGGG GLGLLGLG] uttarottarataḥ śreṣṭhā dānapāramitādayaḥ|
+[GLGGLGGG GGGGLGLG] netarārthaṃ tyajecchreṣṭhāmanyatrācārasetutaḥ||83||
+
+[GGGGLGGL LGLLLGLG] evaṃ buddhvā parārtheṣu bhavetsatatamutthitaḥ|
+[LGLGLLGG LGGGLGLG] niṣiddhamapyanujñātaṃ kṛpālorarthadarśinaḥ||84||
+
+[LLGLLGGG LGGGLGLG] vinipātagatānāthavratasthān saṃvibhajya ca|
+[GGLGLGGG LGLLLGLG] bhuñjīta madhyamāṃ mātrāṃ tricīvarabahistyajet||85||
+
+[GGLGLGGL LLGGLGLG] saddharmasevakaṃ kāyamitarārthaṃ na pīḍayet|
+[GLGLLGGG GGGGLGLG] evameva hi sattvānāmāśāmāśu prapūrayet||86||
+
+[LGLGLGGG LGGLLGLG] tyajenna jīvitaṃ tasmādaśuddhe karuṇāśaye|
+[GGLGLGGL GGLLLGLG] tulyāśaye tu tattyājyamitthaṃ na parihīyate||87||
+
+[GGGGLGGG LLGGLGLG] dharmaṃ nirgaurave svasthe na śiroveṣṭite vadet|
+[GGLGLGGL GLGLLGLG] sacchatradaṇḍaśastre ca nāvaguṇṭhitamastake||88||
+
+[GGGGLGGL GGLLLGLG] gambhīrodāramalpeṣu na strīṣu puruṣaṃ vinā|
+[GGGGLGGL LGGLLGLG] hīnotkṛṣṭeṣu dharmeṣu samaṃ gauravamācaret||89||
+
+[GGLGLGGL GGGGLGLG] nodāradharmapātraṃ ca hīne dharme niyojayet|
+[LGGGLGGL GLGGLGLG] na cācāraṃ parityajya sūtramantraiḥ pralobhayet||90||
+
+[GLGGLGGL LGLLLGLG] dantakāṣṭhasya kheṭasya visarjanamapāvṛtam|
+[GGLGLGGG GGGGLGLG] neṣṭaṃ jale sthale bhogye mūtrādeścāpi garhitam||91||
+
+[LLGGLGGL LGGLLGLG] mukhapūraṃ na bhuñjīta saśabdaṃ prasṛtānanam|
+[LGLGGGGL LGGGLGLG] pralambapādaṃ nāsīta na bāhū mardayetsamam||92||
+
+[GLGGLGGG GGLLLGLG] naikayānyastriyā kuryādyānaṃ śayanamāsanam|
+[GGLGLGGG GGGGLGLG] lokāprasādakaṃ sarvaṃ dṛṣṭvā pṛṣṭvā ca varjayet||93||
+
+[GGGGLGGG LLGLLGLG] nāṅgulyā kārayetkiṃciddakṣiṇena tu sādaram|
+[LGGGLGGL GLGGLGLG] samastenaiva hastena mārgamapyevamādiśet||94||
+
+[LGGGLGGG GLGGLGLG] na bāhūtkṣepakaṃ kaṃcicchabdayedalpasaṃbhrame|
+[GLGLLGGL GLGGLGLG] acchaṭādi tu kartavyamanyathā syādasaṃvṛtaḥ||95||
+
+[GLGGLGGG LGGLLGLG] nāthanirvāṇaśayyāvacchayītepsitayā diśā|
+[GLGGLGGG GLGGLGLG] saṃprajānaṃllaghūtthānaḥ prāgavaśyaṃ niyogataḥ||96||
+
+[GGGGLGGG GLGLGGLG] ācāro bodhisattvānāmaprameya uadāhṛtaḥ|
+[GLGLLGGG LLGGLGLG] cittaśodhanamācāraṃ niyataṃ tāvadācaret||97||
+
+[GGLGGGGG GGGGLGLG] rātriṃdivaṃ ca triskandhaṃ triṣkālaṃ ca pravartayet|
+[GGGLLGGL GLGLLGLG] śeṣāpattiśamastena bodhicittajināśrayāt||98||
+
+[GLGGLGGG LGLLLGLG] yā avasthāḥ prapadyeta svayaṃ paravaśo’pi vā|
+[GLGGLGLG LGGGLGLG] tāsvavasthāsu yāḥ śikṣāḥ śikṣettā eva yatnataḥ||99||
+
+[LLGGLGGG GLGGLGLG] na hi tadvidyate kiṃcidyanna śikṣyaṃ jinātmajaiḥ |
+[LLGLLGGL GGLLLGLG] na tadasti na yatpuṇyamevaṃ viharataḥ sataḥ ||100||
+
+[GGGGLGGG GGGGLGLG] pāraṃparyeṇa sākṣādvā sattvārthaṃ nānyadācaret |
+[GGGGLGGL GGGGLGLG] sattvānāmeva cārthāya sarvaṃ bodhāya nāmayet||101||
+
+[LGGGLGGL GLGGLGLG] sadā kalyāṇamitraṃ ca jīvitārthe’pi na tyajet|
+[GLGGLLLG LGGGLGLG] bodhisattvavratadharaṃ mahāyānārthakovidam||102||
+
+[GGLLLGGL LGGLLGLG] śrīsaṃbhavavimokṣācca śikṣedyadguruvartanam|
+[GGGGLGGG GGGGLGLG] etaccānyacca buddhoktaṃ jñeyaṃ sūtrāntavācanāt||103||
+
+[LGGGLGGG GGGGLGLG] śikṣāḥ sūtreṣu dṛśyante tasmātsūtrāṇi vācayet|
+[GGLGLGGL GGGGLGLG] ākāśagarbhasūtre ca mūlāpattīrnirūpayet||104||
+
+[LGLGLGGG GGGLLGLG] śikṣāsamuccayo’vaśyaṃ draṣṭavyaśca punaḥ punaḥ|
+[GLGLLGGG GGGGLGLG] vistareṇa sadācāro yasmāttatra pradarśitaḥ||105||
+
+[GGGGLGGG GGGLLGLG] saṃkṣepeṇāthavā tāvatpaśyetsūtrasamuccayam|
+[GLGGLGGG LGGGLGLG] āryanāgārjunābaddhaṃ dvitīyaṃ ca prayatnataḥ||106||
+
+[LGLGLGGL LGLLLGLG] yato nivāryate yatra yadeva ca niyujyate|
+[LGLGLLGG LGGGLGLG] tallokacittarakṣārthaṃ śikṣāṃ dṛṣṭvā samācaret||107||
+
+——[不规则韵律 （8音节）]
+[GLGLLGGL GLGGLLLG] etadeva samāsena saṃprajanyasya lakṣaṇam|
+[GGLGGGGG GLGGLGLG] yatkāyacittāvasthāyāḥ pratyavekṣā muhurmuhuḥ||108||
+
+——[韵律 3-anuṣṭubh （8音节）]
+[GGGLLGGL GGGLLGLG] kāyenaiva paṭhiṣyāmi vākpāṭhena tu kiṃ bhavet|
+[LGGGLGGL GLGGLGLG] cikitsāpāṭhamātreṇa rogiṇaḥ kiṃ bhaviṣyati||109||
+
+iti śrī śāntideva viracite bodhicaryāvatāre saṃprajanyarakṣaṇaṃ nāma pañcamaḥ paricchedaḥ||
+`
+
+  window.renderBody = function () {
+    const opt = {audioPrefix: '../mp3/bca5/a', hoverWord: false, sentenceAudio: true,
+      metreRender: text => text.slice(1,-1).replace(/（[^）]+）/g, g => '<span class="gana">' + g.slice(1,-1).replace(
+        /\([^)]+\)/g, s => `<small>${s}</small>`) + '</span>')
+    }
+    iastContent.split('\n').forEach((text, i) => renderRow(text, i, opt))
+  }
+  renderBody()
+</script>
+</body>
+</html>

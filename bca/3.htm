@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>3 Bodhicaryāvatāraḥ 卷三</title>
+  <meta name="description" content="梵文诗律唱诵-入菩萨行论,Śāntideva 寂天论师,Kashinath Nyaupane (咯什纳塔·尼奥巴内)教授朗诵">
+  <meta name="keywords" content="sanskrit,metres,梵文,诗律,唱诵,入菩萨行论,śāntidevaviracitaḥ,bodhicaryāvatāraḥ">
+  <meta property="og:image" content="../img/favicon.png">
+  <link rel="icon" type="image/png" href="../img/favicon.png">
+  <link rel="stylesheet" href="../script/sanskrit.css?v=1324">
+  <link rel="stylesheet" href="../script/audio.css?v=1324">
+  <style>
+    body { font-size: 19px; }
+    .title { text-align: center; margin-bottom: .5em; }
+    .tip { font-size: 13px; margin-bottom: 2em; }
+    .audio-button.voc { background-size: 16px 16px; width: 16px; height: 16px; }
+    .word span.sp.space { width: .7em; display: inline-block; }
+    .word span.sp.space + .audio-button, .word span.sp.space + .sp + .audio-button { margin-left: -.7em; }
+    .section-title { margin-left: 20px; margin-bottom: 1.4em; }
+    .iast-row:has(.has-sentence-voc) { margin-bottom: .7em; }
+    .iast-row:has(.has-sloka-end) { margin-bottom: 1.5em; }
+    .metre { color: gray; font-size: .9em; }
+    .gana { display: inline-block; }
+    .gana::before { content: "("; font-weight: 300; }
+    .gana::after { content: ")"; font-weight: 300; }
+    .gana small { font-weight: 400; font-size: .6em; }
+    body:not(.show-tip) .row.metre { display: none; }
+  </style>
+</head>
+<body class="show-odd show-iast show-tip">
+<div id="top-bar">
+  <span class="home" onclick="location.href='./'" title="Home"><img src="../img/favicon.png" alt="Home"></span>
+  <span onclick="biggerFont()">+</span>
+  <span onclick="smallerFont()">-</span>
+  <span data-toggle="show-odd">音节</span>
+  <span data-toggle="show-tip" title="韵律提示">提示</span>
+  <span data-toggle="show-weight">轻重</span>
+  <span data-toggle="show-deva">天城体</span>
+  <span data-toggle="show-iast">转写</span>
+</div>
+<div class="title no-print">Bodhicaryāvatāraḥ 卷三</div>
+<div id="body"></div>
+<script src="../script/sanscript.es6.js?v=1324"></script>
+<script src="../script/sanskrit.js?v=1324"></script>
+<script>
+  window._fontSize = 19
+  window.audioGap = 0
+  const iastContent = `
+bodhicittaparigraho nāma tṛtīyaḥ paricchedaḥ|
+
+——[韵律 3-anuṣṭubh （8音节）]
+[LGLGLGGG GLGGLGLG] apāyaduḥkhaviśrāmaṃ sarvasattvaiḥ kṛtaṃ śubham|
+[LLGGLGGL LGGGLGLG] anumode pramodena sukhaṃ tiṣṭhantu duḥkhitāḥ||1||
+
+[GGLGLGGL LLGGLGLG] saṃsāraduḥkhanirmokṣamanumode śarīriṇām|
+[GLGGLGGL LLGGLGLG] bodhisattvatvabuddhatvamanumode ca tāyinām||2||
+
+[GGGLLGGL GLGLLGLG] cittotpādasamudrāṃśca sarvasattvasukhāvahān|
+[GLGLLGGG LLGGLGLG] sarvasattvahitādhānānanumode ca śāsinām||3||
+
+[GGLLLGGG GLGLLGLG] sarvāsu dikṣu saṃbuddhān prārthayāmi kṛtāñjaliḥ|
+[GGLGGGGL GGGGLGLG] dharmapradīpaṃ kurvantu mohādduḥkhaprapātinām||4||
+
+——[不规则韵律 （8音节）]
+[GGLGGLLG GLGLLGLG] nirvātukāmāṃśca jinān yācayāmi kṛtāñjaliḥ|
+[GGLGGGGL GGGLLGLG] kalpānanantāṃstiṣṭhantu mā bhūdandhamidaṃ jagat||5||
+
+——[韵律 3-anuṣṭubh （8音节）]
+[GGGLLGGG GLGGLGLG] evaṃ sarvamidaṃ kṛtvā yanmayāsāditaṃ śubham|
+[GGGGLGGG GLGGLGLG] tena syāṃ sarvasattvānāṃ sarvaduḥkhapraśāntikṛt||6||
+
+[GGGGLGGG LGGGLGLG] glānānāmasmi bhaiṣajyaṃ bhaveyaṃ vaidya eva ca|
+[LLGGLGGL GGGGLGLG] tadupasthāyakaścaiva yāvadrogāpunarbhavaḥ||7||
+
+[GLGGLGGG GLGGLGLG] kṣutpipāsāvyathāṃ hanyāmannapānapravarṣaṇaiḥ|
+[GLGLLGGL LGGGLGLG] durbhikṣāntarakalpeṣu bhaveyaṃ pānabhojanam||8||
+
+[LGGGLGGG LGGLLLLG] daridrāṇāṃ ca sattvānāṃ nidhiḥ syāmahamakṣayaḥ|
+[GGLLLGGG LLGGLGLG] nānopakaraṇākārairupatiṣṭheyamagrataḥ||9||
+
+[GLGGLGGG GGGLLGLG] ātmabhāvāṃstathā bhogān sarvatryadhvagataṃ śubham|
+[LLGGLGGL GLGGLGLG] nirapekṣastyajāmyeṣa sarvasattvārthasiddhaye||10||
+
+[GGGGLGGG GGGLLGLG] sarvatyāgaśca nirvāṇaṃ nirvāṇārthi ca me manaḥ|
+[GGGGLGGG LGGGLGLG] tyaktavyaṃ cenmayā sarvaṃ varaṃ sattveṣu dīyatām||11||
+
+[GGLGLGGG LGGGLGLG] yaścāsukhīkṛtaścātmā mayāyaṃ sarvadehinām|
+[GLGGLGGL GLGLLGLG] ghnantu nindantu vā nityamākirantu ca pāṃsubhiḥ||12||
+
+[GGLLLGGL LGLLLGLG] krīḍantu mama kāyena hasantu vilasantu ca|
+[GGGGLGGG GLGGLGLG] dattastebhyo mayā kāyaścintayā kiṃ mamānayā||13||
+
+[GLGLLGGL GLGGLGLG] kārayantu ca karmāṇi yāni teṣāṃ sukhāvaham|
+[LGGGLGGG GGGLLGLG] anarthaḥ kasyacinmā bhūnmāmālambya kadācana||14||
+
+[GGGGLGGG GGGLLGLG] yeṣāṃ kruddhāprasannā vā māmālambya matirbhavet|
+[GGLGLGGG GGGGLGLG] teṣāṃ sa eva hetuḥ syānnityaṃ sarvārthasiddhaye||15||
+
+[GGGGLGGL GGGLLGLG] abhyākhyāsyanti māṃ ye ca ye cānye’pyapakāriṇaḥ|
+[GGLGLGGL GGGGLGLG] utprāsakāstathānye’pi sarve syurbodhibhāginaḥ||16||
+
+[LGGGLGGG GLGGLGLG] anāthānāmahaṃ nāthaḥ sārthavāhaśca yāyinām|
+[GGGGLGGG GGGLLGLG] pārepsūnāṃ ca naubhūtaḥ setuḥ saṃkrama eva ca||17||
+
+[GGLGLGGG GGGGLGLG] dīpārthināmahaṃ dīpaḥ śayyā śayyārthināmaham|
+[GGLGLGGG LGGGLGLG] dāsārthināmahaṃ dāso bhaveyaṃ sarvadehinām||18||
+
+——[不规则韵律 （8音节）]
+[GGLGGLLG GLGGLGLG] cintāmaṇirbhadraghaṭaḥ siddhavidyā mahauṣadhiḥ|
+[LGGGLLGL GLGGLGLG] bhaveyaṃ kalpavṛkṣaśca kāmadhenuśca dehinām||19||
+
+——[韵律 3-anuṣṭubh （8音节）]
+[LGGGLGGL GGGGLGLG] pṛthivyādīni bhūtāni niḥśeṣākāśavāsinām|
+[GGGGLGGG LGGGLGLG] sattvānāmaprameyāṇāṃ yathābhogānyanekadhā||20||
+
+[GLGGLGGL GLGGLGLG] evamākāśaniṣṭhasya sattvadhātoranekadhā|
+[LGLLLGGG GGGGLGLG] bhaveyamupajīvyo’haṃ yāvatsarve na nirvṛtāḥ||21||
+
+——[不规则韵律 （8音节）]
+[LGLGGLLG GLGGLGLG] yathā gṛhītaṃ sugatairbodhicittaṃ purātanaiḥ|
+[GGLGLLGG GLGGLGLG] te bodhisattvaśikṣāyāmānupūrvyā yathā sthitāḥ||22||
+
+——[韵律 3-anuṣṭubh （8音节）]
+[GLGGLGGL GLGGLGLG] tadvadutpādayāmyeṣa bodhicittaṃ jagaddhite|
+[GLGLLGLG LGGLLGLG] tadvadeva ca tāḥ śikṣāḥ śikṣiṣyāmi yathākramam||23||
+
+[GGLGGLLG GLGGLGLG] evaṃ gṛhītvā matimān bodhicittaṃ prasādataḥ|
+[LGGGLGGG GLGGLGLG] punaḥ pṛṣṭasya puṣṭyarthaṃ cittamevaṃ praharṣayet||24||
+
+[GLGLLGGL LGGGLGLG] adya me saphalaṃ janma sulabdho mānuṣo bhavaḥ|
+[GLGLLGGG GLGGLGLG] adya buddhakule jāto buddhaputro’smi sāṃpratam||25||
+
+[LGLGLGGG LLGLLGLG] tathādhunā mayā kāryaṃ svakulocitakāriṇām|
+[GLGLLGGL LGGLLGLG] nirmalasya kulasyāsya kalaṅko na bhavedyathā||26||
+
+[GGGGLGGG LGGLLGLG] andhaḥ saṃkārakūṭebhyo yathā ratnamavāpnuyāt|
+[LGLGLGGG GLGGLGLG] tathā kathaṃcidapyetad bodhicittaṃ mamoditam||27||
+
+[LGGLLGGL GLGGLGLG] jaganmṛtyuvināśāya jātametadrasāyanam|
+[LGGGLLLG LGLLLLLG] jagaddāridryaśamanaṃ nidhānamidamakṣayam||28||
+
+[LGGGLLLG GGLLLGLG] jagadvyādhipraśamanaṃ bhaiṣajyamidamuttamam|
+[LGGLLGGL LGGGLGLG] bhavādhvabhramaṇaśrāntajagadviśrāmapādapaḥ||29||
+
+[GGGLLGGG GGGGLGLG] durgatyuttaraṇe setuḥ sāmānyaḥ sarvayāyinām|
+[LGGGLLLL LLGGLGLG] jagatkleśopaśamana uditaścittacandramāḥ||30||
+
+——[不规则韵律 （8音节）]
+[LLLGLLLG GGLLLGLG] jagadajñānatimiraprotsāraṇamahāraviḥ|
+[GGLGLLLG LLGGLGLG] saddharmakṣīramathanānnavanītaṃ samutthitam||31||
+
+——[不规则韵律 （21音节）]
+[LLGLLLLGLGLLGGLLGLGLG] sukhabhogabubhukṣitasya vā janasārthasya bhavādhvacāriṇaḥ|
+[LLGLLGLGLGLLGGLLGLGLG] sukhasatramidaṃ hyupasthitaṃ sakalābhyāgatasattvatarpaṇam||32||
+
+
+[LLGLLGLGLGLLGGLLGLGLG] jagadadya nimantritaṃ mayā sugatatvena sukhena cāntarā|
+[LLGLLGLGLGLLGGLLGLGLG] purataḥ khalu sarvatāyināmabhinandantu surāsurādayaḥ||33||
+
+iti śrī śāntideva viracite bodhicaryāvatāre bodhicittaparigraho nāma tṛtīyaḥ paricchedaḥ||
+`
+
+  window.renderBody = function () {
+    const opt = {audioPrefix: '../mp3/bca3/a', hoverWord: false, sentenceAudio: true,
+      metreRender: text => text.slice(1,-1).replace(/（[^）]+）/g, g => '<span class="gana">' + g.slice(1,-1).replace(
+        /\([^)]+\)/g, s => `<small>${s}</small>`) + '</span>')
+    }
+    iastContent.split('\n').forEach((text, i) => renderRow(text, i, opt))
+  }
+  renderBody()
+</script>
+</body>
+</html>

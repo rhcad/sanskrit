@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Buddhacarita Ch5</title>
+  <meta name="description" content="梵文诗律唱诵-佛所行赞,Aśvaghoṣa's Buddhacarita">
+  <meta name="keywords" content="sanskrit,metres,梵文,诗律,唱诵,佛所行赞,马鸣,Buddhacarita,Aśvaghoṣa">
+  <meta property="og:image" content="../img/favicon.png">
+  <link rel="icon" type="image/png" href="../img/favicon.png">
+  <link rel="stylesheet" href="../script/sanskrit.css?v=1324">
+  <link rel="stylesheet" href="../script/audio.css?v=1324">
+  <style>
+    body { font-size: 19px; }
+    .title { text-align: center; margin-bottom: .5em; }
+    .tip { font-size: 13px; margin-bottom: 2em; }
+    .audio-button.voc { background-size: 16px 16px; width: 16px; height: 16px; }
+    .word span.sp.space { width: .7em; display: inline-block; }
+    .word span.sp.space + .audio-button, .word span.sp.space + .sp + .audio-button { margin-left: -.7em; }
+    .section-title { margin-left: 20px; margin-bottom: 1.4em; }
+    .iast-row:has(.has-sentence-voc) { margin-bottom: .7em; }
+    .iast-row:has(.has-sloka-end) { margin-bottom: 1.5em; }
+    .metre { color: gray; font-size: .9em; }
+    .gana { display: inline-block; }
+    .gana::before { content: "("; font-weight: 300; }
+    .gana::after { content: ")"; font-weight: 300; }
+    .gana small { font-weight: 400; font-size: .6em; }
+    body:not(.show-tip) .row.metre { display: none; }
+  </style>
+</head>
+<body class="show-odd show-iast show-tip">
+<div id="top-bar">
+  <span class="home" onclick="location.href='./'" title="Home"><img src="../img/favicon.png" alt="Home"></span>
+  <span onclick="biggerFont()">+</span>
+  <span onclick="smallerFont()">-</span>
+  <span data-toggle="show-odd">音节</span>
+  <span data-toggle="show-tip" title="韵律提示">提示</span>
+  <span data-toggle="show-weight">轻重</span>
+  <span data-toggle="show-deva">天城体</span>
+  <span data-toggle="show-iast">转写</span>
+</div>
+<div class="title">Buddhacarita Ch5: abhiniṣkramaṇaḥ</div>
+<div id="body"></div>
+<script src="../script/sanscript.es6.js?v=1324"></script>
+<script src="../script/sanskrit.js?v=1324"></script>
+<script>
+  window._fontSize = 19
+  window.audioGap = 0
+
+  const iastContent = `
+——[半规则韵律 29-śiśulīlā （11/12音节）]
+[LLGLLG LGLGG  LLGGL LGLGLGG] sa tathā viṣayair vilobhyamānaḥ paramarhair api śākya-rāja-sūnuḥ |
+[LLGLLL LGLGG  LLGLL LGLGLGG] na jagāma ratiṁ na śarma lebhe hṛdaye siṁha ivātidigdha-viddhaḥ ||5.1||
+[LLGLLG LGLGG  LLGGL LGLGLGG] atha mantri-sutaiḥ kṣamaiḥ kadā-cit sakhibhiś citra-kathaiḥ kṛtānuyātraḥ |
+[LLGLLL LGLGG  LLGGL LGLGLGG] vana-bhūmi-didṛkṣayā śamepsur nara-devānumato bahiḥ pratasthe ||5.2||
+[LLGLLG LGLGL  LLGGL LGLGLGG] nava-rukma-khalīna-kiṅkiṇīkaṁ pracalac-cāmara-cāru-hema-bhāṇḍam |
+[LLGLLG LLLGL  LLGGL LGLGLGG] abhiruhya sa kanthakaṁ sad-aśvaṁ prayayau ketum iva drumābja-ketuḥ ||5.3||
+[LLGLLG LGLGL  LLGGL LGLGLGG] sa vikṛṣṭatarāṁ vanānta-bhūmiṁ vana-lobhāc ca yayau mahī-guṇāc ca |
+[LLGLLG LGLGG  LLGGL LGLGLGG] salilormi-vikāra-sīra-mārgāṁ vasu-dhāṁ caiva dadarśa kṛṣyamāṇām ||5.4||
+[LLGLLG LGLGG  LLGGL LGLGLGG] hala-bhinna-vikīrṇa-śaṣpa-darbhāṁ hata-sūkṣma-krimi-kīṭa-jantu-kīrṇām |
+[LLGLLG LGLGG  LLGGL LGLLLGG] samavekṣya rasāṁ tathā-vidhāṁ tāṁ svajanasyeva vadhe bhṛśaṁ śuśoca ||5.5||
+[LLGLLG LGLGG  LLGGL LGLGLGG] kṛṣataḥ puruṣāṁś ca vīkṣamāṇaḥ pavanārkāṁśu-rajo-vibhinna-varṇān |
+[LLGLLG LGLGG  LLGGL LGLGLGG] vahana-klama-viklavāṁś ca dhuryān paramāryaḥ paramāṁ kṛpāṁ cakāra ||5.6||
+[LLGLLG LGLGG  LLGGL LGLGLGG] avatīrya tatas turaṅga-pṛṣṭhāc chanakair gāṁ vyacarac chucā parītaḥ |
+[LLGLLG LLLGG  LLLGL LGLGLGG] jagato janana-vyayaṁ vicinvan kṛpaṇaṁ khalv idam ityuvāca cārtaḥ ||5.7||
+[LLGLLG LGLGG  LLGGL LGLGLGG] manasā ca viviktatām abhīpsuḥ suhṛdas tān anuyāyino nivārya |
+[LLGLLG LGLGG  LLGGL LGLGLLG] abhitaś cala-cāru-parṇavatyā vijane mūlam upeyivān sa jaṁbvāḥ ||5.8||
+[LLGLLG LGLGG  LLGGL LGLGLGG] niṣasāda sa yatra śaucavatyāṁ bhuvi vaidūrya-nikāśa-śādvalāyām |
+[LLGLLG LGLGG  LLGGL LGLGLGG] jagataḥ prabhava-vyayau vicinvan manasaś ca sthiti-mārgam ālalambe ||5.9||
+[LLGLLG LGLGG  LLGGL LGLGLGG] samavāpta-manaḥ-sthitiś ca sadyo viṣayecchādibhir ādhibhiś ca muktaḥ |
+[LLGLLG LGLGL  LLLGL LGLGLGG] sa-vitarka-vicāram āpa śāntaṁ prathamaṁ dhyānam anāsrava-prakāram ||5.10||
+——[不规则韵律 （11/12音节）]
+[LLGLLGLGLLL LLGGLLLLGLGG] adhigamya tato viveka-jaṁ tu parama-prīti-sukhaṁ manaḥ-samādhim |
+[LLGLLGLLLGG LLGGLLLLGLGG] idam eva tataḥ paraṁ pradadhyau manasā loka-gatiṁ niśamya samyak ||5.11||
+——[不规则韵律 （11/12音节）]
+[LLLLLGLGLLG LLGGLLGLGLGG] kṛpaṇaṁ bata yaj janaḥ svayaṁ sann avaśo vyādhi-jarā-vināśa-dharmā |
+[LLGLLGLLLLG LLLGLLGLGLGG] jarayārditam āturaṁ mṛtaṁ vā param ajño vijugupsate madāndhaḥ ||5.12||
+——[不规则韵律 （11/12音节）]
+[LLGLLGLGLLG LLGGLLLLGLGG] iha ced aham īdṛśaḥ svayaṁ san vijugupseya paraṁ tathā-svabhāvam |
+[LLGLLLLGLLG LLLGLLLLGLGG] na bhavet sadṛśaṁ hi tat-kṣamaṁ vā paramaṁ dharmam imaṁ vijānato me ||5.13||
+——[半规则韵律 29-śiśulīlā （11/12音节）]
+[LLGLLG LGLGG  LLGGL LGLGLGG] iti tasya vipaśyato yathāvaj jagato vyādhi-jarā-vipatti-doṣān |
+[LLGLLG LGLGG  LLGGL LGLGLGG] bala-yauvana-jīvita-pravṛtto vijagāmātma-gato madaḥ kṣaṇena ||5.14||
+[LLGLLG LGLGG  LLGGL LGLGLGG] na jaharṣa na cāpi cānutepe vicikitsāṁ na yayau na tandri-nidre |
+[LLGLLG LLLGG  LLGGL LLLGLGG] na ca kāma-guṇeṣu saṁrarañje na vididveṣa paraṁ na cāvamene ||5.15||
+——[不规则韵律 （11/12音节）]
+[LLGLLLLGLGG LLGGLLGLGLGG] iti buddhir iyaṁ ca nī-rajaskā vavṛdhe tasya mahātmano viśuddhā |
+[LLGLLGLGLGG LLGGLLGLLLGG] puruṣair aparair adṛśyamānaḥ puruṣaś copasasarpa bhikṣu-veṣaḥ ||5.16||
+——[韵律 piculam （11/12音节）]
+[LLGLLGLGLGG LLGGLLLLGLGG] nara-deva-sutas tam abhyapṛcchad vada ko ’sīti śaśaṁsa so ’tha tasmai |
+[LLLLLGLGLGG LLGGLLGLGLGG] nara-puṁgava janma-mṛtyu-bhītaḥ śramaṇaḥ pravrajito ’smi mokṣa-hetoḥ ||5.17||
+——[半规则韵律 29-śiśulīlā （11/12音节）]
+[LLLLLG LGLLG  LLGLL LLLLLLG] jagati kṣaya-dharmake mumukṣur mṛgaye ’haṁ śivam akṣayaṁ padaṁ tat |
+[LLGLLG LGLGG  LLGGL LGLGLGG] sva-jane ’nya-jane ca tulya-buddhir viṣayebhyo vinivṛtta-rāga-doṣaḥ ||5.18||
+[LLGLLG LLLGG  LLGGL LGLGLGG] nivasan kva-cid eva vṛkṣa-mūle vijane vāyatane girau vane vā |
+[LLGLLG LGLGG  LLGGL LGLGLGG] vicarāmy aparigraho nirāśaḥ paramārthāya yathopapanna-bhaikṣaḥ ||5.19||
+[LLGLLG LGLGG  LLGGL LGLGLGG] iti paśyata eva rāja-sūnor idam uktvā sa nabhaḥ samutpapāta |
+[LLGLLG LGLGG  LLGGL LGLGLGG] sa hi tad-vapur-anya-buddhi-darśī smṛtaye tasya sameyivān divaukāḥ ||5.20||
+——[韵律 pañcaśākhī （11/12音节）]
+[LLLLLGLGLGG LLGLLLGLGLGG] gaganaṁ kha-ga-vad gate ca tasmin nṛ-varaḥ saṁjahṛṣe visismiye ca |
+[LLGLLGLGLLL LLGGLLGLLLGG] upalabhya tataś ca dharma-saṁjñam abhiniryāṇa-vidhau matiṁ cakāra ||5.21||
+——[韵律 piculam （11/12音节）]
+[LLGLLGLGLGG LLLGLLGLGLGG] tata indra-samo jitendriyāśvaḥ pravivikṣuḥ param aśvam āruroha |
+[LLGLLLLGLGG LLGGLLLLLLGG] parivartya janaṁ tv avekṣamāṇas tata evābhimataṁ vanaṁ na bheje ||5.22||
+——[韵律 suvṛttiḥ （11/12音节）]
+[LLGLLLLLLGG LLGGLLLLGLGG] sa jarā-maraṇa-kṣayaṁ cikīrṣur vana-vāsāya matiṁ smṛtau nidhāya |
+[LLGLLGLLLGG LLGGLLGLLLGG] praviveśa punaḥ puraṁ na kāmād vana-bhūmer iva maṇḍalaṁ dvipendraḥ ||5.23||
+——[半规则韵律 29-śiśulīlā （11/12音节）]
+[LLGLLG LGLGG  LLGGL LGLGLGG] sukhitā bata nirvṛtā ca sā strī patir īdṛkśa ih’ āyatākṣa yasyāḥ |
+[LLLLLG LGLGG  LLGLL LGLGLGG] iti taṁ samudīkṣya rāja-kanyā praviśantaṁ pathi sāñjalir jagāda ||5.24||
+——[不规则韵律 （11/12音节）]
+[LLGLLLLGLGG LLGGLLLLLLGG] atha ghoṣam imaṁ mahābhra-ghoṣaḥ pariśuśrāva śamaṁ paraṁ ca lebhe |
+[LLGLLGLGLGL LLGGLLGLLLGG] śrutavān sa hi nirvṛteti śabdaṁ parinirvāṇa-vidhau matiṁ cakāra ||5.25||
+——[半规则韵律 29-śiśulīlā （11/12音节）]
+[LLGLLG LGLGG  LLGGL LGLGLGG] atha kāñcana-śaila-śṛṅga-varṣmā gaja-megha-rṣabha-bāhu-nisvanākṣaḥ |
+[LLLLLG LGLGG  LLLGL LGLGLGG] kṣayam akṣaya-dharma-jāta-rāgaḥ śaśi-siṁhānana-vikramaḥ prapede ||5.26||
+——[韵律 piculam （11/12音节）]
+[LLGLLGLGLGG LLLGLLGLGLGG] mṛga-rāja-gatis-tato ’bhyagacchan nṛpatiṁ mantri-gaṇair upāsyamānam |
+[LLGLLGLGLGL LLGLLLGLGLGG] samitau marutām iva jvalantaṁ maghavantaṁ tri-dive sanat-kumāraḥ ||5.27||
+——[半规则韵律 29-śiśulīlā （11/12音节）]
+[LLGLLG LGLGG  LLGLL LGLGLLG] praṇipatya ca sāñjalir babhāṣe diśa mahyaṁ nara-deva sādhv-anujñām |
+[LLGLLG LGLGG  LLGGL LGLGLGG] parivivrajiṣāmi mokṣa-hetor niyato hy asya janasya viprayogaḥ ||5.28||
+[LLGLLG LGLGG  LLGGL LGLGLGG] iti tasya vaco niśamya rājā kariṇevābhihato drumaś cacāla |
+[LLGLLG LGLGG  LLLGL LGLGLGG] kamala-pratime ’ñjalau gṛhītvā vacanaṁ cedam uvāca bāṣpa-kaṇṭhaḥ ||5.29||
+[LLLLLG LGLGG  LLGGL LGLLLGG] pratisaṁhara tāta buddhim etāṁ na hi kālas tava dharma-saṁśrayasya |
+[LLGLLG LGLGG  LLGGL LGLGLGG] vayasi prathame matau calāyāṁ bahu-doṣāṁ hi vadanti dharma-caryām ||5.30||
+[LLGLLG LGLGG  LLGGL LGLGLGG] viṣayeṣu kutūhalendriyasya vrata-khedeṣv asamartha-niścayasya |
+[LLGLLG LGLGG  LLLGL LGLGLGG] taruṇasya manaś calaty araṇyād anabhijñasya viśeṣato viveke ||5.31||
+——[韵律 piculam （11/12音节）]
+[LLGLLGLGLGG LLGGLLGLLLGG] mama tu priya-dharma dharma-kālas tvayi lakṣmīm avasṛjya lakṣa-bhūte |
+[LLGLLGLGLGG LLGGLLLLGLGG] sthira-vikrama vikrameṇa dharmas tava hitvā tu guruṁ bhaved adharmaḥ ||5.32||
+——[半规则韵律 29-śiśulīlā （11/12音节）]
+[LLLLLG LGLGL  LLGGL LGLGLGG] tad imaṁ vyavasāyam utsṛja tvaṁ bhava tāvan nirato gṛha-stha-dharme |
+[LLGLLG LGLGG  LLGGL LGLGLGG] puruṣasya vayaḥ-sukhāni bhuktvā ramaṇīyo hi tapo-vana-praveśaḥ ||5.33||
+——[不规则韵律 （11/12音节）]
+[LLGLLLLGLGG LLGGLLGLLLGG] iti vākyam idaṁ niśamya rājñaḥ kalaviṅka-svara uttaraṁ babhāṣe |
+[LLGLLGLGLGG LLGLLLGLLLGG] yadi me pratibhūś caturṣu rājan bhavasi tvaṁ na tapo-vanaṁ śrayiṣye ||5.34||
+——[不规则韵律 （11/12音节）]
+[LLGLLGLGLLG LLGGLLLLGLGG] na bhaven maraṇāya jīvitaṁ me viharet svāsthyam idaṁ ca me na rogaḥ |
+[LLGLLGLGLGG LLLGLLGLGLGG] na ca yauvanam ākṣipej jarā me na ca saṁpattim imām hared vipattiḥ ||5.35||
+——[半规则韵律 29-śiśulīlā （11/12音节）]
+[LLGLLG LGLGL  LLLGL LGLGLGG] iti dur-labham artham ūcivāṁsaṁ tanayaṁ vākyam uvāca śākya-rājaḥ |
+[LLGLLG LGLGG  LLGGL LGLGLGG] tyaja buddhim imāṁ ati-pravṛttām avahāsyo ’ti-mano-ratha-kramaś ca ||5.36||
+——[不规则韵律 （11/12音节）]
+[LLGLLGLLLGG LLGGLLGLGLGG] atha meru-gurur guruṁ babhāṣe yadi nāsti krama eṣa nāsmi vāryaḥ |
+[LLGLLGLGLGG LLGGLLGLLLGG] śaraṇāj jvalanena dahyamānān na hi niścikramiṣum kṣamaṁ grahītum ||5.37||
+——[韵律 piculam （11/12音节）]
+[LLGLLGLGLGG LLGGLLLLLLGG] jagataś ca yathā dhruvo viyogo nanu dharmāya varaṁ svayaṁ viyogaḥ |
+[LLLLLGLGLGG LLGGLLGLGLGG] avaśaṁ nanu viprayojayen mām akṛta-svārtham atṛptam eva mṛtyuḥ ||5.38||
+[LLGLLGLGLGG LLGLLLGLGLLG] iti bhūmi-patir niśamya tasya vyavasāyaṁ tanayasya nirmumukṣoḥ |
+[LLGLLGLGLGG LLGLLLGLGLGG] abhidhāya na yāsyatīti bhūyo vidadhe rakṣaṇam uttamāṁś ca kāmān ||5.39||
+——[半规则韵律 29-śiśulīlā （11/12音节）]
+[LLGLLG LGLGG  LLGGL LGLGLGG] sacivais tu nidarśito yathāvad bahu-mānāt praṇayāc ca śāstra-pūrvam |
+[LLGLLG LGLGG  LLGGL LLLGLGG] guruṇā ca nivārito ’śru-pātaiḥ praviveśāvasathaṁ tataḥ sa śocan ||5.40||
+[LLGLLG LGLGG  LLGGL LGLGLGG] cala-kuṇdala-cumbitānanābhir ghana-niśvāsa-vikampita-stanībhiḥ |
+[LLGLLG LGLGG  LLGGL LGLGLGG] vanitābhir adhīra-locanābhir mṛga-śāvābhir ivābhyudīkṣyamāṇaḥ ||5.41||
+[LLGLLG LGLGG  LLGGL LGLGLGG] sa hi kāñcana-parvatāvadāto hṛdayonmāda-karo varāṅganānām |
+[LLGLLG LGLGG  LLGGL LGLGLGG] śravaṇāṅga-vilocanātmabhāvān vacana-sparśa-vapur-guṇair jahāra ||5.42||
+[LLGLLG LGLGL  LLGGL LGLGLGG] vigate divase tato vimānaṁ vapuṣā sūrya iva pradīpyamānaḥ |
+[LLLLLG LGLGG  LLGGL LGLGLGG] timiraṁ vijighāṁsur ātma-bhāsā ravir udyann iva merum āruroha ||5.43||
+——[不规则韵律 （11/12音节）]
+[LLGLLGLGLLL LLGGLLGLGLGG] kanakojjvala-dīpta-dīpa-vṛkṣaṁ vara-kālāguru-dhūpa-pūrṇa-garbham |
+[LLGLLGLGLGL LLLGLLGLLLGG] adhiruhya sa vajra-bhakti-citraṁ pravaraṁ kāñcanam āsanaṁ siṣeve ||5.44||
+——[半规则韵律 29-śiśulīlā （11/12音节）]
+[LLGLLG LGLGL  LLGGL LGLGLGG] tata uttamam uttamāṅganās taṁ niśi tūryair upatasthur indra-kalpam |
+[LLGLLG LGLGG  LLGGL LGLGLGG] himavac-chirasīva candra-gaure draviṇendrātmajam apsaro-gaṇaughāḥ ||5.45||
+[LLGLLG LGLGG  LLGGL LLLGLGG] paramair api divya-tūrya-kalpaiḥ sa tu tair naiva ratiṁ yayau na harṣam |
+[LLGLLG LGLGG  LLGGL LGLGLGG] paramārtha-sukhāya tasya sādhor abhiniścikramiṣā yato na reme ||5.46||
+[LLGLLG LGLGG  LLGGL LGLGLGG] atha tatra surais tapo-variṣṭhair akaniṣṭhair vyavasāyam asya buddhvā |
+[LLGLLG LGLGG  LLGGL LGLGLGG] yugapat pramadā-janasya nidrā vihitāsīd vikṛtāś ca gātra-ceṣṭāḥ ||5.47||
+[LLGLLG LGLGG  LLGGL LGLGLGG] abhavac chayitā hi tatra kā-cid viniveśya pracale kare kapolam |
+[LLGLLG LGLGG  LLGGL LGLGLGG] dayitām api rukma-pattra-citrāṁ kupitevāṅka-gatāṁ vihāya vīṇām ||5.48||
+[LLGLLG LGLGG  LLGGL LGLGLGG] vibabhau kara-lagna-veṇur anyā stana-visrasta-sitāṁśukā śayānā |
+[LLGLLG LGLGG  LLGGL LGLGLGG] ṛju-ṣaṭ-pada-paṅkti-juṣṭa-padmā jala-phena-prahasat-taṭā nadīva ||5.49||
+[LLGLLG LGLGG  LLGGL LLLGLGG] nava-puṣkara-garbha-komalābhyāṁ tapanīyojjvala-saṁgatāṅgadābhyām |
+[LLGLLG LGLGG  LLGGL LGLGLGG] svapiti sma tathāparā bhujābhyāṁ parirabhya priyavan mṛdaṅgam eva ||5.50||
+[LLGLLG LGLGG  LLLGL LGLLLGG] nava-hāṭaka-bhūṣaṇās tathānyā vasanaṁ pītam anuttamaṁ vasānāḥ |
+[LLGLLG LGLGG  LLGGL LGLGLGG] avaśā vata nidrayā nipetur gaja-bhagnā iva karṇikāra-śākhāḥ ||5.51||
+[LLLLLG LGLGG  LLGGL LGLGLGG] avalaṁbya gavākṣa-pārśvam anyā śayitā cāpa-vibhugna-gātra-yaṣṭiḥ |
+[LLGLLG LGLGG  LLGGL LGLGLGG] virarāja vilambi-cāru-hārā racitā toraṇa-śāla-bhañjikeva ||5.52||
+——[韵律 piculam （11/12音节）]
+[LLGLLGLGLGL LLGLLLLLGLGG] maṇi-kuṅḍala-daṣṭa-pattra-lekhaṁ mukha-padmaṁ vinataṁ tathāparasyāḥ |
+[LLGLLGLGLGL LLGGLLGLLLGG] śata-pattram ivārdha-vakra-nāḍaṁ sthita-kāraṇḍava-ghaṭṭitaṁ cakāśe ||5.53||
+——[半规则韵律 29-śiśulīlā （11/12音节）]
+[LLGLLG LGLGG  LLGGL LGLGLGG] aparāḥ śayitā yathopaviṣṭāḥ stana-bhārair avanamyamāna-gātrāḥ |
+[LLGLLG LLLGG  LLGGL LGLGLGG] upaguhya parasparaṁ virejur bhuja-pāśais tapanīya-pārihāryaiḥ ||5.54||
+[LLGLLG LGLGG  LLGGL LGLGLGG] mahatīṁ parivādinīṁ ca kā-cid vanitāliṅgya sakhīm iva prasuptā |
+[LLGLLG LGLGG  LLGGL LGLGLGG] vijughūrṇa calat-suvarṇa-sūtrā vadanenākula-yoktrakojjvalena ||5.55||
+[LLLLLG LGLGG  LLGLL LGLGLGG] paṇavaṁ yuvatir bhujāṁsa-deśād avavisraṁsita-cāru-pāśam anyā |
+[LLGLLG LGLGG  LLGGL LGLGLGG] sa-vilāsa-ratānta-tāntam ūrvor vivare kāntam ivābhinīya śiśye ||5.56||
+[LLGLLG LGLGG  LLGGL LGLGLGG] aparā na babhur nimīlitākṣyo vipulākṣyo ’pi śubha-bhruvo ’pi satyaḥ |
+[LLLLLG LGLGG  LLGGL LGLGLGG] pratisaṁkucitāravinda-kośāḥ savitary astam ite yathā nalinyaḥ ||5.57||
+[LLGLLG LGLGG  LLGGL LGLGLGG] śithilākula-mūrdhajā tathānyā jaghana-srasta-vibhūṣaṇāṁśu-kāntā |
+[LLGLLG LGLGG  LLGGL LGLGLGG] aśayiṣṭa vikīrṇa-kaṇṭha-sūtrā gaja-bhagnā pratiyātan’-āṅganeva ||5.58||
+[LLGLLG LGLGG  LLGGL LGLGLGG] aparās tv avaśā hriyā viyuktā dhṛti-matyo ’pi vapur-guṇair upetāḥ |
+[LLGLLG LLLGG  LLGGL LGLLLGG] viniśaśvasur ulbaṇaṁ śayānā vikṛtāḥ kṣipta-bhujā jajṛṁbhire ca ||5.59||
+[LLGLLG LGLGG  LLGGL LGLGLLG] vyapaviddha-vibhūṣaṇa-srajo ’nyā visṛtāgranthana-vāsaso visaṁjñāḥ |
+[LLGLLG LGLGG  LLGGL LGLGLGG] animīlita-śukla-niścalākṣyo na virejuḥ śayitā gatāsu-kalpāḥ ||5.60||
+[LLGLLG LGLGG  LLGGL LGLGLGG] vivṛtāsya-puṭā vivṛddha-gātrī prapatad-vaktra-jalā prakāśa-guhyā |
+[LLGLLG LGLGG  LLGGL LLLGLGG] aparā mada-ghūrṇiteva śiśye na babhāse vikṛtaṁ vapuḥ pupoṣa ||5.61||
+——[韵律 piculam （11/12音节）]
+[LLGLLGLGLGL LLLGLLGLGLGG] iti sattva-kulānvayānurūpaṁ vividhaṁ sa pramadā-janaḥ śayānaḥ |
+[LLGLLLLGLGL LLGGLLGLGLGG] sarasaḥ sadṛśaṁ babhāra rūpaṁ pavanāvarjita-rugna-puṣkarasya ||5.62||
+——[半规则韵律 29-śiśulīlā （11/12音节）]
+[LLGLLG LGLGG  LLGGL LGLGLGG] samavekṣya tathā tathā śayānā vikṛtās tā yuvatīr adhīra-ceṣṭāḥ |
+[LLGLLG LGLGG  LLGGL LGLGLGG] guṇavad-vapuṣo ’pi valgu-bhāṣā nṛpa-sūnuḥ sa vigarhayāṁ babhūva ||5.63||
+[LLGLLG LGLGG  LLGGL LGLGLGG] aśucir vikṛtaś ca jīva-loke vanitānām ayam īdṛśaḥ sva-bhāvaḥ |
+[LLGLLG LGLGG  LLGGL LGLGLGG] vasanābharaṇais tu vañcyamānaḥ puruṣaḥ strī-viṣayeṣu rāgam eti ||5.64||
+——[韵律 piculam （11/12音节）]
+[LLGLLGLGLGG LLLGLLGLGLLG] vimṛśed yadi yoṣitāṁ manuṣyaḥ prakṛtiṁ svapna-vikāram īdṛśaṁ ca |
+[LLGLLGLGLGL LLLGLLGLGLGG] dhruvam atra na vardhayet pramādaṁ guṇa-saṁkalpa-hatas tu rāgam eti ||5.65||
+——[不规则韵律 （11/12音节）]
+[LLGLLGLLLGG LLGGLLGLGLGG] iti tasya tad-antaraṁ viditvā niśi niścikramiṣā samudbabhūva |
+[LLGLLGLGLGG LLGGLLGLLLGG] avagamya manas tato ’sya devair bhavana-dvāram apāvṛtaṁ babhūva ||5.66||
+——[半规则韵律 29-śiśulīlā （11/12音节）]
+[LLGLLG LGLGG  LLGGL LGLGLGG] atha so ’vatatāra harmya-pṛṣṭhād yuvatīs tāḥ śayitā vigarhamāṇaḥ |
+[LLGLLG LGLGG  LLGGL LLLGLGG] avatīrya tataś ca nirviśaṅko gṛha-kakṣyāṁ prathamaṁ vinirjagāma ||5.67||
+——[不规则韵律 （11/12音节）]
+[LLGLLLLGLGG LLLGLLGLGLGG] turagāvacaraṁ sa bodhayitvā javinaṁ chandakam ittham ity uvāca |
+[LLGLLGLLLGG LLLGLLGLGLGG] hayam ānaya kanthakaṁ tvarāvān amṛtaṁ prāptum ito ’dya me yiyāsā ||5.68||
+——[半规则韵律 29-śiśulīlā （11/12音节）]
+[LLGLLG LGLGG  LLGGL LGLGLGG] hṛdi yā mama tuṣṭir adya jātā vyavasāyaś ca yathā dhṛtau niviṣṭaḥ |
+[LLGLLG LGLGG  LLGGL LGLGLGG] vijane ’pi ca nāthavān ivāsmi dhruvam artho ’bhimukhaḥ sa me ya iṣṭaḥ ||5.69||
+——[韵律 suvṛttiḥ （11/12音节）]
+[LLGLLLLLLGG LLGGLLGLGLGG] hriyam eva ca saṁnatiṁ ca hitvā śayitā mat-pramukhe yathā yuvatyaḥ |
+[LLGLLGLLLGG LLLGLLGLGLGG] vivṛte ca yathā svayaṁ kapāṭe niyataṁ yātum anāmayāya kālaḥ ||5.70||
+——[半规则韵律 29-śiśulīlā （11/12音节）]
+[LLGLLG LGLGG  LLGGL LGLGLGG] pratigṛhya tataḥ sa bhartur ājñāṁ viditārtho ’pi narendra-śāsanasya |
+[LLGLLG LGLGG  LLGGL LGLLLGG] manasīva pareṇa codyamānas tura-gasyānayane matiṁ cakāra ||5.71||
+[LLGLLG LGLGL  LLGGL LGLGLGG] atha hema-khalīna-pūrṇa-vaktraṁ laghu-śayyāstaraṇopagūḍha-pṛṣṭham |
+[LLGLLG LGLGL  LLGLL LGLGLGG] bala-sattva-javānvay’-opapannaṁ sa varāśvaṁ tam upānināya bhartre ||5.72||
+——[韵律 piculam （11音节）]
+[LLGLLGLGLGL LLLGLLGGLGG] pratata-trika-puccha-mūla-pārṣṇiṁ nibhṛtaṁ hrasva-tanūja-prṣṭha-karṇam |
+[LLGLLGLLLGL LLGGLLGLGLGG] vinat’-onnata-pṛṣṭha-kukṣi-pārśvaṁ vipula-protha-lalāṭa-kaṭy-uraskam ||5.73||
+——[半规则韵律 29-śiśulīlā （11/12音节）]
+[LLGLLL LGLLG  LLGGL LGLGLGG] upagṛhya sa taṁ viśāla-vakṣāḥ kamalābhena ca sāntvayan kareṇa |
+[LLGLLG LGLGG  LLGGL LGLGLGG] madhurākṣarayā girā śaśāsa dhvajinī-madhyam iva praveṣṭu-kāmaḥ ||5.74||
+[LLGLLG LGLGG  LLGGL LGLGLGG] bahuśaḥ kila śatravo nirastāḥ samare tvām adhiruhya pārthivena |
+[LLGLLL LLLGG  LLGGL LGLGLGG] aham apy amṛtaṁ padaṁ yathāvat turaga-śreṣṭha labheya tat kuruṣva ||5.75||
+——[不规则韵律 （11/12音节）]
+[LLGLLLLGLGG LLGGLLGLGLGG] su-labhāḥ khalu saṁyuge sahāyā viṣayāvāpta-sukhe dhanārjane vā |
+[LLGLLGLGLGG LLGGLLGLLLGG] puruṣasya tu dur-labhāḥ sahāyāḥ patitasyāpadi dharma-saṁśraye vā ||5.76||
+——[韵律 piculam （11/12音节）]
+[LLGLLGLGLGG LLGGLLGLLLGG] iha caiva bhavanti ye sahāyāḥ kaluṣe karmaṇi dharma-saṁśraye vā |
+[LLGLLGLGLGG LLLGLLGLLLGG] avagacchati me yathāntar-ātmā niyataṁ te ’pi janās tad-aṁśa-bhājaḥ ||5.77||
+——[半规则韵律 29-śiśulīlā （11/12音节）]
+[LLLLLG LGLGL  LLGGL LGLGLGG] tad idaṁ parigamya dharma-yuktaṁ mama niryāṇam ato jagadd-hitāya |
+[LLGLLG LGLGG  LLGGL LGLGLGG] turagottama vega-vikramābhyāṁ prayatasv ātma-hite jagadd-hite ca ||5.78||
+——[半规则韵律 30-puṣpitāgrā （12/13音节）]
+[LLLLLLG  LGLGG LLLLLLLG LLLGG] iti suhṛdam ivānuśiṣya kṛtye turaga-varaṁ nṛ-varo vanaṁ yiyāsuḥ |
+[LLLLLLG  LGLGG LLLLGLLG LGLGG] sitam asita-gati-dyutir vapuṣmān ravir iva śāradam abhram āruroha ||5.79||
+[LLLLLLG  LGLGL LLLLGLLL LLLGG] atha sa pariharan niśītha-caṇḍaṁ parijana-bodha-karaṁ dhvaniṁ sad-aśvaḥ |
+[LLLLLLG  LGLGG LLLLGLLG LGLGG] vigata-hanu-ravaḥ praśānta-heṣaś-cakita-vimukta-pada-kramo jagāma ||5.80||
+[LLLLLLG  LGLGG LLLLGLLG LGLGG] kanaka-valaya-bhūṣita-prakoṣṭhaiḥ kamala-nibhaiḥ kamalān iva pravidhya |
+[LLLLLLG  LGLLG LLLLGLLG LGLGG] avanata-tanavas tato ’sya yakṣāś cakita-gatair dadhire khurān karāgraiḥ ||5.81||
+[LLLLLLG  LLLGG LLLLGLLG LGLGG] guru-parigha-kapāṭa-saṁvṛtā yā na sukham api dvi-radair apāvriyante |
+[LLLLLLG  LGLGG LLLLGLLG LGLGG] vrajati nṛpa-sute gata-svanās tāḥ svayam abhavan vivṛtāḥ puraḥ pratolyaḥ ||5.82||
+[LLLLLLL  LLLGL LLLLGLLG LGLGG] pitaram abhimukhaṁ sutaṁ ca bālaṁ janam anuraktam anuttamāṁ ca lakṣmīm |
+[LLLLLLG  LGLGG LLLLGLLG LGLGG] kṛta-matir apahāya nir-vyapekṣaḥ pitṛ-nagarāt sa tato vinirjagāma ||5.83||
+——[韵律 parimitavijayā （12/13音节）]
+[LLLLLLGLGLGG LLLLGLLGLLLGG] atha sa vikaja-paṅkajāyatākṣaḥ puram avalokya nanāda siṁha-nādam |
+[LLLLLLGLGLGG LLLLLLLGLLLGG] janana-maraṇayor adṛṣṭa pāro na punar ahaṁ kapilāhvayaṁ praveṣṭā ||5.84||
+——[不规则韵律 （12/13音节）]
+[LLLLLLLLGLGG LLLLGLLGLGLGG] iti vacanam idaṁ niśamya tasya draviṇa-pateḥ pariṣad-gaṇā nananduḥ |
+[LLLLLLGLGLGG LLLLGLLGLLLGG] pramudita-manasaś ca deva-saṅghā vyavasita-pāraṇam āśaśaṁsire ’smai ||5.85||
+——[韵律 parimitavijayā （12/13音节）]
+[LLLLLLGLGLGG LLLLGLLGLLLGG] huta-vaha-vapuṣo divaukaso ’nye vyavasitam asya ca duṣkaraṁ viditvā |
+[LLLLLLGLGLGL LLLLGLLGLGLGG] akuruta tuhine pathi prakāśaṁ ghana-vivara-praṣṛtā ivendu-pādāḥ ||5.86||
+——[半规则韵律 30-puṣpitāgrā （12/13音节）]
+[LLLLLLG  LGLGG LLLLGLLG LGLGG] hari-turaga-turaṅgavat-turaṅgaḥ sa tu vicaran manasīva codyamānaḥ |
+[LLLLLLG  LGLLL LLLLGLLG LGLGG] aruṇa-paruṣa-tāram antar-ikṣaṁ sa ca su-bahūni jagāma yojanāni ||5.87||
+`
+
+  window.renderBody = function () {
+    const opt = {audioPrefix: '../mp3/bc4/a', hoverWord: false, sentenceAudio: true,
+      metreRender: text => text.slice(1,-1).replace(/（[^）]+）/g, g => '<span class="gana">' + g.slice(1,-1).replace(
+        /\([^)]+\)/g, s => `<small>${s}</small>`) + '</span>')
+    }
+    iastContent.split('\n').forEach((text, i) => renderRow(text, i, opt))
+  }
+  renderBody()
+</script>
+</body>
+</html>

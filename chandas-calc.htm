@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>梵文诗律计算</title>
+  <meta name="description" content="梵文诗律计算">
+  <meta name="keywords" content="sanskrit,metres,梵文,诗律,唱诵">
+  <meta property="og:image" content="img/favicon.png">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="stylesheet" href="script/sanskrit.css?v=1324">
+  <link rel="stylesheet" href="script/audio.css?v=1324">
+  <style>
+    body { font-size: 19px; }
+    .title { text-align: center; margin-bottom: .5em; }
+    .tip { font-size: 13px; margin-bottom: .8em; }
+    .audio-button.voc { background-size: 16px 16px; width: 16px; height: 16px; }
+    .word span.sp.space { width: .7em; display: inline-block; }
+    .word span.sp.space + .audio-button, .word span.sp.space + .sp + .audio-button { margin-left: -.7em; }
+    .section-title { margin-left: 20px; margin-bottom: 1.4em; }
+    .iast-row:has(.has-sentence-voc) { margin-bottom: .7em; }
+    .iast-row:has(.has-sloka-end) { margin-bottom: 1.5em; }
+    .gana { display: inline-block; }
+  </style>
+</head>
+<body class="show-odd show-iast show-audio show-weight">
+<div id="top-bar">
+  <span class="home" onclick="location.href='c.htm'" title="Home"><img src="img/favicon.png" alt="Home"></span>
+  <span onclick="biggerFont()">+</span>
+  <span onclick="smallerFont()">-</span>
+  <span data-toggle="show-odd">音节</span>
+  <span data-toggle="show-deva">天城体</span>
+  <span data-toggle="show-iast">转写</span>
+</div>
+<div class="title no-print">梵文诗律计算</div>
+<div id="body"></div>
+<script src="script/sanscript.es6.js?v=1324"></script>
+<script src="script/sanskrit.js?v=1324"></script>
+<script>
+  window._fontSize = 19
+  window.audioGap = 0
+  const iastContent = `
+ Place iast content into here
+`
+  const charters = []
+</script>
+<script src="script/chandas.js"></script>
+<script>
+  const result = ['', '  const iastContent = `']
+  const addSpaceWithRef = function (text, ref, ref2='') {
+    if (ref && ref.indexOf(' ') >= 0) {
+      text = text.replace(/[LG]{4,}/g, s => {
+        let a = s.split(''), n = a.length, idx = 0, j = 0
+        for (; j < ref.length && idx < a.length + 1; j++, idx++) {
+          if (ref[j] === ' ') {
+            a.splice(idx, 0, ' ')
+          }
+        }
+        ref2 = ref2 || ref
+        if (idx < a.length - 1 && (n === (ref + ref2).replace(/ /g, '').length)) {
+          a.splice(idx++, 0, ' ')
+          for (j = 0; j < ref2.length && idx < a.length + 1; j++, idx++) {
+            if (ref2[j] === ' ') {
+              a.splice(idx, 0, ' ')
+            }
+          }
+        }
+        return a.join('')
+      })
+    }
+    return text
+  }
+
+  // 将相邻两音步合并为一行
+  const mergeLines = function (pat, result, index) {
+    const m1 = pat && pat[2], m2 = pat && pat[3]
+    if (m1 && m2 && (m1.length + m2.length) < 25) {
+      const metres = [], lines = []
+      for (let i = index; i < result.length; i++) {
+        const m = /^\[([LG]+)\] (.+)$/.exec(result[i]);
+        if (!m || m[1].indexOf(' ') >= 0) {
+          return
+        }
+        metres.push(m[1])
+        lines.push(m[2])
+      }
+      if (metres.length === 4) {
+        result.splice(index)
+        result.push(`[${metres[0]} ${metres[1]}] ${lines[0]}${/▷\d\d[a-f]-?\s?$/.test(lines[0]) ? '' : ','} ${lines[1]}`)
+        result.push(`[${metres[2]} ${metres[3]}] ${lines[2]}${/▷\d\d[a-f]-?\s?$/.test(lines[2]) ? '' : ','} ${lines[3]}`)
+      }
+    }
+  }
+
+  const renderChapter = function (text) {
+    const rows = text.trim().split('\n')
+    const verse = [] // 暂存一个诗节的各行文本
+    let verseIdx = 0, verseIdx0 // 诗节第一个文本在结果数组中的位置，用于诗节识别时在此插入韵律标识
+    let splitLine = 0 // 一行文本是否拆为两个音步
+    let lastName, pat // 前面诗节的韵律名称
+    const addSpaceInMetre = function (text, i) {
+      const m = METRES0[lastName]
+      const ref = m && Array.isArray(m) && m[i % 2]
+      if (!ref && splitLine) {
+        text = text.replace(/[LG]{4,}/g, s => s.substr(0, s.length / 2) + ' ' + s.substr(s.length / 2))
+      }
+      return addSpaceWithRef(text, ref, m && Array.isArray(m) && m[i % 2 + 1])
+    }
+    rows.forEach((text, i) => {
+      // 保留有特定行首标记的行，韵律标识行除外
+      if (!text || /^(◆|——|#)/.test(text) ||
+        (i === 0 || i === rows.length - 1 && /^iti /i.test(text)) && text.indexOf('|') >= 0)  {
+        if (!/^——\[/.test(text)) { // 不是待重新生成的韵律标识行
+          result.push(text) // 原样保留
+        }
+        verse.length = verseIdx = verseIdx0 = splitLine = 0
+        return
+      }
+      // 去除行首的音节轻重标记、LRC时刻
+      text = text.replace(/^\[.+\]\s*(\. )?|\[.+\]$|^\. /g, '')
+      // 如果是诗节的最后一行文本，或诗行后有空行，就与暂存的几行文本一起作为诗节文本
+      const mergeEnd = text.indexOf('||') > 1 || (text.indexOf('|') > 1 && rows[i + 1] === '') ? '\n' + text : ''
+      if (mergeEnd || text.indexOf('||') >= 0) {
+        pat = verse.length && verseMetre(verse.join('\n') + mergeEnd) // 分析诗节
+        if (verse.length) { // 诗节至少两行文本
+          const name = pat[0], type = pat[1], metre = pat[2], m2 = pat[3] || pat[2]
+          const same = name === lastName
+
+          splitLine = verse.length === 1 && pat[4]
+          lastName = name
+          if (name) {
+            verseIdx0 = verseIdx
+          }
+          if (name || mergeEnd) {
+            sumVerse(name, pat.slice(2))
+            for (let j = verseIdx; j < result.length; j++) {
+              result[j] = addSpaceInMetre(result[j], j - verseIdx)
+            }
+          }
+          if (same) {}
+          else if (name) { // 插入韵律标识行
+            result.splice(verseIdx, 0, `——[${type}韵律 ${name} ${getYati(name, metre, m2)}]`)
+            verseIdx0 = verseIdx + 1
+          } else if (verse[0]) {
+            const tmpName = type ? `——[${type}韵律 ${getYati(name, metre, m2)}]` : ''
+            if (lastName !== tmpName) { // 对未知韵律，加音节数
+              lastName = tmpName
+              result.splice(verseIdx, 0, tmpName)
+            }
+          }
+        }
+        verse.length = verseIdx = 0
+      }
+      else {
+        verseIdx = verseIdx || result.length
+        verse.push(text)
+      }
+      let metre = (verse.length || mergeEnd) && calcMetre(text, mergeEnd ? 3 : verse.length - 1)
+      //ticks = metre && metre.length + metre.replace(/L/g, '').length
+      if (mergeEnd && metre) {
+        metre = addSpaceInMetre(metre, verse.length ? 3 : 0)
+        splitLine = 0
+      }
+      result.push((metre ? `[${metre}] ` : '') + text) // insertStop(text)
+      if (mergeEnd && verseIdx0) {
+        mergeLines(pat, result, verseIdx0)
+        verseIdx0 = 0
+      }
+    })
+  }
+  window.renderBody = (text) => renderChapter(text, {})
+  const insertStop = function (text) {
+    const sy = Sanscript.splitAksara(text)
+    for (let i = 0, n = 0; sy[i]; i++) {
+      const type = Sanscript.getAksaraType(sy[i])
+      if (/[0-6]/.test(type)) {
+        n++
+        if (n === 7 || n === 14) {
+          sy.splice(i + 1, 0, '♪')
+        }
+      }
+    }
+    return sy.join('')
+  }
+  const info = {titles: [], total: {}, sum: {}, names: []}
+  const sumVerse = function (name, metres) {
+    name = name || metres.filter(s => s).join(',')
+    if (info.names.indexOf(name) < 0) {
+      info.names.push(name)
+      info.sum[name] = 0
+    }
+    info.sum[name]++
+  }
+  const sortSum = function (sum) {
+    const items = Object.entries(sum)
+    items.sort((a, b) => (b[0].indexOf(',') < 0 ? 100 : 0) + b[1] - (a[0].indexOf(',') < 0 ? 100 : 0) - a[1])
+    info.titles.push(info.chapter + ': ' + items.map(t => `${t[0]}(${t[1]})`).join(' '))
+    return items.map(t => `[${t[0]}(${t[1]})]`).join(' ')
+  }
+
+  renderBody(iastContent)
+  charters.forEach((text, i) => {
+    const idx = result.length
+    Object.assign(info, {chapter: i + 1, sum: {}, names: []})
+    renderChapter(text)
+    result.splice(idx, 0, `#${i + 1} bodhicaryāvatāraḥ ${sortSum(info.sum)}`)
+    info.names.forEach(name => {
+      info.total[name] = (info.total[name] || 0) + info.sum[name]
+    })
+  })
+
+  const opt = {audioPrefix: 'mp3/bca1/a', sentenceAudio: true,
+    sectionRender: text => text.replace(/\[[^\]]+]/g, g => '<span class="gana">' + g.slice(1,-1).replace(
+        /\([^)]+\)/g, s => `<small>${s}</small>`) + '</span>')
+  }
+  result.forEach((text, i) => renderRow(text, i, opt))
+  console.log('\n', info.titles.join('\n'), sortSum(info.titles.length ? info.total : info.sum))
+  console.log(result.join('\n') + '\n`')
+</script>
+</body>
+</html>
