@@ -20,7 +20,7 @@ def to_mp3(in_fn, output_path):
 def ffmpeg_audio_to_mp3(input_path='.', output_path='', ext='wma'):
     """
     Convert audio or video files to mp3 format
-    :param {str} input_path: audio path (need ext parameter) or filename
+    :param {str} input_path: audio/video path (need ext parameter) or filename
     :param {str} output_path: output path, default as folder path of input file
     :param {str} ext: extension such as 'wav', 'wma', 'mp4'
     """

@@ -71,11 +71,12 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False, join_ln=' ',
         start = round(r.time * 1000)  # 开始时刻，毫秒
         end = round(lrc[i_ + 1].time * 1000)  # 结束时刻，毫秒
         if re.match(r'^\s?\d{2}', r.text):  # mp3_to_lrc.py 的结果未改默认文本
-            text = r.text = re.search(r'\s?(\d+)', r.text).group(1)
+            text0 = text = r.text = re.search(r'\s?(\d+)', r.text).group(1)
         else:
             r.text = re.sub(r'\d+-\d+|\d{4}', '', re.sub(r'\d+\.mp3', '?', r.text))
-            text = re.sub(r'\s*[,!:.\d|-]*$|^\s*--.*$', '', r.text.strip())
-        text_ext = r.text.strip()[len(text):]
+            text0 = re.sub(r'^ |\s+$', '', r.text)
+            text = re.sub(r'\s*[,!:.\d|-]*$|^\s*--.*$', '', text0)
+        text_ext = text0[len(text):]
 
         if not r.text.strip():  # 遇到空行结束，忽略后面可能的重复内容
             break

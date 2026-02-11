@@ -57,7 +57,7 @@ a { text-decoration:none; }
 .word .punc { color: #999; }
 .word[first-char="|"] .a { color: #666 !important; }
 .punc[first-char="♪"] { font-size: .9rem; margin-right: .2rem; }
-.word:not(.has-sub-word), .sub-word { display: inline-block; }
+body:not(.merge-audio-words) .word:not(.has-sub-word), .sub-word { display: inline-block; }
 [data-hz] { font-family: "宋体", SimSun, serif; font-size: 1rem; }
 
 @media screen {
@@ -121,16 +121,17 @@ body:not(.show-audio) .audio-button { display: none; }
 /* .row > .iast-row.has-hz-yin > .char-box > .hz-yin */
 
 .has-hz-yin { display: flex; flex-wrap: wrap; }
-.char-box:not(.num) { text-align: center; font-size: 1.35em; }
+.char-box.clause { display: flex; flex-wrap: nowrap; }
+.char-box:not(.num):not(.clause) { text-align: center; font-size: 1.35em; }
 .char-box.sp { min-width: .6em; }
 .char-box.punc { font-size: .9em; color: gray; padding-top: .2em; }
 .char-box > span:first-child { font-size: .85em; }
 
 .hz-yin { display: block; font-size: .6em; white-space: nowrap;
     font-family: "宋体", SimSun, KaiXinSong, HanaMin, serif; color: #333; }
-.char-box:not(.num) .hz-yin:not(.ancient) { font-size: .8em; margin-bottom: .2em; }
+.char-box:not(.num) > .hz-yin:not(.ancient) { font-size: .8em; margin-bottom: .2em; }
 @media print {
-  .char-box:not(.num) .hz-yin:not(.ancient) { color: #000; font-weight: 500; }
+  .char-box:not(.num) > .hz-yin:not(.ancient) { color: #000; font-weight: 500; }
 }
 .hz-yin .digraph { margin-left: .1em; margin-right: .1em; text-decoration: underline;
     text-underline-position: under; text-decoration-color: #999; }
@@ -152,9 +153,9 @@ body:not(.show-audio) .audio-button { display: none; }
 .char-box.num > .hz-yin::before { content: "["; color: #aaa; font-size: .6em; }
 .char-box.num > .hz-yin::after { content: "]"; color: #aaa; font-size: .6em; }
 .char-box.num > .hz-yin.ancient {}
-#iast-1 .char-box.num:first-child > .hz-yin { opacity: 1; color: #999; }
+#iast-1 .char-box.num:first-child > .hz-yin { opacity: 1; color: #777; }
 .show-hz-yin .char-box.num > .hz-yin.ancient {}
-.show-hz-yin .char-box:not(.num) .hz-yin.ancient { color: #686; font-weight: 300; }
+.show-hz-yin .char-box:not(.num) > .hz-yin.ancient { color: #686; font-weight: 300; }
 .show-hz-yin .row:not(.has-note) { margin-bottom: -.05em; }
 .show-hz-yin .row.has-note { margin-top: .3em; font-size: .8em; }
 
@@ -174,4 +175,4 @@ body:not(.show-hz-yin):not(.show-iast1) .hz-yin.ancient { display: inline-block;
 body:not(.show-iast1) .char-box > span:first-child, /* exclude .char-box.num > small:first-child */
 body:not(.show-hz-yin) .hz-yin:not(.ancient),
 body:not(.show-ancient) .hz-yin.ancient { display: none !important; }
-body:not(.show-iast1) .char-box.num .hz-yin { display: none; }
+body:not(.show-iast1) .char-box.num > .hz-yin { display: none; }

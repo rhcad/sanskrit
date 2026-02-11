@@ -115,6 +115,10 @@ function renderRow(text, rowIndex, options={}) {
     row.classList.add('has-note')
     row.style.marginBottom = options.nextRow === '' ? '1em' : '0'
   }
+  else if (/^\u3000+/.test(text)) {
+    devaRow.classList.add('indent')
+    iastRow.classList.add('indent')
+  }
   if (options.audioPrefix) {
     text = text.replace(audioRe1, s => audios.push(s.substring(1)) && '▷');
     if (audios.length > 1) {
@@ -132,7 +136,7 @@ function renderRow(text, rowIndex, options={}) {
         if (iastSpan.parentElement.innerText.indexOf('||') >= 0) {
           iastSpan.classList.add('has-sloka-end')
         }
-        if (!flag[0] || flag[0] === 's') { // 不是词
+        if (!flag[0] || flag[0] === 's' || options.sentenceAudio === 'word') { // 不是词
           audioNums.push(audios[a[0]])
         } else {
           iastSpan.classList.add('has-word-voc')
@@ -536,18 +540,18 @@ function smallerFont() {
 
 updateTopBar()
 document.getElementById('top-bar').addEventListener('click', function (event) {
-  const toggleCls = (event.target.dataset || {}).toggle
+  const dataset = event.target.dataset, toggleCls = (dataset || {}).toggle
   if (toggleCls) {
     document.body.classList.toggle(toggleCls)
     const sandhi = !hasBodyCls('no-sandhi')
 
     if (toggleCls === 'no-sandhi') {
-      if (!sandhi && !event.target.dataset.sandhi) {
-        event.target.dataset.sandhi = 'changed'
+      if (!sandhi && !dataset.sandhi) {
+        dataset.sandhi = 'changed'
         document.body.classList.remove('show-deva')
       }
       _renderBody(sandhi, toggleCls)
-    } else if (['show-audio', 'show-iast', 'show-deva'].indexOf(toggleCls) >= 0) {
+    } else if (['show-audio', 'show-iast', 'show-deva'].indexOf(toggleCls) >= 0 || dataset.reload) {
       _renderBody(sandhi, toggleCls)
     }
     updateTopBar()
