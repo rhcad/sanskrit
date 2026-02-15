@@ -635,7 +635,7 @@ function exportSanscriptSingleton (global, schemes, devanagariVowelToMarks) {
     // Match on the aksara which ends with vowel character
     const RE_END_VOWEL = /[aiuāīūṛṝḷḹáíúeēèoōò]$/i;
     // Match characters that belong to the same syllable or number
-    const RE_AKSARA_PUNC_NUM = /\s+|[▷,?!:]|\|+\d[|\d.-]*|\|+|\d[\d.-]*|[\u4e00-\u9fa5]+|[\uFF01-\uFF5E\u3000-\u303F()♪]+/g;
+    const RE_AKSARA_PUNC_NUM = /\s+|[▷,?!:_]|\|+\d[|\d.-]*|\|+|\d[\d.-]*|[\u4e00-\u9fa5]+|[\uFF01-\uFF5E\u3000-\u303F()♪]+/g;
     // Match on IAST characters in a consonant
     const RE_CONSONANT2 = /kṣ|jñ|ll|[kgcjṭḍtdpb]h?|[ṅñṇnmyrlvśṣsh]/gi;
     const RE_CONSONANT1 = /[kgcjṭḍtdpbṅñṇnmyrlvśṣsh]/i;

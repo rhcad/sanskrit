@@ -4,6 +4,7 @@ body { font-size: 16px; }
   body { padding: 0 10px 30px; }
 }
 .float-right { float: right; }
+.right-align { text-align: right; }
 [onclick] { cursor: pointer; }
 
 .no-select, .tip, #top-bar, .gray-btn,
@@ -25,7 +26,7 @@ a { text-decoration:none; }
 .home > * { vertical-align: middle; }
 
 .row { margin-bottom: .5em; }
-.indent { margin-left: 20px; }
+.indent { margin-left: 1em; }
 .deva-row { margin-bottom: -.3em; }
 .row.title { text-align: center; }
 
@@ -98,7 +99,7 @@ body:not(.merge-audio-words) .word:not(.has-sub-word), .sub-word { display: inli
 }
 
 #top-bar > span { margin: 0 2px; padding: 2px 4px; border: 1px solid transparent; cursor: pointer; }
-#top-bar > span.checked { border-color: #ccc; border-radius: 4px; }
+#top-bar > span.checked { border-color: #ccc; border-radius: 4px; background-color: #ddd; color: #337; }
 .gray-btn { color: #ccc; font-size: 12px; cursor: pointer; }
 
 #top-bar { position: fixed; top: 0; height: 18px; left: 0; right: 0; padding-right: 10px;
@@ -108,7 +109,6 @@ body:not(.merge-audio-words) .word:not(.has-sub-word), .sub-word { display: inli
 
 body:not(.show-deva) .deva-row,
 body:not(.show-iast) .iast-row,
-body:not(.hover-word) span.sp:not(.space),
 body:not(.show-audio) .audio-button { display: none; }
 
 @media print {

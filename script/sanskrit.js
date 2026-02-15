@@ -107,7 +107,7 @@ function renderRow(text, rowIndex, options={}) {
   const audios = [], a = [0, 0];
   const weights = (weightRe.exec(text) || '')[0]
 
-  text = text.replace(weightRe, '')
+  text = text.replace(weightRe, '').replace(/ {2,10}/g, s => ' ' + '_'.repeat(s.length - 1))
   if (/^\s*(——|◆)/.test(text)) {
     text = text.replace(/^\s*◆\s*/, '')
     devaRow.classList.add('indent')
@@ -115,9 +115,10 @@ function renderRow(text, rowIndex, options={}) {
     row.classList.add('has-note')
     row.style.marginBottom = options.nextRow === '' ? '1em' : '0'
   }
-  else if (/^\u3000+/.test(text)) {
-    devaRow.classList.add('indent')
-    iastRow.classList.add('indent')
+  if (text.endsWith('⇥')) {
+    text = text.substring(0, text.length - 1)
+    devaRow.classList.add('right-align')
+    iastRow.classList.add('right-align')
   }
   if (options.audioPrefix) {
     text = text.replace(audioRe1, s => audios.push(s.substring(1)) && '▷');
@@ -174,6 +175,7 @@ function renderRow(text, rowIndex, options={}) {
       data_id: `a${newWordId}-${i}`, data_i: i1,
       data_hz: isHz,
       html: s.replace(/-/g, '<span class="sp">-</span>')
+        .replace(/_/g, '&ensp;')
         .replace(/@\d+/g, t => `<span class="si" end="${ Sanscript.yati ? parseInt(t.substring(1))===Sanscript.yati || parseInt(t.substring(1))===Sanscript.yati+1 : parseInt(t.substring(1))===Sanscript.sn}" si="${t.substring(1)}">${t.substring(1)}</span>`),
       onclick: clickSection ? 'toggleSection(this)' : undefined
     });
@@ -193,7 +195,7 @@ function renderRow(text, rowIndex, options={}) {
   let words = Sanscript.iastToDevanagari(text, {
     split_aksara: true, removeDevaAudio: hasBodyCls('show-audio') && hasBodyCls('show-iast') && hasBodyCls('show-deva')})
   const orgRow = orgHtml && createElement(row, 'iast-row iast-org', 'div', {html: orgHtml})
-  const sentenceAudio = (options['sentenceAudio'] || options['audioAsVoc']) && text.indexOf('▷') > 0
+  const sentenceAudio = (options['sentenceAudio'] || options['audioAsVoc']) && text.indexOf('▷') >= 0
   let i1 = 0, i2 = 0, wordSpan = null
 
   for (let i = words.length - 1; i >= 0; i--) {
@@ -204,10 +206,8 @@ function renderRow(text, rowIndex, options={}) {
 
     if (dash) {
       w[0] = w[0].substring(1)
-    } else if (type === 'p') {
-
     }
-    if (dash || i > 0) {
+    if (dash || i > 0 && type !== 'p') {
       words.splice(i, 0, [dash ? c : '', ''])
     }
   }
@@ -285,13 +285,26 @@ function renderRow(text, rowIndex, options={}) {
   }
   if (sentenceAudio) {
     const needMerge = hasBodyCls('merge-audio-words')
+    const moveSpace = function () {
+      const prev = audioWord && audioWord.previousSibling
+      if (prev && prev.firstChild && prev.querySelector('.sp.space')) {
+        while (audioWord.firstChild.innerText === ' ') {
+          prev.append(audioWord.firstChild)
+        }
+      } else if (!prev && audioWord) {
+        while (audioWord.firstChild.innerText === ' ') {
+          audioWord.parentElement.prepend(audioWord.firstChild)
+        }
+      }
+    }
     let audioWord, prevWord, prev
     for (let word = iastRow.lastChild; word && !word.classList.contains('weight'); word = prevWord) {
       prevWord = word.previousSibling
       if (word.classList.contains('audio-word')) {
+        moveSpace()
         audioWord = word
       } else if (audioWord && word.lastChild) {
-        if (word.classList.contains('has-sp') && prevWord && prevWord.classList.contains('audio-word')) {
+        if ((word.classList.contains('has-sp') || word.textContent.startsWith('&')) && prevWord && prevWord.classList.contains('audio-word')) {
           continue
         }
         if (!needMerge) {
@@ -306,6 +319,7 @@ function renderRow(text, rowIndex, options={}) {
         word.remove()
       }
     }
+    moveSpace()
   }
 }
 
@@ -524,9 +538,11 @@ function updateTopBar() {
       hasBodyCls(btn.dataset.toggle)))
 }
 
-window._fontSize = window._fontSize || 16
+window._fontSize = window._fontSize || (window.innerWidth > 800 ? 20 : 16)
+document.body.style.fontSize = _fontSize + 'px'
+
 function biggerFont() {
-  if (_fontSize < 40) {
+  if (_fontSize < 50) {
     window._fontSize *= 1.05
     document.body.style.fontSize = _fontSize + 'px'
   }
