@@ -50,7 +50,7 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False, join_ln=' ',
             merge_sentence or '||' in content
         if merge_sentence and 'n' in join_ln:
             join_ln = '\n'
-        assert not merge_sentence or '|' in content
+        assert not merge_sentence or '|' in content or '.' in content
         lrc = pylrc.parse(content)
     song = AudioSegment.from_mp3(mp3_file)
     content, sentence, voc_i = [], [], start_i
@@ -77,6 +77,9 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False, join_ln=' ',
             text0 = re.sub(r'^ |\s+$', '', r.text)
             text = re.sub(r'\s*[,!:.\d|-]*$|^\s*--.*$', '', text0)
         text_ext = text0[len(text):]
+        m1 = re.search(r'-- (#\d.*$)', r.text)
+        if m1:
+            content.append(m1.group(1))
 
         if not r.text.strip():  # 遇到空行结束，忽略后面可能的重复内容
             break
@@ -144,7 +147,8 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False, join_ln=' ',
 
     print(out_dir_prefix + '.txt')
     with open(out_dir_prefix + '.txt', 'w', encoding='utf-8') as f:
-        f.write('\n'.join((content or []) + sentence).strip())
+        content = '\n'.join((content or []) + sentence).strip()
+        f.write(re.sub(r'▷\d+[a-f]?[.,!|]', lambda m: m.group()[:-1] + ' ' + m.group()[-1], content))
 
 
 if __name__ == '__main__':

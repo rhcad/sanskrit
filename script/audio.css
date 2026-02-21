@@ -27,12 +27,15 @@
 
 .audio-button.voc {
     background-color: transparent;
-    background-image: url("../img/listen.gif");
+    background-image: url("../img/listen.gif?v=1");
     background-size: 12px 12px;
     width: 12px;
     height: 12px;
     border: none;
     opacity: .8;
+}
+.audio-button.voc.playing {
+    background-image: url("../img/listen2.gif?v=1");
 }
 
 @media screen and (pointer: fine) {

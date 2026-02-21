@@ -30,12 +30,15 @@ const audioHtml = `<button data-idx="@idx" class="audio-button" onclick="toggleA
 const sandhiRe = /\([^(),]*(,[^(),]*)+\)/g
 const audioRe1 = /▷\d+[a-f]?/g, audioRe2 = /\t*▷/g
 const audioNums = []
-const puncRe = /^[♪(),?!:：]$/
+const puncRe = /^[♪().,?!:：]$/
 const hzPunc = /[\u4e00-\u9fa5\uFF01-\uFF5E\u3000-\u303F()]+/
 const weightRe = /^\[[LG\s\u3000]+]|\[[LG\s\u3000]+]$/
 let newWordId = 1
 let hasOrgRow = 0
 let newSection = null
+const _re323 = /[\u0300-\u0305\u0323-\u0324]/
+const _aiu = {a: 'ā', i: 'ī', u: 'ū', A: 'Ā', I: 'Ī', U: 'Ū'}
+const _323 = {T: 'Ṭ', D: 'Ḍ', S: 'Ṣ', r: 'ṛ', t: 'ṭ', d: 'ḍ', n: 'ṇ', m: 'ṃ', s: 'ṣ', h: 'ḥ'}
 
 /**
  * 创建一行元素
@@ -44,11 +47,23 @@ let newSection = null
  * @param {object} [options] 选项
  */
 function renderRow(text, rowIndex, options={}) {
-  if (/[\u0300-\u0305\u0323-\u0324]/.test(text)) {
+  if (0 && _re323.test(text)) {
+    text = text.replace(/s\u0301/g, 'ś').replace(/S\u0301/g, 'Ś')
+      .replace(/n\u0303/g, 'ñ').replace(/n(\u0307|\u0324)/g, 'ṅ')
+      .replace(/[aiu]\u0304/gi, s => _aiu[s[0]])
+      .replace(/[TDSrtdnmsh]\u0323/g, s => _323[s[0]])
+  }
+  if (_re323.test(text)) {
     console.assert(false, text)
   }
+  if (!options._sentenceAudioRe) {
+    options.sentenceAudioRe = options.sentenceAudioRe || '[56][0-9]{2}'
+    options._sentenceAudioRe = new RegExp('^' + options.sentenceAudioRe)
+    options._sentenceAudioRe2 = new RegExp('[:,|] ▷' + options.sentenceAudioRe, 'g')
+  }
+
   if (hasBodyCls('show-audio')) {
-    text = text.replace(/[:,|] ▷[56]\d\d/g, s => s.replace(' ', ''))
+    text = text.replace(options._sentenceAudioRe2, s => s.replace(' ', ''))
   } else {
     text = text.replace(/\s*▷\d*[a-f]?/g, '')
   }
@@ -137,10 +152,16 @@ function renderRow(text, rowIndex, options={}) {
         if (iastSpan.parentElement.innerText.indexOf('||') >= 0) {
           iastSpan.classList.add('has-sloka-end')
         }
-        if (!flag[0] || flag[0] === 's' || options.sentenceAudio === 'word') { // 不是词
-          audioNums.push(audios[a[0]])
+        if (options.sentenceAudio === 'word') {
+          if (flag[0] === 'w') {
+            audioNums.push(audios[a[0]])
+          }
         } else {
-          iastSpan.classList.add('has-word-voc')
+          if (!flag[0] || flag[0] === 's') {
+            audioNums.push(audios[a[0]])
+          } else {
+            iastSpan.classList.add('has-word-voc')
+          }
         }
         iastSpan.append(ele.firstChild)
       }
@@ -208,7 +229,14 @@ function renderRow(text, rowIndex, options={}) {
       w[0] = w[0].substring(1)
     }
     if (dash || i > 0 && type !== 'p') {
-      words.splice(i, 0, [dash ? c : '', ''])
+      const last_p = i > 0 ? words[i - 1][0] : ''
+      const last_pi = last_p.lastIndexOf('▷')
+      if (last_pi > 0 && w[0].indexOf('▷') > 0 && last_p.lastIndexOf('-') > last_pi) {
+        w[0] = last_p.substring(last_pi + 2) + '\t ' + w[0]
+        words[i - 1][0] = last_p.substring(0, last_pi + 1)
+      } else {
+        words.splice(i, 0, [dash ? c : '', ''])
+      }
     }
   }
   words.forEach(w => {
@@ -287,17 +315,21 @@ function renderRow(text, rowIndex, options={}) {
     const needMerge = hasBodyCls('merge-audio-words')
     const moveSpace = function () {
       const prev = audioWord && audioWord.previousSibling
-      if (prev && prev.firstChild && prev.querySelector('.sp.space')) {
-        while (audioWord.firstChild.innerText === ' ') {
+      if (prev && prev.firstChild && prev.querySelector('.sp.space,.punc')) {
+        while (audioWord.firstChild && !audioWord.firstChild.innerText.trim()) {
           prev.append(audioWord.firstChild)
         }
       } else if (!prev && audioWord) {
         while (audioWord.firstChild.innerText === ' ') {
-          audioWord.parentElement.prepend(audioWord.firstChild)
+          if (row.classList.contains('indent')) {
+            audioWord.firstChild.remove()
+          } else {
+            audioWord.parentElement.prepend(audioWord.firstChild)
+          }
         }
       }
     }
-    let audioWord, prevWord, prev
+    let audioWord = null, prevWord, prev
     for (let word = iastRow.lastChild; word && !word.classList.contains('weight'); word = prevWord) {
       prevWord = word.previousSibling
       if (word.classList.contains('audio-word')) {
@@ -310,6 +342,11 @@ function renderRow(text, rowIndex, options={}) {
         if (!needMerge) {
           word.setAttribute('onclick', `toggleAudioWord(this,${audioWord.getAttribute('data-id')})`)
           word.classList.add('audio-word')
+          continue
+        }
+        if (',.!|'.indexOf(word.textContent) >= 0) {
+          moveSpace()
+          audioWord = null
           continue
         }
         for (let c = word.lastChild; c; c = prev) {
@@ -385,9 +422,9 @@ function _createVocSpan(wordSpan, dir, idx) {
 function _makeAudioButton(options, idx, flag=null) {
   if (options['sentenceAudio']) {
     if (Array.isArray(flag)) {
-      flag[0] = /^[56]\d\d/.test(idx) ? 's' : 'w'
+      flag[0] = options._sentenceAudioRe.test(idx) ? 's' : 'w'
     }
-    if (!/^[56]\d\d/.test(idx)) {
+    if (!options._sentenceAudioRe.test(idx)) {
       return _createVocSpan(null, options.audioPrefix, idx)
     }
   }
@@ -423,7 +460,7 @@ function onAudioEnded(e) {
   const curIdx = audioNums.indexOf(btn.dataset.idx)
   let idx = curIdx, nextBtn = []
 
-  btn.classList.remove('playing')
+  setTimeout(() => btn.classList.remove('playing'), 20)
   if (curIdx >= 0 && hasBodyCls('auto-audio')) {
     do {
       idx = (idx + 1) % audioNums.length
@@ -433,8 +470,7 @@ function onAudioEnded(e) {
         return
     } while (!nextBtn.length)
 
-    setTimeout(() => toggleAudioButton(nextBtn[0]),
-      idx < curIdx ? 1000 : window.audioGap === undefined ? 100 : window.audioGap)
+    toggleAudioButton(nextBtn[0], idx < curIdx ? 1000 : window.audioGap === undefined ? 100 : window.audioGap)
   }
 }
 
@@ -460,10 +496,15 @@ function toggleAudioWord(span, aid=0) {
   toggleAudioButton(span.querySelector('.audio-button'))
 }
 
-function toggleAudioButton(button) {
+function toggleAudioButton(button, timeout=0) {
   const audio = button && button.firstElementChild || {};
   const btnPlaying = document.querySelector('.playing');
 
+  if (timeout) {
+    button.classList.add('playing')
+    setTimeout(() => toggleAudioButton(button), timeout)
+    return
+  }
   if (audio.paused) {
     if (btnPlaying) {
       btnPlaying.classList.remove('playing');
@@ -489,9 +530,9 @@ function toggleAudioButton(button) {
       el.scrollIntoView();
     }
   } else if (audio.pause) {
-    audio.pause();
-    audio.currentTime = 0;
-    button.classList.remove('playing', 'fail');
+    audio.pause()
+    audio.currentTime = 0
+    button.classList.remove('playing', 'fail')
   }
   if (window.event) {
     window.event.stopPropagation()
