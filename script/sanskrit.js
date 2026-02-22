@@ -288,7 +288,7 @@ function renderRow(text, rowIndex, options={}) {
       i2 += 1
       createElement(wordSpan || devaSpan, 'a ' + (i2 % 2 ? 'odd' : 'even'), 'span', {
         data_id: `a${newWordId}-${i}`,
-        text: s.replace('——', '—'),
+        text: s.replace('——', '—').replace(/_/g, ''),
         data_i: i2,
         data_hz: hzPunc.test(s)
       })
@@ -599,7 +599,6 @@ function updateTopBar() {
 }
 
 window._fontSize = window._fontSize || (window.innerWidth > 800 ? 20 : 16)
-document.body.style.fontSize = _fontSize + 'px'
 
 function biggerFont() {
   if (_fontSize < 50) {
@@ -614,12 +613,11 @@ function smallerFont() {
   }
 }
 
-updateTopBar()
 document.getElementById('top-bar').addEventListener('click', function (event) {
   const dataset = event.target.dataset, toggleCls = (dataset || {}).toggle
   if (toggleCls) {
     document.body.classList.toggle(toggleCls)
-    const sandhi = !hasBodyCls('no-sandhi')
+    const sandhi = !hasBodyCls('no-sandhi');
 
     if (toggleCls === 'no-sandhi') {
       if (!sandhi && !dataset.sandhi) {
@@ -630,6 +628,10 @@ document.getElementById('top-bar').addEventListener('click', function (event) {
     } else if (['show-audio', 'show-iast', 'show-deva'].indexOf(toggleCls) >= 0 || dataset.reload) {
       _renderBody(sandhi, toggleCls)
     }
+    if (['dark'].indexOf(toggleCls) >= 0) {
+      window.options[toggleCls] = hasBodyCls(toggleCls)
+      saveOptions()
+    }
     updateTopBar()
   }
 })
@@ -639,3 +641,19 @@ window._renderBody = function (sandhi, toggleCls) {
   document.getElementById('body').innerHTML = ''
   window.renderBody(sandhi, toggleCls)
 }
+
+function saveOptions() {
+  localStorage.setItem('saOptions', JSON.stringify(options))
+}
+
+try {
+  window.options = JSON.parse(localStorage.getItem('saOptions'))
+} catch (e) {}
+if (!window.options || typeof window.options !== 'object') {
+  window.options = {}
+}
+if (options['dark']) {
+  document.body.classList.add('dark')
+}
+document.body.style.fontSize = _fontSize + 'px'
+updateTopBar()

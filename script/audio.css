@@ -11,6 +11,7 @@
     margin-left: 3px;
     border-color: transparent;
 }
+.dark .audio-button:not(.voc) { background-color: #333; }
 
 .audio-button:not(.voc)::after {
     content: "";
@@ -43,14 +44,13 @@
     .audio-button.voc:hover { opacity: 1; }
     .audio-word[onclick]:hover {
         text-decoration: underline;
-        text-decoration-color: #ccc;
+        text-decoration-color: var(--checked-color);
         text-underline-position: under;
     }
 }
 
-.audio-button:not(.voc).playing {
-    background-color: #f00 !important;
-}
+.audio-button:not(.voc).playing { background-color: #f00 !important; }
+.dark .audio-button:not(.voc).playing { background-color: #368 !important; }
 .audio-word:has(.audio-button.playing) {
     text-decoration: underline;
     text-decoration-color: #777;

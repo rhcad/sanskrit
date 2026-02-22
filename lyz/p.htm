@@ -17,8 +17,8 @@
     .tip { font-size: 11px; margin-bottom: .3em; }
     .row:not(.multi-audio) [data-hz] { font-size: .9rem; }
     [data-toggle="auto-audio"] { font-weight: bold; }
-    .audio-button:not(.voc) { background-color: #fff; }
-    .audio-button:not(.voc)::after { border-left: 8px solid #ddd; }
+    .audio-button:not(.voc) { background-color: var(--body-background-color); }
+    .audio-button:not(.voc)::after { border-left: 8px solid var(--border-color); }
     #body, .body { max-width: 42rem; margin: 0 auto; }
     .body > a + a { margin-left: 2em; }
     .audio-word.short { display: inline-block; }
@@ -34,6 +34,7 @@
   <span class="home" onclick="location.href='../'" title="Home"><img src="../img/favicon.png" alt="Home"></span>
   <span onclick="biggerFont()">+</span>
   <span onclick="smallerFont()">-</span>
+  <span data-toggle="dark" title="深色模式">☽</span>
   <span data-toggle="show-odd">音节</span>
   <span data-toggle="show-deva">天城体</span>
   <span data-toggle="show-iast">转写</span>
@@ -59,7 +60,7 @@ Namaḥ anā-gāmināṃ . ▷1006
 Namo loke samyag-gatānāṃ samyak-prati-pannānāṃ . ▷1007
 Namo deva-ṛṣiṇāṃ . ▷1008
 Namaḥ siddha-vidyā-dhāra-ṛṣiṇāṃ ▷1009
-  śāpānu-graha sama-rthānāṃ . ▷1010
+  śāpānu-graha samarthānāṃ . ▷1010
 Namo brahmaṇe . ▷1011
 Namaḥ indrāya . ▷1012
 Namo bhagavate rudrāya umāpati-sahīyā . ▷1013
