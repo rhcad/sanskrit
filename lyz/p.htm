@@ -10,16 +10,16 @@
   <meta name="keywords" content="sanskrit,shurangama dharani,楞严咒梵文">
   <meta property="og:image" content="../img/favicon.png">
   <link rel="icon" type="image/png" href="../img/favicon.png">
-  <link rel="stylesheet" href="../script/sanskrit.css?v=1345">
-  <link rel="stylesheet" href="../script/audio.css?v=1345">
+  <link rel="stylesheet" href="../script/sanskrit.css?v=1347">
+  <link rel="stylesheet" href="../script/audio.css?v=1347">
   <style>
     .title { text-align: center; margin-bottom: .3em; }
     .tip { font-size: 11px; margin-bottom: .3em; }
     .row:not(.multi-audio) [data-hz] { font-size: .9rem; }
     [data-toggle="auto-audio"] { font-weight: bold; }
-    .audio-button:not(.voc) { background-color: #eee; }
-    .audio-button:not(.voc)::after { border-left: 8px solid #999; }
-    #body, .body { max-width: 44rem; margin: 0 auto; }
+    .audio-button:not(.voc) { background-color: #fff; }
+    .audio-button:not(.voc)::after { border-left: 8px solid #ddd; }
+    #body, .body { max-width: 42rem; margin: 0 auto; }
     .body > a + a { margin-left: 2em; }
     .audio-word.short { display: inline-block; }
     @media screen { .iast-row { line-height: 1.3em; }}
@@ -29,7 +29,7 @@
     }
   </style>
 </head>
-<body class="show-odd show-iast show-audio auto-audio merge-audio-words">
+<body class="show-odd show-iast show-audio auto-audio">
 <div id="top-bar">
   <span class="home" onclick="location.href='../'" title="Home"><img src="../img/favicon.png" alt="Home"></span>
   <span onclick="biggerFont()">+</span>
@@ -44,98 +44,219 @@
   附 <a href="pu.lrc">歌词LRC</a>、<a href="s.htm">楞严咒教念(弘博法师诵)</a></div>
 <div class="title no-print">楞严咒梵文版 <small>普敬法师诵</small></div>
 <div id="body"></div>
-<p class="body"><a href="p3.htm" class="sec-title">第三、四会</a> <a href="p5.htm" class="sec-title">第五会</a></p>
-<script src="../script/sanscript.es6.js?v=1345"></script>
-<script src="../script/sanskrit.js?v=1345"></script>
+<script src="../script/sanscript.es6.js?v=1347"></script>
+<script src="../script/sanskrit.js?v=1347"></script>
 <script>
   const iastContent = `佛顶光聚 大白伞盖 无有能及 甚能调伏 总持 陀罗尼▷01
 Stathāgata-uṣṇīṣaṃ Sitāta-patraṃ Aparā-jitaṃ Praty-aṅgiraṃ Dhāraṇī
 #1 第一会
-Namaḥ▷02 sarva▷03 buddha▷04 bodhi-satve▷05 bhyaḥ▷06 . ▷1001
-Namaḥ▷07 saptānāṃ▷08 samyak▷09-saṃbuddha▷10 koṭīnāṃ▷11 sa-śrāvaka▷12 saṃghānāṃ▷13 . ▷1002
-Namo▷14 loke▷15 arhantānāṃ▷16 . ▷1003
-Namaḥ▷17 srotā▷18-pannānāṃ▷19 . ▷1004
-Namaḥ▷20 sakṛdā▷21-gāmināṃ▷22 . ▷1005
-Namaḥ▷23 anā▷24-gāmināṃ▷25 . ▷1006
-Namo▷26 loke▷27 samyag▷28-gatānāṃ▷29 samyak▷30-prati▷31-pannānāṃ▷32 . ▷1007
-Namo▷33 deva▷34-ṛṣiṇāṃ▷35 . ▷1008
-Namaḥ▷36 siddha▷37-vidyā▷38-dhāra▷39-ṛṣiṇāṃ▷40 ▷1009
-  śāpānu▷41-graha▷42 sama▷43-rthānāṃ▷44 . ▷1010
-Namo▷45 brahmaṇe▷46 . ▷1011
-Namaḥ▷47 indrāya▷48 . ▷1012
-Namo▷49 bhagavate▷50 rudrāya▷51 umāpati▷52-sahīyā▷53 . ▷1013
-Namo▷54 bhagavate▷55 nārāyaṇāya▷56 ▷1014
-  lakṣmi▷57 pañca▷58-mahā▷59-mudrā▷60 namas▷61-kṛtāya▷62 . ▷1015
-Namo▷63 bhagavate▷64 mahā▷65-kālāya▷66 ▷1016
-  tripura▷67-nagara▷68-vidrāpaṇa▷69-karāya▷70 ▷1017
-  adhi-muktika▷71 śmaśāna▷72-vāsine▷73 ▷1018
-  mātṛ▷74-gaṇa▷75 namas▷76-kṛtāya▷77 . ▷1019
-Namo▷78 bhagavate▷79 tathāgata▷80 kulāya▷81 . ▷1020
-Namo▷82 bhagavate▷83 padma▷84 kulāya▷85 . ▷1021
-Namo▷86 bhagavate▷87 vajra▷88 kulāya▷89 . ▷1022
-Namo▷90 bhagavate▷91 maṇi▷92 kulāya▷93 . ▷1023
-Namo▷94 bhagavate▷95 gaja▷96-kulāya▷97 . ▷1024
-Namo▷98 bhagavate▷99 dṛḍha▷100-śūra▷101-sena▷102-pra▷103-haraṇa▷104-rājāya▷105 ▷1025
-  tathāgatāya▷106 arhate▷107 samyak▷108-saṃbuddhāya▷109 . ▷1026
-Namo▷110 bhagavate▷111 amitābhāya▷112 ▷1027
-  tathāgatāya▷113 arhate▷114 samyak▷115-saṃbuddhāya▷116 . ▷1028
-Namo▷117 bhagavate▷118 akṣo▷119-bhya▷120 ▷1029
-  tathāgatāya▷121 arhate▷122 samyak-saṃbuddhāya▷123 . ▷1030
-Namo▷124 bhagavate▷125 bhaiṣajya-guru▷126-vaiḍūrya▷127-prabha-rājāya▷128 ▷1031
-  tathāgatāya▷129 arhate▷130 samyak-saṃbuddhāya▷131 . ▷1032
-Namo▷132 bhagavate▷133 saṃpuṣpita▷134-sālendra▷135-rājāya▷136 ▷1033
-  tathāgatāya▷137 arhate▷138 samyak-saṃbuddhāya▷139 . ▷1034
-Namo▷140 bhagavate▷141 śākyamunaye▷142 ▷1035
-  tathāgatāya▷143 arhate▷144 samyak▷145-saṃbuddhāya▷146 . ▷1036
-Namo▷147 bhagavate▷148 ratna▷149-kusuma▷150-ketu-rājāya▷151 ▷1037
-  tathāgatāya▷152 arhate▷153 samyak▷154-saṃbuddhāya▷155 . ▷1038
-Tebhyo▷156 namas▷157-kṛtvā▷158 imāṃ▷159 bhagavata▷160 tathāgata▷161-uṣṇīṣaṃ▷162 . ▷1039
-Sitātapatraṃ▷163 namo▷164 aparā▷165-jitaṃ▷166 pratyaṅ▷167-girāṃ▷168 . ▷1040
-Sarva▷169 bhūta▷170-graha▷171 ni-graha▷172 karaṇīṃ▷173 . ▷1041
-Para-vidyā▷174 cchedanīṃ▷175 . ▷1042
-Akāla▷176-mṛtyu▷177 pari▷178-trāṇa▷179-karīṃ▷180 . ▷1043
-Sarva▷181 bandhana▷182 mokṣaṇīṃ▷183 . ▷1044
-Sarva▷184 duṣṭa▷185 duḥ-svapna▷186 nivāraṇīṃ▷187 . ▷1045
-Caturā▷188-śītīnāṃ▷189 graha▷190 sahasrāṇāṃ▷191 vi-dhvaṃsana▷192-karīṃ▷193 . ▷1046
-Aṣṭā▷194-viṃśa▷195-tināṃ▷196 nakṣa▷197-trāṇāṃ▷198 prasā▷199-dana▷200 karīṃ▷201 . ▷1047
-Aṣṭānāṃ▷202 mahā▷203-grahānāṃ▷204 vi-dhvaṃsana▷205-karīṃ▷206 . ▷1048
-Sarva▷207 śatru▷208 nivāraṇīṃ▷209 . ▷1049
-Ghoraṃ▷210 duḥ▷211-svapnānāṃ▷212 ca nāśanīṃ▷213 . ▷1050
-Viṣa śastra▷214 agni▷215 uttaraṇīṃ▷216 . ▷1051
-Aparājitaṃ▷217 mahā-ghorāṃ▷218 ▷1052
-  Mahā-balāṃ▷219 mahā-caṇḍāṃ▷220 mahā-dīptāṃ▷221 mahā-tejāṃ▷222 ▷1053
-  Mahā-śvetāṃ▷223 mahā-jvālāṃ▷224 mahā-balā▷225 pāṇḍara▷226-vāsinī▷227 ▷1054
-  Ārya-tārā▷228 bhṛ-kuṭīṃ▷229 ceva▷230 vijaya▷231 vajra▷232-maleti▷233 vi-śrutāṃ▷234 ▷1055
-  Padmaṃkaṃ▷235 vajra▷236-jihvā ca▷237 mālā-ceva▷238-aparājita▷239 ▷1056
-  Vajra▷240 daṇḍīṃ▷241 viśālā ca▷242 śānta▷243 vaideva▷244-pūjitāṃ▷245 ▷1057
-  Saumya-rūpāṃ▷246 mahā-śvetā▷247 ▷1058
-  Ārya▷248-tārā▷249 mahā▷250-balā aparā▷251 vajra śaṇkalā▷252 ceva, Vajra▷253 ▷1059 kaumāri▷254 kulaṃ▷255 dharī▷256 ▷1060
-  Vajra hastā ca▷257 mahā-vidyā▷258 kāñcana▷259 mālikā▷260 ▷1061
-  Kusuṃbha▷261 ratna▷262 vairocana▷263 kuliyātho▷264 uṣṇīṣaṃ▷265 ▷1062
-  vi-jṛmbha▷266-mānā ca▷267 savajra▷268 kanaka▷269 prabhā▷270 locanā▷271 ▷1063
-  vajra▷272 tuṇḍī ca▷273 śvetā ca▷274 kamalākṣī▷275 śaśi-prabha▷276 ▷1064
-  ityete▷277 mudrā▷278 gaṇā▷279 ▷1065
-  sarve▷280 rakṣāṃ▷281 kurvantu▷282 mama▷283 . ▷1066
+Namaḥ sarva buddha bodhi-satve bhyaḥ . ▷1001
+Namaḥ saptānāṃ samyak-saṃbuddha koṭīnāṃ sa-śrāvaka saṃghānāṃ . ▷1002
+Namo loke arhantānāṃ . ▷1003
+Namaḥ srotā-pannānāṃ . ▷1004
+Namaḥ sakṛdā-gāmināṃ . ▷1005
+Namaḥ anā-gāmināṃ . ▷1006
+Namo loke samyag-gatānāṃ samyak-prati-pannānāṃ . ▷1007
+Namo deva-ṛṣiṇāṃ . ▷1008
+Namaḥ siddha-vidyā-dhāra-ṛṣiṇāṃ ▷1009
+  śāpānu-graha sama-rthānāṃ . ▷1010
+Namo brahmaṇe . ▷1011
+Namaḥ indrāya . ▷1012
+Namo bhagavate rudrāya umāpati-sahīyā . ▷1013
+Namo bhagavate nārāyaṇāya ▷1014
+  lakṣmi pañca-mahā-mudrā namas-kṛtāya . ▷1015
+Namo bhagavate mahā-kālāya ▷1016
+  tripura-nagara-vidrāpaṇa-karāya ▷1017
+  adhi-muktika śmaśāna-vāsine ▷1018
+  mātṛ-gaṇa namas-kṛtāya . ▷1019
+Namo bhagavate tathāgata kulāya . ▷1020
+Namo bhagavate padma kulāya . ▷1021
+Namo bhagavate vajra kulāya . ▷1022
+Namo bhagavate maṇi kulāya . ▷1023
+Namo bhagavate gaja-kulāya . ▷1024
+Namo bhagavate dṛḍha-śūra-sena-pra-haraṇa-rājāya ▷1025
+  tathāgatāya arhate samyak-saṃbuddhāya . ▷1026
+Namo bhagavate amitābhāya ▷1027
+  tathāgatāya arhate samyak-saṃbuddhāya . ▷1028
+Namo bhagavate akṣo-bhya ▷1029
+  tathāgatāya arhate samyak-saṃbuddhāya . ▷1030
+Namo bhagavate bhaiṣajya-guru-vaiḍūrya-prabha-rājāya ▷1031
+  tathāgatāya arhate samyak-saṃbuddhāya . ▷1032
+Namo bhagavate saṃpuṣpita-sālendra-rājāya ▷1033
+  tathāgatāya arhate samyak-saṃbuddhāya . ▷1034
+Namo bhagavate śākyamunaye ▷1035
+  tathāgatāya arhate samyak-saṃbuddhāya . ▷1036
+Namo bhagavate ratna-kusuma-ketu-rājāya ▷1037
+  tathāgatāya arhate samyak-saṃbuddhāya . ▷1038
+Tebhyo namas-kṛtvā imāṃ bhagavata tathāgata-uṣṇīṣaṃ . ▷1039
+Sitātapatraṃ namo aparā-jitaṃ pratyaṅ-girāṃ . ▷1040
+Sarva bhūta-graha ni-graha karaṇīṃ . ▷1041
+Para-vidyā cchedanīṃ . ▷1042
+Akāla-mṛtyu pari-trāṇa-karīṃ . ▷1043
+Sarva bandhana mokṣaṇīṃ . ▷1044
+Sarva duṣṭa duḥ-svapna nivāraṇīṃ . ▷1045
+Caturā-śītīnāṃ graha sahasrāṇāṃ vi-dhvaṃsana-karīṃ . ▷1046
+Aṣṭā-viṃśa-tināṃ nakṣa-trāṇāṃ prasā-dana karīṃ . ▷1047
+Aṣṭānāṃ mahā-grahānāṃ vi-dhvaṃsana-karīṃ . ▷1048
+Sarva śatru nivāraṇīṃ . ▷1049
+Ghoraṃ duḥ-svapnānāṃ ca nāśanīṃ . ▷1050
+Viṣa śastra agni uttaraṇīṃ . ▷1051
+Aparājitaṃ mahā-ghorāṃ ▷1052
+  Mahā-balāṃ mahā-caṇḍāṃ mahā-dīptāṃ mahā-tejāṃ ▷1053
+  Mahā-śvetāṃ mahā-jvālāṃ mahā-balā pāṇḍara-vāsinī ▷1054
+  Ārya-tārā bhṛ-kuṭīṃ ceva vijaya vajra-maleti vi-śrutāṃ ▷1055
+  Padmaṃkaṃ vajra-jihvā ca mālā-ceva-aparājita ▷1056
+  Vajra daṇḍīṃ viśālā ca śānta vaideva-pūjitāṃ ▷1057
+  Saumya-rūpāṃ mahā-śvetā ▷1058
+  Ārya-tārā mahā-balā aparā vajra śaṇkalā ceva, Vajra ▷1059 kaumāri kulaṃ dharī ▷1060
+  Vajra hastā ca mahā-vidyā kāñcana mālikā ▷1061
+  Kusuṃbha ratna vairocana kuliyātho uṣṇīṣaṃ ▷1062
+  vi-jṛmbha-mānā ca savajra kanaka prabhā locanā ▷1063
+  vajra tuṇḍī ca śvetā ca kamalākṣī śaśi-prabha ▷1064
+  ityete mudrā gaṇā ▷1065
+  sarve rakṣāṃ kurvantu mama . ▷1066
 #2 第二会
-Oṃ▷284 ṛṣi-gaṇa▷285 praśastāya▷286 sarva▷287 tathāgata▷288-uṣṇīṣāya▷289 hūṃ▷290 trūṃ▷291 . ▷1067
-Jambhana▷292-kara▷293 hūṃ▷294 trūṃ▷295 . ▷1068
-Stambhana▷296-kara▷297 hūṃ▷298 trūṃ▷299 . ▷1069
-Mohana▷300-kara▷301 hūṃ▷302 trūṃ▷303 . ▷1070
-Mathana▷304-kara▷305 hūṃ▷306 trūṃ▷307 . ▷1071
-Para-vidyā▷308 saṃ-bhakṣaṇa▷309-kara▷310 hūṃ▷311 trūṃ▷312 . ▷1072
-Sarva▷313 duṣṭānāṃ▷314 stambhana▷315-kara▷316 hūṃ▷317 trūṃ▷318 . ▷1073
-Sarva▷319 yakṣa rākṣasa▷320 grahāṇāṃ▷321 ▷1074
-  vi▷322-dhvaṃsana▷323-kara▷324 hūṃ▷325 trūṃ▷326 . ▷1075
-Caturāśītīnāṃ▷327 graha▷328 sahasrāṇāṃ▷329 ▷1076
-  vi▷330-dhvaṃsana▷331-kara▷332 hūṃ▷333 trūṃ▷334 . ▷1077
-Rakṣa rakṣa māṃ▷335 .
-Bhagavan▷336 stathāgata-uṣṇīṣaṃ▷337 ▷1079
-  sitātapatraṃ▷338 mahā vajroṣṇīṣaṃ▷339 ▷1080
-  mahā▷340 pratyaṅgire▷341 mahā sahasra▷342-bhuje sahasra▷343-śīrṣe▷344 . ▷1081
-koṭī-śata▷345 sahasra▷346-netre▷347 ▷1082
-  abhedya▷348 jvalita▷349-taṭaka▷350 ▷1083
-  mahā-vajro▷351-dāra▷352 tri-bhuvana▷353 maṇḍala▷354 . ▷1084
-Oṃ▷355 svastir▷356 bhavatu▷357 mama▷358 . ▷1085
+Oṃ ṛṣi-gaṇa praśastāya sarva tathāgata-uṣṇīṣāya hūṃ trūṃ . ▷1067
+Jambhana-kara hūṃ trūṃ . ▷1068
+Stambhana-kara hūṃ trūṃ . ▷1069
+Mohana-kara hūṃ trūṃ . ▷1070
+Mathana-kara hūṃ trūṃ . ▷1071
+Para-vidyā saṃ-bhakṣaṇa-kara hūṃ trūṃ . ▷1072
+Sarva duṣṭānāṃ stambhana-kara hūṃ trūṃ . ▷1073
+Sarva yakṣa rākṣasa grahāṇāṃ ▷1074
+  vi-dhvaṃsana-kara hūṃ trūṃ . ▷1075
+Caturāśītīnāṃ graha sahasrāṇāṃ ▷1076
+  vi-dhvaṃsana-kara hūṃ trūṃ . ▷1077
+Rakṣa rakṣa māṃ .
+Bhagavan stathāgata-uṣṇīṣaṃ ▷1079
+  sitātapatraṃ mahā vajroṣṇīṣaṃ ▷1080
+  mahā pratyaṅgire mahā sahasra-bhuje sahasra-śīrṣe . ▷1081
+koṭī-śata sahasra-netre ▷1082
+  abhedya jvalita-taṭaka ▷1083
+  mahā-vajro-dāra tri-bhuvana maṇḍala . ▷1084
+Oṃ svastir bhavatu mama . ▷1085
+#3 第三会
+Rāja-bhayā cora-bhayā udaka-bhayā agni-bhayā ▷1086
+  viṣa-bhayā śastra-bhayā para-cakra-bhayā dur-bhikṣa-bhayā ▷1087
+  aśani-bhayā akāla-mṛtyu-bhayā dharaṇi-bhūmi-kampa-bhayā ulkā-pāta-bhayā ▷1088
+  rāja-daṇḍa-bhayā suparṇī-bhayā nāga-bhayā vidyut-bhayā . ▷1089
+Deva-grahā nāga-grahā yakṣa-grahā rākṣasa-grahā preta-grahā piśāca-grahā bhūta-grahā kumbhaṇḍa-grahā pūtana-grahā ▷1090
+  kaṭa-pūtana-grahā skanda-grahā apasmāra-grahā utmāda-grahā ▷1091
+  cchāyā-grahā revatī-grahā jāmikā-grahā kaṇṭha-kāminī-grahā . ▷1092
+Ojā-hāriṇyā garbhā-hāriṇyā jātā-hāriṇyā jīvitā-hāriṇyā ▷1093
+  rudhirā-hāriṇyā vasā-hāriṇyā māṃsā-hāriṇyā medā-hāriṇyā ▷1094
+  majjā-hāriṇyā vāntā-hāriṇyā aśucyā-hāriṇyā ciccā-hāriṇyā . ▷1095
+Teṣāṃ sarveṣāṃ sarva grahāṇāṃ vidyāṃ cchinda-yāmi kīla-yāmi . ▷1096
+Pari-brājaka kṛtāṃ vidyāṃ cchinda-yāmi kīla-yāmi . ▷1097
+Ḍāka-ḍākinī kṛtāṃ vidyāṃ cchinda-yāmi kīla-yāmi . ▷1098
+Mahā-paśupati rudra kṛtāṃ vidyāṃ cchinda-yāmi kīla-yāmi . ▷1099
+Nārāyaṇā kṛtāṃ vidyāṃ cchinda-yāmi kīla-yāmi . ▷1100
+Tatva garuḍa sahīyā kṛtāṃ vidyāṃ cchinda-yāmi kīla-yāmi . ▷1101
+Mahā-kāla mātṛ-gaṇa sahīyā kṛtāṃ vidyāṃ cchinda-yāmi kīla-yāmi . ▷1102
+Kāpālika kṛtāṃ vidyāṃ cchinda-yāmi kīla-yāmi . ▷1103
+Jaya-kara madhu-kara sarvārtha-sādhaka ▷1104
+  kṛtāṃ vidyāṃ cchinda-yāmi kīla-yāmi . ▷1105
+Catur-bhaginī kṛtāṃ vidyāṃ cchinda-yāmi kīla-yāmi . ▷1106
+Bhṛṅgi-riṭika nandi-keśvara gaṇapati sahīya ▷1107
+  kṛtāṃ vidyāṃ cchinda-yāmi kīla-yāmi . ▷1108
+Nagna-śramaṇa kṛtāṃ vidyāṃ cchinda-yāmi kīla-yāmi . ▷1109
+Arhanta kṛtāṃ vidyāṃ cchinda-yāmi kīla-yāmi . ▷1110
+Vīta-rāga kṛtāṃ vidyāṃ cchinda-yāmi kīla-yāmi . ▷1111
+Vajra-pāṇi guhyaka-adhipati kṛtāṃ vidyāṃ cchinda-yāmi kīla-yāmi . ▷1112
+Rakṣa rakṣa māṃ . ▷1113
+#4 第四会
+Bhagavan sitāta-patraṃ namo-stute . ▷1114
+Asitā-nalārka prabhā-sphuṭa vika sitātapatre . ▷1115
+Jvala jvala dhaka-dhaka vidhaka-vidhaka dara dara ▷1116
+  vidara vidara cchinda cchinda bhinda bhinda ▷1117
+  hūṃ hūṃ phaṭ ! phaṭ ! svāhā . ▷1118
+He-he phaṭ . ▷1119
+Amogha phaṭ . ▷1120
+Apra-tihata phaṭ . ▷1121
+Vara-prada phaṭ . ▷1122
+Asura vidrā-paka phaṭ . ▷1123
+Sarva deve-bhyaḥ phaṭ . ▷1124
+Sarva nāge-bhyaḥ phaṭ . ▷1125
+Sarva yakṣe-bhyaḥ phaṭ . ▷1126
+Sarva rākṣase-bhyaḥ phaṭ . ▷1127
+Sarva garuḍe-bhyaḥ phaṭ . ▷1128
+Sarva gandharve-bhyaḥ phaṭ . ▷1129
+Sarva asure-bhyaḥ phaṭ . ▷1130
+Sarva kinnare-bhyaḥ phaṭ . ▷1131
+Sarva mahorage-bhyaḥ phaṭ . ▷1132
+Sarva manuṣye-bhyaḥ phaṭ . ▷1133
+Sarva amanuṣye-bhyaḥ phaṭ . ▷1134
+Sarva bhūte-bhyaḥ phaṭ . ▷1135
+Sarva prete-bhyaḥ phaṭ . ▷1136
+Sarva piśāce-bhyaḥ phaṭ . ▷1137
+Sarva kumbhāṇḍe-bhyaḥ phaṭ . ▷1138
+Sarva pūtane-bhyaḥ phaṭ . ▷1139
+Sarva kaṭa-pūtane-bhyaḥ phaṭ . ▷1140
+Sarva durlaṅghite-bhyaḥ phaṭ . ▷1141
+Sarva duṣ-prekṣite-bhyaḥ phaṭ . ▷1142
+Sarva jvare-bhyaḥ phaṭ . ▷1143
+Sarva apasmāre-bhyaḥ phaṭ . ▷1144
+Sarva śrāmaṇe-bhyaḥ phaṭ . ▷1145
+Sarva tīrthike-bhyaḥ phaṭ . ▷1146
+Sarva utmāde-bhyaḥ phaṭ . ▷1147
+Sarva vidyā-ācārye-bhyaḥ phaṭ . ▷1148
+Jaya-kara madhu-kara sarvārtha-sādhake-bhyo . ▷1149
+vidyā-ācārye-bhyaḥ phaṭ . ▷1150
+Catur-bhaginī-bhyaḥ phaṭ . ▷1151
+Vajra kaumārī vidyā-rāje-bhyaḥ phaṭ . ▷1152
+Mahā-pratyaṅgire-bhyaḥ phaṭ . ▷1153
+Vajra śaṅkalāya praty-aṅgira-rājāya-phaṭ . ▷1154
+Mahā-kālāya mahā-mātṛ-gaṇa namas-kṛtāya phaṭ . ▷1155
+Veṣṇuvīye phaṭ . ▷1156
+Brahmaṇīye phaṭ . ▷1157
+Agnīye phaṭ . ▷1158
+Mahā-kālīye phaṭ . ▷1159
+Kāla-daṇḍīye phaṭ . ▷1160
+Indrīye phaṭ . ▷1161
+Raudrīye phaṭ . ▷1162
+Cāmuṇḍīye phaṭ . ▷1163
+Kāla-rātrīye phaṭ . ▷1164
+Kāpalīye phaṭ . ▷1165
+Adhi-muktika śmaśāna vāsinīye phaṭ . ▷1166
+Yeke-citta satva mama . ▷1167
+#5 第五会
+Duṣṭa-cittā pāpa-cittā raudra-cittā vi-dveṣa-cittā amaitra-cittā . ▷1168
+Utpāda-yanti kīla-yanti mantra-yanti japanti juhvanti . ▷1169
+Ojā-hārā garbhā-hārā rudhirā-hārā vasā-hārā ▷1170
+  majjā-hārā jātā-hārā jīvitā-hārā malyā-hārā ▷1171
+  gandhā-hārā puṣpā-hārā phalā-hārā sasyā-hārā . ▷1172
+Pāpa-cittā duṣṭa-cittā raudra-cittā . ▷1173
+Yakṣa-grahā rākṣasa-grahā preta-grahā piśāca-grahā ▷1174
+  bhūta-grahā kumbhaṇḍa-grahā skanda-grahā utmāda-grahā cchāya-grahā apasmāra-grahā ḍāka-ḍākinī-grahā ▷1175
+  revatī-grahā jāmika-grahā śakuni-grahā mantra-nandika-grahā ▷1176
+  lamvika-grahā kaṇṭha-pāṇi-grahā . ▷1177
+Jvarā: ekā-hikā dvai-tīyakā tri-tīyakā catur-thakā . ▷1178
+Nitya-jvarā viṣama-jvarā vātikā paittikā ślaiṣmikā sān-nipātikā sarva-jvarā . ▷1179
+Śirortī ardha-avabhedaka arocakā ▷1180
+  akṣi-rogaṃ nasa-rogaṃ mukha-rogaṃ hṛd-rogaṃ ▷1181
+  grahaṃ-śūlaṃ karṇa-śūlaṃ danta-śūlaṃ hṛdaya-śūlaṃ marma-śūlaṃ ▷1182
+  pārśva-śūlaṃ pṛṣṭha-śūlaṃ udara-śūlaṃ kaṭi-śūlaṃ ▷1183
+  vasti-śūlaṃ ūru-śūlaṃ jaṅgha-śūlaṃ hasta-śūlaṃ ▷1184
+  pāda-śūlaṃ sarvāṅga-pratyaṅga-śūlaṃ . ▷1185
+Bhūta  vetāḍa ḍākinī jvara . ▷1186
+Dadru kaṇḍu kiṭibha lūtā vaisarpa loha-liṅga ▷1187
+  śoṣa-trāsa gara-viṣa-yoga ▷1188
+  agni  udaka mara  vaira kāntāra akāla-mṛtyu . ▷1189
+Trai-buka trai-laṭaka vṛścika sarpa  nakula ▷1190
+  siṃha vyāghra ṛkṣa tarakṣa mṛga ▷1191
+  sva-para jīva teṣāṃ sarveṣāṃ ▷1192
+  sitāta-patraṃ mahā-vajro-ṣṇīṣaṃ mahā-praty-aṅgiraṃ . ▷1193
+Yāvadvā-daśa yojana-abhyan-tareṇa ▷1194
+  sīmā-bandhaṃ karomi ▷1195
+  diśā-bandhaṃ karomi ▷1196
+  pāra-vidyā-bandhaṃ karomi ▷1197
+  tejo-bandhaṃ karomi ▷1198
+  hasta-bandhaṃ karomi ▷1199
+  pāda-bandhaṃ karomi ▷1200
+  sarvāṅga-pratyaṅga-bandhaṃ karomi . ▷1201
+Tadyathā: Oṃ anale anale viśade viśade vīra vajra-dhare ▷1202
+  bandha bandhani  vajra-pāṇi ▷1203
+  phaṭ ! hūṃ trūṃ phaṭ ! svāhā . ▷1204   ♥▷883
 `
   window.renderBody = function () {
     const opt = {

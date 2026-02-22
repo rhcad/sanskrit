@@ -153,9 +153,7 @@ function renderRow(text, rowIndex, options={}) {
           iastSpan.classList.add('has-sloka-end')
         }
         if (options.sentenceAudio === 'word') {
-          if (flag[0] === 'w') {
-            audioNums.push(audios[a[0]])
-          }
+          audioNums.push(flag[0] === 'w' ? audios[a[0]] : '')
         } else {
           if (!flag[0] || flag[0] === 's') {
             audioNums.push(audios[a[0]])
@@ -314,6 +312,9 @@ function renderRow(text, rowIndex, options={}) {
   if (sentenceAudio) {
     const needMerge = hasBodyCls('merge-audio-words')
     const moveSpace = function () {
+      if (audioWord && audioWord.classList.contains('has-sentence-voc')) {
+        return
+      }
       const prev = audioWord && audioWord.previousSibling
       if (prev && prev.firstChild && prev.querySelector('.sp.space,.punc')) {
         while (audioWord.firstChild && !audioWord.firstChild.innerText.trim()) {
@@ -333,7 +334,22 @@ function renderRow(text, rowIndex, options={}) {
     for (let word = iastRow.lastChild; word && !word.classList.contains('weight'); word = prevWord) {
       prevWord = word.previousSibling
       if (word.classList.contains('audio-word')) {
-        moveSpace()
+        const buttons = word.querySelectorAll('.audio-button.voc')
+        if (buttons.length > 1) {
+          const newWord = createElement(null, 'iast word audio-word', 'span', {
+            onclick: 'toggleAudioWord(this)'
+          })
+          while (word.firstChild !== buttons[0]) {
+            newWord.append(word.firstChild)
+          }
+          newWord.append(buttons[0])
+          word.parentNode.insertBefore(newWord, word)
+          prevWord = word
+          continue
+        }
+        if (audioWord) {
+          moveSpace()
+        }
         audioWord = word
       } else if (audioWord && word.lastChild) {
         if ((word.classList.contains('has-sp') || word.textContent.startsWith('&')) && prevWord && prevWord.classList.contains('audio-word')) {
@@ -458,19 +474,24 @@ document.addEventListener('click', wordHover)
 function onAudioEnded(e) {
   const btn = e.target.closest('button')
   const curIdx = audioNums.indexOf(btn.dataset.idx)
-  let idx = curIdx, nextBtn = []
+  let idx = curIdx, nextBtn = [], waitSentence
 
   setTimeout(() => btn.classList.remove('playing'), 20)
   if (curIdx >= 0 && hasBodyCls('auto-audio')) {
     do {
       idx = (idx + 1) % audioNums.length
+      if (!audioNums[idx]) {
+        waitSentence = true
+        continue
+      }
       nextBtn = Array.from(document.querySelectorAll(`.audio-button[data-idx="${audioNums[idx]}"]`))
         .filter(b => b.offsetParent)
       if (idx === curIdx)
         return
     } while (!nextBtn.length)
 
-    toggleAudioButton(nextBtn[0], idx < curIdx ? 1000 : window.audioGap === undefined ? 100 : window.audioGap)
+    setTimeout(() => toggleAudioButton(nextBtn[0]), idx < curIdx ? 1000 : waitSentence ? 300 :
+      window.audioGap === undefined ? 50 : window.audioGap)
   }
 }
 
@@ -496,14 +517,12 @@ function toggleAudioWord(span, aid=0) {
   toggleAudioButton(span.querySelector('.audio-button'))
 }
 
-function toggleAudioButton(button, timeout=0) {
+function toggleAudioButton(button) {
   const audio = button && button.firstElementChild || {};
   const btnPlaying = document.querySelector('.playing');
 
-  if (timeout) {
+  if (audio.play) {
     button.classList.add('playing')
-    setTimeout(() => toggleAudioButton(button), timeout)
-    return
   }
   if (audio.paused) {
     if (btnPlaying) {

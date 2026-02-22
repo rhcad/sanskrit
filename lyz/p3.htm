@@ -10,17 +10,20 @@
   <meta name="keywords" content="sanskrit,shurangama dharani,楞严咒梵文">
   <meta property="og:image" content="../img/favicon.png">
   <link rel="icon" type="image/png" href="../img/favicon.png">
-  <link rel="stylesheet" href="../script/sanskrit.css?v=1345">
-  <link rel="stylesheet" href="../script/audio.css?v=1345">
+  <link rel="stylesheet" href="../script/sanskrit.css?v=1347">
+  <link rel="stylesheet" href="../script/audio.css?v=1347">
   <style>
     .title { text-align: center; margin-bottom: .3em; }
     .tip { font-size: 11px; margin-bottom: .3em; }
     .row:not(.multi-audio) [data-hz] { font-size: .9rem; }
     [data-toggle="auto-audio"] { font-weight: bold; }
+    .audio-button.voc { opacity: 0; margin-left: -12px; height: 0; background-size: 0 0; }
     .audio-button:not(.voc) { background-color: #eee; }
     .audio-button:not(.voc)::after { border-left: 8px solid #999; }
-    #body, .body { max-width: 44rem; margin: 0 auto; }
+    #body, .body { max-width: 42rem; margin: 0 auto; }
+    .body > a + a { margin-left: 2em; }
     .audio-word.short { display: inline-block; }
+    body:not(.show-audio2) .has-sentence-voc { display: none; }
     @media screen { .iast-row { line-height: 1.3em; }}
     @media (max-width: 650px) {
         .word { word-wrap: break-word; }
@@ -36,17 +39,17 @@
   <span data-toggle="show-odd">音节</span>
   <span data-toggle="show-deva">天城体</span>
   <span data-toggle="show-iast">转写</span>
-  <span data-toggle="show-audio">读音</span>
+  <span data-toggle="show-audio2">句音</span>
   <span data-toggle="auto-audio">连读</span>
 </div>
 <div class="tip no-print">注：点击右上角“连读”可切换点读后是否自动播放下一句。如在“微信”中连读播放会3秒内停止，可点击右上角…按钮“在浏览器中打开”本页面。开始播放后再次点击会停止。
   附 <a href="pu.lrc">歌词LRC</a>、<a href="s.htm">楞严咒教念(弘博法师诵)</a></div>
 <div class="title no-print">楞严咒梵文版 <small>普敬法师诵</small></div>
-<p class="body"><a href="p.htm" class="sec-title">第一会、第二会</a></p>
+<p class="body"><a href="p1.htm" class="sec-title">第一会、第二会</a></p>
 <div id="body"></div>
-<p class="body"><a href="p5.htm" class="sec-title">第五会</a></p>
-<script src="../script/sanscript.es6.js?v=1345"></script>
-<script src="../script/sanskrit.js?v=1345"></script>
+<p class="body"><a href="p5.htm" class="sec-title">第五会</a><a href="p.htm" class="sec-title">全部</a></p>
+<script src="../script/sanscript.es6.js?v=1347"></script>
+<script src="../script/sanskrit.js?v=1347"></script>
 <script>
   const iastContent = `
 #3 第三会
@@ -136,7 +139,7 @@ Yeke▷707-citta▷708 satva▷709 mama▷710 . ▷1167
 `
   window.renderBody = function () {
     const opt = {
-      audioPrefix: 'pu/p', hoverWord: false, sentenceAudio: true, sentenceAudioRe: '1[0-9]{3}'
+      audioPrefix: 'pu/p', hoverWord: false, sentenceAudio: 'word', sentenceAudioRe: '1[0-9]{3}'
     }
     iastContent.split('\n').forEach((text, i) => renderRow(text, i, opt))
     Array.from(document.querySelectorAll('.audio-word')).forEach(word => {
