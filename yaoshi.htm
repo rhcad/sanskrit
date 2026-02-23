@@ -31,18 +31,27 @@
   <span data-toggle="auto-audio">连读</span>
 </div>
 <div class="tip no-print">注：如在“微信”中连读播放会3秒内停止，可点击右上角…按钮“在浏览器中打开”本页面。开始播放后再次点击会停止。</div>
-<div class="title no-print">药师咒<br><small>印度梵语教授穆克纪诵</small></div>
+<div class="title no-print">药师咒</div>
 <div id="body"></div>
 <script src="script/sanscript.es6.js?v=1347"></script>
 <script src="script/sanskrit.js?v=1347"></script>
 <script>
   const iastContent = `
+#1 印度梵语教授穆克纪诵
 namo▷01 bhagavate▷02 bhaiṣajya▷03 -guru▷04 - ▷500
   vaiḍūrya▷05 -prabha▷06 -rājāya▷07 tathāgatāya▷08 ▷501
   arhate▷09 samyak▷10-saṃbuddhāya▷11 | ▷502
-tadyathā▷12
+tadyathā▷12 :
   oṃ▷13 bhaiṣajye▷14 bhaiṣajye▷15
-  bhaiṣajya▷16-samudgate▷17 svāhā▷18 || ▷503`
+  bhaiṣajya▷16-samudgate▷17 svāhā▷18 || ▷503
+#2 果滨居士教念
+namo▷21 bhagavate▷22 bhaiṣajya▷23 guru▷24 - ▷505
+  vaiḍūrya▷25 prabha▷26 rājāya▷27 tathāgatāya▷28 ▷506
+  arhate▷29 samyak▷30-saṃbuddhāya▷31 | ▷507
+tadyathā▷32 :
+  oṃ▷33 bhaiṣajye▷34 bhaiṣajye▷35
+  bhaiṣajya▷36-samudgate▷37 svāhā▷38 || ▷509
+`
 
   window.renderBody = function () {
     iastContent.split('\n').forEach((text, i) => renderRow(text, i, {
