@@ -162,6 +162,7 @@ function renderRow(text, rowIndex, options={}) {
           }
         }
         iastSpan.append(ele.firstChild)
+        iastSpan.classList.add('has-audio-button')
       }
       a[0] += 1
       return
@@ -277,7 +278,11 @@ function renderRow(text, rowIndex, options={}) {
         const ele = document.createElement('div'), flag = [];
         ele.innerHTML = _makeAudioButton(options, audios[a[1]], flag)
         a[1] += 1
-        return ele.innerHTML && devaSpan.append(ele.firstChild)
+        if (ele.innerHTML) {
+          devaSpan.append(ele.firstChild)
+          devaSpan.classList.add('has-audio-button')
+        }
+        return
       }
       const subIdx = subIndexes.indexOf(i)
       if (subIdx >= 0) {
@@ -356,7 +361,7 @@ function renderRow(text, rowIndex, options={}) {
           continue
         }
         if (!needMerge) {
-          word.setAttribute('onclick', `toggleAudioWord(this,${audioWord.getAttribute('data-id')})`)
+          word.setAttribute('onclick', `toggleAudioWord(this,'${audioWord.getAttribute('data-id')}')`)
           word.classList.add('audio-word')
           continue
         }
@@ -432,7 +437,12 @@ function renderInlineHzYin(text, iastRow, options) {
 function _createVocSpan(wordSpan, dir, idx) {
   const html = audioHtml.replace('@dir', dir)
     .replace(/@idx/g, idx).replace('-button', '-button voc')
-  return wordSpan ? createElement(wordSpan, 'voc', 'span', {html: html}) : html
+  if (wordSpan) {
+    const span = createElement(wordSpan, 'voc', 'span', {html: html})
+    wordSpan.classList.add('has-audio-button')
+    return span
+  }
+  return html
 }
 
 function _makeAudioButton(options, idx, flag=null) {
@@ -504,7 +514,7 @@ function isInViewport(element) {
 function toggleAudioWord(span, aid=0) {
   if (aid && span) {
     span = span.closest('.iast-row,.deva-row')
-    span = span.querySelector(`.word[data-id="${aid}"]:has(.audio-button)`)
+    span = span.querySelector(`.word[data-id='${aid}'].has-audio-button`)
   }
   const hitSpan = window.event.target
   if (hitSpan && hitSpan.closest('.word') === span) {
@@ -536,8 +546,9 @@ function toggleAudioButton(button) {
     }
     audio.onended = audio.onended || onAudioEnded;
     button.classList.add('playing', 'fail');
-    audio.play().then(() => button.classList.remove('fail'))
-      .catch(e => console.log(e));
+    audio.play().then(function() {
+      button.classList.remove('fail')
+    }).catch(e => console.log(e, audio.src));
     setTimeout(() => {
       if (button.classList.contains('fail') && audioNums.indexOf(button.dataset.idx) >= 0) {
         updateTopBar();
