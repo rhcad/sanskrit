@@ -40,6 +40,20 @@ const _re323 = /[\u0300-\u0305\u0323-\u0324]/
 const _aiu = {a: 'ā', i: 'ī', u: 'ū', A: 'Ā', I: 'Ī', U: 'Ū'}
 const _323 = {T: 'Ṭ', D: 'Ḍ', S: 'Ṣ', r: 'ṛ', t: 'ṭ', d: 'ḍ', n: 'ṇ', m: 'ṃ', s: 'ṣ', h: 'ḥ'}
 
+function _mergeDigraph(iastTexts, options) {
+  if (options.digraph2 && iastTexts.length > 1) {
+    for (let j = iastTexts.length - 1; j > 0; j--) {
+      for (let k = options.digraph2.length - 1; k >= 0; k--) {
+        if (iastTexts[j] === options.digraph2[k][1]
+          && iastTexts[j - 1] === options.digraph2[k][0]) {
+          iastTexts.splice(j - 1, 2, iastTexts[j - 1] + iastTexts[j])
+          break
+        }
+      }
+    }
+  }
+}
+
 /**
  * 创建一行元素
  * @param {string} text IAST文本
@@ -199,6 +213,11 @@ function renderRow(text, rowIndex, options={}) {
         .replace(/@\d+/g, t => `<span class="si" end="${ Sanscript.yati ? parseInt(t.substring(1))===Sanscript.yati || parseInt(t.substring(1))===Sanscript.yati+1 : parseInt(t.substring(1))===Sanscript.sn}" si="${t.substring(1)}">${t.substring(1)}</span>`),
       onclick: clickSection ? 'toggleSection(this)' : undefined
     });
+    if (options.digraph && sp.classList.contains('a')) {
+      if (options.digraph.indexOf(sp.textContent) >= 0) {
+        sp.classList.add('a-digraph')
+      }
+    }
     sp = sp && sp.querySelector('.sp')
     if (sp) sp.closest('.word').classList.add('has-sp')
     if (audio && audio[1] === audio[2] - 1) {
@@ -222,7 +241,7 @@ function renderRow(text, rowIndex, options={}) {
     const w = words[i]
     const c = w[0][0]
     const dash = c === '-'
-    const type = Sanscript.getAksaraType(c)
+    const type = Sanscript.getAksaraType(c);
 
     if (dash) {
       w[0] = w[0].substring(1)
@@ -249,6 +268,7 @@ function renderRow(text, rowIndex, options={}) {
     const hasSub = options['hoverWord'] !== false && /-/.test(w[0]), subIndexes = []
     const voc = options['vocAudio'] && hasBodyCls('show-audio') && findVocAudio(w0)
 
+    _mergeDigraph(iastTexts, options)
     wordSpan = null
     iastSpan.setAttribute('first-char', w0[0] || '')
     if (voc) {

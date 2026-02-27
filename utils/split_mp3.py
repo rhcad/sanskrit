@@ -67,6 +67,7 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False, join_ln=' ',
     text_st, ab = '', ''
     st_end, indent = False, False
     af = ['a', 'b', 'c', 'd', 'e', 'f']
+    words = {}
     for i_, r in enumerate(lrc[:-1]):  # lrc末行有时刻无文本
         start = round(r.time * 1000)  # 开始时刻，毫秒
         end = round(lrc[i_ + 1].time * 1000)  # 结束时刻，毫秒
@@ -85,6 +86,8 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False, join_ln=' ',
             break
         if not text or text.startswith('['):  # 行内容为“-”或[内容]则跳过
             continue
+        reuse_name = re.sub(r'^ +|[,.!:;? ]+$', '', text)
+        reuse = words.get(reuse_name)
         if text.startswith('.'):  # 中途需要拆词时，在多出的行中“[time]. ”加点标记编号不变，以免打乱后续文件名
             text = text[1:].strip()
             voc_i -= 1
@@ -95,11 +98,11 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False, join_ln=' ',
         voc_i += 1
         st_voc_n += 1
         text_fn = re.sub(r'[A-Z]', lambda m: m.group().lower(), text.replace("'", 'a'))
-        print(voc_i, start, end - start, text + text_ext,
+        print(reuse[0] if reuse else voc_i, start, end - start, text + text_ext,
               f' ▷{st_i}' if st_end and st_voc_n > 1 else '',
               '' if merge_sentence or text_fn == text else text_fn)
 
-        if r.text.startswith('='):  # 相邻两行词文本相同，就不增加编号
+        if r.text.startswith('=') or reuse:  # 相邻两行词文本相同，就不增加编号
             voc_i -= 1
             text = text.replace('=', '').strip()
         elif r.text.startswith('.'):  # 加点标记编号不变，文件名数字后加abc等子名
@@ -108,9 +111,9 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False, join_ln=' ',
         else:
             ab = 'a' if lrc[i_ + 1].text.startswith('.') else ''
 
-        if not only_i or voc_i in range(only_i - 4, only_i + 5):
-            if not merge_sentence and end - start > 1500:
-                end -= 100
+        if reuse:
+            print(f'reuse {reuse[0]} {reuse[1]}')
+        elif not only_i or voc_i in range(only_i - 4, only_i + 5):
             out_fn = out_dir_prefix + '%02d%s.mp3' % (
                 voc_i, ' ' + re.sub('[/:*?"<>|]', '', text[:20]).strip() if mp3_with_text else ab)
             if voc_i == only_i or rebuild or not path.exists(out_fn):
@@ -121,7 +124,9 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False, join_ln=' ',
                     makedirs('voc', exist_ok=True)
                     shutil.copy(out_fn, f'voc/{text_fn}.mp3')
 
-        sentence.append(text + ('▷%02d%s' % (voc_i, ab)) + text_ext + (
+        if not reuse:
+            words[reuse_name] = voc_i, text
+        sentence.append(text + ('▷%02d%s' % (reuse[0] if reuse else voc_i, ab)) + text_ext + (
             f' ▷{st_i}' if st_end and st_voc_n > 1 else ''))
         if st_end:
             if not only_i and de_silence < 2 and st_voc_n > 1:
@@ -142,7 +147,8 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False, join_ln=' ',
                 sentence[0] = '  ' + sentence[0]
             row = ''.join(sentence)
             indent = ', ▷' in row
-            content.append(re.sub(r', ▷\d+[a-f]?', lambda m: m.group()[1:], row))
+            # content.append(re.sub(r', ▷\d+[a-f]?', lambda m: m.group()[1:], row))
+            content.append(row)
             sentence = []
 
     print(out_dir_prefix + '.txt')

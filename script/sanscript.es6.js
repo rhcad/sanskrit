@@ -927,7 +927,7 @@ function exportSanscriptSingleton (global, schemes, devanagariVowelToMarks) {
                 if (rType === '2' || rType === '6') {
                     const leadCon = RE_CONSONANT2.exec(right)[0];
                     if (syllables[rtI0].indexOf(leadCon) === rtConIdx
-                        && leadCon.length === 1 && /[ṅñṇnmrṣs]/.test(leadCon)
+                        && leadCon.length === 1 && /[ṅñṇnmrs]/.test(leadCon)
                         && !/[ñnm][y]|[ṣs][v]/.test(right)) {
                         syllables[rtI0] = syllables[rtI0].replace(leadCon, '');
                         syllables[leftI0] += leadCon;

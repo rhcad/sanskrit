@@ -90,6 +90,13 @@ a { text-decoration:none; }
 body:not(.merge-audio-words) .word:not(.has-sub-word), .sub-word { display: inline-block; }
 [data-hz] { font-family: "宋体", SimSun, serif; font-size: 1rem; }
 
+.a-digraph { margin: 0 1px; }
+body.show-digraph .a-digraph {
+    text-decoration: underline;
+    text-underline-position: under;
+    text-decoration-color: var(--border-color);
+}
+
 @media screen {
   .hover-word .deva.word:not(.has-sub-word).hover,
   .hover-word .deva .sub-word.hover {
