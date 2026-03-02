@@ -10,16 +10,18 @@
   <meta name="keywords" content="sanskrit,maha karuna dharani,大悲咒梵文">
   <meta property="og:image" content="img/favicon.png">
   <link rel="icon" type="image/png" href="img/favicon.png">
-  <link rel="stylesheet" href="script/sanskrit.css?v=1344">
-  <link rel="stylesheet" href="script/audio.css?v=1344">
+  <link rel="stylesheet" href="script/sanskrit.css?v=1355">
+  <link rel="stylesheet" href="script/audio.css?v=1355">
   <style>
     .word span.sp { display: inline !important; margin: 0; }
     .title { text-align: center; margin-bottom: .3em; }
     .tip { font-size: 11px; margin-bottom: .3em; }
     .sec-title { margin-block-start: .1em; margin-block-end: .1em; }
+    #body { max-width: 42rem; margin: 0 auto; }
+    body.show-digraph .a-digraph { text-underline-offset: unset; }
   </style>
 </head>
-<body class="show-odd show-iast show-audio auto-audio merge-audio-words">
+<body class="show-odd show-iast show-audio auto-audio merge-audio-words show-digraph">
 <div id="top-bar">
   <span class="home" onclick="location.href='./'" title="Home"><img src="img/favicon.png" alt="Home"></span>
   <span onclick="biggerFont()">+</span>
@@ -32,11 +34,11 @@
   <span data-toggle="show-audio">读音</span>
   <span data-toggle="auto-audio">连读</span>
 </div>
-<div class="tip no-print">注：如在“微信”中连读播放会3秒内停止，可点击右上角…按钮“在浏览器中打开”本页面。开始播放后再次点击会停止。</div>
+<div class="tip no-print">注：有下划线的音节为二合音，可合成一字读。<br/>如在“微信”中连读播放会3秒内停止，可点击右上角…按钮“在浏览器中打开”本页面。开始播放后再次点击会停止。</div>
 <div class="title no-print">大悲咒 简丰祺教念</div>
 <div id="body"></div>
-<script src="script/sanscript.es6.js?v=1344"></script>
-<script src="script/sanskrit.js?v=1344"></script>
+<script src="script/sanscript.es6.js?v=1355"></script>
+<script src="script/sanskrit.js?v=1355"></script>
 <script>
   const iastContent = `mahā-kāruṇikā hṛdaya dhāraṇī
 #1
@@ -44,13 +46,14 @@ Nam(as,o)▷01 ratna▷02-tray(a,āya)▷03 ▷500
   Nama(s,)▷04 āry(a a,ā)▷05valokit(a ī,e)śvar(a,aya)▷06 ▷501
   bodhi(-,)sattv(a,āya)▷07 mahā(-,)sattv(a,āya)▷08 mahā-kāruṇik(a,āya)▷09 | ▷502
 Oṃ sarva▷10( ,-)bhay(a,eṣu)▷11 trāṇā( ,-)kar(a,āya)▷12, ▷503
-  tasya▷13 namas(-,)kṛtvā▷14 | ▷504
-Imāṃ▷15 āry(a a,ā)▷16valokit(a ī,e)śvara▷17 tavas▷18 nīla(-,)kaṇṭha▷19
-  nāma-hṛdaya(,ṃ)▷20 varta▷21-yiṣyami▷22, ▷505
+  tasya▷13 namas-kṛtvā▷14 | ▷504
+Imāṃ▷15 āry(a a,ā)▷16valokit(a ī,e)śvara▷17 tavas▷18 nīla(-,)kaṇṭha▷19 ▷505a
+  nāma-hṛdaya(,ṃ)▷20 varta▷21-yiṣyami▷22, ▷505b
   sarv(a-a,ā)rtha▷23 sādhana(,ṃ)▷24 śubha(,ṃ)▷25 ajeya(,ṃ)▷26, ▷506
   sarva-bhūtānā(,ṃ)▷27 bhava-mārga▷28 vi(-,)śodhaka(,m)▷29 ||1|| ▷507
 #2
-Tadyathā▷30: oṃ▷31 ālok(a,e)▷32 lok(a a,ā)▷33ti(-,)krānt(a,e)▷34, e-hrīḥ ▷35 mahā-bodhi(-,)sattva▷36, ▷508
+Tadyathā▷30: oṃ▷31 ālok(a,e)▷32 lok(a a,ā)▷33ti(-,)krānt(a,e)▷34, ▷508a
+  e-hrīḥ ▷35 mahā-bodhi(-,)sattva▷36, ▷508b
   smara-smara▷37 hṛdaya(,ṃ)▷38, ▷509
   kuru-kuru▷39 karma(,ṃ)▷40, ▷510
   dhuru-dhuru vijaya(,te)▷41 ▷511
@@ -69,25 +72,28 @@ huru-huru▷53 mālā▷54 huru hrīḥ▷55! ▷519
   kāma(,sya)▷63 darśana(,ṃ)▷64 ▷522
   prahlāda(,ya)▷65 manaḥ svāhā▷66 ||2|| ▷523
 #3
-Siddh(a,āya)-svāhā▷67 ▷524
-  Mahā-siddh(a,āya)▷68 svāhā▷69 ▷525
-  Siddha-yog(a i,e-)▷70śvar(a,āya)▷71 svāhā▷72 ▷526
-  Nīla(-,)kaṇṭha(,ya)▷73 svāhā▷74 ▷527
-  Varāha-mukha▷75-siṃha-mukh(a,āya)▷76 svāhā▷77 ▷528
-  Padma-hast(a,āya)▷78 svāhā▷79 ▷529
-  Cakra-yuddh(a,āya)▷80 svāhā▷81 ▷530
-  Śaṅkha-śabda▷82 ni(-,)bodhan(a,āya)-svāhā▷83 ▷531
-  Mahā-lakuṭa▷84 dhar(a,āya) svāhā▷85 ▷532
-  Vāma-skandha▷86 deśa-sthita▷87 kṛṣṇa-jīn(a,āya)▷88 svāhā▷89 ▷533
-  Vyāghra-carma▷90 nivasan(a,āya)▷91 svāhā▷92 ||3|| ▷534
+Siddh(a,āya)-svāhā▷67 ▷524⇥
+  Mahā-siddh(a,āya)▷68 svāhā▷69 ▷525⇥
+  Siddha-yog(a i,e-)▷70śvar(a,āya)▷71 svāhā▷72 ▷526⇥
+  Nīla(-,)kaṇṭha(,ya)▷73 svāhā▷74 ▷527⇥
+  Varāha-mukha▷75-siṃha-mukh(a,āya)▷76 svāhā▷77 ▷528⇥
+  Padma-hast(a,āya)▷78 svāhā▷79 ▷529⇥
+  Cakra-yuddh(a,āya)▷80 svāhā▷81 ▷530⇥
+  Śaṅkha-śabda▷82 ni(-,)bodhan(a,āya)-svāhā▷83 ▷531⇥
+  Mahā-lakuṭa▷84 dhar(a,āya) svāhā▷85 ▷532⇥
+  Vāma-skandha▷86 deśa-sthita▷87 kṛṣṇa-jīn(a,āya)▷88 svāhā▷89 ▷533⇥
+  Vyāghra-carma▷90 nivasan(a,āya)▷91 svāhā▷92 ||3|| ▷534⇥
 #4
 Nam(as,o)▷93 ratna▷94-tray(a,āya)▷95 ▷535
   Nama(s,)▷96 āry(a a,ā)▷97valokit(a i,e-)▷98śvar(a,aya)▷99 svāhā▷100 ||4|| ▷536
 `
 
   window.renderBody = function (sandhi) {
-    iastContent.split('\n').forEach((text, i) => renderRow(text, i, {
-      sandhi: sandhi, audioPrefix: 'mp3/karuna_jfq/k', hoverWord: false, sentenceAudio: true}))
+    const opt = {
+      sandhi: sandhi, audioPrefix: 'mp3/karuna_jfq/k', hoverWord: false, sentenceAudio: true,
+      digraph: ['ttva', 'ttvā', 'tra', 'śva', 'trā', 'dya', 'trī', 'pra', 'svā', 'kṛ', 'vyā']
+    }
+    iastContent.split('\n').forEach((text, i) => renderRow(text, i, opt))
   }
   renderBody('both')
 </script>

@@ -68,18 +68,20 @@ a { text-decoration:none; }
   font-family: "Microsoft Sans Serif", "Arial Unicode MS", sans-serif;
 }
 .iast { margin-bottom: .3em; }
-.iast-org { font-weight: 300; font-size: .9em; margin-bottom: .9em; }
+.iast-org { font-weight: 300; font-size: .9em; margin-bottom: .9em; margin-top: .2em; }
 .iast-org b { color: var(--black-color); }
 .iast-org::before { content: "[org] "; font-size: .8em; color: #aaa; }
 
 .iast-org, #top-bar, .tip, .tip a, .title.no-print { color: #777; }
 .word span.sp, .sec-title, .note, .note > a { color: #aaa; }
+.sp.place { opacity: 0; }
 .note, .note > a { font-size: 9px; }
 .tip { font-size: 11px; }
 
 .show-odd .deva .a.odd { color: #171; }
 .show-odd .iast .a.odd { color: #aa6; }
 .dark.show-odd .iast .a.odd { color: #77a; }
+.show-odd .iast .a + .a { margin-left: .05em; }
 @media print {
   .show-odd .iast .a.odd { color: #171; }
   .show-odd .iast .a.even { color: var(--black-color); }
@@ -94,8 +96,14 @@ body:not(.merge-audio-words) .word:not(.has-sub-word), .sub-word { display: inli
 body.show-digraph .a-digraph {
     text-decoration: underline;
     text-underline-position: under;
+    text-underline-offset: 3px;
     text-decoration-color: var(--border-color);
 }
+body.show-digraph .a-digraph + .a-digraph {
+    margin-left: 2px;
+    text-underline-offset: 2px;
+}
+.show-odd .iast .a + .a.a-digraph-ext { margin-left: 0; }
 
 @media screen {
   .hover-word .deva.word:not(.has-sub-word).hover,

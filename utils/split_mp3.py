@@ -26,7 +26,7 @@ def de_silencer(audio, filename, mode=1):
 
 
 def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False, join_ln=' ',
-              only_i=0, mp3_with_text=False, de_silence=1, rebuild=False,
+              only_i=0, mp3_with_text=False, de_silence=1, rebuild=False, reuse_voc=False,
               start_i=0, st_i=500):
     """
     从原始 mp3 文件、lrc歌词文件生成词和句的音频文件
@@ -38,6 +38,7 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False, join_ln=' ',
     :param mp3_with_text: 生成的词音频文件是否带iast转写，便于试听检查
     :param de_silence: 是否去除词的无声部分，0-按lrc时刻拆分，1-去除词首尾的无声部分，2-无声部分都拆开以便拆词
     :param rebuild: 是否全部重新生成，默认仅生成缺少的音频
+    :param reuse_voc: 是否重用相同文本的词音
     :param start_i: 词音频文件的起始序号
     :param st_i: 句音频文件的起始序号
     """
@@ -86,7 +87,7 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False, join_ln=' ',
             break
         if not text or text.startswith('['):  # 行内容为“-”或[内容]则跳过
             continue
-        reuse_name = re.sub(r'^ +|[,.!:;? ]+$', '', text)
+        reuse_name = re.sub(r'^[. ]+|[,.!:;? ]+$', '', text)
         reuse = words.get(reuse_name)
         if text.startswith('.'):  # 中途需要拆词时，在多出的行中“[time]. ”加点标记编号不变，以免打乱后续文件名
             text = text[1:].strip()
@@ -94,7 +95,7 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False, join_ln=' ',
         if merge_sentence:
             text_st += text + join_ln
             start_st = 0 if '◆' in text else start_st or start
-            st_end = re.search(r'\|\|', r.text) and not re.search(r'^\|\|', r.text)
+            st_end = re.search(r'[|,.]+', r.text) and not re.search(r'^\|\|', r.text)
         voc_i += 1
         st_voc_n += 1
         text_fn = re.sub(r'[A-Z]', lambda m: m.group().lower(), text.replace("'", 'a'))
@@ -102,14 +103,16 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False, join_ln=' ',
               f' ▷{st_i}' if st_end and st_voc_n > 1 else '',
               '' if merge_sentence or text_fn == text else text_fn)
 
-        if r.text.startswith('=') or reuse:  # 相邻两行词文本相同，就不增加编号
+        if r.text.startswith('.'):  # 加点标记编号不变，文件名数字后加abc等子名
+            assert ab, f'invalid sub-num: {r.text}'
+            ab, reuse = af[af.index(ab) + 1], None
+        elif lrc[i_ + 1].text.startswith('.'):
+            ab, reuse = 'a', None
+        elif r.text.startswith('=') or reuse:  # 相邻两行词文本相同，就不增加编号
             voc_i -= 1
             text = text.replace('=', '').strip()
-        elif r.text.startswith('.'):  # 加点标记编号不变，文件名数字后加abc等子名
-            assert ab, f'invalid sub-num: {r.text}'
-            ab = af[af.index(ab) + 1]
         else:
-            ab = 'a' if lrc[i_ + 1].text.startswith('.') else ''
+            ab = ''
 
         if reuse:
             print(f'reuse {reuse[0]} {reuse[1]}')
@@ -124,7 +127,7 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False, join_ln=' ',
                     makedirs('voc', exist_ok=True)
                     shutil.copy(out_fn, f'voc/{text_fn}.mp3')
 
-        if not reuse:
+        if reuse_voc and (not reuse and not ab):
             words[reuse_name] = voc_i, text
         sentence.append(text + ('▷%02d%s' % (reuse[0] if reuse else voc_i, ab)) + text_ext + (
             f' ▷{st_i}' if st_end and st_voc_n > 1 else ''))

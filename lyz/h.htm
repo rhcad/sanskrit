@@ -10,14 +10,15 @@
   <meta name="keywords" content="sanskrit,shurangama dharani,楞严咒梵文,楞严咒教念,释弘博">
   <meta property="og:image" content="../img/favicon.png">
   <link rel="icon" type="image/png" href="../img/favicon.png">
-  <link rel="stylesheet" href="../script/sanskrit.css?v=1348">
-  <link rel="stylesheet" href="../script/audio.css?v=1348">
+  <link rel="stylesheet" href="../script/sanskrit.css?v=1355">
+  <link rel="stylesheet" href="../script/audio.css?v=1355">
   <style>
     .title { text-align: center; margin-bottom: .3em; }
     .tip { font-size: 11px; margin-bottom: .3em; }
     [data-toggle="auto-audio"] { font-weight: bold; }
     #body, .body { max-width: 41rem; margin: 0 auto; }
     .audio-word.short { display: inline-block; }
+    .word span.sp.space { width: .6em; display: inline-block; }
     @media screen { .iast-row { line-height: 1.3em; }}
     @media (max-width: 650px) {
         .word { word-wrap: break-word; }
@@ -25,36 +26,36 @@
     }
   </style>
 </head>
-<body class="show-odd show-iast show-audio auto-audio merge-audio-words">
+<body class="show-odd show-iast show-audio auto-audio merge-audio-words show-digraph">
 <div id="top-bar">
   <span class="home" onclick="location.href='../'" title="Home"><img src="../img/favicon.png" alt="Home"></span>
   <span onclick="biggerFont()">+</span>
   <span onclick="smallerFont()">-</span>
   <span data-toggle="dark" title="深色模式">☽</span>
   <span data-toggle="show-odd">音节</span>
-  <span data-toggle="show-deva">天城体</span>
-  <span data-toggle="show-iast">转写</span>
+  <span data-toggle="show-digraph" title="有下划线的音节为二合音">二合</span>
   <span data-toggle="show-audio">读音</span>
   <span data-toggle="auto-audio">连读</span>
 </div>
 <div class="tip no-print">注：点击右上角“连读”可切换是否自动播放下一句。如在“微信”中连读播放会3秒内停止，可点击右上角…按钮“在浏览器中打开”本页面。开始播放后再次点击会停止。
-  附 <a href="h.lrc">歌词LRC</a>、<a href="https://archive.gj.cool/lengyan/%E9%87%8A%E5%BC%98%E5%8D%9A/">来源</a>、<a href="h.htm">教念(普敬法师诵)</a></div>
+  <br>有下划线的音节为二合音，可合成一字读。&emsp; 附 <a href="h.lrc">歌词LRC</a>、<a href="https://archive.gj.cool/lengyan/释弘博/">来源</a>、<a href="h.htm">教念(普敬法师诵)</a></div>
 <div class="title no-print">楞严咒梵文版 <small>弘博法师领诵</small></div>
 <div id="body"></div>
 <div class="tip no-print body">注：在 <a href="https://archive.gj.cool/lengyan/%E9%87%8A%E5%BC%98%E5%8D%9A/1buddhism.org_%C5%9A%C5%ABra%E1%B9%85gama-Mantra-v3.32.pdf">PDF</a>
     基础上依发音作了连音修改：tathāgatāyārhate、sugatāyārhate、yojana-abhya → yojanā-bhya。（耀觉，2026.2）</div>
-<script src="../script/sanscript.es6.js?v=1348"></script>
-<script src="../script/sanskrit.js?v=1348"></script>
+<script src="../script/sanscript.es6.js?v=1355"></script>
+<script src="../script/sanskrit.js?v=1355"></script>
 <script>
   const iastContent = `Śūraṅgama dhāraṇī
 Namaḥ sarva buddha bodhi-satve-bhyaḥ.▷01
 Stathāgata-uṣñīṣaṃ▷02 Sitātapatraṃ▷03 Aparājitaṃ▷04 Pratyaṅgiraṃ▷05 Dhāraṇī▷06 ▷500
 #1 Part I (第一会)
 Namaḥ▷07 sarva buddha bodhi-satve-bhyaḥ.▷08
-Namaḥ saptānāṃ samyak-saṃbuddha koṭīnāṃ▷09 sa-śrāvaka saṅghānāṃ▷10. ▷524
+Namaḥ saptānāṃ samyak-saṃbuddha koṭīnāṃ▷09
+  sa-śrāvaka saṅghānāṃ▷10. ▷524
 
-Namo loke arhantānāṃ.▷11     Namaḥ srotāpannānāṃ.▷12
-Namaḥ sakṛdāgāmīnāṃ.▷13  Namaḥ anāgāmīnāṃ▷14 .
+Namo loke arhantānāṃ.▷11    Namaḥ srotāpannānāṃ.▷12
+Namaḥ sakṛdāgāmīnāṃ.▷13    Namaḥ anāgāmīnāṃ▷14 .
 Namo loke samyag-gatānāṃ▷15 samyak-prati-pannānāṃ▷16. ▷525
 
 Namo devarṣīṇāṃ.▷17
@@ -139,10 +140,10 @@ Bhagavan stathāgata-uṣñīṣa▷94 sitātapatra mahā vajra-uṣñīṣa,▷
   koṭī-śata sahasra-netre,▷99  abhedya jvalitā-taṭaka,▷100
   mahā-vajrodāra tri-bhuvana maṇḍala.▷101
 
-Oṃ svastirbhavatu māṃ mama.▷102
+Oṃ svastir-bhavatu māṃ mama.▷102
 
 #3 Part III (第三会)
-Rāja-bhayā      cora-bhayā       udaka-bhayā       agni-bhayā,▷103
+Rāja-bhayā    cora-bhayā     udaka-bhayā     agni-bhayā,▷103
   viṣa-bhayā  śastra-bhayā▷104  para-cakra-bhayā  dur-bhikṣa-bhayā,▷105
   aśani-bhayā           akāla-mṛtyu-bhayā▷106
   dhāraṇi-bhūmi-kampā-bhayā▷107  ulkā-pāta-bhayā▷108,
@@ -276,9 +277,18 @@ Namaḥ stathāgatāya▷247
   sugatāyārhate samyak-saṃbuddhāya,▷248
   siddhyantu mantra-pada svāhā.▷249
 `
+  
   window.renderBody = function () {
     iastContent.split('\n').forEach((text, i) => renderRow(text, i, {
-      audioPrefix: 'hb/a', hoverWord: false, sentenceAudio: 'word'
+      audioPrefix: 'hb/a', hoverWord: false, sentenceAudio: 'word',
+      digraph: ['dra', 'drā', 'drī', 'dya', 'dyā', 'dyu', 'dye',
+        'jra', 'jya', 'jva', 'kṛ', 'pra', 'pta', 'ptā', 'bra',
+        'tra', 'trā', 'tre', 'tri', 'trī', 'tṛ', 'tīya', 'kti',
+        'tyo', 'tyu', 'tya', 'tyaṅ', 'mya', 'myak', 'myag',
+        'ṣṭa', 'svā', 'sva', 'srā', 'stra', 'ttve',
+        'bhyaḥ', 'bhyā', 'bhyan', 'ddhyan',
+        'vyā', 'ści', 'ṣye', 'syā', 'śva', 'śrā', 'cyā', 'kya'],
+      digraph2: [['tī', 'ya']]
     }))
     Array.from(document.querySelectorAll('.audio-word')).forEach(word => {
       word.classList.toggle('short', word.textContent.length < 40)

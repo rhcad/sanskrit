@@ -50,7 +50,7 @@
 }
 
 .audio-button:not(.voc).playing { background-color: #f00 !important; }
-.dark .audio-button:not(.voc).playing { background-color: #368 !important; }
+.dark .audio-button:not(.voc).playing { background-color: #84a8c0 !important; }
 .audio-word:has(.audio-button.playing) {
     text-decoration: underline;
     text-decoration-color: #777;

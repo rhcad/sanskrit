@@ -39,16 +39,21 @@ let newSection = null
 const _re323 = /[\u0300-\u0305\u0323-\u0324]/
 const _aiu = {a: 'ā', i: 'ī', u: 'ū', A: 'Ā', I: 'Ī', U: 'Ū'}
 const _323 = {T: 'Ṭ', D: 'Ḍ', S: 'Ṣ', r: 'ṛ', t: 'ṭ', d: 'ḍ', n: 'ṇ', m: 'ṃ', s: 'ṣ', h: 'ḥ'}
+const LEAD_A_CONS = /^[kgṭḍtdpb]-[kgcjṭḍtdpbṅñṇnmyrlvśṣsh]/
+const RE_END_VOWEL = /[aiuāīūṛṝḷḹáíúeēèoōò]$/i
+const DIGRAPH_EXTRA = /[kgṭḍtdpbṃ]$/
 
 function _mergeDigraph(iastTexts, options) {
-  if (options.digraph2 && iastTexts.length > 1) {
-    for (let j = iastTexts.length - 1; j > 0; j--) {
-      for (let k = options.digraph2.length - 1; k >= 0; k--) {
-        if (iastTexts[j] === options.digraph2[k][1]
-          && iastTexts[j - 1] === options.digraph2[k][0]) {
-          iastTexts.splice(j - 1, 2, iastTexts[j - 1] + iastTexts[j])
-          break
-        }
+  for (let i = iastTexts.length > 1 ? iastTexts.length - 1 : 0; i > 0; i--) {
+    if (LEAD_A_CONS.test(iastTexts[i]) && RE_END_VOWEL.test(iastTexts[i - 1])) {
+      iastTexts[i - 1] += iastTexts[i][0]
+      iastTexts[i] = iastTexts[i].substr(1)
+    }
+    for (let j = options.digraph2 ? options.digraph2.length - 1 : -1; j >= 0; j--) {
+      if (iastTexts[i] === options.digraph2[j][1]
+        && iastTexts[i - 1] === options.digraph2[j][0]) {
+        iastTexts.splice(i - 1, 2, iastTexts[i - 1] + iastTexts[i])
+        break
       }
     }
   }
@@ -148,6 +153,7 @@ function renderRow(text, rowIndex, options={}) {
     text = text.substring(0, text.length - 1)
     devaRow.classList.add('right-align')
     iastRow.classList.add('right-align')
+    iastRow.classList.add('right-align')
   }
   if (options.audioPrefix) {
     text = text.replace(audioRe1, s => audios.push(s.substring(1)) && '▷');
@@ -209,13 +215,31 @@ function renderRow(text, rowIndex, options={}) {
       data_id: `a${newWordId}-${i}`, data_i: i1,
       data_hz: isHz,
       html: s.replace(/-/g, '<span class="sp">-</span>')
-        .replace(/_/g, '&ensp;')
+        .replace(/_/g, '<span class="sp place">&ensp;</span>')
         .replace(/@\d+/g, t => `<span class="si" end="${ Sanscript.yati ? parseInt(t.substring(1))===Sanscript.yati || parseInt(t.substring(1))===Sanscript.yati+1 : parseInt(t.substring(1))===Sanscript.sn}" si="${t.substring(1)}">${t.substring(1)}</span>`),
       onclick: clickSection ? 'toggleSection(this)' : undefined
     });
     if (options.digraph && sp.classList.contains('a')) {
-      if (options.digraph.indexOf(sp.textContent) >= 0) {
+      const w = sp.textContent.toLowerCase();
+      if (options.digraph.indexOf(w) >= 0) {
         sp.classList.add('a-digraph')
+      }
+      else if (DIGRAPH_EXTRA.test(w) && options.digraph.indexOf(w.substr(0, w.length - 1)) >= 0) {
+        sp.classList.add('a-digraph')
+        if (!w.endsWith('ṃ')) {
+          createElement(wordSpan || iastSpan, 'a a-digraph-ext ' + (i1 % 2 ? 'odd' : 'even'), 'span', {
+            text: sp.textContent[w.length - 1],
+            data_id: `a${newWordId}-${i}b`, data_i: i1,
+          })
+          sp.textContent = sp.textContent.substr(0, w.length - 1)
+        }
+      } else if (w.indexOf('-') > 0 && options.digraph.indexOf(w.substr(w.indexOf('-') + 1)) >= 0) {
+        sp.parentNode.insertBefore(createElement(null, 'a ' + (i1 % 2 ? 'odd' : 'even'), 'span', {
+          text: w.substr(0, w.indexOf('-') + 1),
+          data_id: `a${newWordId}-${i}a`, data_i: i1,
+        }), sp)
+        sp.classList.add('a-digraph', 'a-digraph-ext')
+        sp.textContent = sp.textContent.substr(w.indexOf('-') + 1)
       }
     }
     sp = sp && sp.querySelector('.sp')
@@ -233,7 +257,7 @@ function renderRow(text, rowIndex, options={}) {
   }
   let words = Sanscript.iastToDevanagari(text, {
     split_aksara: true, removeDevaAudio: hasBodyCls('show-audio') && hasBodyCls('show-iast') && hasBodyCls('show-deva')})
-  const orgRow = orgHtml && createElement(row, 'iast-row iast-org', 'div', {html: orgHtml})
+  const orgRow = orgHtml && createElement(row, 'iast-row iast-org', 'div', {html: orgHtml.replace('⇥', '')})
   const sentenceAudio = (options['sentenceAudio'] || options['audioAsVoc']) && text.indexOf('▷') >= 0
   let i1 = 0, i2 = 0, wordSpan = null
 
@@ -328,6 +352,9 @@ function renderRow(text, rowIndex, options={}) {
   if (text.endsWith('-')) {
     createElement(createElement(iastRow, 'iast word'), '', 'span', {text: '-'})
     createElement(createElement(devaRow, 'deva word'), '', 'span', {text: '-'})
+  }
+  if (orgRow && iastRow.classList.contains('right-align')) {
+    orgRow.classList.add('right-align')
   }
   if (orgRow && !hasOrgRow) {
     hasOrgRow = 1
@@ -544,7 +571,9 @@ function toggleAudioWord(span, aid=0) {
       }
     }
   }
-  toggleAudioButton(span.querySelector('.audio-button'))
+  if (span) {
+    toggleAudioButton(span.querySelector('.audio-button'))
+  }
 }
 
 function toggleAudioButton(button) {
