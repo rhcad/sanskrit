@@ -10,7 +10,7 @@
   <meta name="keywords" content="sanskrit">
   <meta property="og:image" content="img/favicon.png">
   <link rel="icon" type="image/png" href="img/favicon.png">
-  <link rel="stylesheet" href="script/sanskrit.css?v=1324">
+  <link rel="stylesheet" href="script/sanskrit.css?v=1356">
   <style>
     body { padding-top: 12px; }
     ul { padding-inline-start: 20px; }
@@ -24,10 +24,18 @@
     @media screen and (pointer: fine) {
       a:hover { text-decoration: underline; }
     }
+    #snap {
+      background-color: transparent;
+      background-image: url("img/snap.jpg");
+      background-size: 378px 100px;
+      width: 378px; height: 100px; border-radius: 6px;
+      border: 2px dashed var(--border-color);
+    }
+    .dark #snap { background-image: url("img/snap2.jpg"); }
   </style>
 </head>
 <body>
-<img src="img/snap.jpg" width="350" height="142">
+<div id="snap"></div>
 <ul>
   <li><a href="heart.htm">心经梵文 <small>(含音节、连音变化、台大教念) </small><br>
     <span class="iast">prajñā-pāramitā-hṝdaya-sūtraṃ</span></a></li>
@@ -37,10 +45,10 @@
     <span class="iast">prajñā-pāramitā-hṝdaya-sūtraṃ</span></a></li>
   <li><a href="heart_song.htm">心经梵唱印度版（每句音频对照）<br>
     <span class="iast">prajñā-pāramitā-hṝdaya-sūtraṃ</span></a></li>
-  <li class="m-t m-b">大悲咒 <a href="karuna_mi.htm">84句校音版</a><br>
-    <a href="karuna_mu.htm">大悲咒 穆克纪教授诵（词句对照）</a><br>
-    <span class="iast">mahākāruṇikā hṛdaya dhāraṇī</span>
-    <br>大悲咒 <a href="karuna_jfq.htm">简丰祺教念(含连音变化)</a>
+  <li class="m-t m-b">大悲咒 <a href="karuna_mu.htm">大悲咒穆克纪教授诵（词句对照）</a><br>
+    <span class="iast">mahākāruṇikā hṛdaya dhāraṇī</span><br>
+    大悲咒 <a href="karuna_jfq.htm">简丰祺教念(含连音变化)</a><br>
+    <a href="karuna_mi.htm">84句校音版</a>
   </li>
   <li><a href="wsz.htm">往生咒教念 穆克纪教授、果滨居士<br>
     <span class="iast">sukhāvatī-vyūha-dhāraṇī</span></a></li>
@@ -63,5 +71,7 @@
 <p id="osc" style="float: right; font-size: 12px">OpenSource:
   <a href="https://gitee.com/rhcad/sanskrit">Gitee</a>
   <a href="https://github.com/rhcad/sanskrit">GitHub</a></p>
+<script src="script/sanscript.es6.js?v=1356"></script>
+<script src="script/sanskrit.js?v=1356"></script>
 </body>
 </html>

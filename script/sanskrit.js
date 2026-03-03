@@ -673,7 +673,8 @@ function smallerFont() {
   }
 }
 
-document.getElementById('top-bar').addEventListener('click', function (event) {
+const _topBar = document.getElementById('top-bar')
+_topBar && _topBar.addEventListener('click', function (event) {
   const dataset = event.target.dataset, toggleCls = (dataset || {}).toggle
   if (toggleCls) {
     document.body.classList.toggle(toggleCls)
