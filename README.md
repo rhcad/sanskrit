@@ -2,7 +2,9 @@
 
 梵语（读音、天城体、转写）学习
 
-[在线页面](http://ggbstudy.top/sa/)
+[GitHub在线页面](https://rhcad.github.io/sanskrit/)
+
+[Aliyun在线页面](http://ggbstudy.top/sa/)
 
 ![snapshot](img/snap.jpg)
 
