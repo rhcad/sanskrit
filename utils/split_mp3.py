@@ -123,7 +123,7 @@ def split_mp3(mp3_file, out_dir_prefix='', merge_sentence=False, join_ln=' ',
                 de_silencer(song[start:end], out_fn, de_silence)
             if ' ' not in text_fn and len(text_fn.split('-')) < 3 and \
                     de_silence == 1 and not path.exists(f'voc/{text_fn}.mp3'):
-                if text_fn not in ['e', 'na', 'sā', 'yā']:
+                if 0 and text_fn not in ['a', 'i', 'e', 'na', 'sā', 'yā']:
                     makedirs('voc', exist_ok=True)
                     shutil.copy(out_fn, f'voc/{text_fn}.mp3')
 
