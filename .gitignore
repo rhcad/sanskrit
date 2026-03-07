@@ -1,5 +1,7 @@
 .DS_Store
 .idea/
+*.tmp
+*.tmp.*
 mp3/*/*.txt
 mp3/heart_*/
 mp3/wsz*/
@@ -16,7 +18,6 @@ lrc_mp3/src/metre*.mp3
 lrc_mp3/src/bca*.mp3
 lrc_mp3/src/*-*.mp3
 voc/
-*.tmp
 
 karuna_jfq/
 karuna_jfq.mp3

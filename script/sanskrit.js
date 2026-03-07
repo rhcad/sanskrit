@@ -33,7 +33,7 @@ const audioNums = []
 const puncRe = /^[♪().,?!:：]$/
 const hzPunc = /[\u4e00-\u9fa5\uFF01-\uFF5E\u3000-\u303F()]+/
 const weightRe = /^\[[LG\s\u3000]+]|\[[LG\s\u3000]+]$/
-let newWordId = 1
+let newWordId = 1, newRowId = 0
 let hasOrgRow = 0
 let newSection = null
 const _re323 = /[\u0300-\u0305\u0323-\u0324]/
@@ -149,6 +149,7 @@ function renderRow(text, rowIndex, options={}) {
     row.classList.add('has-note')
     row.style.marginBottom = options.nextRow === '' ? '1em' : '0'
   }
+  row.setAttribute('id', 'r' + (++newRowId))
   if (text.endsWith('⇥')) {
     text = text.substring(0, text.length - 1)
     devaRow.classList.add('right-align')
@@ -219,12 +220,15 @@ function renderRow(text, rowIndex, options={}) {
         .replace(/@\d+/g, t => `<span class="si" end="${ Sanscript.yati ? parseInt(t.substring(1))===Sanscript.yati || parseInt(t.substring(1))===Sanscript.yati+1 : parseInt(t.substring(1))===Sanscript.sn}" si="${t.substring(1)}">${t.substring(1)}</span>`),
       onclick: clickSection ? 'toggleSection(this)' : undefined
     });
-    if (options.digraph && sp.classList.contains('a')) {
+    if (Array.isArray(options.digraph) && sp.classList.contains('a')) {
+      let found = null
       const w = sp.textContent.toLowerCase();
       if (options.digraph.indexOf(w) >= 0) {
         sp.classList.add('a-digraph')
+        found = w
       }
       else if (DIGRAPH_EXTRA.test(w) && options.digraph.indexOf(w.substr(0, w.length - 1)) >= 0) {
+        found = w.substr(0, w.length - 1)
         sp.classList.add('a-digraph')
         if (!w.endsWith('ṃ')) {
           createElement(wordSpan || iastSpan, 'a a-digraph-ext ' + (i1 % 2 ? 'odd' : 'even'), 'span', {
@@ -238,8 +242,12 @@ function renderRow(text, rowIndex, options={}) {
           text: w.substr(0, w.indexOf('-') + 1),
           data_id: `a${newWordId}-${i}a`, data_i: i1,
         }), sp)
+        found = w.substr(w.indexOf('-') + 1)
         sp.classList.add('a-digraph', 'a-digraph-ext')
         sp.textContent = sp.textContent.substr(w.indexOf('-') + 1)
+      }
+      if (found && Array.isArray(options['digraphFound']) && options['digraphFound'].indexOf(found) < 0) {
+        options['digraphFound'].push(found)
       }
     }
     sp = sp && sp.querySelector('.sp')
@@ -424,6 +432,16 @@ function renderRow(text, rowIndex, options={}) {
         word.remove()
       }
     }
+    Array.from(iastRow.querySelectorAll('.audio-button')).forEach(btn => {
+      for (let sp = btn.previousSibling; sp; sp = sp.previousSibling) {
+        if (sp.textContent.trim()) break
+        sp.classList.add('sp-before-audio')
+        if (!sp.previousSibling && btn) {
+          sp = btn.parentElement
+          btn = null
+        }
+      }
+    })
     moveSpace()
   }
 }
@@ -698,6 +716,7 @@ _topBar && _topBar.addEventListener('click', function (event) {
 })
 window._renderBody = function (sandhi, toggleCls) {
   newSection = null
+  newRowId = 0
   audioNums.length = 0
   document.getElementById('body').innerHTML = ''
   window.renderBody(sandhi, toggleCls)

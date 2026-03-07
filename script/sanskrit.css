@@ -24,6 +24,11 @@
     --punc-color: #444;
   }
 }
+@media print {
+    :root {
+        --border-color: #ccc;
+    }
+}
 
 html, body { margin: 0; }
 body { font-size: 16px; background-color: var(--body-background-color); color: var(--body-color); }
@@ -122,7 +127,7 @@ body.show-digraph .a-digraph + .a-digraph {
   }
 }
 
-.sec-title { font-size: 1em; margin-block-start: .3em; margin-block-end: .3em;}
+.sec-title { font-size: 1em; margin-block-start: .3em; margin-block-end: .4em;}
 .section > .sec-title::after {
   font-family: "Arial Unicode MS", Arial, sans-serif;
   content: "▴";
@@ -161,8 +166,8 @@ body:not(.show-iast) .iast-row,
 body:not(.show-audio) .audio-button { display: none; }
 
 @media print {
-  #top-bar, .down-div, .note, .audio-button, .gray-btn,
-  .no-print, #down-div, .section > .sec-title::after { display: none; }
+  #top-bar, .down-div, .note, .audio-button, .sp-before-audio, .gray-btn,
+  .no-print, #down-div, .section > .sec-title::after { display: none !important; }
   .audio-button::after { width: 0; opacity: 0; }
   #body { width: fit-content; margin: 0 auto; }
 }
