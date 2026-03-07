@@ -715,6 +715,7 @@ _topBar && _topBar.addEventListener('click', function (event) {
   }
 })
 window._renderBody = function (sandhi, toggleCls) {
+  if (!window.renderBody) return
   newSection = null
   newRowId = 0
   audioNums.length = 0
