@@ -560,12 +560,12 @@ function onAudioEnded(e) {
         continue
       }
       nextBtn = Array.from(document.querySelectorAll(`.audio-button[data-idx="${audioNums[idx]}"]`))
-        .filter(b => b.offsetParent)
       if (idx === curIdx)
         return
     } while (!nextBtn.length)
 
-    setTimeout(() => toggleAudioButton(nextBtn[0]), idx < curIdx ? 1000 : waitSentence ? 300 :
+    setTimeout(() => toggleAudioButton(nextBtn[nextBtn[1] && nextBtn[1].offsetHeight ? 1 : 0]),
+      idx < curIdx ? 1000 : waitSentence ? 300 :
       window.audioGap === undefined ? 50 : window.audioGap)
   }
 }
@@ -621,9 +621,10 @@ function toggleAudioButton(button) {
         updateTopBar();
       }
     }, 50);
-    if (!isInViewport(button)) {
+    const btnVis = button.offsetWidth ? button : button.previousSibling
+    if (!isInViewport(btnVis)) {
       const r = button.closest('.row'), p = r.previousElementSibling;
-      const el = p && p.lastElementChild || document.querySelector('.title') || button;
+      const el = p && p.lastElementChild || document.querySelector('.title') || btnVis;
       el.scrollIntoView();
     }
   } else if (audio.pause) {
