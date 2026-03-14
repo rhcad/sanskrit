@@ -24,11 +24,6 @@
     --punc-color: #444;
   }
 }
-@media print {
-    :root {
-        --border-color: #ccc;
-    }
-}
 
 html, body { margin: 0; }
 body { font-size: 16px; background-color: var(--body-background-color); color: var(--body-color); }
@@ -101,12 +96,12 @@ body:not(.merge-audio-words) .word:not(.has-sub-word), .sub-word { display: inli
 body.show-digraph .a-digraph {
     text-decoration: underline;
     text-underline-position: under;
-    text-underline-offset: 3px;
+    text-underline-offset: 2px;
     text-decoration-color: var(--border-color);
 }
-body.show-digraph .a-digraph + .a-digraph {
-    margin-left: 2px;
-    text-underline-offset: 2px;
+body.show-digraph .a-digraph + .a-digraph { margin-left: 2px; }
+@media screen {
+    body.show-digraph .a-digraph + .a-digraph { text-underline-offset: 3px; }
 }
 .show-odd .iast .a + .a.a-digraph-ext { margin-left: 0; }
 
