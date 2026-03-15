@@ -22,14 +22,13 @@
     #body { max-width: 45rem; margin: 0 auto; }
     .audio-word.short { display: inline-block; }
     .indent { margin-left: .7em; }
-    .word span.sp.space { width: .5em; display: inline-block; }
+    .word span.sp.space { width: .6em; display: inline-block; }
     @media screen { .iast-row { line-height: 1.3em; }}
     @media (max-width: 650px) {
         .word { word-wrap: break-word; }
         #body { max-width: 100%; }
     }
-    #r18, #r23, #r37, #r50,
-    #r75, #r87, #r95,
+    #r18, #r23, #r75, #r87, #r95,
     #r125, #r127, #r152, #r157,
     #r168, #r172, #r177,
     #r181, #r185, #r194, #r201 { padding-top: .4em; }
@@ -49,6 +48,10 @@
     .row-l-r { text-align: right; }
     .row-l-r > .row { display: inline-block; }
     .row-l-r > .row:first-child { float: left; }
+
+    @media print {
+        #r36 { font-size: .75em; }
+    }
   </style>
 </head>
 <body class="show-odd show-iast show-audio auto-audio show-digraph dark">
@@ -67,7 +70,7 @@
   <br>有下划线的音节为二合音，可合成一字读。&emsp; 附 <a href="pu.lrc">歌词LRC</a>、<a href="p0.htm">原始页面</a>、<a href="https://archive.gj.cool/lengyan/普敬法师/">资料来源</a>、<a href="h.htm">教念(弘博法师诵)</a></div>
 <div class="title no-print">楞严咒梵文版 <small>普敬法师诵</small></div>
 <div id="body">
-  <div class="row title" id="r1">
+  <div class="row title no-print" id="r1">
     <div class="iast-row"><span
       class="iast word audio-word short" data-id="1" onclick="toggleAudioWord(this,'6')"><span
         class="hz" data-id="a1-0" data-i="1" data-hz="true">佛顶光聚</span></span><span
@@ -356,6 +359,7 @@
             src="pu/p1009.mp3"></audio></button></span><span
         class="sp space">&nbsp;</span><span
       class="iast word has-sp audio-word short" data-id="55" onclick="toggleAudioWord(this,'58')"><span
+        class="sp space">&nbsp;</span><span
         class="a even" data-id="a55-0" data-i="12">śā</span><span
         class="a odd" data-id="a55-1" data-i="13">pā</span><span
         class="a even" data-id="a55-2" data-i="14">nu</span><span
@@ -1142,6 +1146,7 @@
       </div>
     </div>
     </div>
+    <div class="row-l-r">
     <div class="row" id="r35">
     <div class="iast-row"><span
       class="iast word audio-word short" data-id="168" onclick="toggleAudioWord(this,'171')"><span
@@ -1174,7 +1179,7 @@
             src="pu/p1037.mp3"></audio></button></span>
       </div>
     </div>
-    <div class="row indent" id="r36">
+    <div class="row" id="r36">
     <div class="iast-row right-align"><span
       class="iast word has-sp audio-word short" data-id="172" onclick="toggleAudioWord(this,'174')"><span
         class="a even" data-id="a172-1" data-i="2">ta</span><span
@@ -1202,6 +1207,7 @@
         data-idx="1038" class="audio-button" onclick="toggleAudioButton(this)"><audio
             src="pu/p1038.mp3"></audio></button></span>
       </div>
+    </div>
     </div>
     <div class="row" id="r37">
     <div class="iast-row"><span
@@ -1452,7 +1458,7 @@
       class="iast word has-sp audio-word short" data-id="212" onclick="toggleAudioWord(this,'213')"><span
         class="a odd" data-id="a212-0" data-i="13">vi</span><span
         class="sp">-</span><span
-        class="a even" data-id="a212-1" data-i="14">dhvaṃ</span><span
+        class="a even a-digraph" data-id="a212-1" data-i="14">dhvaṃ</span><span
         class="a odd" data-id="a212-2" data-i="15">sa</span><span
         class="a even" data-id="a212-3" data-i="16">na</span><span
         class="sp">-</span><span
@@ -1528,7 +1534,7 @@
       class="iast word has-sp audio-word short" data-id="220" onclick="toggleAudioWord(this,'221')"><span
         class="a odd" data-id="a220-0" data-i="9">vi</span><span
         class="sp">-</span><span
-        class="a even" data-id="a220-1" data-i="10">dhvaṃ</span><span
+        class="a even a-digraph" data-id="a220-1" data-i="10">dhvaṃ</span><span
         class="a odd" data-id="a220-2" data-i="11">sa</span><span
         class="a even" data-id="a220-3" data-i="12">na</span><span
         class="sp">-</span><span
@@ -1651,7 +1657,7 @@
         class="sp">-</span><span
         class="a even" data-id="a240-3" data-i="4">ba</span><span
         class="a odd" data-id="a240-4" data-i="5">lāṃ</span></span><span
-        class="sp space">&nbsp;</span><span
+        class="sp">&emsp;</span><span
       class="iast word audio-word has-sp has-word-voc has-audio-button short" data-id="241" onclick="toggleAudioWord(this)"><span
         class="a even" data-id="a241-0" data-i="6">ma</span><span
         class="a odd" data-id="a241-1" data-i="7">hā</span><span
@@ -1660,14 +1666,14 @@
         class="a odd" data-id="a241-3" data-i="9">ḍāṃ</span><button
         data-idx="134" class="audio-button voc" onclick="toggleAudioButton(this)"><audio
             src="pu/p134.mp3"></audio></button></span><span
-        class="sp space">&nbsp;</span><span
+        class="sp">&emsp;</span><span
       class="iast word has-sp audio-word short" data-id="242" onclick="toggleAudioWord(this,'244')"><span
         class="a even" data-id="a242-0" data-i="10">ma</span><span
         class="a odd" data-id="a242-1" data-i="11">hā</span><span
         class="sp">-</span><span
         class="a even" data-id="a242-2" data-i="12">dī</span><span
         class="a odd a-digraph" data-id="a242-3" data-i="13">ptāṃ</span></span><span
-        class="sp space">&nbsp;</span><span
+        class="sp">&emsp;</span><span
       class="iast word has-sp audio-word short" data-id="243" onclick="toggleAudioWord(this,'244')"><span
         class="a even" data-id="a243-0" data-i="14">ma</span><span
         class="a odd" data-id="a243-1" data-i="15">hā</span><span
@@ -1691,7 +1697,7 @@
         class="a odd" data-id="a246-1" data-i="5">tāṃ</span><button
         data-idx="137" class="audio-button voc" onclick="toggleAudioButton(this)"><audio
             src="pu/p137.mp3"></audio></button></span><span
-        class="sp space">&nbsp;</span><span
+        class="sp">&emsp;</span><span
       class="iast word audio-word short" data-id="247" onclick="toggleAudioWord(this,'252')"><span
         class="a even" data-id="a247-0" data-i="6">ma</span><span
         class="a odd" data-id="a247-1" data-i="7">hā</span></span><span
@@ -1699,7 +1705,7 @@
       class="iast word audio-word short" data-id="248" onclick="toggleAudioWord(this,'252')"><span
         class="a even" data-id="a248-0" data-i="8">jvā</span><span
         class="a odd" data-id="a248-1" data-i="9">lāṃ</span></span><span
-        class="sp space">&nbsp;</span><span
+        class="sp">&emsp;</span><span
       class="iast word has-sp audio-word short" data-id="249" onclick="toggleAudioWord(this,'252')"><span
         class="a even" data-id="a249-0" data-i="10">ma</span><span
         class="a odd" data-id="a249-1" data-i="11">hā</span><span
@@ -2115,7 +2121,7 @@
     </div>
     <div class="row row2 indent" id="r64">
     <div class="iast-row"><span
-      class="iast word has-sp audio-word short" data-id="324" onclick="toggleAudioWord(this,'326')"><span
+      class="iast word audio-word short" data-id="324" onclick="toggleAudioWord(this,'326')"><span
         class="a even" data-id="a324-1" data-i="2">sar</span><span
         class="a odd" data-id="a324-2" data-i="3">ve</span></span><span
         class="sp space">&nbsp;</span><span
@@ -2141,7 +2147,8 @@
         data-idx="1066" class="audio-button" onclick="toggleAudioButton(this)"><audio
             src="pu/p1066.mp3"></audio></button></span>
       </div>
-    </div></div>
+    </div>
+  </div>
   <div class="row section">
     <h3 class="sec-title" id="sec-title2" onclick="toggleSection(this)">2 第二会</h3>
     <div class="row" id="r65">
@@ -2193,6 +2200,7 @@
             src="pu/p1067.mp3"></audio></button></span>
       </div>
     </div>
+    <div class="rows rows2 right-align">
     <div class="row" id="r66">
     <div class="iast-row right-align"><span
       class="iast word has-sp audio-word short" data-id="338" onclick="toggleAudioWord(this,'339')"><span
@@ -2289,6 +2297,7 @@
             src="pu/p1071.mp3"></audio></button></span>
       </div>
     </div>
+    </div>
     <div class="row" id="r70">
     <div class="iast-row right-align"><span
       class="iast word has-sp audio-word short" data-id="354" onclick="toggleAudioWord(this,'355')"><span
@@ -2383,7 +2392,7 @@
       class="iast word has-sp audio-word short" data-id="369" onclick="toggleAudioWord(this,'372')"><span
         class="a odd" data-id="a369-0" data-i="11">vi</span><span
         class="sp">-</span><span
-        class="a even" data-id="a369-1" data-i="12">dhvaṃ</span><span
+        class="a even a-digraph" data-id="a369-1" data-i="12">dhvaṃ</span><span
         class="a odd" data-id="a369-2" data-i="13">sa</span><span
         class="a even" data-id="a369-3" data-i="14">na</span><span
         class="sp">-</span><span
@@ -2434,7 +2443,7 @@
       class="iast word has-sp audio-word short" data-id="377" onclick="toggleAudioWord(this,'380')"><span
         class="a odd" data-id="a377-0" data-i="13">vi</span><span
         class="sp">-</span><span
-        class="a even" data-id="a377-1" data-i="14">dhvaṃ</span><span
+        class="a even a-digraph" data-id="a377-1" data-i="14">dhvaṃ</span><span
         class="a odd" data-id="a377-2" data-i="15">sa</span><span
         class="a even" data-id="a377-3" data-i="16">na</span><span
         class="sp">-</span><span
@@ -4266,7 +4275,7 @@
         class="a odd" data-id="a616-2" data-i="3">phaṭ</span><button
         data-idx="336" class="audio-button voc" onclick="toggleAudioButton(this)"><audio
             src="pu/p336.mp3"></audio></button></span><span
-        class="sp space">&nbsp;</span><span
+        class="iast word has-sp"><span class="sp">&emsp;</span></span><span
       class="iast word audio-word has-sp has-word-voc has-audio-button short" data-id="617" onclick="toggleAudioWord(this)"><span
         class="a even" data-id="a617-0" data-i="4">a</span><span
         class="a odd" data-id="a617-1" data-i="5">mo</span><span
@@ -4275,7 +4284,7 @@
         class="a odd" data-id="a617-3" data-i="7">pha</span><button
         data-idx="337" class="audio-button voc" onclick="toggleAudioButton(this)"><audio
             src="pu/p337.mp3"></audio></button></span><span
-        class="sp space">&nbsp;</span><span
+        class="iast word has-sp"><span class="sp">&emsp;</span></span><span
       class="iast word audio-word has-sp has-word-voc has-audio-button short" data-id="618" onclick="toggleAudioWord(this)"><span
         class="a even" data-id="a618-0" data-i="8">a</span><span
         class="a odd a-digraph" data-id="a618-1" data-i="9">pra</span><span
@@ -4288,7 +4297,7 @@
             src="pu/p338.mp3"></audio></button></span>
       </div>
     </div>
-    <div class="row indent" id="r126">
+    <div class="row" id="r126">
     <div class="iast-row"><span
       class="iast word audio-word has-sp has-word-voc has-audio-button short" data-id="619" onclick="toggleAudioWord(this)"><span
         class="a even" data-id="a619-1" data-i="2">va</span><span
@@ -4303,11 +4312,10 @@
       class="iast word audio-word short" data-id="620" onclick="toggleAudioWord(this,'621')"><span
         class="punc" data-first-char=".">.</span></span><span
         class="sp space">&nbsp;</span><span
-      class="iast word audio-word has-sp has-sentence-voc has-audio-button short" data-id="621" onclick="toggleAudioWord(this)"><span
-        class="sp sp-before-audio"> </span><button
+      class="iast word audio-word has-sp has-sentence-voc has-audio-button short" data-id="621" onclick="toggleAudioWord(this)"><button
         data-idx="1119" class="audio-button" onclick="toggleAudioButton(this)"><audio
             src="pu/p1119.mp3"></audio></button></span><span
-        class="sp space">&nbsp;</span><span
+        class="iast word has-sp"><span class="sp">&emsp;&emsp;</span></span><span
       class="iast word audio-word short" data-id="622" onclick="toggleAudioWord(this,'623')"><span
         class="a odd" data-id="a622-0" data-i="7">a</span><span
         class="a even" data-id="a622-1" data-i="8">su</span><span
@@ -4988,6 +4996,7 @@
             src="pu/p1146.mp3"></audio></button></span>
       </div>
     </div>
+    <div class="rows rows2 right-align">
     <div class="row" id="r153">
     <div class="iast-row right-align"><span
       class="iast word audio-word has-sp has-word-voc has-audio-button short" data-id="732" onclick="toggleAudioWord(this)"><span
@@ -5035,6 +5044,7 @@
         data-idx="1148" class="audio-button" onclick="toggleAudioButton(this)"><audio
             src="pu/p1148.mp3"></audio></button></span>
       </div>
+    </div>
     </div>
     <div class="row" id="r155">
     <div class="iast-row right-align"><span
@@ -5338,11 +5348,8 @@
         class="a even a-digraph" data-id="a783-3" data-i="4">kti</span><span
         class="a odd" data-id="a783-4" data-i="5">ka</span><button
         data-idx="49" class="audio-button voc" onclick="toggleAudioButton(this)"><audio
-            src="pu/p49.mp3"></audio></button></span>
-      </div>
-    </div>
-  <div class="row wm w10" id="r164b">
-    <div class="iast-row"><span
+            src="pu/p49.mp3"></audio></button><span
+        class="sp space">&nbsp;</span></span><span
       class="iast word audio-word short" onclick="toggleAudioWord(this)"><span
         class="a even" data-id="a784-0" data-i="6">śma</span><span
         class="a odd" data-id="a784-1" data-i="7">śā</span><span

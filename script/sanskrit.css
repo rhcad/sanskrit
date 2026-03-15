@@ -132,7 +132,7 @@ body.show-digraph .a-digraph + .a-digraph { margin-left: 2px; }
 .section > .sec-title:hover::after { color: #0d66c2; }
 .section.collapse > .sec-title::after { content: "…"; }
 .section.collapse .row, .si { display: none; }
-.section + .section { margin-top: 1em; }
+@media screen { .section + .section { margin-top: 1em; }}
 
 #top-bar {
   background-color: var(--body-background-color);

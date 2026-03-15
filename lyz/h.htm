@@ -28,7 +28,7 @@
     #r79, #r91, #r99, #r106,
     #r129, #r131, #r155, #r160,
     #r171, #r175, #r180,
-    #r185, #r189, #r198, #r205 { padding-top: .4em; }
+    #r185, #r189, #r198, #r205, #r209 { padding-top: .4em; }
 
     .rows2 > .row { display: inline-block; min-width: 46%; }
     .row.wm { margin-right: .5em; }
@@ -45,6 +45,10 @@
     .row-l-r { text-align: right; }
     .row-l-r > .row { display: inline-block; }
     .row-l-r > .row:first-child { float: left; }
+
+    @media print {
+        #r38 { font-size: .75em; }
+    }
   </style>
 </head>
 <body class="show-odd show-iast show-audio auto-audio merge-audio-words show-digraph">
@@ -628,9 +632,9 @@
         class="a odd" data-id="a83-0" data-i="7"><span
         class="sp place">&ensp;</span></span><span
         class="a even" data-id="a83-1" data-i="8"><span
-        class="sp place">&ensp;</span></span><span
+        class="sp place">&ensp;</span></span><span11
         class="a odd" data-id="a83-2" data-i="9"><span
-        class="sp place">&ensp;</span></span><span
+        class="sp place">&ensp;</span></span11><span
         class="a even" data-id="a83-3" data-i="10">pa</span><span
         class="a odd" data-id="a83-4" data-i="11">dma</span><span
         class="sp space">&nbsp;</span><span
@@ -652,7 +656,6 @@
         class="a even" data-id="a86-1" data-i="4">ga</span><span
         class="a odd" data-id="a86-2" data-i="5">va</span><span
         class="a even" data-id="a86-3" data-i="6">te</span><span
-        class="sp" style="width: 3.2em; display: inline-block">&ensp;</span><span
         class="a even" data-id="a87-5" data-i="12">va</span><span
         class="a odd a-digraph" data-id="a87-6" data-i="13">jra</span><span
         class="sp">&ensp;</span><span
@@ -675,7 +678,7 @@
         class="a even" data-id="a90-1" data-i="4">ga</span><span
         class="a odd" data-id="a90-2" data-i="5">va</span><span
         class="a even" data-id="a90-3" data-i="6">te</span><span
-        class="sp" style="width: 3.3em; display: inline-block">&ensp;</span><span
+        class="sp" style="width: 3em; display: inline-block">&ensp;</span><span
         class="a even" data-id="a91-5" data-i="12">ma</span><span
         class="a odd" data-id="a91-6" data-i="13">ṇi</span><span
         class="sp">&ensp;</span><span
@@ -705,8 +708,6 @@
         class="a odd" data-id="a95-2" data-i="9"><span
         class="sp place">&ensp;</span></span><span
         class="a even" data-id="a95-3" data-i="10"><span
-        class="sp place">&ensp;</span></span><span
-        class="a odd" data-id="a95-4" data-i="11"><span
         class="sp place">&ensp;</span></span><span
         class="a even" data-id="a95-5" data-i="12">ga</span><span
         class="a odd" data-id="a95-6" data-i="13">ja</span><span
@@ -1084,7 +1085,7 @@
             src="hb/a47.mp3"></audio></button></span>
     </div>
   </div>
-  <div class="row indent" id="r38">
+  <div class="row" id="r38">
     <div class="iast-row right-align"><span
       class="iast word audio-word has-sp has-audio-button short" data-id="143" onclick="toggleAudioWord(this)"><span
         class="a even" data-id="a142-1" data-i="2">ta</span><span
@@ -1193,8 +1194,7 @@
             src="hb/a51.mp3"></audio></button></span>
     </div>
   </div>
-  <div class="rows right-align">
-  <div class="row row2" id="r42">
+  <div class="row" id="r42">
     <div class="iast-row right-align"><span
       class="iast word audio-word has-audio-button short" data-id="159" onclick="toggleAudioWord(this)"><span
         class="a odd" data-id="a158-0" data-i="1">Pa</span><span
@@ -1211,7 +1211,7 @@
             src="hb/a52.mp3"></audio></button></span>
     </div>
   </div>
-  <div class="row row2" id="r43">
+  <div class="row" id="r43">
     <div class="iast-row right-align"><span
       class="iast word audio-word has-sp has-audio-button short" data-id="161" onclick="toggleAudioWord(this)"><span
         class="a odd" data-id="a160-0" data-i="1">A</span><span
@@ -1233,7 +1233,6 @@
         data-idx="53" class="audio-button voc" onclick="toggleAudioButton(this)"><audio
             src="hb/a53.mp3"></audio></button></span>
     </div>
-  </div>
   </div>
   <div class="row" id="r44">
     <div class="iast-row right-align"><span
@@ -1296,7 +1295,7 @@
         class="sp">&emsp;</span><span
         class="a odd" data-id="a172-0" data-i="13">vi</span><span
         class="sp">-</span><span
-        class="a even" data-id="a172-1" data-i="14">dhvaṃ</span><span
+        class="a even a-digraph" data-id="a172-1" data-i="14">dhvaṃ</span><span
         class="a odd" data-id="a172-2" data-i="15">sa</span><span
         class="a even" data-id="a172-3" data-i="16">na</span><span
         class="sp">-</span><span
@@ -1360,7 +1359,7 @@
         class="sp">&emsp;</span><span
         class="a odd" data-id="a178-0" data-i="9">vi</span><span
         class="sp">-</span><span
-        class="a even" data-id="a178-1" data-i="10">dhvaṃ</span><span
+        class="a even a-digraph" data-id="a178-1" data-i="10">dhvaṃ</span><span
         class="a odd" data-id="a178-2" data-i="11">sa</span><span
         class="a even" data-id="a178-3" data-i="12">na</span><span
         class="sp">-</span><span
@@ -1931,6 +1930,7 @@
             src="hb/a80.mp3"></audio></button></span>
     </div>
   </div>
+  <div class="rows rows2 right-align">
   <div class="row" id="r68">
     <div class="iast-row right-align"><span
       class="iast word audio-word has-audio-button short" data-id="288" onclick="toggleAudioWord(this)"><span
@@ -2002,6 +2002,7 @@
         data-idx="84" class="audio-button voc" onclick="toggleAudioButton(this)"><audio
             src="hb/a84.mp3"></audio></button></span>
     </div>
+  </div>
   </div>
   <div class="row" id="r72">
     <div class="iast-row right-align"><span
@@ -2084,7 +2085,7 @@
       class="iast word audio-word has-audio-button short" data-id="315" onclick="toggleAudioWord(this)"><span
         class="a odd" data-id="a313-0" data-i="11">vi</span><span
         class="sp">-</span><span
-        class="a even" data-id="a313-1" data-i="12">dhvaṃ</span><span
+        class="a even a-digraph" data-id="a313-1" data-i="12">dhvaṃ</span><span
         class="a odd" data-id="a313-2" data-i="13">sa</span><span
         class="a even" data-id="a313-3" data-i="14">na</span><span
         class="sp">-</span><span
@@ -2130,7 +2131,7 @@
       class="iast word audio-word has-audio-button short" data-id="323" onclick="toggleAudioWord(this)"><span
         class="a odd" data-id="a321-0" data-i="13">vi</span><span
         class="sp">-</span><span
-        class="a even" data-id="a321-1" data-i="14">dhvaṃ</span><span
+        class="a even a-digraph" data-id="a321-1" data-i="14">dhvaṃ</span><span
         class="a odd" data-id="a321-2" data-i="15">sa</span><span
         class="a even" data-id="a321-3" data-i="16">na</span><span
         class="sp">-</span><span
@@ -4345,7 +4346,7 @@
         class="a even" data-id="a636-5" data-i="14">ke</span><span
         class="sp">-</span><span
         class="a odd a-digraph" data-id="a636-6" data-i="15">bhyaḥ</span><span
-        class="sp">-</span><span
+        class="sp space">&nbsp;</span><span
         class="a even" data-id="a636-7" data-i="16">pha</span><span
         class="a odd" data-id="a636-8" data-i="17">ṭ</span><span
         class="punc" data-first-char=".">.</span><button
@@ -4353,6 +4354,7 @@
             src="hb/a184.mp3"></audio></button></span>
     </div>
   </div>
+  <div class="rows rows2 right-align">
   <div class="row" id="r156">
     <div class="iast-row right-align"><span
       class="iast word audio-word has-audio-button short" data-id="639" onclick="toggleAudioWord(this)"><span
@@ -4394,6 +4396,7 @@
             src="hb/a186.mp3"></audio></button></span>
     </div>
   </div>
+  </div>
   <div class="row" id="r158">
     <div class="iast-row right-align"><span
       class="iast word audio-word has-audio-button" data-id="647" onclick="toggleAudioWord(this)"><span
@@ -4418,6 +4421,7 @@
         class="sp">-</span><span
         class="a even" data-id="a646-4" data-i="14">rā</span><span
         class="a odd" data-id="a646-5" data-i="15">je</span><span
+        class="sp">-</span><span
         class="a even a-digraph" data-id="a646-6" data-i="16">bhyaḥ</span><span
         class="sp space">&nbsp;</span><span
         class="a odd" data-id="a647-0" data-i="17">pha</span><span
@@ -6040,7 +6044,7 @@
             src="hb/a246.mp3"></audio></button></span><span
       class="iast word" data-id="861" data-first-char="."><span
         class="punc" data-first-char=".">.</span></span><span
-      class="iast word audio-word has-sp has-sentence-voc has-audio-button short" data-id="862" onclick="toggleAudioWord(this)"><span
+      class="iast word audio-word has-sp no-print has-sentence-voc has-audio-button short" data-id="862" onclick="toggleAudioWord(this)"><span
         class="sp space sp-before-audio">&nbsp;</span><span
         class="a even" data-id="a996-2" data-i="10">♥</span><button
         data-idx="523" class="audio-button" onclick="toggleAudioButton(this)"><audio
